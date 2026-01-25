@@ -9,14 +9,25 @@ const AnimatedCounter = ({
   suffix = "",
   inView,
 }: {
-  value: number;
+  value: number | string; // CHANGED: Allow string
   suffix: string;
   inView: boolean;
 }) => {
   const [count, setCount] = useState(0);
 
+  // CHANGED: If it's text (like "2-3"), just show it immediately
+  if (typeof value === "string") {
+    return (
+      <span className="text-4xl md:text-5xl font-bold gradient-text">
+        {value}
+        {suffix}
+      </span>
+    );
+  }
+
+  // If it's a number, do the animation logic
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || typeof value !== "number") return;
 
     const duration = 2000;
     const steps = 60;
@@ -73,7 +84,7 @@ export const AboutSection = () => {
     {
       icon: Cloud,
       title: "Cloud Architecture",
-      description: "50+ AWS/GCP services expertise",
+      description: "35+ AWS/GCP services expertise",
     },
     {
       icon: Code,

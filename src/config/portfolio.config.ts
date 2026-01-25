@@ -25,32 +25,32 @@ export const portfolioConfig = {
     bio: "A passionate developer with a unique journey from Physiotherapy to Technology. I specialize in building hybrid cloud architectures, full-stack applications, and AI-powered solutions, with deep expertise in healthcare technology.",
     shortBio: "Building the future of healthcare technology with hybrid cloud solutions and AI automation.",
     location: "Dhaka, Bangladesh",
-    email: "zahidul@example.com", // Replace with your email
-    phone: "+880 1XXX-XXXXXX", // Replace with your phone
+    email: "muhammadzahidulislam2222@gmail.com", // Replace with your email
+    phone: "+880 1794739339", // Replace with your phone
     availability: "Available for Projects", // or "Currently Busy" / "Open to Opportunities"
     availabilityColor: "success", // "success" | "warning" | "destructive"
-    resumeUrl: "/resume.pdf", // Add your resume to public folder
+    resumeUrl: "/Zahidul_Islam_Resume.pdf", // Add your resume to public folder
   },
 
   /* ========================================
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Years Experience", value: 5, suffix: "+" },
-    { label: "Projects Completed", value: 50, suffix: "+" },
-    { label: "Clients Served", value: 30, suffix: "+" },
-    { label: "Cloud Services Mastered", value: 50, suffix: "+" },
+    { label: "Years Experience", value: "2-3", suffix: "+" },
+    { label: "Projects Completed", value: 5, suffix: "+" },
+    { label: "Clients Served", value: "Ongoing", suffix: "" },
+    { label: "Cloud Services Mastered", value: 35, suffix: "+" },
   ],
 
   /* ========================================
      🔗 SOCIAL MEDIA LINKS
      ======================================== */
   socials: {
-    github: "https://github.com/zahidul", // Replace with your GitHub
-    linkedin: "https://linkedin.com/in/zahidul", // Replace with your LinkedIn
-    twitter: "https://twitter.com/zahidul", // Replace with your Twitter/X
-    youtube: "", // Optional: Add YouTube channel
-    email: "mailto:zahidul@example.com",
+    github: "https://github.com/Zahidulislam2222", // Replace with your GitHub
+    linkedin: "https://www.linkedin.com/in/zahidul-islam-83254220b/", // Replace with your LinkedIn
+    twitter: "https://x.com/MdZahid67023693", // Replace with your Twitter/X
+    youtube: "https://www.youtube.com/@FromZahidsKnowledgeofficial", // Optional: Add YouTube channel
+    email: "mailto:muhammadzahidulislam2222@gmail.com",
   },
 
   /* ========================================
@@ -320,7 +320,7 @@ export const portfolioConfig = {
   services: [
     {
       name: "Starter",
-      price: "$500",
+      price: "$350+",
       period: "/project",
       description: "Perfect for small businesses and startups looking to establish their digital presence.",
       features: [
@@ -336,7 +336,7 @@ export const portfolioConfig = {
     },
     {
       name: "Professional",
-      price: "$2,500",
+      price: "$1,500+",
       period: "/project",
       description: "Ideal for growing businesses needing advanced functionality and cloud integration.",
       features: [
