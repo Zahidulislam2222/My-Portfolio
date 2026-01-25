@@ -10,6 +10,9 @@ import {
   ChevronUp,
   Star,
   Zap,
+  ChevronLeft,  // <-- Add this
+  ChevronRight, // <-- Add this
+  Code,
 } from "lucide-react";
 import { portfolioConfig, projectCategories, type Project } from "@/config/portfolio.config";
 import { Button } from "@/components/ui/button";
@@ -75,36 +78,89 @@ const ProjectCard = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // --- ADD THESE NEW STATES ---
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isCodeMenuOpen, setIsCodeMenuOpen] = useState(false);
+
+  // Normalize images: use project.images array, or fallback to single thumbnail
+  const projectImages = project.images || [project.thumbnail];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + projectImages.length) % projectImages.length);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className={`glass-card overflow-hidden card-hover ${
-        project.featured ? "md:col-span-2" : ""
-      }`}
+      className={`glass-card overflow-hidden card-hover ${project.featured ? "md:col-span-2" : ""
+        }`}
     >
       {/* Image Container */}
-      <div className="relative aspect-video overflow-hidden bg-secondary">
+      <div className="relative aspect-video overflow-hidden bg-secondary group/image">
         {!imageLoaded && (
           <div className="absolute inset-0 animate-pulse bg-secondary" />
         )}
-        <img
-          src={project.thumbnail}
-          alt={project.title}
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
-            imageLoaded ? "opacity-100" : "opacity-0"
-          }`}
-          onLoad={() => setImageLoaded(true)}
-          loading="lazy"
-        />
+
+        {/* Image Slider */}
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={currentImageIndex}
+            src={projectImages[currentImageIndex]}
+            alt={project.title}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${imageLoaded ? "opacity-100" : "opacity-0"
+              }`}
+            onLoad={() => setImageLoaded(true)}
+            loading="lazy"
+          />
+        </AnimatePresence>
+
+        {/* Slider Controls (Only show if > 1 image) */}
+        {projectImages.length > 1 && (
+          <>
+            <button
+              onClick={prevImage}
+              className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover/image:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white opacity-0 group-hover/image:opacity-100 transition-opacity hover:bg-black/70 z-20"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+
+            {/* Dots Indicator */}
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+              {projectImages.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentImageIndex ? "bg-white w-3" : "bg-white/50"
+                    }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
 
         {/* Overlay with badges */}
-        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent pointer-events-none" />
 
         {/* Featured & Healthcare Badges */}
-        <div className="absolute top-4 left-4 flex gap-2">
+        <div className="absolute top-4 left-4 flex gap-2 z-20">
           {project.featured && (
             <Badge className="bg-primary/90 text-primary-foreground flex items-center gap-1">
               <Star className="w-3 h-3" />
@@ -123,26 +179,10 @@ const ProjectCard = ({
         {project.videoId && (
           <button
             onClick={() => onVideoClick(project.videoId!)}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-full bg-primary/90 text-primary-foreground hover:bg-primary transition-all hover:scale-110"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 rounded-full bg-primary/90 text-primary-foreground hover:bg-primary transition-all hover:scale-110 z-20"
           >
             <Play className="w-8 h-8" />
           </button>
-        )}
-
-        {/* Metrics */}
-        {project.metrics && (
-          <div className="absolute bottom-4 right-4 flex gap-2">
-            {Object.entries(project.metrics).map(([key, value]) => (
-              <Badge
-                key={key}
-                variant="secondary"
-                className="bg-background/80 backdrop-blur-sm"
-              >
-                <Zap className="w-3 h-3 mr-1 text-primary" />
-                {value}
-              </Badge>
-            ))}
-          </div>
         )}
       </div>
 
@@ -213,13 +253,65 @@ const ProjectCard = ({
               </a>
             </Button>
           )}
-          {project.githubUrl && (
-            <Button size="sm" variant="outline" asChild>
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4 mr-2" />
+
+          {/* --- NEW MULTI-GITHUB BUTTON LOGIC --- */}
+          {/* Case A: Multiple Links -> Dropdown */}
+          {project.githubLinks && project.githubLinks.length > 0 ? (
+            <div className="relative">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setIsCodeMenuOpen(!isCodeMenuOpen)}
+                className={isCodeMenuOpen ? "bg-accent" : ""}
+              >
+                <Code className="w-4 h-4 mr-2" />
                 Code
-              </a>
-            </Button>
+                <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isCodeMenuOpen ? 'rotate-180' : ''}`} />
+              </Button>
+
+              <AnimatePresence>
+                {isCodeMenuOpen && (
+                  <>
+                    {/* Backdrop to close menu when clicking outside */}
+                    <div
+                      className="fixed inset-0 z-40"
+                      onClick={() => setIsCodeMenuOpen(false)}
+                    />
+
+                    {/* Dropdown Menu */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute bottom-full left-0 mb-2 w-48 bg-popover border border-border rounded-lg shadow-xl z-50 overflow-hidden flex flex-col p-1"
+                    >
+                      {project.githubLinks.map((link, i) => (
+                        <a
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                        >
+                          <Github className="w-3 h-3" />
+                          {link.label}
+                        </a>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
+            /* Case B: Single Link (Fallback) */
+            project.githubUrl && (
+              <Button size="sm" variant="outline" asChild>
+                <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                  <Github className="w-4 h-4 mr-2" />
+                  Code
+                </a>
+              </Button>
+            )
           )}
           {project.videoId && (
             <Button

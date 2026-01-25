@@ -47,7 +47,7 @@ export const portfolioConfig = {
      ======================================== */
   socials: {
     github: "https://github.com/Zahidulislam2222", // Replace with your GitHub
-    linkedin: "https://www.linkedin.com/in/zahidul-islam-83254220b/", // Replace with your LinkedIn
+    linkedin: "https://www.linkedin.com/in/zahidul-islam-developer/", // Replace with your LinkedIn
     twitter: "https://x.com/MdZahid67023693", // Replace with your Twitter/X
     youtube: "https://www.youtube.com/@FromZahidsKnowledgeofficial", // Optional: Add YouTube channel
     email: "mailto:muhammadzahidulislam2222@gmail.com",
@@ -89,47 +89,47 @@ export const portfolioConfig = {
      
      ======================================== */
   projects: [
+
+    // Inside portfolioConfig.projects array:
+
     {
       id: "mediconnect",
       title: "MediConnect - Hybrid Cloud Telemedicine",
       category: "hybrid-cloud",
       description: "Enterprise-grade telemedicine platform leveraging 50+ AWS and GCP services for seamless healthcare delivery.",
-      fullDescription: "MediConnect is a comprehensive telemedicine solution that revolutionizes healthcare delivery through hybrid cloud architecture. Built with React, Node.js, and Terraform, it orchestrates over 50 AWS and GCP services to provide secure video consultations, electronic health records, prescription management, and AI-powered diagnostics. The platform serves thousands of patients and healthcare providers with 99.9% uptime.",
-      thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+      fullDescription: "Mediconnect is a full-scale, cloud-native telehealth platform designed with a serverless-first architecture.The project focuses on real production-grade backend logic, covering authentication, appointments, video consultations, AI diagnostics, billing, analytics, and HIPAA-aligned security — all implemented using AWS and Google Cloud services.",
+
+      // 1. ADD THIS: Array of images for the slider
+      images: [
+        "https://i9.ytimg.com/vi/Oo_Lilyasi0/maxresdefault.jpg?v=69761e0e&sqp=CPTm2MsG&rs=AOn4CLAuQbjgOFJhIlCRFDXkQU7s-VOeew",
+        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80",
+        "https://images.unsplash.com/photo-1516549655169-df83a063b36c?w=800&q=80"
+      ],
+      thumbnail: "https://i9.ytimg.com/vi/Oo_Lilyasi0/maxresdefault.jpg?v=69761e0e&sqp=CPTm2MsG&rs=AOn4CLAuQbjgOFJhIlCRFDXkQU7s-VOeew",
+
       technologies: ["React", "Node.js", "AWS", "GCP", "Terraform", "Docker", "Kubernetes", "PostgreSQL", "Redis", "WebRTC"],
       achievements: [
-        "Integrated 50+ cloud services across AWS and GCP",
+        "Integrated 35+ cloud services across AWS and GCP",
         "Achieved 99.9% uptime with multi-region failover",
         "Reduced patient wait times by 60%",
-        "HIPAA compliant architecture",
-        "Served 10,000+ telemedicine consultations"
+        "HIPAA aligned architecture",
+        "capable of serving 10,000+ telemedicine consultations"
       ],
-      liveUrl: "https://mediconnect.example.com",
-      githubUrl: "https://github.com/zahidul/mediconnect",
-      videoId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
+      liveUrl: "https://d3ligzc3b5cdix.cloudfront.net/",
+
+      // 2. ADD THIS: Array of objects for multiple repos
+      githubLinks: [
+        { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-frontend" },
+        { label: "Backend", url: "https://github.com/Zahidulislam2222/mediconnect-backend" },
+        //{ label: "Infrastructure", url: "" }
+      ],
+      // Keep this for backward compatibility if needed, or remove it
+      githubUrl: "https://github.com/Zahidulislam2222/mediconnect-hub",
+
+      videoId: "Oo_Lilyasi0",
       featured: true,
       isHealthcare: true,
       metrics: { users: "10K+", uptime: "99.9%", services: "50+" },
-    },
-    {
-      id: "health-code-analysis",
-      title: "Health Code Analysis Platform",
-      category: "ai-ml",
-      description: "WordPress-based platform with custom Dialogflow ES chatbot for intelligent health code analysis and medical queries.",
-      fullDescription: "An innovative healthcare platform combining WordPress's flexibility with advanced AI capabilities. Features a custom-built Dialogflow ES chatbot that provides intelligent health code analysis, symptom checking, and medical information queries. The platform includes custom PHP modules for healthcare-specific functionality and seamless EHR integration.",
-      thumbnail: "https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80",
-      technologies: ["WordPress", "Dialogflow ES", "PHP", "MySQL", "REST API", "JavaScript", "TensorFlow"],
-      achievements: [
-        "95% accuracy in health code interpretation",
-        "Handles 1000+ daily queries",
-        "Reduced manual processing by 70%",
-        "Multi-language support"
-      ],
-      liveUrl: "https://healthcode.example.com",
-      githubUrl: "https://github.com/zahidul/health-code-analysis",
-      featured: true,
-      isHealthcare: true,
-      metrics: { accuracy: "95%", queries: "1K+/day" },
     },
     {
       id: "chronos",
@@ -187,7 +187,7 @@ export const portfolioConfig = {
         "Real-time monitoring & alerts"
       ],
       githubUrl: "https://github.com/zahidul/n8n-workflows",
-      featured: true,
+      featured: false,
       isHealthcare: false,
       metrics: { workflows: "50+", reliability: "99.5%" },
     },
