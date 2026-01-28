@@ -96,7 +96,7 @@ export const portfolioConfig = {
       id: "mediconnect",
       title: "MediConnect - Hybrid Cloud Telemedicine",
       category: ["hybrid-cloud", "mobile", "ai-ml"],
-      description: "Enterprise-grade telemedicine platform leveraging 50+ AWS and GCP services for seamless healthcare delivery.",
+      description: "Enterprise-grade telemedicine platform leveraging 35+ AWS and GCP services for seamless healthcare delivery.",
       fullDescription: "Mediconnect is a full-scale, cloud-native telehealth platform designed with a serverless-first architecture.The project focuses on real production-grade backend logic, covering authentication, appointments, video consultations, AI diagnostics, billing, analytics, and HIPAA-aligned security — all implemented using AWS and Google Cloud services.",
 
       // 1. ADD THIS: Array of images for the slider
