@@ -84,7 +84,7 @@ export const AboutSection = () => {
     {
       icon: Cloud,
       title: "Cloud Architecture",
-      description: "35+ AWS/GCP services expertise",
+      description: "40+ AWS/GCP/Azure services expertise",
     },
     {
       icon: Code,

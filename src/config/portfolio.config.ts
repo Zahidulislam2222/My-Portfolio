@@ -40,7 +40,7 @@ export const portfolioConfig = {
     { label: "Years Experience", value: "2-3", suffix: "+" },
     { label: "Projects Completed", value: 10, suffix: "+" },
     { label: "Clients Served", value: "Ongoing", suffix: "" },
-    { label: "Cloud Services Mastered", value: 35, suffix: "+" },
+    { label: "Cloud Services Mastered", value: 40, suffix: "+" },
   ],
 
   /* ========================================
@@ -463,6 +463,7 @@ export const portfolioConfig = {
       skills: [
         { name: "Amazon Web Services (AWS)", level: 95 },
         { name: "Google Cloud Platform (GCP)", level: 90 },
+        { name: "Microsoft Azure", level: 90 },
         { name: "Terraform", level: 90 },
         { name: "Multi-Cloud Strategy", level: 85 },
       ],
@@ -521,8 +522,9 @@ export const portfolioConfig = {
       icon: "Heart",
       color: "success",
       skills: [
-        { name: "HIPAA Compliance", level: 90 },
+        { name: "HIPAA/GDPR Compliance", level: 90 },
         { name: "EHR/EMR Integration", level: 85 },
+        { name: "FHIR Integration", level: 85 },
         { name: "Telemedicine Platforms", level: 92 },
       ],
     },
@@ -585,9 +587,10 @@ export const portfolioConfig = {
       period: "pricing",
       description: "Comprehensive solutions for enterprises requiring hybrid cloud architecture and healthcare compliance.",
       features: [
-        "Hybrid Cloud Architecture",
+        "Multi Cloud Architecture",
         "Multi-Region Deployment",
-        "HIPAA Compliance",
+        "HIPAA/GDPR Compliance",
+        "FHIR Integration",
         "Custom AI/ML Solutions",
         "24/7 Support & Monitoring",
         "Dedicated DevOps Engineer",
