@@ -772,7 +772,7 @@ export interface Project {
   images?: string[];         // Optional array for slider
   technologies: string[];
   achievements: string[];
-  liveUrl?: string;          // Optional
+  liveUrl?: string;          
   githubUrl?: string;        // Optional (Single link)
   githubLinks?: {            // Optional (Multiple links)
     label: string;
