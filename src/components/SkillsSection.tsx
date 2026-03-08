@@ -166,7 +166,7 @@ const SpecialBadges = () => {
         <div>
           <h4 className="font-semibold text-blue-400">Docker Expert</h4>
           <p className="text-sm text-muted-foreground">
-            Containerization
+            Containerization & Kubernetes
           </p>
         </div>
       </motion.div>

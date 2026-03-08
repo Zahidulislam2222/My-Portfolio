@@ -40,17 +40,17 @@ export const portfolioConfig = {
     { label: "Years Experience", value: "2-3", suffix: "+" },
     { label: "Projects Completed", value: 10, suffix: "+" },
     { label: "Clients Served", value: "Ongoing", suffix: "" },
-    { label: "Cloud Services Mastered", value: 40, suffix: "+" },
+    { label: "Cloud Services Mastered", value: 50, suffix: "+" },
   ],
 
   /* ========================================
      🔗 SOCIAL MEDIA LINKS
      ======================================== */
   socials: {
-    github: "https://github.com/Zahidulislam2222", // Replace with your GitHub
-    linkedin: "https://www.linkedin.com/in/zahidul-islam-developer/", // Replace with your LinkedIn
-    twitter: "https://x.com/MdZahid67023693", // Replace with your Twitter/X
-    youtube: "https://www.youtube.com/@FromZahidsKnowledgeofficial", // Optional: Add YouTube channel
+    github: "https://github.com/Zahidulislam2222", 
+    linkedin: "https://www.linkedin.com/in/zahidul-islam-developer/", 
+    twitter: "https://x.com/MdZahid67023693", 
+    youtube: "https://www.youtube.com/@FromZahidsKnowledgeofficial", 
     email: "mailto:muhammadzahidulislam2222@gmail.com",
   },
 
@@ -76,58 +76,116 @@ export const portfolioConfig = {
 
     {
       id: "mediconnect-v2",
-      title: "MediConnect V2 - Zero-Cost Multi-Cloud Healthcare Ecosystem",
-      category: ["hybrid-cloud", "ai-ml", "healthcare", "devops"],
-      description: "A HIPAA-compliant, multi-cloud telemedicine platform (AWS, GCP, Azure) engineered with a 'Zero-Cost Idle' architecture and FHIR R4 interoperability.",
-      fullDescription: "MediConnect V2 represents a paradigm shift in healthcare infrastructure. Unlike traditional 'always-on' monoliths, this platform utilizes a distributed microservices architecture across AWS, Google Cloud, and Azure to maximize free tiers and resilience. \n\nThe core innovation is the 'Zero-Cost Idle' pattern: services scale to zero when unused, resulting in a $0.00 monthly cloud bill during inactivity while maintaining instant scalability for thousands of concurrent patients. \n\nBeyond infrastructure, the system enforces strict regulatory compliance through 'Privacy by Design'. It features a custom AI Circuit Breaker that routes diagnostic queries between Claude (AWS), Gemini (GCP), and GPT-4 (Azure) based on real-time latency and cost.",
+      title: "MediConnect V2 Multi-Cloud Healthcare Ecosystem",
+      category: ["hybrid-cloud", "ai-ml", "mobile"],
+      description: "A production-grade, HIPAA/GDPR/FHIR-compliant telemedicine platform across AWS, GCP & Azure. Features Zero-Cost Idle architecture, Kubernetes HA clusters, AI diagnostics, IoT vitals, KMS-signed e-prescriptions, and real-time video consultations.",
+      fullDescription: "MediConnect V2 is a forensically verified, multi-cloud healthcare platform built to 2026 compliance standards.\n\nThe core infrastructure runs simultaneous production Kubernetes clusters on AKS (Azure, US) and EKS (AWS, EU Frankfurt), each with Horizontal Pod Autoscalers, Pod Disruption Budgets, and Prometheus/Grafana observability stacks. All clusters are hidden behind Cloudflare Tunnels — zero inbound ports are exposed to the public internet. If the primary clusters go down, traffic automatically fails over to GCP Cloud Run within 5 seconds.\n\nThe 'Zero-Cost Idle' pattern reduces a traditional $300/month AWS bill to $2.00/month at idle: GCP Cloud Run and Azure Container Apps scale to zero replicas, DynamoDB runs on-demand, and GCP Cloud SQL auto-pauses after 15 minutes of inactivity.\n\nCompliance is architecturally enforced, not promised. EU patient data is physically locked to Frankfurt (eu-central-1 + europe-west3), satisfying Schrems II. Every clinical action triggers an immutable FHIR AuditEvent log. AWS KMS RSA-256 signs every e-prescription. PII is recursively masked before reaching any log or AI model.\n\nThe AI layer uses a multi-cloud Circuit Breaker: Claude (AWS Bedrock) → Gemini (GCP Vertex AI) → GPT (Azure OpenAI), routing on real-time latency. An AI Scribe captures Amazon Transcribe Medical audio during video calls and generates SOAP notes automatically.",
 
       images: [
         "https://github.com/user-attachments/assets/bf8cc79b-d429-4cce-9988-8dc490876cc2",
-
+        "https://github.com/user-attachments/assets/e9fada93-745f-4cf3-b5cd-f7a624242409",
+        "https://github.com/user-attachments/assets/2316b86e-b873-40c8-b77f-6fb5bd09a200",
+        "https://github.com/user-attachments/assets/909d8852-cb19-4c46-a56d-f0dbefbf9909",
+        "https://github.com/user-attachments/assets/7ab08ede-ac83-4a86-9d80-3fdab4b89984",
+        "https://github.com/user-attachments/assets/d8988bd6-8923-4dcf-ac95-43ddbf51b589",
+        "https://github.com/user-attachments/assets/99c5f98b-bdaf-424e-a293-b3586e056a62"
       ],
-      thumbnail: "https://github.com/user-attachments/assets/bf8cc79b-d429-4cce-9988-8dc490876cc2", // Update with a V2 Architecture diagram if available
+      thumbnail: "https://i9.ytimg.com/vi_webp/vPviXZOjx68/maxresdefault.webp",
 
       technologies: [
-        "AWS (Cognito, DynamoDB, SSM, Bedrock)",
-        "GCP (Cloud Run, Cloud SQL, BigQuery)",
-        "Azure (Container Apps, OpenAI)",
+
+        "AWS Cognito (Multi-Pool US/EU)",
+        "AWS KMS (RSA-256 Signing)",
+        "AWS SSM Parameter Store",
+
+        "AKS + EKS (Kubernetes HA)",
+        "GCP Cloud Run (Scale-to-Zero)",
+        "Azure Container Apps (Scale-to-Zero)",
+
+        "AWS DynamoDB (On-Demand)",
+        "GCP Cloud SQL (PostgreSQL 15)",
+        "Azure Cosmos DB (Serverless)",
+
+        "AWS Bedrock",
+        "GCP Vertex AI",
+        "Azure OpenAI",
+        "AWS Rekognition (Biometrics)",
+        "AWS Textract (OCR)",
+        "Amazon Transcribe Medical",
+
+        "AWS IoT Core (MQTT/SigV4)",
+        "AWS API Gateway (WebSocket)",
+        "Amazon Chime SDK (Video)",
+
         "Terraform (IaC)",
         "Docker",
+        "GitHub Actions (CI/CD)",
+        "Cloudflare Tunnels",
+        "Prometheus + Grafana",
+
         "HL7 FHIR R4",
         "TypeScript",
-        "Stripe Connect"
+        "Stripe Connect",
+        "Node.js / Express",
+        "React / Vite",
       ],
 
       achievements: [
-        "Architected 'Zero-Cost Idle' pattern: reduced infrastructure costs by 95%",
-        "Achieved FHIR R4 Interoperability for hospital data exchange",
-        "Implemented recursive PII scrubbing & audit logging for HIPAA/GDPR",
-        "Built AI Circuit Breaker for 99.99% availability across 3 clouds",
-        "Atomic Locking mechanism to prevent appointment double-booking"
+
+        "Zero-Cost Idle: reduced $300/mo infrastructure to $2.00/mo at idle across 3 clouds",
+        "Active-Active HA: simultaneous AKS (Azure) + EKS (AWS) clusters with HPA and PDB",
+        "5-second automatic failover from primary Kubernetes clusters to GCP Cloud Run backup",
+        "Zero exposed ports: full cluster hidden behind Cloudflare Tunnels",
+
+        "100% HIPAA 2026: immutable audit logs, KMS-signed prescriptions, PII masking, 15-min S3 URL expiry",
+        "100% GDPR / Schrems II: EU data physically locked to Frankfurt, never crosses Atlantic",
+        "FHIR R4 Interoperability: Patient, Practitioner, Appointment, Observation, MedicationRequest, AuditEvent, RiskAssessment resources",
+
+        "Zero-Trust identity: OIDC Workload Identity Federation replacing all static AWS keys",
+        "Biometric verification: AWS Rekognition face-match selfie vs government ID",
+        "AWS Textract AI diploma OCR with name-matching to prevent credential fraud",
+        "Attribute Tampering closed: Cognito custom attributes set Mutable: False",
+
+        "AI Circuit Breaker: 99.99% AI availability across Bedrock → Vertex AI → Azure OpenAI",
+        "AI Scribe: Amazon Transcribe Medical + Claude generates SOAP notes from video calls",
+        "IoT vitals: real-time wearable heart rate via MQTT/SigV4, FHIR Observation (LOINC 8867-4)",
+        "Atomic Locking: DynamoDB conditional writes prevent appointment double-booking",
+        "Stripe + Webhook: payment only confirmed via Stripe event, prevents ghost charges",
+        "Pharmacy supply chain: drug interaction shield, refill lifecycle, KMS-signed PDF receipts",
+        "SQS Dead Letter Queue: 14-day retention ensures no emergency alert is ever lost",
+
+        "Full CI/CD: GitHub Actions deploys all 4 microservices to Clouds in parallel",
+        "Kubernetes observability: Prometheus + Grafana + Slack Alertmanager on both clusters",
+        "npm audit: 0 vulnerabilities after surgical supply-chain hardening",
       ],
 
-      liveUrl: "https://askme-82f72.web.app/", // Use your main entry point
+      liveUrl: "https://askme-82f72.web.app/",
 
       githubLinks: [
         { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-hub" },
-        { label: "Infrastructure (Terraform)", url: "https://github.com/Zahidulislam2222/mediconnect-infrastructure-develop" }
+        { label: "Infrastructure (Terraform)", url: "https://github.com/Zahidulislam2222/mediconnect-infrastructure-develop" },
       ],
-      pdfUrl: "https://github.com/user-attachments/files/25336017/MediConnect_2.0_Multi-Cloud_Zero_Cost_compressed.pdf", // Example PDF link
 
-      //videoId: "Oo_Lilyasi0", // Update if you have a V2 walkthrough
+      pdfUrl: "https://github.com/user-attachments/files/25336017/MediConnect_2.0_Multi-Cloud_Zero_Cost_compressed.pdf",
+
+      videoId: "vPviXZOjx68",
       featured: true,
       isHealthcare: true,
       isHybridCloud: true,
+      isStrapi: true,
+
       metrics: {
-        cost: "$0.00 Idle Cost",
-        compliance: "HIPAA/GDPR/FHIR",
-        clouds: "AWS + GCP + Azure"
+        cost: "$2.00/mo Idle Cost",
+        compliance: "HIPAA · GDPR · FHIR R4",
+        clouds: "AWS + GCP + Azure",
+        clusters: "AKS + EKS (Active-Active)",
+        services: "4 Microservices",
+        aiProviders: "3-Cloud AI Failover",
       },
     },
-
     {
       id: "mediconnect",
-      title: "MediConnect - Hybrid Cloud Telemedicine",
+      title: "MediConnect v1 - Hybrid Cloud Telemedicine",
       category: ["hybrid-cloud", "mobile", "ai-ml"],
       description: "Enterprise-grade telemedicine platform leveraging 35+ AWS and GCP services for seamless healthcare delivery.",
       fullDescription: "Mediconnect is a full-scale, cloud-native telehealth platform designed with a serverless-first architecture.The project focuses on real production-grade backend logic, covering authentication, appointments, video consultations, AI diagnostics, billing, analytics, and HIPAA-aligned security — all implemented using AWS and Google Cloud services.",
@@ -485,7 +543,7 @@ export const portfolioConfig = {
       icon: "Settings",
       color: "primary",
       skills: [
-        { name: "Docker", level: 90 },
+        { name: "Docker & Kubernetes", level: 90 },
         { name: "CI/CD Pipelines", level: 88 },
         { name: "n8n Workflow Automation", level: 95 },
         { name: "GitHub Actions", level: 85 },
