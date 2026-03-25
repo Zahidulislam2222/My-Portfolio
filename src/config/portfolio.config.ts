@@ -351,7 +351,7 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
         { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-hub" },
         {
           label: "Infrastructure (Terraform)",
-          url: "https://github.com/Zahidulislam2222/mediconnect-infrastructure-develop",
+          url: "https://github.com/Zahidulislam2222/mediconnect-infrastructure-production",
         },
       ],
 
