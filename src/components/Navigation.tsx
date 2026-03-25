@@ -116,7 +116,7 @@ export const Navigation = () => {
                 className="hidden md:flex items-center gap-2 border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
                 asChild
               >
-                <a href="/Zahidul_Islam_Resume.pdf" download>
+                <a href="/Zahidul_Islam_CV_2026.pdf" download>
                   <Download className="w-4 h-4" />
                   Download Resume
                 </a>
@@ -178,7 +178,7 @@ export const Navigation = () => {
                     className="w-full border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground"
                     asChild
                   >
-                    <a href="/Zahidul_Islam_Resume.pdf" download>
+                    <a href="/Zahidul_Islam_CV_2026.pdf" download>
                       <Download className="w-4 h-4 mr-2" />
                       Download Resume
                     </a>

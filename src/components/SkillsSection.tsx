@@ -7,6 +7,8 @@ import {
   Brain,
   Globe,
   Heart,
+  Shield,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import { portfolioConfig } from "@/config/portfolio.config";
@@ -18,6 +20,8 @@ const iconMap: Record<string, LucideIcon> = {
   Brain,
   Globe,
   Heart,
+  Shield,
+  Zap,
 };
 
 // Skill Bar Component

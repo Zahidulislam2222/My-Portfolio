@@ -30,7 +30,7 @@ export const portfolioConfig = {
     whatsapp: "+8801794739339", // WhatsApp Number
     availability: "Available for Projects", // or "Currently Busy" / "Open to Opportunities"
     availabilityColor: "success", // "success" | "warning" | "destructive"
-    resumeUrl: "/Zahidul_Islam_Resume.pdf", // Add your resume to public folder
+    resumeUrl: "/Zahidul_Islam_CV_2026.pdf", // Add your resume to public folder
   },
 
   /* ========================================
@@ -72,8 +72,318 @@ export const portfolioConfig = {
 
   projects: [
 
-    // Inside portfolioConfig.projects array:
+    {
+      id: "mediconnect-v3",
+      title: "MediConnect V3 — Multi-Cloud Global Telehealth Ecosystem",
+      category: ["hybrid-cloud", "ai-ml", "mobile", "healthcare"],
 
+      description:
+        "A production-grade, forensically verified HIPAA / GDPR / FHIR R4 / SOC 2 Type II-ready telemedicine platform across AWS, GCP & Azure. Features Zero-Cost Idle architecture ($2/mo idle), active-active Kubernetes HA clusters, 7 microservices, 35 FHIR R4 resource types, 10 medical terminology systems, AI Circuit Breaker (Claude 4.5 / Gemini 2.5 / GPT-4), AI Scribe with SOAP notes, sub-second IoT vitals, 424+ test assertions, and 35+ DynamoDB tables across US/EU regions.",
+
+      fullDescription: `MediConnect V3 is a forensically verified, multi-cloud healthcare platform built to 2026 HIPAA, GDPR, FHIR R4, and SOC 2 Type II compliance standards.
+
+\u2501\u2501\u2501 PLATFORM SCALE \u2501\u2501\u2501
+\u2022 7 backend microservices (5 Node.js/Express + 2 Python/FastAPI)
+\u2022 4 Lambda functions across 2 AWS regions
+\u2022 35 FHIR R4 resource types supported
+\u2022 10 medical terminology systems (RxNorm, SNOMED CT, ICD-10-CM, ICD-11, LOINC, CVX, MVX, NDC, CPT, HCPCS)
+\u2022 35+ DynamoDB tables across US + EU regions
+\u2022 424+ test assertions (229 backend TS + 129 Python + 66 Vitest + 10 Playwright E2E)
+\u2022 4 verification scripts (33 consolidation checks, 7-service health, data integrity, SOC 2 failover)
+\u2022 4 user roles: Patient, Doctor, Admin, Staff
+
+\u2501\u2501\u2501 INFRASTRUCTURE \u2501\u2501\u2501
+Active-active Kubernetes clusters on AKS (Azure, US) and EKS (AWS, EU Frankfurt), each with Horizontal Pod Autoscalers, Pod Disruption Budgets, and Prometheus/Grafana/Slack Alertmanager observability stacks. All clusters hidden behind Cloudflare Tunnels \u2014 zero inbound ports exposed to the public internet. Auto-failover to GCP Cloud Run within 5 seconds if primary clusters fail.
+
+Zero-Cost Idle: $300/month infrastructure reduced to $2.00/month at idle via GCP Cloud Run + Azure Container Apps scale-to-zero, DynamoDB on-demand, and GCP Cloud SQL auto-pause after 15 minutes.
+
+\u2501\u2501\u2501 HIPAA 2026 COMPLIANCE (ARCHITECTURALLY ENFORCED) \u2501\u2501\u2501
+\u2022 PHI Encryption at Rest: AWS KMS envelope encryption (separate keys per region) for all patient names, DOB, phone, email, chat messages \u2014 format: phi:kms:<base64_ciphertext>
+\u2022 PHI Encryption in Transit: HTTPS enforced via Helmet HSTS (1-year max-age + preload), CSP headers restricting connections to AWS/GCP/Azure domains only
+\u2022 AES-GCM 256-bit client-side encryption before any localStorage write
+\u2022 Immutable Audit Logs: Every PHI access logged to mediconnect-audit-logs (FHIR R4 AuditEvent format, DICOM ontology coding) with 7-year TTL retention, actor/patient ID masking
+\u2022 Breach Detection: Automated system \u2014 >50 PHI accesses per actor within 5 minutes triggers HIGH alert; 9 security event types trigger CRITICAL alerts via SNS to security team
+\u2022 Session Security: HipaaGuard enforces 15-minute inactivity auto-logout; 12px CSS blur on tab blur (shoulder surfing prevention); JWT tokens never cached in localStorage
+\u2022 MFA Enforcement: requireMFA middleware blocks non-MFA sessions in production (403)
+\u2022 KMS-Signed Prescriptions: AWS KMS RSA-256 \u2014 doctors cannot deny authorship (non-repudiation)
+\u2022 S3 PHI URLs: 15-minute presigned URL expiry (900s hardcoded)
+\u2022 DICOM De-Identification: HIPAA Safe Harbor \u2014 18 tag categories removed, PatientName anonymized, UIDs regenerated to prevent cross-referencing
+\u2022 Break-Glass Emergency Access: Full audit trail for emergency PHI access (mediconnect-emergency-access table)
+\u2022 AWS Macie: Automated PHI scanning in S3 buckets
+\u2022 AWS GuardDuty: Threat detection across all AWS resources
+\u2022 CloudTrail: Every AWS API call audited
+
+\u2501\u2501\u2501 GDPR / SCHREMS II COMPLIANCE \u2501\u2501\u2501
+\u2022 Data Residency: EU patient data physically locked to Frankfurt (eu-central-1 + europe-west3) \u2014 never crosses the Atlantic
+\u2022 normalizeRegion() maps all region variants to exactly us-east-1 or eu-central-1; requireRegionHeader() middleware rejects requests without valid x-user-region header
+\u2022 Separate resources per region: Cognito pools, DynamoDB tables, S3 buckets, KMS keys, SNS topics, audit log tables
+\u2022 Consent Management (GDPR Art. 7): Append-only consent ledger (mediconnect-consent-ledger) \u2014 records never mutated, complete tamper-evident history, 365-day default expiry
+\u2022 Right to Erasure (Art. 17): Cascading soft-delete across 15+ tables \u2014 immediate PII anonymization, 30-day hard-delete TTL balancing GDPR erasure with HIPAA 7-year retention
+\u2022 Right to Data Portability (Art. 20): GET /me/export exports all patient data from 19 sources as FHIR Bundle with SHA-256 integrity hash in X-Export-Integrity header
+\u2022 Right to Rectification (Art. 16): PUT endpoints with full Zod validation
+\u2022 GDPR Cookie Consent Banner: Granular consent (Essential / Functional / Analytics), push notifications blocked without functional consent
+\u2022 CloudWatch metrics: GDPRErasure + GDPRExport published on each operation
+
+\u2501\u2501\u2501 SOC 2 TYPE II READINESS \u2501\u2501\u2501
+\u2022 SOC 2 CC6 (Logical Access): 13 CloudWatch custom metric types \u2014 AuthFailure, BreachAlert, PHIAccess, MFABypassAttempt, EmergencyAccess, RequestLatency/Count, ErrorCount, AppointmentBooked/Cancelled, PrescriptionIssued, GDPRErasure, GDPRExport
+\u2022 SOC 2 PI1 (Processing Integrity): Idempotency Guard middleware \u2014 Idempotency-Key header, Redis-cached responses (24hr TTL), prevents duplicate write operations
+\u2022 SOC 2 A1 (Availability): verify_failover.js script \u2014 validates health endpoints, failover URLs, WebSocket proxy, multi-region, K8s probes, CI/CD failover, frontend API failover, AI circuit breaker
+\u2022 RTO/RPO Configuration: CRITICAL tier (RTO 5min / RPO 0), HIGH (15min / 5min), MEDIUM (1hr / 1hr)
+\u2022 DynamoDB PITR: 35-day point-in-time recovery
+\u2022 S3 Cross-Region Replication + BigQuery 90-day snapshots
+\u2022 Optimistic Locking: DynamoDB _version field with HTTP ETag \u2014 prevents lost updates on concurrent writes
+\u2022 Rate Limiting (Tiered): Global 500 req/15min, Sensitive data 15 req/min, AI endpoints 5 req/min, Admin 100 req/15min \u2014 Redis-backed with in-memory fallback
+\u2022 0 npm vulnerabilities after surgical supply-chain hardening
+\u2022 OIDC Workload Identity Federation: all static AWS keys eliminated
+
+\u2501\u2501\u2501 FHIR R4 INTEGRATION \u2501\u2501\u2501
+\u2022 35 FHIR R4 resource types: Patient, Practitioner, Appointment, Observation, MedicationRequest, AuditEvent, RiskAssessment, CarePlan, ServiceRequest, DocumentReference, Consent, DiagnosticReport, ImagingStudy, AllergyIntolerance, Immunization, Medication, MedicationDispense, Encounter, Condition, Procedure, ClinicalImpression, CommunicationRequest, Coverage, ExplanationOfBenefit, ClaimResponse, Task, Schedule, Slot, Organization, Location, Practitioner, PractitionerRole, RelatedPerson, Subscription, CapabilityStatement
+\u2022 SMART on FHIR STU 2.0: EHR launch context, scope validation, token exchange proxy to Cognito
+\u2022 C-CDA 2.1: Clinical document generation (Continuity of Care Documents)
+\u2022 10 Terminology Systems: RxNorm, SNOMED CT, ICD-10-CM, ICD-11, LOINC, CVX, MVX, NDC, CPT, HCPCS
+\u2022 IoT Vitals: FHIR Observation (LOINC 8867-4) for real-time heart rate from wearables
+\u2022 HL7 v2.x Message Log: mediconnect-hl7-messages table for legacy interoperability
+\u2022 CMS Blue Button 2.0: Patient insurance claims OAuth integration
+\u2022 Bulk FHIR $export: Job tracking with mediconnect-bulk-exports table
+\u2022 DICOM Service (Python/FastAPI): Full imaging study management with HIPAA Safe Harbor de-identification
+
+\u2501\u2501\u2501 AI LAYER \u2501\u2501\u2501
+Multi-cloud Circuit Breaker: Claude 4.5 (AWS Bedrock) \u2192 Gemini 2.5 (GCP Vertex AI) \u2192 GPT-4 (Azure OpenAI), routing on real-time latency for 99.99% AI availability. AI Symptom Checker with graceful demo-mode fallback when Bedrock quota hit. AI Diabetes Risk Score displayed in doctor records tab.
+
+AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK video calls \u2192 Claude 4.5 generates professional SOAP Notes \u2192 "Save to EHR" pushes directly to patient's permanent medical record in one click.
+
+\u2501\u2501\u2501 NEW V2 FEATURES \u2501\u2501\u2501
+\u2022 Google Calendar Sync: OAuth 2.0 \u2014 confirmed bookings auto-pushed to Doctor's Google Calendar (Refresh Tokens encrypted via KMS, stored in GCP Cloud SQL)
+\u2022 Sub-second IoT Telemetry: Upgraded from 5-second polling to Socket.io + MQTT bridge for real-time wearable vitals with hospital-grade Heartbeat Pulse CSS animation + AreaCharts
+\u2022 Mobile Push Notifications: Capacitor Android/iOS with FCM Token synced to DynamoDB profile
+\u2022 QR Code Privacy: Pharmacy pickup QR generated locally in browser via react-qr-code \u2014 zero PHI sent to third-party APIs
+\u2022 Patient Queue: Pulsing green badge on arrival, red alert >10min late, 30-second auto-refresh
+\u2022 Doctor Schedule Builder: 7-day toggle interface (Mon: 9-5, Tue: Closed)
+\u2022 Prescription Master-Detail UX: Patient-first selection prevents wrong-patient prescription errors
+\u2022 Full Refill Lifecycle: Request \u2192 Approve \u2192 Dispensed with dedicated Refill tab
+\u2022 Billing Professional Timeline: Chronological ledger with clinical terminology, net revenue math (Sales - Refunds)
+\u2022 Knowledge Base CMS: Public FHIR DocumentReference articles, URL-encoded IDs, HIPAA audit logging
+\u2022 Skeleton Loaders + Promise.allSettled: Dashboard never crashes partially on any API failure
+\u2022 Care Network Graph: Hierarchical clinical tree (Patient \u2192 Doctor \u2192 Medication chain of care)
+\u2022 GDPR Consent Banner: Granular frontend consent management`,
+
+      images: [
+        "https://github.com/user-attachments/assets/bf8cc79b-d429-4cce-9988-8dc490876cc2",
+        "https://github.com/user-attachments/assets/e9fada93-745f-4cf3-b5cd-f7a624242409",
+        "https://github.com/user-attachments/assets/2316b86e-b873-40c8-b77f-6fb5bd09a200",
+        "https://github.com/user-attachments/assets/909d8852-cb19-4c46-a56d-f0dbefbf9909",
+        "https://github.com/user-attachments/assets/7ab08ede-ac83-4a86-9d80-3fdab4b89984",
+        "https://github.com/user-attachments/assets/d8988bd6-8923-4dcf-ac95-43ddbf51b589",
+        "https://github.com/user-attachments/assets/99c5f98b-bdaf-424e-a293-b3586e056a62",
+      ],
+      thumbnail: "https://i9.ytimg.com/vi_webp/vPviXZOjx68/maxresdefault.webp",
+
+      technologies: [
+        // Identity & Security
+        "AWS Cognito (Multi-Pool US/EU, 4 Roles)",
+        "AWS KMS (RSA-256 + AES-GCM PHI Encryption)",
+        "AWS SSM Parameter Store (Batched Secrets)",
+        "OIDC Workload Identity Federation (Zero Static Keys)",
+        "AWS GuardDuty + Macie + CloudTrail",
+
+        // Compute & Orchestration
+        "AKS + EKS (Kubernetes Active-Active HA)",
+        "GCP Cloud Run (Scale-to-Zero, US + EU)",
+        "Azure Container Apps (Scale-to-Zero)",
+        "Cloudflare Tunnels (Zero Exposed Ports)",
+        "AWS Lambda (4 Functions, 2 Regions)",
+
+        // Databases
+        "AWS DynamoDB (35+ Tables, Multi-Region, PITR 35-day)",
+        "GCP Cloud SQL PostgreSQL 15 (EHR + Google Calendar tokens)",
+        "Azure Cosmos DB (Serverless)",
+        "Google BigQuery (Streaming Analytics US + EU)",
+        "Redis (Rate Limiting + Idempotency Cache)",
+
+        // AI & ML
+        "AWS Bedrock (Claude 4.5) \u2014 Primary AI",
+        "GCP Vertex AI (Gemini 2.5) \u2014 AI Failover",
+        "Azure OpenAI (GPT-4) \u2014 AI Failover",
+        "AI Circuit Breaker (99.99% Availability)",
+        "Amazon Transcribe Medical (AI Scribe)",
+        "AWS Rekognition (Biometric Face Verification)",
+        "AWS Textract (Diploma OCR + Name Matching)",
+        "AWS Comprehend Medical (Clinical NLP)",
+
+        // Real-time & IoT
+        "AWS IoT Core (MQTT/SigV4)",
+        "Socket.io (Sub-second Telemetry Bridge)",
+        "AWS API Gateway (WebSocket)",
+        "Amazon Chime SDK (HD Video Consultations)",
+
+        // Mobile & Notifications
+        "React Native Capacitor (Android APK)",
+        "FCM Push Notifications (Cross-Platform)",
+
+        // Integrations
+        "Google Calendar API (OAuth 2.0 Doctor Sync)",
+        "Stripe Connect + PaymentIntents + Webhooks",
+        "CMS Blue Button 2.0 (Insurance Claims)",
+        "ShareThis + react-qr-code (Local QR Privacy)",
+
+        // Compliance Standards
+        "HIPAA 2026 (Forensically Verified)",
+        "GDPR / Schrems II (Data Sovereignty)",
+        "SOC 2 Type II Ready (CC6, PI1, A1)",
+        "HL7 FHIR R4 (35 Resource Types)",
+        "SMART on FHIR STU 2.0",
+        "C-CDA 2.1 Clinical Documents",
+        "DICOM (HIPAA Safe Harbor De-identification)",
+        "10 Terminology Systems (LOINC, SNOMED, RxNorm, ICD-10/11, CVX, MVX, NDC, CPT, HCPCS)",
+        "HL7 v2.x Message Log",
+
+        // DevOps & Observability
+        "Terraform (Infrastructure as Code)",
+        "Docker (Multi-Stage Alpine, Non-Root User)",
+        "GitHub Actions (Parallel Multi-Cloud CI/CD)",
+        "Prometheus + Grafana + Slack Alertmanager",
+        "Winston Logger (PII Auto-Masking)",
+        "Zod (Input Validation + Sanitization)",
+        "Helmet (HSTS + CSP Security Headers)",
+
+        // Frontend
+        "React 18 + TypeScript + Vite 5",
+        "Tailwind CSS 3 + shadcn/ui (Radix)",
+        "TanStack React Query",
+        "Vitest + Playwright E2E (424+ assertions)",
+        "Node.js / Express (5 Microservices)",
+        "Python FastAPI (2 Microservices: Admin + DICOM)",
+      ],
+
+      achievements: [
+        // ── INFRASTRUCTURE ──
+        "Zero-Cost Idle: $300/mo AWS bill \u2192 $2.00/mo at idle across 3 clouds",
+        "Active-Active HA: simultaneous AKS (Azure) + EKS (AWS) with HPA, PDB, and Prometheus/Grafana/Slack Alertmanager",
+        "5-second automatic failover from Kubernetes clusters to GCP Cloud Run",
+        "Zero exposed ports: entire cluster hidden behind Cloudflare Tunnels",
+        "7 backend microservices (5 Node.js + 2 Python FastAPI) with 4 Lambda functions across 2 AWS regions",
+
+        // ── HIPAA 2026 ──
+        "HIPAA PHI Encryption at Rest: AWS KMS envelope encryption (separate keys per region) on all patient PII fields",
+        "HIPAA PHI Encryption in Transit: Helmet HSTS (1-year max-age), CSP headers, AES-GCM 256-bit localStorage encryption",
+        "HIPAA Audit Logs: FHIR R4 AuditEvent format, DICOM ontology coding, 7-year TTL, actor/patient ID masking, SQS event bus",
+        "HIPAA Breach Detection: >50 PHI accesses in 5min = HIGH alert; 9 CRITICAL event types trigger SNS to security team instantly",
+        "HIPAA Session Security: 15-min HipaaGuard auto-logout, 12px tab-blur (shoulder surfing), JWT never in localStorage, MFA enforcement (403)",
+        "HIPAA KMS-Signed Prescriptions: AWS KMS RSA-256 \u2014 non-repudiation, legal e-prescription integrity",
+        "HIPAA S3 URL Expiry: 15-minute presigned URLs (900s hardcoded) for all PHI file access",
+        "HIPAA DICOM De-Identification: Safe Harbor \u2014 18 tag categories removed, PatientName anonymized, UIDs regenerated",
+        "HIPAA Break-Glass: Full emergency access audit trail (mediconnect-emergency-access table)",
+        "HIPAA GuardDuty + Macie + CloudTrail: Threat detection, PHI scanning in S3, every AWS API call audited",
+
+        // ── GDPR / SCHREMS II ──
+        "GDPR Data Sovereignty: EU patient data physically locked to Frankfurt \u2014 eu-central-1 + europe-west3, never crosses Atlantic",
+        "GDPR Regional Enforcement: normalizeRegion() + requireRegionHeader() \u2014 every request validated for data residency",
+        "GDPR Consent Ledger (Art. 7): Append-only, tamper-evident consent history with 365-day expiry tracking",
+        "GDPR Right to Erasure (Art. 17): Cascading delete across 15+ tables, immediate PII anonymization, 30-day hard-delete TTL",
+        "GDPR Right to Portability (Art. 20): Full FHIR Bundle export from 19 data sources with SHA-256 X-Export-Integrity header",
+        "GDPR Cookie Consent Banner: Granular Essential/Functional/Analytics consent, push notifications blocked without consent",
+
+        // ── SOC 2 TYPE II ──
+        "SOC 2 CC6 (Logical Access): 13 CloudWatch custom metric types including AuthFailure, BreachAlert, PHIAccess, MFABypassAttempt",
+        "SOC 2 PI1 (Processing Integrity): Idempotency Guard \u2014 Redis-cached Idempotency-Key responses (24hr TTL), prevents duplicate writes",
+        "SOC 2 A1 (Availability): verify_failover.js validates health endpoints, multi-region, K8s probes, AI circuit breaker, CI/CD failover",
+        "SOC 2 RTO/RPO: CRITICAL tier RTO 5min/RPO 0; DynamoDB PITR 35-day; S3 cross-region replication; BigQuery 90-day snapshots",
+        "SOC 2 Optimistic Locking: DynamoDB _version + HTTP ETag \u2014 prevents lost updates on concurrent writes",
+        "SOC 2 Rate Limiting (Tiered): Global 500/15min, Sensitive 15/min, AI 5/min \u2014 Redis-backed with in-memory fallback",
+
+        // ── FHIR R4 ──
+        "FHIR R4: 35 resource types \u2014 Patient, Practitioner, Appointment, Observation, MedicationRequest, AuditEvent, CarePlan, Consent, DICOM, and 26+ more",
+        "SMART on FHIR STU 2.0: EHR launch context, scope validation, Cognito token exchange proxy",
+        "C-CDA 2.1: Clinical document generation (Continuity of Care Documents) for care transitions",
+        "10 Medical Terminology Systems: RxNorm, SNOMED CT, ICD-10-CM, ICD-11, LOINC, CVX, MVX, NDC, CPT, HCPCS",
+        "HL7 v2.x Message Log + CMS Blue Button 2.0 insurance claims integration",
+        "Bulk FHIR $export with job tracking and SHA-256 integrity verification",
+
+        // ── SECURITY ──
+        "Zero-Trust Identity: OIDC Workload Identity Federation \u2014 all static AWS keys eliminated",
+        "Biometric Verification: AWS Rekognition face-match selfie vs government ID at registration",
+        "Diploma OCR: AWS Textract with name-matching to prevent credential fraud",
+        "Attribute Tampering Closed: Cognito custom attributes set Mutable: False \u2014 role escalation impossible",
+        "0 npm vulnerabilities after surgical supply-chain hardening",
+        "Zod schema validation on all mutation endpoints \u2014 prevents injection attacks",
+        "Helmet CSP + HSTS blocking unauthorized external connections",
+
+        // ── AI ──
+        "AI Circuit Breaker: 99.99% AI availability \u2014 Claude 4.5 \u2192 Gemini 2.5 \u2192 GPT-4 routing on real-time latency",
+        "AI Scribe: Transcribe Medical \u2192 Claude 4.5 SOAP Notes \u2192 EHR save in one click during live video call",
+        "AI Symptom Checker: demo-mode graceful fallback on Bedrock quota \u2014 zero error shown to patient",
+        "AI Diabetes Risk Score: displayed in doctor's patient records tab",
+        "AWS Comprehend Medical: Clinical NLP for symptom extraction and FHIR coding",
+
+        // ── REAL-TIME & IoT ──
+        "Sub-second IoT Telemetry: Socket.io + MQTT bridge replacing 5-second polling for wearable vitals",
+        "Hospital-grade IoT UI: Heartbeat Pulse CSS animation + smooth AreaCharts on LiveMonitoring dashboard",
+        "FHIR Observation (LOINC 8867-4) for real-time IoT heart rate data",
+        "SQS Event Bus: 6 queue categories, 20 event types, Dead Letter Queue pairs \u2014 no emergency alert lost",
+
+        // ── NEW V2 FEATURES ──
+        "Google Calendar Sync: OAuth 2.0 \u2014 bookings auto-pushed to Doctor's Google Calendar (KMS-encrypted tokens)",
+        "Mobile Push Notifications: Capacitor Android/iOS with FCM Token synced to DynamoDB",
+        "QR Code Privacy: Pharmacy pickup QR generated locally in browser via react-qr-code \u2014 zero PHI to third-party",
+        "Patient Queue: Pulsing green badge on arrival, red alert >10min late, 30-second auto-refresh",
+        "Doctor Schedule Builder: 7-day toggle interface with per-day working hours",
+        "Prescription Master-Detail: Patient-first UX preventing wrong-patient prescription errors",
+        "Full Refill Lifecycle: Request \u2192 Approve \u2192 Dispensed cycle with Refill tab",
+        "Billing Professional Timeline: Chronological ledger, clinical terminology, net revenue = Sales - Refunds",
+        "Knowledge Base CMS: Public FHIR DocumentReference articles with HIPAA audit logging",
+        "Skeleton Loaders + Promise.allSettled: Dashboard never crashes partially",
+        "Care Network Clinical Graph: Hierarchical Patient \u2192 Doctor \u2192 Medication chain of care visualization",
+        "35+ DynamoDB tables across US/EU: allergies, immunizations, care plans, DICOM, SDOH, MPI, prior auth, lab orders, referrals",
+        "BigQuery streaming analytics: revenue, appointments, IoT vitals, symptom logs across US + EU datasets",
+        "Atomic Locking + Stripe Webhook: payment confirmed via Stripe event only \u2014 prevents ghost charges",
+        "Pharmacy supply chain: drug interaction shield, refill lifecycle, KMS-signed PDF receipts",
+
+        // ── TESTING ──
+        "424+ test assertions: 229 backend TS + 129 Python pytest + 66 Vitest + 10 Playwright E2E",
+        "4 verification scripts: consolidation (33 checks), health (7 services), data integrity, SOC 2 failover",
+        "Full CI/CD: GitHub Actions parallel deploy to 3 clouds in one pipeline",
+        "Kubernetes observability: Prometheus + Grafana + Slack Alertmanager on both AKS + EKS",
+      ],
+
+      liveUrl: "https://askme-82f72.web.app/",
+
+      githubLinks: [
+        { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-hub" },
+        {
+          label: "Infrastructure (Terraform)",
+          url: "https://github.com/Zahidulislam2222/mediconnect-infrastructure-develop",
+        },
+      ],
+
+      pdfLinks: [
+        { label: "Technical Overview", url: "/MediConnect_Technical_Overview.pdf" },
+        { label: "Project Info", url: "/Mediconnect_Info.pdf" },
+        { label: "Architecture PDF", url: "https://github.com/user-attachments/files/25336017/MediConnect_2.0_Multi-Cloud_Zero_Cost_compressed.pdf" },
+      ],
+
+      videoId: "vPviXZOjx68",
+      featured: true,
+      isHealthcare: true,
+      isHybridCloud: true,
+      isStrapi: true,
+
+      metrics: {
+        cost: "$2.00/mo Idle Cost (vs $300/mo traditional)",
+        compliance: "HIPAA 2026 \u00b7 GDPR/Schrems II \u00b7 SOC 2 Type II Ready \u00b7 FHIR R4 \u00b7 SMART \u00b7 C-CDA 2.1 \u00b7 DICOM",
+        clouds: "AWS (Primary) \u00b7 GCP (Analytics + Backup) \u00b7 Azure (Compute)",
+        clusters: "AKS + EKS Active-Active HA (HPA + PDB)",
+        services: "7 Microservices (5 Node.js + 2 Python FastAPI)",
+        aiProviders: "3-Cloud Circuit Breaker \u2014 Claude 4.5 / Gemini 2.5 / GPT-4 (99.99% uptime)",
+        fhirResources: "35 FHIR R4 Resource Types",
+        terminologySystems: "10 Medical Terminology Systems",
+        tables: "35+ DynamoDB Tables (US + EU Regions)",
+        tests: "424+ Test Assertions (18+ Test Files)",
+        mobile: "Android + iOS (Capacitor + FCM Push)",
+        integrations: "Google Calendar \u00b7 Stripe \u00b7 FCM \u00b7 Blue Button 2.0 \u00b7 MQTT IoT",
+        rto: "RTO 5 min / RPO 0 (Critical Tier)",
+        security: "0 npm vulnerabilities \u00b7 OIDC Zero Static Keys \u00b7 KMS RSA-256",
+      },
+    },
     {
       id: "mediconnect-v2",
       title: "MediConnect V2 Multi-Cloud Healthcare Ecosystem",
@@ -93,7 +403,6 @@ export const portfolioConfig = {
       thumbnail: "https://i9.ytimg.com/vi_webp/vPviXZOjx68/maxresdefault.webp",
 
       technologies: [
-
         "AWS Cognito (Multi-Pool US/EU)",
         "AWS KMS (RSA-256 Signing)",
         "AWS SSM Parameter Store",
@@ -131,7 +440,6 @@ export const portfolioConfig = {
       ],
 
       achievements: [
-
         "Zero-Cost Idle: reduced $300/mo infrastructure to $2.00/mo at idle across 3 clouds",
         "Active-Active HA: simultaneous AKS (Azure) + EKS (AWS) clusters with HPA and PDB",
         "5-second automatic failover from primary Kubernetes clusters to GCP Cloud Run backup",
@@ -169,7 +477,7 @@ export const portfolioConfig = {
       pdfUrl: "https://github.com/user-attachments/files/25336017/MediConnect_2.0_Multi-Cloud_Zero_Cost_compressed.pdf",
 
       videoId: "vPviXZOjx68",
-      featured: true,
+      featured: false,
       isHealthcare: true,
       isHybridCloud: true,
       isStrapi: true,
@@ -235,7 +543,7 @@ export const portfolioConfig = {
       ],
 
       videoId: "Oo_Lilyasi0",
-      featured: true,
+      featured: false,
       isHealthcare: true,
       isHybridCloud: true,
       isStrapi: true,
@@ -522,8 +830,13 @@ export const portfolioConfig = {
         { name: "Amazon Web Services (AWS)", level: 95 },
         { name: "Google Cloud Platform (GCP)", level: 90 },
         { name: "Microsoft Azure", level: 90 },
-        { name: "Terraform", level: 90 },
-        { name: "Multi-Cloud Strategy", level: 85 },
+        { name: "Terraform (IaC)", level: 90 },
+        { name: "Multi-Cloud Strategy", level: 88 },
+        { name: "AWS DynamoDB (Multi-Region)", level: 92 },
+        { name: "GCP Cloud SQL / BigQuery", level: 88 },
+        { name: "Azure Cosmos DB (Serverless)", level: 85 },
+        { name: "Cloudflare Tunnels / CDN", level: 88 },
+        { name: "AWS Lambda (Serverless)", level: 90 },
       ],
     },
     {
@@ -531,11 +844,16 @@ export const portfolioConfig = {
       icon: "Code",
       color: "primary",
       skills: [
-        { name: "React / Next.js", level: 95 },
-        { name: "Node.js / Express", level: 90 },
+        { name: "React 18 / Next.js", level: 95 },
+        { name: "Node.js / Express", level: 92 },
+        { name: "Python / FastAPI", level: 85 },
         { name: "TypeScript", level: 92 },
         { name: "PostgreSQL / MongoDB", level: 88 },
         { name: "GraphQL / REST APIs", level: 90 },
+        { name: "Tailwind CSS / shadcn/ui", level: 92 },
+        { name: "Socket.io / WebSocket", level: 88 },
+        { name: "Zod / React Hook Form", level: 90 },
+        { name: "TanStack React Query", level: 88 },
       ],
     },
     {
@@ -543,11 +861,14 @@ export const portfolioConfig = {
       icon: "Settings",
       color: "primary",
       skills: [
-        { name: "Docker & Kubernetes", level: 90 },
-        { name: "CI/CD Pipelines", level: 88 },
+        { name: "Docker & Kubernetes (AKS/EKS)", level: 90 },
+        { name: "CI/CD Pipelines (Multi-Cloud)", level: 90 },
         { name: "n8n Workflow Automation", level: 95 },
-        { name: "GitHub Actions", level: 85 },
-        { name: "Infrastructure Monitoring", level: 85 },
+        { name: "GitHub Actions", level: 88 },
+        { name: "Prometheus / Grafana / Alertmanager", level: 88 },
+        { name: "Horizontal Pod Autoscaling (HPA)", level: 85 },
+        { name: "Winston Logger (PII Masking)", level: 85 },
+        { name: "Helmet (HSTS / CSP Headers)", level: 88 },
       ],
     },
     {
@@ -555,10 +876,16 @@ export const portfolioConfig = {
       icon: "Brain",
       color: "primary",
       skills: [
-        { name: "Dialogflow ES", level: 92 },
-        { name: "API Integration", level: 88 },
+        { name: "AWS Bedrock (Claude)", level: 90 },
+        { name: "GCP Vertex AI (Gemini)", level: 88 },
+        { name: "Azure OpenAI (GPT-4)", level: 88 },
+        { name: "AI Circuit Breaker (Multi-Cloud)", level: 90 },
+        { name: "Amazon Transcribe Medical", level: 85 },
+        { name: "AWS Comprehend Medical (NLP)", level: 85 },
+        { name: "AWS Rekognition (Biometrics)", level: 85 },
+        { name: "AWS Textract (OCR)", level: 85 },
+        { name: "Dialogflow ES / Chatbots", level: 92 },
         { name: "Computer Vision", level: 80 },
-        { name: "Chatbots", level: 90 },
       ],
     },
     {
@@ -580,10 +907,46 @@ export const portfolioConfig = {
       icon: "Heart",
       color: "success",
       skills: [
-        { name: "HIPAA/GDPR Compliance", level: 90 },
-        { name: "EHR/EMR Integration", level: 85 },
-        { name: "FHIR Integration", level: 85 },
+        { name: "HIPAA 2026 Compliance", level: 92 },
+        { name: "GDPR / Schrems II", level: 90 },
+        { name: "SOC 2 Type II Readiness", level: 88 },
+        { name: "HL7 FHIR R4 (35 Resources)", level: 90 },
+        { name: "SMART on FHIR STU 2.0", level: 85 },
+        { name: "C-CDA 2.1 / DICOM", level: 85 },
+        { name: "EHR/EMR Integration", level: 88 },
         { name: "Telemedicine Platforms", level: 92 },
+        { name: "Medical Terminology (SNOMED/LOINC/ICD)", level: 85 },
+        { name: "PHI Encryption (KMS / AES-GCM)", level: 90 },
+      ],
+    },
+    {
+      category: "Security & Compliance",
+      icon: "Shield",
+      color: "primary",
+      skills: [
+        { name: "AWS KMS (Envelope Encryption)", level: 90 },
+        { name: "AWS Cognito (Multi-Pool MFA)", level: 92 },
+        { name: "OIDC Workload Identity Federation", level: 88 },
+        { name: "AWS GuardDuty / Macie / CloudTrail", level: 85 },
+        { name: "Rate Limiting (Tiered, Redis)", level: 88 },
+        { name: "Idempotency Guard (SOC 2 PI1)", level: 85 },
+        { name: "Breach Detection & Alerting", level: 88 },
+        { name: "Immutable Audit Logging", level: 90 },
+      ],
+    },
+    {
+      category: "Real-Time & IoT",
+      icon: "Zap",
+      color: "primary",
+      skills: [
+        { name: "AWS IoT Core (MQTT / SigV4)", level: 88 },
+        { name: "Socket.io (Sub-second Telemetry)", level: 88 },
+        { name: "Amazon Chime SDK (Video)", level: 85 },
+        { name: "AWS API Gateway (WebSocket)", level: 88 },
+        { name: "Stripe Connect / Webhooks", level: 90 },
+        { name: "FCM Push Notifications", level: 85 },
+        { name: "Google Calendar API (OAuth 2.0)", level: 85 },
+        { name: "SQS Event Bus / Dead Letter Queue", level: 88 },
       ],
     },
   ],
@@ -756,6 +1119,7 @@ export const projectCategories = [
   { id: "mobile", label: "Mobile Apps" },
   { id: "ai-ml", label: "AI/ML" },
   { id: "automation", label: "Automation" },
+  { id: "healthcare", label: "Healthcare" },
 ];
 
 /* ========================================
@@ -778,7 +1142,11 @@ export interface Project {
     label: string;
     url: string;
   }[];
-  pdfUrl?: string;           // Optional PDF link
+  pdfUrl?: string;           // Optional PDF link (single)
+  pdfLinks?: {               // Optional (Multiple PDFs)
+    label: string;
+    url: string;
+  }[];
   videoId?: string;          // Optional
   featured?: boolean;        // Optional
   isHealthcare?: boolean;    // Optional

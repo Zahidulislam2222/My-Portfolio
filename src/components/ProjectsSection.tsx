@@ -124,6 +124,7 @@ const ProjectCard = forwardRef<HTMLDivElement, {
   // --- ADD THESE NEW STATES ---
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isCodeMenuOpen, setIsCodeMenuOpen] = useState(false);
+  const [isPdfMenuOpen, setIsPdfMenuOpen] = useState(false);
 
   // Normalize images: use project.images array, or fallback to single thumbnail
   const projectImages = project.images || [project.thumbnail];
@@ -275,7 +276,7 @@ const ProjectCard = forwardRef<HTMLDivElement, {
         </div>
 
         {/* Description */}
-        <p className="text-muted-foreground text-sm mb-4">
+        <p className={`text-muted-foreground text-sm mb-4 ${isExpanded ? "whitespace-pre-line" : ""}`}>
           {isExpanded ? project.fullDescription : project.description}
         </p>
 
@@ -392,8 +393,51 @@ const ProjectCard = forwardRef<HTMLDivElement, {
             )
           )}
 
-          {/* PDF Button */}
-          {project.pdfUrl && (
+          {/* PDF Button(s) */}
+          {project.pdfLinks && project.pdfLinks.length > 0 ? (
+            <div className="relative">
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => setIsPdfMenuOpen(!isPdfMenuOpen)}
+                className={isPdfMenuOpen ? "bg-accent" : ""}
+              >
+                <FileText className="w-4 h-4 mr-2" />
+                PDFs
+                <ChevronDown className={`w-3 h-3 ml-2 transition-transform ${isPdfMenuOpen ? 'rotate-180' : ''}`} />
+              </Button>
+
+              <AnimatePresence>
+                {isPdfMenuOpen && (
+                  <>
+                    <div
+                      className="fixed inset-0 z-40"
+                      onClick={() => setIsPdfMenuOpen(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute bottom-full left-0 mb-2 w-52 bg-popover border border-border rounded-lg shadow-xl z-50 overflow-hidden flex flex-col p-1"
+                    >
+                      {project.pdfLinks.map((link, i) => (
+                        <a
+                          key={i}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-3 py-2 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                        >
+                          <FileText className="w-3 h-3" />
+                          {link.label}
+                        </a>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : project.pdfUrl ? (
             <Button
               size="sm"
               variant="outline"
@@ -404,7 +448,7 @@ const ProjectCard = forwardRef<HTMLDivElement, {
                 View PDF
               </a>
             </Button>
-          )}
+          ) : null}
 
           {project.videoId && (
             <Button
@@ -445,8 +489,9 @@ export const ProjectsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const filteredProjects = portfolioConfig.projects.filter(
-    (project) => activeCategory === "all" || project.category.includes(activeCategory));
+  const filteredProjects = portfolioConfig.projects
+    .filter((project) => activeCategory === "all" || project.category.includes(activeCategory))
+    .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
   return (
     <section
