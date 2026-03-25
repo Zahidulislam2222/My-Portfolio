@@ -362,6 +362,7 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       ],
 
       videoId: "vPviXZOjx68",
+      playlistId: "PLMcNHEox3lJWlpHKrZwpWaA3ZMHrB2al1",
       featured: true,
       isHealthcare: true,
       isHybridCloud: true,
@@ -1148,6 +1149,7 @@ export interface Project {
     url: string;
   }[];
   videoId?: string;          // Optional
+  playlistId?: string;       // Optional YouTube playlist ID
   featured?: boolean;        // Optional
   isHealthcare?: boolean;    // Optional
   isHybridCloud?: boolean;

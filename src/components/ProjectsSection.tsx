@@ -18,6 +18,7 @@ import {
   ChevronLeft,  // <-- Add this
   ChevronRight, // <-- Add this
   Code,
+  ListVideo,
 } from "lucide-react";
 import { portfolioConfig, projectCategories, type Project } from "@/config/portfolio.config";
 import { Button } from "@/components/ui/button";
@@ -26,14 +27,20 @@ import { Badge } from "@/components/ui/badge";
 // Video Modal Component
 const VideoModal = ({
   videoId,
+  playlistId,
   isOpen,
   onClose,
 }: {
-  videoId: string;
+  videoId?: string;
+  playlistId?: string;
   isOpen: boolean;
   onClose: () => void;
 }) => {
   if (!isOpen) return null;
+
+  const embedSrc = playlistId
+    ? `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1`
+    : `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 
   return (
     <AnimatePresence>
@@ -58,8 +65,8 @@ const VideoModal = ({
             <X className="w-6 h-6" />
           </button>
           <iframe
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
-            title="Video Demo"
+            src={embedSrc}
+            title={playlistId ? "Video Playlist" : "Video Demo"}
             className="w-full h-full"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -116,8 +123,9 @@ const ProjectCard = forwardRef<HTMLDivElement, {
   project: Project;
   index: number;
   onVideoClick: (videoId: string) => void;
+  onPlaylistClick: (playlistId: string) => void;
   onImageClick: (imgUrl: string) => void;
-}>(({ project, index, onVideoClick, onImageClick }, ref) => {
+}>(({ project, index, onVideoClick, onPlaylistClick, onImageClick }, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
@@ -460,6 +468,16 @@ const ProjectCard = forwardRef<HTMLDivElement, {
               Watch Demo
             </Button>
           )}
+          {project.playlistId && (
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => onPlaylistClick(project.playlistId!)}
+            >
+              <ListVideo className="w-4 h-4 mr-2" />
+              Playlist
+            </Button>
+          )}
           <Button
             size="sm"
             variant="ghost"
@@ -485,6 +503,7 @@ const ProjectCard = forwardRef<HTMLDivElement, {
 export const ProjectsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [videoModalId, setVideoModalId] = useState<string | null>(null);
+  const [playlistModalId, setPlaylistModalId] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -552,6 +571,7 @@ export const ProjectsSection = () => {
                   project={project}
                   index={index}
                   onVideoClick={setVideoModalId}
+                  onPlaylistClick={setPlaylistModalId}
                   onImageClick={setSelectedImage}
                 />
               ))}
@@ -565,6 +585,12 @@ export const ProjectsSection = () => {
         videoId={videoModalId || ""}
         isOpen={!!videoModalId}
         onClose={() => setVideoModalId(null)}
+      />
+      {/* Playlist Modal */}
+      <VideoModal
+        playlistId={playlistModalId || ""}
+        isOpen={!!playlistModalId}
+        onClose={() => setPlaylistModalId(null)}
       />
       {/* ADD THIS SECTION BELOW */}
       <ImageModal
