@@ -971,7 +971,7 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
   services: [
     {
       name: "Starter",
-      price: "$350+",
+      price: "100$+",
       period: "/project",
       description: "Perfect for small businesses and startups looking to establish their digital presence.",
       features: [
@@ -987,7 +987,7 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
     },
     {
       name: "Professional",
-      price: "$1,500+",
+      price: "1,000$+",
       period: "/project",
       description: "Ideal for growing businesses needing advanced functionality and cloud integration.",
       features: [
