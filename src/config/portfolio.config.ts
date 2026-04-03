@@ -38,7 +38,7 @@ export const portfolioConfig = {
      ======================================== */
   stats: [
     { label: "Years Experience", value: "2-3", suffix: "+" },
-    { label: "Projects Completed", value: 10, suffix: "+" },
+    { label: "Projects Completed", value: 11, suffix: "+" },
     { label: "Clients Served", value: "Ongoing", suffix: "" },
     { label: "Cloud Services Mastered", value: 50, suffix: "+" },
   ],
@@ -386,6 +386,232 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       },
     },
     {
+      id: "everyday-dental-surgery",
+      title: "Everyday Dental Surgery — HIPAA/FHIR Compliant Healthcare Platform",
+      category: ["healthcare", "fullstack", "compliance"],
+
+      description:
+        "A production-grade, HIPAA / FHIR R4 / SOC 2 Type II-ready dental clinic platform with Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
+
+      fullDescription: `Everyday Dental Surgery & Implant Center is a production-grade healthcare web application built to HIPAA 2026, FHIR R4, and SOC 2 Type II compliance standards for a dental clinic in Dhaka, Bangladesh.
+
+\u2501\u2501\u2501 PLATFORM SCALE \u2501\u2501\u2501
+\u2022 32 pages with lazy loading and code splitting
+\u2022 11 Supabase Edge Functions (Deno runtime)
+\u2022 11 database migrations (idempotent, sequential)
+\u2022 10 FHIR R4 resource types supported
+\u2022 3 medical terminology systems (SNOMED CT, ICD-10-CM, LOINC)
+\u2022 12 dental service categories with 50+ procedures
+\u2022 60-check compliance audit scanner (93% passing)
+\u2022 4 user roles: Patient, Doctor, Receptionist, Admin
+\u2022 Bilingual interface: English + Bengali
+
+\u2501\u2501\u2501 HIPAA 2026 COMPLIANCE (ARCHITECTURALLY ENFORCED) \u2501\u2501\u2501
+\u2022 PHI Encryption at Rest: AES-256 via pgcrypto Vault \u2014 encrypted columns for medical_history, allergies, medical_notes
+\u2022 PHI Encryption in Transit: HTTPS enforced via HSTS (1-year max-age + preload), CSP headers restricting all external connections
+\u2022 Zero PHI on Client: No sensitive data in localStorage \u2014 all patient data encrypted server-side
+\u2022 Immutable Audit Logs: Trigger-based logging on all PHI tables \u2014 user_id, table, operation, old/new values, IP, user_agent, timestamp
+\u2022 Breach Detection: Hourly pg_cron job detects unusual access patterns, creates breach records, sends SNS-style alerts to admin
+\u2022 Session Security: 15-minute inactivity auto-logout with 14-min warning, BroadcastChannel cross-tab session sync
+\u2022 Consent Enforcement: consent_records table + auth.has_active_consent() gates all patient data access via RLS
+\u2022 Patient Right to Access: FHIR Bundle export via fhir-export Edge Function
+\u2022 Breach Notification: 60-day deadline tracking with auto-containment logic
+
+\u2501\u2501\u2501 FHIR R4 INTEGRATION \u2501\u2501\u2501
+\u2022 10 FHIR R4 resource types: Patient, Appointment, Procedure, Observation, Encounter, DocumentReference, AllergyIntolerance, Condition, Bundle, CapabilityStatement
+\u2022 REST API: GET/POST/PUT/DELETE endpoints via fhir-api Edge Function with search params (name, phone, birthDate, date)
+\u2022 3 Terminology Systems: SNOMED CT (20+ dental codes), ICD-10-CM (K02-K05 + medical conditions), LOINC (vital signs + dental observations)
+\u2022 Client-side FHIR Validator: 421 lines \u2014 cardinality, reference, status code, coding system validation
+\u2022 Bulk Export: $export operation with FHIR Bundle + integrity verification
+\u2022 RLS-enforced: Staff read all, patients read own, only service_role can write
+
+\u2501\u2501\u2501 SOC 2 TYPE II READINESS \u2501\u2501\u2501
+\u2022 Logical Access (CC6): MFA enrollment, RBAC at database level, session timeout
+\u2022 System Operations (CC7): Breach detection cron, anomaly detection, security incident tracking
+\u2022 Data Retention (A1): Soft-delete with deleted_at, nightly pg_cron purge, configurable retention per table (default 7 years)
+\u2022 Vendor Management: BAA template + checklist in docs/baa/
+\u2022 11 SOC 2 Policy Documents: Access Control, Incident Response, Data Classification, Privacy Impact Assessment, Risk Assessment, Security Training, Vendor Management, Change Management, Business Continuity, Information Security
+
+\u2501\u2501\u2501 SECURITY \u2501\u2501\u2501
+\u2022 Row-Level Security (RLS): Database-enforced on all PHI tables \u2014 not application-level
+\u2022 Role-Based Access Control: 4 roles enforced via auth.user_role(), auth.is_admin(), auth.is_staff() SECURITY DEFINER functions
+\u2022 Rate Limiting: 5 req/min/IP on sensitive endpoints (Redis-backed in Edge Functions)
+\u2022 Input Sanitization: DOMPurify whitelist on client + server-side validation in all Edge Functions
+\u2022 CAPTCHA: Cloudflare Turnstile on public forms
+\u2022 Security Headers: CSP, HSTS, X-Frame-Options DENY, COEP, COOP, CORP, Permissions-Policy (camera/mic/geo/payment denied)
+\u2022 Encrypted PHI: pgcrypto + Vault key storage \u2014 encrypt_phi() / decrypt_phi() with error fallback
+
+\u2501\u2501\u2501 THREE-TIER ANIMATION SYSTEM \u2501\u2501\u2501
+\u2022 Tier 1 \u2014 GSAP + ScrollTrigger: useTextReveal(), useScrollReveal(), useParallax(), useStaggerReveal(), useCounter() hooks
+\u2022 Tier 2 \u2014 Framer Motion: Page transitions (AnimatePresence), hover/tap micro-interactions, modal animations
+\u2022 Tier 3 \u2014 Tailwind Keyframes: marquee, float, shimmer, pulse-teal, glow-pulse, gradient-shift, bounce-in, dental-float
+\u2022 Lenis Smooth Scrolling: Physics-based, synced to GSAP ticker
+\u2022 Premium Effects: btn-shine, btn-sparkle, btn-bite, btn-ripple, btn-glow, btn-micro-sparkles
+
+\u2501\u2501\u2501 PREMIUM UI COMPONENTS \u2501\u2501\u2501
+\u2022 TiltCard \u2014 3D perspective tilt following cursor (intensity: 0-30\u00b0)
+\u2022 MagneticButton \u2014 Cursor-following pull effect (strength: 0.1-0.5) with shine, bite, ripple, glow
+\u2022 CursorGlow \u2014 400px teal radial gradient tracking cursor
+\u2022 Dental3DObject \u2014 GlassTooth, GlassImplant, DentalMorph canvas models
+\u2022 ToothAnimation \u2014 Lottie-driven HappyTooth, ToothBrushing, ToothParade
+\u2022 ScrollStory \u2014 Multi-section scroll-triggered narrative
+
+\u2501\u2501\u2501 BILINGUAL i18n \u2501\u2501\u2501
+\u2022 English + Bengali: All 32 pages, 12 services, 50+ pricing items, 8+ blog articles, 20+ FAQs
+\u2022 No translation files: Inline { en: "...", bn: "..." } objects with t() function
+\u2022 Persistent preference: localStorage-backed language toggle
+
+\u2501\u2501\u2501 BACKEND (SUPABASE) \u2501\u2501\u2501
+\u2022 Auth: Email/password + Phone OTP, JWT sessions with auto-refresh
+\u2022 Database: PostgreSQL with 11 migrations \u2014 RBAC, RLS, encryption, audit, consent, FHIR, retention, breach detection
+\u2022 Edge Functions (11): submit-form, send-notification, fhir-api, fhir-export, get-patient-data, admin-query, admin-manage-user, admin-resolve-request, cancel-appointment, stripe-payment, breach-check
+\u2022 Shared Utils: CORS (clinic domain only), rate limiting, structured logging, input sanitization, session tracking
+
+\u2501\u2501\u2501 STRIPE PAYMENT \u2501\u2501\u2501
+\u2022 Server-side PaymentIntent creation via stripe-payment Edge Function
+\u2022 Secret key never on frontend \u2014 only publishable key exposed
+\u2022 PCI compliance via Stripe hosted elements
+\u2022 Amount server-calculated to prevent tampering`,
+
+      images: [
+        "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
+        "https://github.com/user-attachments/assets/1fe6bd5b-8f25-4601-80bc-a52d93fcfca8",
+        "https://github.com/user-attachments/assets/bb0618a9-50ff-4fa4-acc2-7bc21bdeb7aa",
+        "https://github.com/user-attachments/assets/f3f117cc-fd7d-4079-a13f-1aa7cf7f2200",
+        "https://github.com/user-attachments/assets/7a961f32-9563-48d2-ad60-35d8aa4455e3",
+      ],
+      thumbnail: "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
+
+      technologies: [
+        "React 18 + Vite 5 (SPA)",
+        "React Router v6 (32 Lazy-Loaded Pages)",
+        "Tailwind CSS 3 (Custom Navy/Teal/Gold Palette)",
+        "React Hook Form (Client + Server Validation)",
+        "React Helmet Async (SEO)",
+        "DOMPurify (XSS Prevention)",
+        "Lucide React (Icon System)",
+
+        "GSAP 3.14 + ScrollTrigger (Scroll Reveals, Parallax, Stagger)",
+        "Framer Motion 11 (Page Transitions, Micro-Interactions)",
+        "Lenis (Physics-Based Smooth Scrolling)",
+        "Lottie React (SVG Dental Animations)",
+        "TiltCard + MagneticButton + CursorGlow (Premium UI)",
+
+        "Supabase (PostgreSQL, Auth, Edge Functions, Realtime)",
+        "11 Deno Edge Functions (Validation, Encryption, FHIR, Payments)",
+        "11 Database Migrations (Idempotent, Sequential)",
+        "pgcrypto + Vault (AES-256 PHI Encryption)",
+        "Row-Level Security (Database-Enforced RBAC)",
+        "pg_cron (Breach Detection + Data Retention Jobs)",
+
+        "Stripe (PaymentIntents, Server-Side Secret Key, PCI Compliant)",
+
+        "HIPAA 2026 (95% \u2014 18/19 Checks Passing)",
+        "HL7 FHIR R4 (100% \u2014 16/16 Checks Passing)",
+        "SOC 2 Type II Ready (83% \u2014 5/6 Checks Passing)",
+        "3 Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
+        "10 FHIR R4 Resource Types",
+        "11 SOC 2 Policy Documents",
+
+        "CSP + HSTS + COEP + COOP + CORP Headers",
+        "Cloudflare Turnstile (CAPTCHA)",
+        "15-Min HIPAA Session Timeout (BroadcastChannel Cross-Tab)",
+        "Trigger-Based Audit Logging (IP, User Agent, PHI Access)",
+        "Breach Detection (Hourly Cron + Auto-Containment)",
+
+        "Bilingual i18n (English + Bengali, Inline t() System)",
+
+        "Cloudflare Pages (SPA Deployment)",
+        "PWA (Service Worker, Manifest, Offline Fallback)",
+        "60-Check Compliance Audit Scanner (CI/CD Deploy Gate)",
+      ],
+
+      achievements: [
+        "93% Compliance Audit Score: 56/60 checks passing across HIPAA, FHIR, SOC 2, Security, DataFlow",
+        "HIPAA 95%: AES-256 encryption at rest via pgcrypto Vault, 15-min auto-logout, consent enforcement, breach detection",
+        "FHIR R4 100%: 10 resource types, 3 terminology systems, REST API, client-side validator (421 lines), bulk export",
+        "SOC 2 83%: 11 policy documents, data retention with pg_cron purge, breach detection, MFA enrollment, RBAC",
+        "Zero Critical Failures: 0 FAIL checks \u2014 only 4 non-blocking WARNs (anonymous INSERT, BAA pending, style unsafe-inline, Fonts SRI)",
+
+        "Row-Level Security on all PHI tables \u2014 database-enforced, not application-level",
+        "4-role RBAC: patient, doctor, receptionist, admin \u2014 enforced via SECURITY DEFINER helper functions",
+        "AES-256 PHI Encryption: encrypt_phi() / decrypt_phi() with Vault key storage and error fallback",
+        "Zero PHI on Client: No sensitive data in localStorage \u2014 all patient data encrypted server-side only",
+        "Trigger-Based Audit Logging: Every PHI access logged with user_id, table, operation, old/new values, IP, user_agent",
+        "Breach Detection: Hourly pg_cron cron job with auto-containment, 60-day notification tracking, admin alerts",
+        "15-Min HIPAA Session Timeout: BroadcastChannel cross-tab sync, 14-min warning modal, activity tracking",
+        "Consent Enforcement: auth.has_active_consent() gates all patient data access in RLS policies",
+        "Security Headers: CSP, HSTS (1-year), X-Frame-Options DENY, COEP, COOP, CORP, Permissions-Policy",
+        "Rate Limiting: 5 req/min/IP on sensitive Edge Function endpoints",
+        "Cloudflare Turnstile CAPTCHA on all public forms",
+        "DOMPurify sanitization on both client and server side",
+
+        "10 FHIR R4 Resource Types: Patient, Appointment, Procedure, Observation, Encounter, DocumentReference, AllergyIntolerance, Condition, Bundle, CapabilityStatement",
+        "FHIR REST API: GET/POST/PUT/DELETE via fhir-api Edge Function with search (name, phone, birthDate, date)",
+        "3 Medical Terminology Systems: SNOMED CT (20+ dental codes), ICD-10-CM (K02-K05), LOINC (vital signs + dental)",
+        "421-Line FHIR Validator: Cardinality, reference, status code, coding system validation",
+        "Patient Right to Access: FHIR Bundle export with integrity verification",
+
+        "11 Supabase Edge Functions: form submission, notifications, FHIR API/export, patient data, admin queries, user management, payments, breach detection",
+        "11 Sequential Database Migrations: RBAC, RLS, encryption, audit, consent, FHIR schema, retention, breach, pgAudit",
+        "Stripe Server-Side Payments: PaymentIntent via Edge Function \u2014 secret key never on frontend, PCI compliant",
+        "Encrypted Form Pipeline: Client validation \u2192 Edge Function \u2192 sanitize \u2192 rate limit \u2192 encrypt PHI \u2192 PostgreSQL \u2192 audit log \u2192 notification",
+
+        "Three-Tier Animation System: GSAP + ScrollTrigger (scroll), Framer Motion (transitions), Tailwind keyframes (ambient)",
+        "Lenis Physics-Based Smooth Scrolling synced to GSAP ticker",
+        "5 GSAP Animation Hooks: useTextReveal, useScrollReveal, useParallax, useStaggerReveal, useCounter",
+        "Premium UI: TiltCard (3D tilt), MagneticButton (cursor-pull), CursorGlow (400px teal gradient)",
+        "6 Button Effects: Shine sweep, sparkle burst, bite press, ripple, glow pulse, micro-sparkles",
+        "Dental 3D Objects: GlassTooth, GlassImplant, DentalMorph canvas models + Lottie SVG animations",
+
+        "32 Pages with React.lazy() code splitting and vendor chunk optimization",
+        "12 Dental Service Categories with bilingual descriptions, procedure steps, benefits, recovery time",
+        "50+ Pricing Items across 6 categories (Preventive, Restorative, Cosmetic, Surgical, Implant, Orthodontic)",
+        "8+ Blog Articles with markdown content (bilingual)",
+        "20+ FAQ Items with accordion UI (bilingual)",
+        "Patient Dashboard: Appointments, medical data, FHIR export, data requests",
+        "Admin Panel: 10 modules \u2014 appointments, registrations, contacts, newsletter, audit logs, user management, incidents, retention, data requests",
+
+        "Complete Bilingual Support: English + Bengali across all 32 pages, services, pricing, blog, FAQs, forms",
+        "No Translation Files: Inline { en, bn } objects with t() context function \u2014 persistent localStorage preference",
+
+        "60-Check Compliance Audit Scanner: npm run audit:compliance with per-category flags (--hipaa, --fhir, --soc2, --security)",
+        "CI/CD Deploy Gate: npm run predeploy blocks deployment on any critical failure",
+        "PWA: Service Worker with static asset caching, PHI route exclusion, offline fallback",
+        "Cloudflare Pages deployment with security headers via public/_headers",
+      ],
+
+      liveUrl: "https://dental-clinic-anq.pages.dev",
+
+      githubLinks: [
+        { label: "Full Stack", url: "https://github.com/Zahidulislam2222/dental-clinic" },
+      ],
+
+      pdfLinks: [
+        { label: "Project Documentation", url: "/EDS_Project_Documentation.pdf" },
+      ],
+
+      videoId: "8QjGhAE7gpw",
+      playlistId: "",
+      featured: true,
+      isHealthcare: true,
+
+      metrics: {
+        compliance: "HIPAA 2026 (95%) \u00b7 FHIR R4 (100%) \u00b7 SOC 2 Type II Ready (83%) \u00b7 93% Overall",
+        pages: "32 Lazy-Loaded Pages \u00b7 12 Service Categories \u00b7 50+ Pricing Items",
+        backend: "11 Edge Functions \u00b7 11 Migrations \u00b7 AES-256 Encryption \u00b7 RLS",
+        fhirResources: "10 FHIR R4 Resource Types",
+        terminologySystems: "3 Medical Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
+        security: "4-Role RBAC \u00b7 RLS \u00b7 Breach Detection \u00b7 15-Min Timeout \u00b7 CAPTCHA",
+        animations: "GSAP + Framer Motion + Tailwind (Three-Tier) \u00b7 Lenis Smooth Scroll",
+        i18n: "Bilingual (English + Bengali) \u00b7 Complete Coverage",
+        payments: "Stripe PaymentIntents (Server-Side, PCI Compliant)",
+        audit: "60-Check Scanner \u00b7 CI/CD Deploy Gate \u00b7 0 Critical Failures",
+        roles: "Patient \u00b7 Doctor \u00b7 Receptionist \u00b7 Admin",
+        deployment: "Cloudflare Pages \u00b7 PWA \u00b7 Security Headers (CSP, HSTS, COEP, COOP)",
+      },
+    },
+    {
       id: "mediconnect-v2",
       title: "MediConnect V2 Multi-Cloud Healthcare Ecosystem",
       category: ["hybrid-cloud", "ai-ml", "mobile"],
@@ -499,7 +725,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       description: "Enterprise-grade telemedicine platform leveraging 35+ AWS and GCP services for seamless healthcare delivery.",
       fullDescription: "Mediconnect is a full-scale, cloud-native telehealth platform designed with a serverless-first architecture.The project focuses on real production-grade backend logic, covering authentication, appointments, video consultations, AI diagnostics, billing, analytics, and HIPAA-aligned security — all implemented using AWS and Google Cloud services.",
 
-      // 1. ADD THIS: Array of images for the slider
       images: [
         "https://img.youtube.com/vi/Oo_Lilyasi0/maxresdefault.jpg",
         "https://github.com/user-attachments/assets/bf8cc79b-d429-4cce-9988-8dc490876cc2",
@@ -536,7 +761,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       ],
       liveUrl: "https://d3ligzc3b5cdix.cloudfront.net/",
 
-      // 2. ADD THIS: Array of objects for multiple repos
       githubLinks: [
         { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-hub" },
         { label: "Backend", url: "https://github.com/Zahidulislam2222/mediconnect-cms" },
@@ -557,7 +781,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       description: "Modern headless e-commerce solution combining React frontend with WooCommerce backend via GraphQL.",
       fullDescription: "Chronos is a cutting-edge headless e-commerce platform that decouples the frontend from WooCommerce, enabling lightning-fast performance and unlimited customization. Built with React and GraphQL, it delivers sub-second page loads, real-time inventory updates, and seamless checkout experiences.",
 
-      // 1. ADD THIS: Array of images for the slider
       images: [
         "https://github.com/user-attachments/assets/0e39a15d-5c5e-4ee4-ae00-2b3142826883",
         "https://github.com/user-attachments/assets/d9d62479-f198-4e0f-8df2-64fc045f5392",
@@ -583,7 +806,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       ],
       liveUrl: "https://chronos.healthcodeanalysis.com/",
 
-      // 2. ADD THIS: Array of objects for multiple repos
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/Chronos" }
         //{ label: "Infrastructure", url: "" }
@@ -602,7 +824,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       description: "AI-powered mobile inspection application with computer vision for automated equipment certification.",
       fullDescription: "EquipCert revolutionizes equipment inspection through AI-powered computer vision. Built with Next.js and Capacitor for cross-platform deployment, it uses Supabase for real-time data sync and custom ML models for defect detection. Inspectors can complete certifications 5x faster with automated photo analysis and report generation.",
 
-      // 1. ADD THIS: Array of images for the slider
       images: [
         "https://github.com/user-attachments/assets/8d305d49-f097-49fd-bd19-f6dbd12b131c",
         "https://github.com/user-attachments/assets/840c5056-8fcc-43ab-a04d-ad6dc14e87f8",
@@ -626,7 +847,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       ],
       liveUrl: "https://equip-cert.vercel.app/",
 
-      // 2. ADD THIS: Array of objects for multiple repos
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/equip-cert" },
       ],
@@ -645,7 +865,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       description: "A hybrid medical intelligence platform featuring a custom-coded 'NeuroScan' content engine, serverless AI chat, and app-like AJAX performance.",
       fullDescription: "HealthCode Analysis is a high-performance medical intelligence hub that bypasses standard WordPress limitations. I engineered 'NeuroScan v5.0,' a custom PHP/AJAX content engine that delivers instant search, multi-grid filtering, and zero-latency interactions without page reloads. The platform utilizes a hybrid architecture, combining WordPress for content management with Cloudflare Workers for serverless AI chat functionality and strict ACF data modeling for clinical accuracy.",
 
-      // 1. ADD THIS: Array of images for the slider
       images: [
         "https://github.com/user-attachments/assets/477fc801-f7da-436e-b8a7-574368524761",
         "https://github.com/user-attachments/assets/cc032c66-001f-489c-b268-034cd2f2a0d3",
@@ -674,16 +893,8 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       ],
       liveUrl: "https://healthcodeanalysis.com/",
 
-      /* 2. ADD THIS: Array of objects for multiple repos
-      githubLinks: [
-        { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-hub" },
-        { label: "Backend", url: "https://github.com/Zahidulislam2222/mediconnect-cms" },
-        //{ label: "Infrastructure", url: "" }
-      ],*/
-
       //videoId: "Oo_Lilyasi0",
       featured: true,
-      isHybrid: true,
       isWordpress: true,
       metrics: { speed: "< 0.5s Interactions", architecture: "Hybrid Serverless" },
     },
@@ -695,7 +906,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       description: "Collection of powerful automation workflows including price monitoring, AI agents, and intelligent web scraping.",
       fullDescription: "A high-performance collection of serverless automation workflows designed to streamline business operations. Includes an AI-powered competitor pricing monitor that parses raw data via Google Gemini, an autonomous research agent for lead qualification using Wikipedia tools, and a critical safety alert system with instant multi-channel routing. Each workflow is optimized for logical precision and reliability.",
 
-      // 1. ADD THIS: Array of images for the slider
       images: [
         "https://github.com/user-attachments/assets/532f7e9f-23fd-4135-9b28-d7c3f0814b74",
         "https://github.com/user-attachments/assets/75756f74-5d72-4e7f-8425-a8a7fc65ef8a",
@@ -715,7 +925,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       ],
       //liveUrl: "https://equip-cert.vercel.app/",
 
-      // 2. ADD THIS: Array of objects for multiple repos
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/n8n-workflows" },
       ],
@@ -732,7 +941,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
       description: "A high-conversion agency platform featuring an immersive dark-mode UX, integrated API scheduling, and serverless booking automation.",
       fullDescription: "This project is a business automation engine built for a premium digital agency. Beyond its high-end 'Dark UI' aesthetic, I engineered a friction-less sales pipeline by integrating the Calendly API for real-time scheduling. The platform's 'killer feature' is a serverless 'Booking & Payment Bot' running on Cloudflare Workers, which automates lead qualification and discovery call bookings at the network edge, ensuring the agency operates 24/7 without manual intervention.",
 
-      // 1. ADD THIS: Array of images for the slider
       images: [
         "https://github.com/user-attachments/assets/496aa811-c40f-447d-b846-8460417500aa",
         "https://github.com/user-attachments/assets/8abf74d0-f7a9-4071-b34e-98e4884ce876",
@@ -755,11 +963,6 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
         "Built interactive, high-performance service filtering system"
       ],
       liveUrl: "https://agency.healthcodeanalysis.com/",
-
-      /* 2. ADD THIS: Array of objects for multiple repos
-      githubLinks: [
-        { label: "Project", url: "https://github.com/Zahidulislam2222/n8n-workflows" },
-      ],*/
 
       //videoId: "Oo_Lilyasi0",
       featured: false,
@@ -855,6 +1058,13 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
         { name: "Socket.io / WebSocket", level: 88 },
         { name: "Zod / React Hook Form", level: 90 },
         { name: "TanStack React Query", level: 88 },
+        { name: "Supabase (Auth, Edge Functions, Realtime)", level: 90 },
+        { name: "Deno (Edge Functions Runtime)", level: 85 },
+        { name: "GSAP 3 + ScrollTrigger", level: 88 },
+        { name: "Framer Motion", level: 90 },
+        { name: "Lenis (Smooth Scrolling)", level: 85 },
+        { name: "Lottie React (SVG Animations)", level: 85 },
+        { name: "React Helmet Async (SEO)", level: 85 },
       ],
     },
     {
@@ -870,6 +1080,9 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
         { name: "Horizontal Pod Autoscaling (HPA)", level: 85 },
         { name: "Winston Logger (PII Masking)", level: 85 },
         { name: "Helmet (HSTS / CSP Headers)", level: 88 },
+        { name: "Cloudflare Pages (SPA Deployment)", level: 88 },
+        { name: "PWA (Service Worker, Offline Fallback)", level: 85 },
+        { name: "pg_cron (Scheduled Jobs)", level: 85 },
       ],
     },
     {
@@ -933,6 +1146,10 @@ AI Scribe: Amazon Transcribe Medical captures audio during live Amazon Chime SDK
         { name: "Idempotency Guard (SOC 2 PI1)", level: 85 },
         { name: "Breach Detection & Alerting", level: 88 },
         { name: "Immutable Audit Logging", level: 90 },
+        { name: "pgcrypto + Vault (AES-256)", level: 90 },
+        { name: "Row-Level Security (RLS)", level: 90 },
+        { name: "Cloudflare Turnstile (CAPTCHA)", level: 85 },
+        { name: "DOMPurify (XSS Prevention)", level: 88 },
       ],
     },
     {
@@ -1121,6 +1338,8 @@ export const projectCategories = [
   { id: "ai-ml", label: "AI/ML" },
   { id: "automation", label: "Automation" },
   { id: "healthcare", label: "Healthcare" },
+  { id: "fullstack", label: "Full Stack" },
+  { id: "compliance", label: "Compliance" },
 ];
 
 /* ========================================
