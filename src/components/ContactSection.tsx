@@ -45,11 +45,7 @@ export const ContactSection = () => {
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
 
-      // --- THIS WAS THE PROBLEM LINE ---
-      // Old: e.currentTarget.reset(); 
-      // New: Use the ref instead
       formRef.current?.reset();
-      // ---------------------------------
 
     } catch (error) {
       toast({
@@ -80,11 +76,9 @@ export const ContactSection = () => {
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      // @ts-ignore
-      value: personal.whatsapp,
-      // @ts-ignore
-      href: `https://wa.me/${personal.whatsapp.replace("+", "")}`,
-    }, ,
+      value: (personal as any).whatsapp,
+      href: `https://wa.me/${((personal as any).whatsapp || "").replace("+", "")}`,
+    },
     {
       icon: MapPin,
       label: "Location",
@@ -212,7 +206,7 @@ export const ContactSection = () => {
             transition={{ delay: 0.3 }}
           >
             <form
-              ref={formRef}   // <-- ADD THIS
+              ref={formRef}
               onSubmit={handleSubmit}
               className="glass-card p-8 space-y-6"
             >

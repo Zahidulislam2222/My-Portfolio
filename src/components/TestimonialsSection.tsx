@@ -24,6 +24,9 @@ const StarRating = ({ rating }: { rating: number }) => {
 };
 
 export const TestimonialsSection = () => {
+  // Hidden until real testimonials are available. Keep code for future use.
+  return null;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });

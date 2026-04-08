@@ -15,8 +15,8 @@ import {
   FileText,
   Rocket,
   Blocks,
-  ChevronLeft,  // <-- Add this
-  ChevronRight, // <-- Add this
+  ChevronLeft,
+  ChevronRight,
   Code,
   ListVideo,
 } from "lucide-react";
@@ -71,7 +71,6 @@ const VideoModal = ({
   );
 };
 
-// Image Modal Component (ADD THIS)
 const ImageModal = ({
   imageUrl,
   isOpen,
@@ -122,7 +121,6 @@ const ProjectCard = forwardRef<HTMLDivElement, {
   const [isExpanded, setIsExpanded] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
-  // --- ADD THESE NEW STATES ---
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isCodeMenuOpen, setIsCodeMenuOpen] = useState(false);
   const [isPdfMenuOpen, setIsPdfMenuOpen] = useState(false);
@@ -168,8 +166,7 @@ const ProjectCard = forwardRef<HTMLDivElement, {
             transition={{ duration: 0.3 }}
             className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 cursor-zoom-in ${imageLoaded ? "opacity-100" : "opacity-0"
               }`}
-            onClick={() => onImageClick(projectImages[currentImageIndex])} // <--- ADD THIS
-            // ... keep onLoad and loading props ...
+            onClick={() => onImageClick(projectImages[currentImageIndex])}
             onLoad={() => setImageLoaded(true)}
             loading="lazy"
           />
@@ -583,7 +580,6 @@ export const ProjectsSection = () => {
         isOpen={!!videoModalId}
         onClose={() => setVideoModalId(null)}
       />
-      {/* ADD THIS SECTION BELOW */}
       <ImageModal
         imageUrl={selectedImage}
         isOpen={!!selectedImage}

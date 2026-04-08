@@ -24,37 +24,46 @@ const iconMap: Record<string, LucideIcon> = {
   Zap,
 };
 
-// Skill Bar Component
-const SkillBar = ({
+const tierStyles: Record<string, { label: string; className: string }> = {
+  expert: {
+    label: "Expert",
+    className: "bg-primary/15 text-primary border-primary/30",
+  },
+  proficient: {
+    label: "Proficient",
+    className: "bg-blue-500/15 text-blue-400 border-blue-500/30",
+  },
+  familiar: {
+    label: "Familiar",
+    className: "bg-muted text-muted-foreground border-border",
+  },
+};
+
+const SkillTag = ({
   name,
-  level,
+  tier,
   delay,
   inView,
 }: {
   name: string;
-  level: number;
+  tier: string;
   delay: number;
   inView: boolean;
 }) => {
+  const style = tierStyles[tier] || tierStyles.familiar;
   return (
-    <div className="space-y-2">
-      <div className="flex justify-between text-sm">
-        <span className="text-foreground font-medium">{name}</span>
-        <span className="text-muted-foreground">{level}%</span>
-      </div>
-      <div className="skill-bar">
-        <motion.div
-          className="skill-bar-fill"
-          initial={{ width: 0 }}
-          animate={inView ? { width: `${level}%` } : { width: 0 }}
-          transition={{ duration: 1, delay, ease: "easeOut" }}
-        />
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={inView ? { opacity: 1, scale: 1 } : {}}
+      transition={{ duration: 0.3, delay }}
+      className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg border text-sm font-medium ${style.className}`}
+    >
+      <span>{name}</span>
+      <span className="text-xs opacity-70">{style.label}</span>
+    </motion.div>
   );
 };
 
-// Skill Category Card
 const SkillCategoryCard = ({
   category,
   index,
@@ -76,7 +85,6 @@ const SkillCategoryCard = ({
       className={`glass-card p-6 card-hover ${isHealthcare ? "border-success/30" : ""
         }`}
     >
-      {/* Header */}
       <div className="flex items-center gap-3 mb-6">
         <div
           className={`p-3 rounded-xl ${isHealthcare
@@ -89,13 +97,12 @@ const SkillCategoryCard = ({
         <h3 className="font-semibold text-lg">{category.category}</h3>
       </div>
 
-      {/* Skills */}
-      <div className="space-y-4">
+      <div className="flex flex-wrap gap-2">
         {category.skills.map((skill, skillIndex) => (
-          <SkillBar
+          <SkillTag
             key={skill.name}
             name={skill.name}
-            level={skill.level}
+            tier={skill.tier}
             delay={0.3 + index * 0.1 + skillIndex * 0.05}
             inView={inView}
           />
@@ -184,13 +191,11 @@ export const SkillsSection = () => {
 
   return (
     <section id="skills" className="py-20 md:py-32 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 grid-pattern opacity-20" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-success/5 rounded-full blur-3xl" />
 
       <div className="section-container relative z-10" ref={ref}>
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -208,8 +213,7 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-6">
           {portfolioConfig.skillCategories.map((category, index) => (
             <SkillCategoryCard
               key={category.category}
@@ -220,7 +224,6 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        {/* Special Badges */}
         <SpecialBadges />
       </div>
     </section>
