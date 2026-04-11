@@ -27,3 +27,6 @@ dist-ssr
 # Claude Code
 CLAUDE.md
 .claude/
+
+# CV & Career-Ops (personal — never commit)
+CV/

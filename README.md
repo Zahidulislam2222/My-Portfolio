@@ -1,73 +1,122 @@
-# Welcome to My Portfolio project
+# Zahidul Islam — Portfolio
 
-## Project info
+**Full Stack Engineer | Cloud Architect | HealthTech Specialist**
 
-**URL**: [My Portfollio](https://zahidul-islam.vercel.app/)
+Production portfolio showcasing 9 projects across healthcare, AI/RAG, e-commerce, and cloud infrastructure — built with React 18, TypeScript, and Tailwind CSS.
 
-## How can I edit this code?
+**Live:** [zahidul-islam.vercel.app](https://zahidul-islam.vercel.app)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## Tech Stack
 
-Simply visit the [[Portfolio Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID)](https://zahidul-islam.vercel.app/) and start prompting.
+| Layer | Technologies |
+|-------|-------------|
+| **Framework** | React 18, TypeScript 5, Vite 5 |
+| **Styling** | Tailwind CSS 3, shadcn/ui (Radix), CSS custom properties |
+| **Animation** | Framer Motion (scroll-triggered, page transitions, micro-interactions) |
+| **Testing** | Vitest, jsdom |
+| **Deployment** | Vercel (auto-deploy on push to main) |
 
-Changes made via Lovable will be committed automatically to this repo.
+## Architecture
 
-**Use your preferred IDE**
+Config-driven single-page application. All content lives in a single config file — projects, skills, services, process, testimonials, and personal info. Zero hardcoded content in components.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/config/portfolio.config.ts → Section Components → UI
 ```
 
-**Edit a file directly in GitHub**
+**Sections:** Hero (typewriter + particles) → About (animated counters) → Projects (filterable grid, image carousels, video modals, multi-link dropdowns) → Skills (tiered by expertise) → Process (4-step delivery workflow) → Services (pricing tiers) → Testimonials → Contact (EmailJS)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+**Routing:** React Router — `/` (Index) and `*` (404). Hash-based anchor navigation for sections.
 
-**Use GitHub Codespaces**
+## Projects Showcased
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+| # | Project | Stack | Highlights |
+|---|---------|-------|------------|
+| 1 | **MediConnect V3** | React, Node.js, FastAPI, AWS+GCP+Azure, Terraform, Kafka | Tri-cloud telehealth, 42 FHIR R4 resources, 756+ tests, $2/mo idle cost |
+| 2 | **EDS Dental** | React, Supabase, Cloudflare Pages | Real client, HIPAA 95%, FHIR R4 100%, bilingual |
+| 3 | **RAG Production Stack** | Docker, LightRAG, Prometheus, Grafana, Authelia | 23 services, zero-trust 2FA, 6 compliance scanners |
+| 4 | **Chronos V2** | React, WordPress 7.0, WPGraphQL, Stripe | Headless e-commerce, 48 shadcn/ui components, WP 7.0 AI |
+| 5 | **EquipCert AI** | Next.js 16, Capacitor, Supabase, Stripe | Multi-AI (Gemini/OpenAI/Claude), OSHA compliance, offline-first |
+| 6 | **HealthCode Analysis** | WordPress, Python, Cloudflare Workers, Dialogflow | Single-command multi-site deployment, 313 tests, AI chatbot |
+| 7 | **n8n Automations** | n8n, LangChain, Google Gemini | AI pricing monitor, autonomous lead qualification |
+| 8 | **Agency Platform** | WordPress, Cloudflare Workers, Calendly API | Serverless booking bot, automated sales pipeline |
+| 9 | **Medical Clinic** | WordPress, Elementor | Before/after visualizer, patient acquisition |
 
-## What technologies are used for this project?
+## Quick Start
 
-This project is built with:
+```bash
+# Clone
+git clone https://github.com/Zahidulislam2222/zahidul-islam.git
+cd zahidul-islam
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# Install
+npm install
 
-## How can I deploy this project?
+# Dev server
+npm run dev        # localhost:8080
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+# Production build
+npm run build
 
-## Can I connect a custom domain to my Lovable project?
+# Test
+npm run test       # Vitest single run
+npm run lint       # ESLint
+```
 
-Yes, you can!
+## Environment Variables
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Create `.env` in root:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```env
+VITE_SERVICE_ID=your_emailjs_service_id
+VITE_TEMPLATE_ID=your_emailjs_template_id
+VITE_PUBLIC_KEY=your_emailjs_public_key
+```
+
+## Project Structure
+
+```
+src/
+├── config/
+│   └── portfolio.config.ts    # All content (projects, skills, services, process)
+├── components/
+│   ├── HeroSection.tsx        # Typewriter + particle animation
+│   ├── AboutSection.tsx       # Bio + animated stat counters
+│   ├── ProjectsSection.tsx    # Filterable grid, carousels, video modals
+│   ├── SkillsSection.tsx      # Tiered skill categories with icon mapping
+│   ├── ProcessSection.tsx     # 4-step delivery workflow
+│   ├── ServicesSection.tsx    # Pricing tiers
+│   ├── TestimonialsSection.tsx
+│   ├── ContactSection.tsx     # EmailJS integration
+│   ├── Navigation.tsx         # Scroll-aware nav with active states
+│   ├── Footer.tsx
+│   └── ui/                    # shadcn/ui primitives (managed by CLI)
+├── hooks/
+├── lib/
+├── pages/
+│   ├── Index.tsx
+│   └── NotFound.tsx
+└── test/
+```
+
+## Updating Content
+
+Edit `src/config/portfolio.config.ts` — no component changes needed. The config drives:
+
+- **`personal`** — name, bio, roles, contact info, resume URL
+- **`stats`** — animated counter values
+- **`projects[]`** — cards with images, tech, achievements, links, PDFs, videos
+- **`skillCategories[]`** — grouped by domain with tier levels
+- **`process[]`** — delivery workflow steps
+- **`services[]`** — pricing packages
+- **`testimonials[]`** — client reviews
+
+## Deployment
+
+Deployed on Vercel with auto-deploy on push to `main`. Static assets (resume PDF, project PDFs) served from `public/`.
+
+---
+
+**Contact:** muhammadzahidulislam2222@gmail.com | [LinkedIn](https://linkedin.com/in/zahidul-islam-developer) | [GitHub](https://github.com/Zahidulislam2222)

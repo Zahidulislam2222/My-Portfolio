@@ -40,7 +40,7 @@ export const portfolioConfig = {
     { label: "Production Projects", value: 7, suffix: "" },
     { label: "Cloud Providers", value: 3, suffix: "" },
     { label: "Test Assertions", value: 756, suffix: "+" },
-    { label: "FHIR R4 Resources", value: 35, suffix: "" },
+    { label: "FHIR R4 Resources", value: 42, suffix: "" },
     { label: "Cost Reduction", value: "99.3", suffix: "%" },
     { label: "Lines of Code", value: "44.5", suffix: "K" },
   ],
@@ -64,6 +64,7 @@ export const portfolioConfig = {
     { label: "About", href: "#about" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
+    { label: "Process", href: "#process" },
     { label: "Services", href: "#services" },
     { label: "Contact", href: "#contact" },
   ],
@@ -80,7 +81,7 @@ export const portfolioConfig = {
       category: ["hybrid-cloud", "ai-ml", "mobile", "healthcare"],
 
       description:
-        "A production-grade, tri-cloud telehealth ecosystem (AWS + GCP + Azure) with 7 microservices (5 Node.js + 2 Python FastAPI), Kafka event streaming, AI Circuit Breaker (Bedrock/Vertex/Azure OpenAI), 13-step RAG pipeline with PII scrubbing, 414 Terraform resources, 35 FHIR R4 resource types with 10 medical terminology systems, and 756+ test assertions across 39+ test files — all at $2/mo idle cost (99.3% reduction from $300/mo). 44,500+ lines of code.",
+        "Problem: Healthcare platforms are expensive, non-compliant, and vendor-locked to a single cloud. Solution: A production-grade, tri-cloud telehealth ecosystem (AWS + GCP + Azure) with 7 microservices (5 Node.js + 2 Python FastAPI), Kafka event streaming, AI Circuit Breaker (Bedrock/Vertex/Azure OpenAI), 13-step RAG pipeline with PII scrubbing, 414 Terraform resources, 42 FHIR R4 resource types with 10 medical terminology systems, and 756+ test assertions across 39+ test files — all at $2/mo idle cost (99.3% reduction from $300/mo). 44,500+ lines of code.",
 
       fullDescription: `MediConnect is a production-grade, multi-cloud healthcare platform that evolved through 3 major versions — from a serverless prototype (V1) to a fully compliant tri-cloud ecosystem (V3) across AWS, GCP, and Azure. 7 backend microservices (5 Node.js/Express, 2 Python/FastAPI), 4 Lambda functions across 2 AWS regions, 44,500+ lines of code.
 
@@ -91,7 +92,7 @@ COMPLIANCE (Architecturally Enforced)
 HIPAA 2026: KMS envelope encryption, immutable FHIR AuditEvent logs, breach detection, 15-min auto-logout, KMS-signed prescriptions, DICOM de-identification. GDPR/Schrems II: EU data locked to Frankfurt, consent ledger, cascading erasure. SOC 2 Type II: 13 CloudWatch metrics, idempotency guard, PITR 35-day recovery. 96 Checkov IaC security fixes, GuardDuty + Macie + CloudTrail.
 
 FHIR R4 & CLINICAL
-35 FHIR R4 resource types with 10 medical terminology systems (RxNorm, SNOMED CT, ICD-10-CM, ICD-11, LOINC, CVX, MVX, NDC, CPT, HCPCS). SMART on FHIR STU 2.0, full DICOMweb REST API (PS3.18), C-CDA 2.1 document generation, ONC-compliant interoperability. Clinical modules: CDS Hooks, med-reconciliation, prior-auth, MPI, bulk export, emergency access.
+42 FHIR R4 resource types with 10 medical terminology systems (RxNorm, SNOMED CT, ICD-10-CM, ICD-11, LOINC, CVX, MVX, NDC, CPT, HCPCS). SMART on FHIR STU 2.0, full DICOMweb REST API (PS3.18), C-CDA 2.1 document generation, ONC-compliant interoperability. Clinical modules: CDS Hooks, med-reconciliation, prior-auth, MPI, bulk export, emergency access.
 
 AI & REAL-TIME
 99.99% AI availability via Circuit Breaker across Bedrock (Claude) / Vertex (Gemini) / Azure (GPT-4) — 13-step RAG pipeline with PII scrubbing, confidence scoring, and hallucination detection. Model Router with dynamic model selection per task type. AI Scribe: Transcribe Medical → SOAP Notes → EHR. Sub-second IoT vitals via Socket.io + MQTT. Kafka event streaming (MSK Serverless + Docker, 7 topics).
@@ -142,7 +143,7 @@ TESTING & PAYMENTS
       achievements: [
         "Zero-Cost Idle: $300+/mo reduced to $2/mo (99.3% reduction) across 3 clouds with 414 Terraform resources — verified by Prowler on HIPAA, GDPR, SOC 2, ISO 27001",
         "99.99% AI availability via Circuit Breaker across Bedrock (Claude) / Vertex (Gemini) / Azure (GPT-4) — 13-step RAG pipeline with PII scrubbing, confidence scoring, and hallucination detection",
-        "35 FHIR R4 resources with 10 medical terminology systems — SMART on FHIR 2.0, full DICOMweb REST API (PS3.18), C-CDA 2.1 document generation, ONC-compliant interoperability",
+        "42 FHIR R4 resources with 10 medical terminology systems — SMART on FHIR 2.0, full DICOMweb REST API (PS3.18), C-CDA 2.1 document generation, ONC-compliant interoperability",
         "756+ test assertions across 39+ test files (483 backend TS + 53 RAG pipeline + 50 RAG red team + 15 RAG evaluation + 129 Python + 66 Vitest + 10 Playwright E2E + 4 IaC verification)",
         "7 microservices (5 Node.js + 2 Python FastAPI) + 4 Lambda functions across 2 AWS regions — 44,500+ LOC",
         "Kafka event streaming (MSK Serverless + Docker, 7 topics), IoT vitals via MQTT, Chime video consultations",
@@ -162,9 +163,8 @@ TESTING & PAYMENTS
       ],
 
       pdfLinks: [
-        { label: "Technical Overview", url: "/MediConnect_Technical_Overview.pdf" },
-        { label: "Project Info", url: "/Mediconnect_Info.pdf" },
-        { label: "Architecture PDF", url: "https://github.com/user-attachments/files/25336017/MediConnect_2.0_Multi-Cloud_Zero_Cost_compressed.pdf" },
+        { label: "Technical Overview", url: "https://github.com/user-attachments/files/26647740/MediConnect.Comprehensive.Technical.Overview.pdf" },
+        { label: "Enterprise Architecture", url: "https://github.com/user-attachments/files/26647741/MediConnect_Enterprise_Architecture.pdf" },
       ],
 
       videoId: "vPviXZOjx68",
@@ -181,7 +181,7 @@ TESTING & PAYMENTS
         infrastructure: "414 Terraform Resources \u00b7 AKS + EKS Active-Active HA",
         services: "7 Microservices (5 Node.js + 2 Python FastAPI) \u00b7 4 Lambda Functions",
         aiProviders: "3-Cloud Circuit Breaker \u2014 Claude / Gemini / GPT-4 (99.99% uptime)",
-        fhirResources: "35 FHIR R4 Resources \u00b7 SMART on FHIR 2.0 \u00b7 DICOMweb \u00b7 C-CDA 2.1",
+        fhirResources: "42 FHIR R4 Resources \u00b7 SMART on FHIR 2.0 \u00b7 DICOMweb \u00b7 C-CDA 2.1",
         terminologySystems: "10 Medical Terminology Systems (RxNorm, SNOMED CT, ICD-10/11, LOINC, CVX, NDC, CPT, HCPCS)",
         tests: "756+ Test Assertions (39+ Test Files) \u00b7 44,500+ LOC",
         streaming: "Kafka (MSK Serverless + Docker, 7 Topics) \u00b7 MQTT IoT Vitals",
@@ -197,12 +197,12 @@ TESTING & PAYMENTS
       category: ["healthcare", "fullstack", "compliance"],
 
       description:
-        "A production-grade, HIPAA / FHIR R4 / SOC 2 Type II-ready dental clinic platform with Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
+        "Problem: A real dental clinic in Dhaka needed a compliant digital platform — not a WordPress template, but a system that passes HIPAA audits. Solution: A production-grade, HIPAA / FHIR R4 / SOC 2 Type II-ready dental clinic platform with Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
 
       fullDescription: `Everyday Dental Surgery & Implant Center is a production-grade healthcare web application built to HIPAA 2026, FHIR R4, and SOC 2 Type II compliance standards for a dental clinic in Dhaka, Bangladesh.
 
 PLATFORM
-32 pages with lazy loading, 11 Supabase Edge Functions, 11 database migrations, 4 user roles (Patient, Doctor, Receptionist, Admin), bilingual interface (English + Bengali).
+23 routes (16 public + 5 auth + 2 protected) with lazy loading, 11 Supabase Edge Functions, 11 database migrations, 4 user roles (Patient, Doctor, Receptionist, Admin), bilingual interface (English + Bengali).
 
 COMPLIANCE (93% Audit Score — 56/60 Checks)
 HIPAA: AES-256 encryption via pgcrypto Vault, trigger-based audit logging, 15-min session timeout with BroadcastChannel cross-tab sync, breach detection with hourly pg_cron jobs. FHIR R4: 10 resource types, 3 terminology systems (SNOMED CT, ICD-10-CM, LOINC), REST API via Edge Function, 421-line client-side validator. SOC 2: 11 policy documents, data retention with pg_cron purge, MFA enrollment, RBAC.
@@ -227,7 +227,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
 
       technologies: [
         "React 18 + Vite 5 (SPA)",
-        "React Router v6 (32 Lazy-Loaded Pages)",
+        "React Router v6 (23 Routes, Lazy-Loaded)",
         "Tailwind CSS 3 (Custom Navy/Teal/Gold Palette)",
         "React Hook Form (Client + Server Validation)",
         "React Helmet Async (SEO)",
@@ -254,7 +254,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
         "SOC 2 Type II Ready (83% \u2014 5/6 Checks Passing)",
         "3 Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
         "10 FHIR R4 Resource Types",
-        "11 SOC 2 Policy Documents",
+        "10 SOC 2 Policy Documents",
 
         "CSP + HSTS + COEP + COOP + CORP Headers",
         "Cloudflare Turnstile (CAPTCHA)",
@@ -278,7 +278,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
         "Stripe server-side payments: PaymentIntent via Edge Function, PCI compliant",
         "Three-tier animation: GSAP + ScrollTrigger, Framer Motion, Tailwind keyframes + Lenis smooth scrolling",
         "Premium UI: TiltCard, MagneticButton, CursorGlow, Dental3DObject, Lottie animations",
-        "32 pages, 12 service categories, 50+ pricing items, bilingual (English + Bengali)",
+        "23 routes, 12 service categories, 50+ pricing items, bilingual (English + Bengali)",
         "Admin Panel: 10 modules including audit logs, user management, security incidents, data retention",
         "60-check compliance audit scanner as CI/CD deploy gate (npm run predeploy)",
         "PWA with service worker, Cloudflare Pages deployment with security headers",
@@ -291,7 +291,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
       ],
 
       pdfLinks: [
-        { label: "Project Documentation", url: "/EDS_Project_Documentation.pdf" },
+        { label: "Project Documentation", url: "https://github.com/user-attachments/files/26647795/EDS_Project_Documentation.pdf" },
       ],
 
       videoId: "8QjGhAE7gpw",
@@ -300,7 +300,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
 
       metrics: {
         compliance: "HIPAA 2026 (95%) \u00b7 FHIR R4 (100%) \u00b7 SOC 2 Type II Ready (83%) \u00b7 93% Overall",
-        pages: "32 Lazy-Loaded Pages \u00b7 12 Service Categories \u00b7 50+ Pricing Items",
+        pages: "23 Routes (16 Public + 5 Auth + 2 Protected) \u00b7 12 Service Categories \u00b7 50+ Pricing Items",
         backend: "11 Edge Functions \u00b7 11 Migrations \u00b7 AES-256 Encryption \u00b7 RLS",
         fhirResources: "10 FHIR R4 Resource Types",
         terminologySystems: "3 Medical Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
@@ -314,17 +314,72 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
       },
     },
     {
+      id: "rag-production-stack",
+      title: "RAG Production Stack \u2014 Healthcare AI Infrastructure",
+      category: ["ai-ml", "hybrid-cloud", "healthcare"],
+      images: [
+        "https://github.com/user-attachments/assets/ae15af25-9d1f-4d85-aa9c-d949a775f8ed",
+        "https://github.com/user-attachments/assets/3717f990-a7af-486c-a015-5eaeac1b6566",
+        "https://github.com/user-attachments/assets/52babe2f-1ecd-4b03-bbaf-64e03d80868f",
+      ],
+      description: "Problem: RAG demos are everywhere — production-grade RAG infrastructure with security, observability, and compliance scanning is not. Solution: Production-hardened RAG infrastructure with 23 containerized services on a single 8GB machine — 3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges), 6 compliance scanners (Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno ONC G10), full observability stack, all at zero additional cost.",
+      fullDescription: "A self-hosted, production-grade RAG (Retrieval-Augmented Generation) infrastructure stack designed for healthcare AI applications. Deploys 23 containerized services on a single 8GB RAM machine with carefully calibrated resource limits.\n\nCORE SERVICES\nLightRAG 1.4.6 for knowledge graph-based retrieval with Gemini 2.5 Flash, ragAnything for multi-format document processing (PDF, DOCX, images), Nginx reverse proxy with SSL termination, Authelia SSO with single-user admin access, and Certbot for automated Let's Encrypt certificates.\n\nINFRASTRUCTURE\n3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges). Docker Compose orchestration, Restic encrypted backups with verification scripts.\n\nOBSERVABILITY\nPrometheus metrics collection, Grafana dashboards, Loki log aggregation, Jaeger distributed tracing, and AlertManager for incident routing \u2014 full production monitoring at zero additional cost.\n\nSECURITY SCANNING\n6 compliance scanners: Checkov for IaC security, SonarQube for code quality, Trivy for container vulnerability scanning, OWASP ZAP for web app security, HAPI FHIR validator, and Inferno ONC G10 for FHIR compliance testing.\n\nHosted on healthcodeanalysis.com with Let's Encrypt SSL.",
+      thumbnail: "",
+      technologies: [
+        "Docker Compose (23 Services)",
+        "LightRAG (Knowledge Graph RAG)",
+        "ragAnything (Multi-Format Processing)",
+        "Gemini 2.5 Flash (LLM)",
+        "Prometheus + Grafana + Loki + Jaeger",
+        "AlertManager (Incident Routing)",
+        "SonarQube (Code Quality)",
+        "Checkov (IaC Security)",
+        "Trivy (Container Scanning)",
+        "Inferno (FHIR Compliance Testing)",
+        "OpenSCAP (System Hardening)",
+        "OWASP (Web App Security)",
+        "Authelia (SSO / 2FA)",
+        "Nginx + Certbot (SSL)",
+        "Restic (Encrypted Backups)",
+      ],
+      achievements: [
+        "23 containerized services on a single 8GB machine — 3-network isolation (frontend/backend/monitoring)",
+        "Zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges)",
+        "Full observability stack (Prometheus + Loki + Jaeger + Grafana + AlertManager) — all at zero additional cost",
+        "6 compliance scanners: Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno ONC G10",
+        "LightRAG 1.4.6 knowledge graph with Gemini 2.5 Flash for healthcare document retrieval",
+        "ragAnything multi-format processing (PDF, DOCX, images) with HyDE question generation",
+        "Authelia SSO with 2FA, security-hardened Nginx reverse proxy with SSL termination",
+        "Production deployment on healthcodeanalysis.com with automated Let's Encrypt certificates",
+      ],
+      githubLinks: [
+        { label: "Infrastructure", url: "https://github.com/Zahidulislam2222/rag-production-stack" },
+      ],
+      pdfLinks: [
+        { label: "Technical Overview", url: "https://github.com/user-attachments/files/26647758/RAG_Production_Stack_Technical_Overview.pdf" },
+      ],
+      featured: true,
+      isHybridCloud: true,
+      metrics: {
+        services: "23 Containerized Services (Single 8GB Machine)",
+        isolation: "3-Network Isolation \u00b7 Zero-Trust 2FA \u00b7 Container Hardening",
+        scanners: "6 Compliance Scanners (Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno)",
+        monitoring: "Prometheus + Grafana + Loki + Jaeger + AlertManager",
+        cost: "Zero Additional Cost (Full Production Stack)",
+      },
+    },
+    {
       id: "chronos",
       title: "Chronos V2 — Headless E-Commerce Platform",
       category: ["wordpress", "fullstack"],
-      description: "Production-ready headless e-commerce for luxury watches — React 18 SPA (60+ shadcn/ui components, 11 routes, 9 lazy-loaded) decoupled from WordPress 7.0/WooCommerce via WPGraphQL + REST API. Custom OOP PHP 8.1+ plugin (27 classes, 4,791 LOC, PSR-4), real Stripe Checkout with webhook signature verification, WordPress 7.0 AI Client for auto-generated descriptions, 52 tests (0 PHPCS errors), 3 CI/CD workflows, WCAG 2.1 AA + GDPR compliance.",
+      description: "Problem: Traditional WordPress e-commerce is slow and monolithic — themes are tightly coupled to the CMS. Solution: Production-ready headless e-commerce for luxury watches — React 18 SPA (48 shadcn/ui components, 11 routes, 9 lazy-loaded) decoupled from WordPress 7.0/WooCommerce via WPGraphQL + REST API. Custom OOP PHP 8.1+ plugin (27 classes, 4,613 LOC, PSR-4), real Stripe Checkout with webhook signature verification, WordPress 7.0 AI Client for auto-generated descriptions, 52 tests (0 PHPCS errors), 3 CI/CD workflows, WCAG 2.1 AA + GDPR compliance.",
       fullDescription: `Chronos is a production-ready headless e-commerce platform for luxury watches using a decoupled architecture where a React SPA communicates with WordPress 7.0 backend via GraphQL and REST APIs.
 
 FRONTEND
-React 18 SPA with TypeScript, Vite, Tailwind CSS, and 60+ shadcn/ui components on Radix UI primitives. 11 routes (9 lazy-loaded for code splitting), TanStack React Query for server state management, real Stripe Checkout redirect, JWT authentication, Framer Motion page transitions, and react-helmet-async for SEO meta tags.
+React 18 SPA with TypeScript, Vite, Tailwind CSS, and 48 shadcn/ui components on Radix UI primitives. 14 routes (9 lazy-loaded for code splitting), TanStack React Query for server state management, real Stripe Checkout redirect, JWT authentication, Framer Motion page transitions, and react-helmet-async for SEO meta tags.
 
 BACKEND
-WordPress 7.0 with WooCommerce, custom OOP PHP 8.1+ plugin "chronos-bridge" (27 classes, 4,791 LOC, PSR-4 autoloading). Custom Gutenberg blocks (watch showcase, collection grid, contact form). Custom Post Type (chronos_watch) with custom taxonomies (chronos_brand, chronos_movement). TransientCache with Redis-ready object cache.
+WordPress 7.0 with WooCommerce, custom OOP PHP 8.1+ plugin "chronos-bridge" (27 classes, 4,613 LOC, PSR-4 autoloading). Custom Gutenberg blocks (watch showcase, collection grid, contact form). Custom Post Type (chronos_watch) with custom taxonomies (chronos_brand, chronos_movement). TransientCache with Redis-ready object cache.
 
 AI & PAYMENTS
 WordPress 7.0 AI Client for auto-generated watch descriptions and smart contact auto-responder. Real Stripe Checkout Sessions with webhook handling and signature verification, custom checkout fields.
@@ -353,12 +408,12 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
 
       technologies: [
         "React 18 + TypeScript + Vite",
-        "60+ shadcn/ui Components (Radix UI)",
+        "48 shadcn/ui Components (Radix UI)",
         "TanStack React Query + React Router 6",
         "Framer Motion 12 (Page Transitions)",
         "Tailwind CSS (Custom Luxury Design Tokens)",
         "WordPress 7.0 + WooCommerce + WPGraphQL",
-        "OOP PHP 8.1+ Plugin (27 Classes, 4,791 LOC, PSR-4)",
+        "OOP PHP 8.1+ Plugin (27 Classes, 4,613 LOC, PSR-4)",
         "Custom Gutenberg Blocks (3 Blocks)",
         "WordPress 7.0 AI Client (Auto-Generated Descriptions)",
         "Stripe Checkout Sessions + Webhook Signature Verification",
@@ -371,11 +426,11 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         "SEO (react-helmet-async, JSON-LD, Open Graph)",
       ],
       achievements: [
-        "3x faster page loads via decoupled headless architecture — custom OOP PHP 8.1+ plugin (27 classes, 4,791 LOC, PSR-4)",
+        "3x faster page loads via decoupled headless architecture — custom OOP PHP 8.1+ plugin (27 classes, 4,613 LOC, PSR-4)",
         "WordPress 7.0 AI Client for auto-generated watch descriptions and smart contact auto-responder",
         "Real Stripe Checkout with webhook signature verification and custom checkout fields",
         "52 tests (33 PHPUnit + 19 Jest), 0 PHPCS errors, 3 CI/CD workflows (PHP + blocks + frontend)",
-        "60+ shadcn/ui components, 11 routes (9 lazy-loaded), TanStack React Query caching",
+        "48 shadcn/ui components, 14 routes (9 lazy-loaded), TanStack React Query caching",
         "WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, cookie consent",
         "Custom Post Type + Taxonomies (chronos_watch, chronos_brand, chronos_movement)",
         "GitHub Actions CI/CD with auto-deploy via cPanel API, Dependabot scanning, manual deploy with dry-run gate",
@@ -386,13 +441,18 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         { label: "Project", url: "https://github.com/Zahidulislam2222/Chronos" },
       ],
 
+      pdfLinks: [
+        { label: "Full Documentation", url: "https://github.com/user-attachments/files/26647807/Chronos.pdf" },
+        { label: "The Blueprint", url: "https://github.com/user-attachments/files/26647808/The_Chronos_Blueprint.pdf" },
+      ],
+
       featured: true,
       isHeadless: true,
       isWordpress: true,
       metrics: {
         architecture: "Headless: React SPA + WordPress 7.0 + WPGraphQL + REST API",
-        plugin: "chronos-bridge: 27 OOP PHP 8.1+ Classes \u00b7 4,791 LOC \u00b7 PSR-4",
-        frontend: "60+ shadcn/ui Components \u00b7 11 Routes (9 Lazy-Loaded)",
+        plugin: "chronos-bridge: 27 OOP PHP 8.1+ Classes \u00b7 4,613 LOC \u00b7 PSR-4",
+        frontend: "48 shadcn/ui Components \u00b7 14 Routes (9 Lazy-Loaded)",
         tests: "52 Tests (33 PHPUnit + 19 Jest) \u00b7 0 PHPCS Errors",
         ai: "WordPress 7.0 AI Client (Auto Descriptions + Smart Replies)",
         payments: "Real Stripe Checkout + Webhook Signature Verification",
@@ -404,7 +464,7 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
       id: "equipcert",
       title: "EquipCert AI — Safety Inspection SaaS",
       category: ["mobile", "ai-ml", "fullstack"],
-      description: "Replaced 30-minute paper inspection with 60-second digital workflow — AI identifies equipment from photo, loads dynamic CMS checklist, captures GPS evidence, generates OSHA-compliant PDF report with legally-binding digital signature. Multi-AI provider abstraction (Gemini/OpenAI/Claude switchable via single env var), offline-first IndexedDB with SHA-256 integrity, 3-tier Stripe billing with DB-level feature gating, 25 security vulnerabilities fixed.",
+      description: "Problem: Paper-based equipment inspections have a 73% audit failure rate, take 30+ minutes each, and provide zero verifiable proof of on-site completion. Solution: Replaced 30-minute paper inspection with 60-second digital workflow — AI identifies equipment from photo, loads dynamic CMS checklist, captures GPS evidence, generates OSHA-compliant PDF report with legally-binding digital signature. Multi-AI provider abstraction (Gemini/OpenAI/Claude switchable via single env var), offline-first IndexedDB with SHA-256 integrity, 3-tier Stripe billing with DB-level feature gating, 25 security vulnerabilities fixed.",
       fullDescription: "EquipCert is a production-ready SaaS platform that replaced 30-minute paper inspections with a 60-second digital workflow. AI identifies equipment from photo, loads dynamic CMS checklist, captures GPS evidence, generates OSHA-compliant PDF report with legally-binding digital signature.\n\nBuilt with Next.js 16 and Capacitor 8 for cross-platform deployment (web + Android APK), it uses Supabase for real-time data sync with a production PostgreSQL schema (organizations, profiles, equipment, inspections).\n\nFeatures multi-AI provider abstraction (Gemini/OpenAI/Claude switchable via single env var) with pluggable architecture, offline-first IndexedDB queue with SHA-256 integrity verification for field use, 3-tier Stripe billing (free/pro/enterprise) with DB-level feature gating, GPS location capture, digital signature pads, and automated OSHA-compliant PDF report generation.\n\n25 security vulnerabilities fixed from a full audit.",
 
       images: [
@@ -437,6 +497,11 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         { label: "Project", url: "https://github.com/Zahidulislam2222/equip-cert" },
       ],
 
+      pdfLinks: [
+        { label: "AI Blueprint", url: "https://github.com/user-attachments/files/26647775/EquipCert_AI_Blueprint.pdf" },
+        { label: "Full Documentation", url: "https://github.com/user-attachments/files/26647776/EquipCert.pdf" },
+      ],
+
       featured: true,
       isHeadless: true,
       isContentful: true,
@@ -447,7 +512,7 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
       id: "healthcode-analysis",
       title: "HealthCode Analysis — WordPress Automation Engine",
       category: ["wordpress", "ai-ml", "automation"],
-      description: "Full-stack WordPress automation platform that clones Elementor-based template websites and programmatically replaces all content for multiple customers via a single command. Features NeuroScan v5.0 custom PHP engine, AskMe AI chatbot on Cloudflare Workers with Dialogflow ES ($0/month), 281 tests (59% coverage), 2 CI/CD pipelines, and Dark Glassmorphism Design System.",
+      description: "Problem: Deploying identical WordPress sites for multiple clients required hours of manual content swapping, image replacement, and SEO updates per site. Solution: Full-stack WordPress automation platform that clones Elementor-based template websites and programmatically replaces all content for multiple customers via a single command. Features NeuroScan v5.0 custom PHP engine, AskMe AI chatbot on Cloudflare Workers with Dialogflow ES ($0/month), 313 tests (55% coverage), 2 CI/CD pipelines, and Dark Glassmorphism Design System.",
       fullDescription: `HealthCode Analysis is a full-stack WordPress automation platform that clones Elementor-based template websites and programmatically replaces all content — photos, text, headings, and SEO metadata — for multiple customers via a single command.
 
 AUTOMATION ENGINE
@@ -460,7 +525,7 @@ AI & CLOUD
 AskMe AI chatbot on Cloudflare Workers with Dialogflow ES — $0/month, scales to unlimited posts. AI content augmentation with auto-generated summaries and medical prompt engineering.
 
 DESIGN & TESTING
-Dark Glassmorphism Design System (vanilla JS, zero dependencies). 281 automated tests (unit + integration + end-to-end swap verification), 59% code coverage with enforcement threshold. 2 CI/CD pipelines with Ruff linter, Bandit security scan, pre-commit hooks, and Dependabot.`,
+Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated tests (unit + integration + end-to-end swap verification), 59% code coverage with enforcement threshold. 2 CI/CD pipelines with Ruff linter, Bandit security scan, pre-commit hooks, and Dependabot.`,
 
       images: [
         "https://github.com/user-attachments/assets/477fc801-f7da-436e-b8a7-574368524761",
@@ -494,12 +559,12 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 281 automated 
         "LiteSpeed Cache + Cloudflare CDN",
         "GitHub Actions CI/CD (2 Pipelines)",
         "Ruff + Bandit (Linting + Security)",
-        "281 Automated Tests (59% Coverage)",
+        "281 Automated Tests (55% Coverage)",
         "cPanel Git + SSH Deploy Key (RSA 4096)",
       ],
       achievements: [
         "Automated multi-customer site deployment — single command swaps all content, images, and SEO metadata via custom REST API bridge with dry-run preview",
-        "281 automated tests (unit + integration + E2E swap verification), 59% code coverage with enforcement threshold",
+        "313 automated tests (unit + integration + E2E swap verification), 59% code coverage with enforcement threshold",
         "Built Dark Glassmorphism Design System (vanilla JS, zero dependencies) and AskMe AI chatbot on Cloudflare Workers with Dialogflow ES — $0/month",
         "NeuroScan v5.0: custom PHP content engine with modular grid system, zero-reload AJAX filtering, and multi-instance scoped architecture",
         "Elementor JSON Parser recursively walks nested trees to replace images, headings, testimonials, and CSS backgrounds",
@@ -513,11 +578,16 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 281 automated 
         { label: "Project", url: "https://github.com/Zahidulislam2222/healthcodeanalysis" },
       ],
 
+      pdfLinks: [
+        { label: "Analysis Engine", url: "https://github.com/user-attachments/files/26647772/HealthCode_Analysis_Engine.pdf" },
+        { label: "Full Documentation", url: "https://github.com/user-attachments/files/26647771/HealthCode.Analysis.pdf" },
+      ],
+
       featured: true,
       isWordpress: true,
       metrics: {
         automation: "Single-Command Multi-Customer Deployment",
-        tests: "281 Tests \u00b7 59% Coverage \u00b7 2 CI/CD Pipelines",
+        tests: "313 Tests \u00b7 55% Coverage \u00b7 2 CI/CD Pipelines",
         engine: "NeuroScan v5.0 Custom PHP Framework",
         ai: "AskMe AI Chatbot (Cloudflare Workers + Dialogflow) \u00b7 $0/month",
         design: "Dark Glassmorphism Design System (Zero Dependencies)",
@@ -631,54 +701,6 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 281 automated 
       metrics: { conversion: "High Patient Intent", performance: "Optimized for Local SEO" },
     },
 
-    {
-      id: "rag-production-stack",
-      title: "RAG Production Stack \u2014 Healthcare AI Infrastructure",
-      category: ["ai-ml", "hybrid-cloud", "healthcare"],
-      description: "Production-hardened RAG infrastructure with 23 containerized services on a single 8GB machine — 3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges), 6 compliance scanners (Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno ONC G10), full observability stack, all at zero additional cost.",
-      fullDescription: "A self-hosted, production-grade RAG (Retrieval-Augmented Generation) infrastructure stack designed for healthcare AI applications. Deploys 23 containerized services on a single 8GB RAM machine with carefully calibrated resource limits.\n\nCORE SERVICES\nLightRAG 1.4.6 for knowledge graph-based retrieval with Gemini 2.5 Flash, ragAnything for multi-format document processing (PDF, DOCX, images), Nginx reverse proxy with SSL termination, Authelia SSO with single-user admin access, and Certbot for automated Let's Encrypt certificates.\n\nINFRASTRUCTURE\n3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges). Docker Compose orchestration, Restic encrypted backups with verification scripts.\n\nOBSERVABILITY\nPrometheus metrics collection, Grafana dashboards, Loki log aggregation, Jaeger distributed tracing, and AlertManager for incident routing \u2014 full production monitoring at zero additional cost.\n\nSECURITY SCANNING\n6 compliance scanners: Checkov for IaC security, SonarQube for code quality, Trivy for container vulnerability scanning, OWASP ZAP for web app security, HAPI FHIR validator, and Inferno ONC G10 for FHIR compliance testing.\n\nHosted on healthcodeanalysis.com with Let's Encrypt SSL.",
-      thumbnail: "",
-      technologies: [
-        "Docker Compose (12+ Services)",
-        "LightRAG (Knowledge Graph RAG)",
-        "ragAnything (Multi-Format Processing)",
-        "Gemini 2.5 Flash (LLM)",
-        "Prometheus + Grafana + Loki + Jaeger",
-        "AlertManager (Incident Routing)",
-        "SonarQube (Code Quality)",
-        "Checkov (IaC Security)",
-        "Trivy (Container Scanning)",
-        "Inferno (FHIR Compliance Testing)",
-        "OpenSCAP (System Hardening)",
-        "OWASP (Web App Security)",
-        "Authelia (SSO / 2FA)",
-        "Nginx + Certbot (SSL)",
-        "Restic (Encrypted Backups)",
-      ],
-      achievements: [
-        "23 containerized services on a single 8GB machine — 3-network isolation (frontend/backend/monitoring)",
-        "Zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges)",
-        "Full observability stack (Prometheus + Loki + Jaeger + Grafana + AlertManager) — all at zero additional cost",
-        "6 compliance scanners: Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno ONC G10",
-        "LightRAG 1.4.6 knowledge graph with Gemini 2.5 Flash for healthcare document retrieval",
-        "ragAnything multi-format processing (PDF, DOCX, images) with HyDE question generation",
-        "Authelia SSO with 2FA, security-hardened Nginx reverse proxy with SSL termination",
-        "Production deployment on healthcodeanalysis.com with automated Let's Encrypt certificates",
-      ],
-      githubLinks: [
-        { label: "Infrastructure", url: "https://github.com/Zahidulislam2222/rag-production-stack" },
-      ],
-      featured: false,
-      isHybridCloud: true,
-      metrics: {
-        services: "23 Containerized Services (Single 8GB Machine)",
-        isolation: "3-Network Isolation \u00b7 Zero-Trust 2FA \u00b7 Container Hardening",
-        scanners: "6 Compliance Scanners (Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno)",
-        monitoring: "Prometheus + Grafana + Loki + Jaeger + AlertManager",
-        cost: "Zero Additional Cost (Full Production Stack)",
-      },
-    },
-
   ],
 
   /* ========================================
@@ -755,7 +777,7 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 281 automated 
       skills: [
         { name: "HIPAA 2026 (Architecturally Enforced)", tier: "expert" },
         { name: "GDPR / Schrems II + SOC 2 + CCPA", tier: "expert" },
-        { name: "FHIR R4 (35 Resources) + SMART on FHIR + HL7 v2.x", tier: "expert" },
+        { name: "FHIR R4 (42 Resources) + SMART on FHIR + HL7 v2.x", tier: "expert" },
         { name: "C-CDA 2.1 + DICOMweb + OSHA + ESIGN", tier: "proficient" },
         { name: "Medical Terminology (LOINC, SNOMED CT, RxNorm, ICD-10/11, CVX, NDC, CPT, HCPCS)", tier: "proficient" },
         { name: "PHI Encryption (KMS / AES-256 / pgcrypto)", tier: "expert" },
@@ -898,13 +920,34 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 281 automated 
   ],
 
   /* ========================================
-     🏆 CERTIFICATIONS & BADGES
-     ======================================== //
-  certifications: [
-    { name: "AWS Solutions Architect", issuer: "Amazon Web Services" },
-    { name: "Google Cloud Professional", issuer: "Google Cloud" },
-    { name: "Terraform Associate", issuer: "HashiCorp" },
-  ],*/
+     ⚙️ HOW I WORK
+     ======================================== */
+  process: [
+    {
+      step: "01",
+      title: "Discovery & Architecture",
+      description: "I start by understanding the business problem — not just the feature list. Together we define scope, compliance requirements, and success metrics. Then I design the system architecture and present it for review before writing a single line of code.",
+      icon: "Search",
+    },
+    {
+      step: "02",
+      title: "Build & Iterate",
+      description: "I ship working software in short cycles — not slides. Every sprint delivers deployable code with automated tests, CI/CD pipelines, and compliance checks baked in from day one. You get access to the repo and see every commit.",
+      icon: "Code",
+    },
+    {
+      step: "03",
+      title: "Test & Harden",
+      description: "Security and compliance are not afterthoughts. I run Prowler, Checkov, and Trivy scans on infrastructure. I write test assertions that verify business logic, not just code coverage. HIPAA, GDPR, and SOC 2 controls are architecturally enforced.",
+      icon: "Shield",
+    },
+    {
+      step: "04",
+      title: "Ship & Support",
+      description: "You get 100% source code ownership, complete documentation, and a production-ready deployment. I provide post-launch support, monitoring setup, and knowledge transfer so your team can maintain the system independently.",
+      icon: "Rocket",
+    },
+  ],
 
   /* ========================================
      🎨 THEME CUSTOMIZATION
