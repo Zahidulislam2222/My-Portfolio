@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import {
   Cloud,
   Code,
+  Database,
   Settings,
   Brain,
   Globe,
@@ -16,6 +17,7 @@ import { portfolioConfig } from "@/config/portfolio.config";
 const iconMap: Record<string, LucideIcon> = {
   Cloud,
   Code,
+  Database,
   Settings,
   Brain,
   Globe,
