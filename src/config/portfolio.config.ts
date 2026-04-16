@@ -192,128 +192,6 @@ TESTING & PAYMENTS
       },
     },
     {
-      id: "everyday-dental-surgery",
-      title: "EDS Dental — Clinic Platform for Real Client",
-      category: ["healthcare", "fullstack", "compliance"],
-
-      description:
-        "Problem: A real dental clinic in Dhaka needed a compliant digital platform — not a WordPress template, but a system that passes HIPAA audits. Solution: A production-grade, HIPAA / FHIR R4 / SOC 2 Type II-ready dental clinic platform with Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
-
-      fullDescription: `Everyday Dental Surgery & Implant Center is a production-grade healthcare web application built to HIPAA 2026, FHIR R4, and SOC 2 Type II compliance standards for a dental clinic in Dhaka, Bangladesh.
-
-PLATFORM
-23 routes (16 public + 5 auth + 2 protected) with lazy loading, 11 Supabase Edge Functions, 11 database migrations, 4 user roles (Patient, Doctor, Receptionist, Admin), bilingual interface (English + Bengali).
-
-COMPLIANCE (93% Audit Score — 56/60 Checks)
-HIPAA: AES-256 encryption via pgcrypto Vault, trigger-based audit logging, 15-min session timeout with BroadcastChannel cross-tab sync, breach detection with hourly pg_cron jobs. FHIR R4: 10 resource types, 3 terminology systems (SNOMED CT, ICD-10-CM, LOINC), REST API via Edge Function, 421-line client-side validator. SOC 2: 11 policy documents, data retention with pg_cron purge, MFA enrollment, RBAC.
-
-SECURITY
-Row-Level Security on all PHI tables (database-enforced, not application-level), Cloudflare Turnstile CAPTCHA, rate limiting, DOMPurify sanitization, CSP + HSTS + COEP + COOP headers.
-
-ANIMATIONS & UI
-Three-tier system: GSAP + ScrollTrigger (scroll reveals), Framer Motion (page transitions), Tailwind keyframes (ambient). Premium components: TiltCard, MagneticButton, CursorGlow, Dental3DObject, Lottie animations, Lenis smooth scrolling.
-
-PAYMENTS & DEPLOYMENT
-Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare Pages with PWA support and 60-check compliance audit scanner as CI/CD deploy gate.`,
-
-      images: [
-        "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
-        "https://github.com/user-attachments/assets/1fe6bd5b-8f25-4601-80bc-a52d93fcfca8",
-        "https://github.com/user-attachments/assets/bb0618a9-50ff-4fa4-acc2-7bc21bdeb7aa",
-        "https://github.com/user-attachments/assets/f3f117cc-fd7d-4079-a13f-1aa7cf7f2200",
-        "https://github.com/user-attachments/assets/7a961f32-9563-48d2-ad60-35d8aa4455e3",
-      ],
-      thumbnail: "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
-
-      technologies: [
-        "React 18 + Vite 5 (SPA)",
-        "React Router v6 (23 Routes, Lazy-Loaded)",
-        "Tailwind CSS 3 (Custom Navy/Teal/Gold Palette)",
-        "React Hook Form (Client + Server Validation)",
-        "React Helmet Async (SEO)",
-        "DOMPurify (XSS Prevention)",
-        "Lucide React (Icon System)",
-
-        "GSAP 3.14 + ScrollTrigger (Scroll Reveals, Parallax, Stagger)",
-        "Framer Motion 11 (Page Transitions, Micro-Interactions)",
-        "Lenis (Physics-Based Smooth Scrolling)",
-        "Lottie React (SVG Dental Animations)",
-        "TiltCard + MagneticButton + CursorGlow (Premium UI)",
-
-        "Supabase (PostgreSQL, Auth, Edge Functions, Realtime)",
-        "11 Deno Edge Functions (Validation, Encryption, FHIR, Payments)",
-        "11 Database Migrations (Idempotent, Sequential)",
-        "pgcrypto + Vault (AES-256 PHI Encryption)",
-        "Row-Level Security (Database-Enforced RBAC)",
-        "pg_cron (Breach Detection + Data Retention Jobs)",
-
-        "Stripe (PaymentIntents, Server-Side Secret Key, PCI Compliant)",
-
-        "HIPAA 2026 (95% \u2014 18/19 Checks Passing)",
-        "HL7 FHIR R4 (100% \u2014 16/16 Checks Passing)",
-        "SOC 2 Type II Ready (83% \u2014 5/6 Checks Passing)",
-        "3 Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
-        "10 FHIR R4 Resource Types",
-        "10 SOC 2 Policy Documents",
-
-        "CSP + HSTS + COEP + COOP + CORP Headers",
-        "Cloudflare Turnstile (CAPTCHA)",
-        "15-Min HIPAA Session Timeout (BroadcastChannel Cross-Tab)",
-        "Trigger-Based Audit Logging (IP, User Agent, PHI Access)",
-        "Breach Detection (Hourly Cron + Auto-Containment)",
-
-        "Bilingual i18n (English + Bengali, Inline t() System)",
-
-        "Cloudflare Pages (SPA Deployment)",
-        "PWA (Service Worker, Manifest, Offline Fallback)",
-        "60-Check Compliance Audit Scanner (CI/CD Deploy Gate)",
-      ],
-
-      achievements: [
-        "93% Compliance Audit Score: 56/60 checks across HIPAA (95%), FHIR R4 (100%), SOC 2 (83%), zero critical failures",
-        "Row-Level Security on all PHI tables \u2014 database-enforced, not application-level",
-        "AES-256 PHI encryption (pgcrypto Vault), breach detection, 15-min session timeout, consent enforcement",
-        "10 FHIR R4 resource types with REST API, 3 terminology systems, 421-line client-side validator",
-        "11 Supabase Edge Functions + 11 database migrations covering RBAC, RLS, encryption, audit, FHIR, retention",
-        "Stripe server-side payments: PaymentIntent via Edge Function, PCI compliant",
-        "Three-tier animation: GSAP + ScrollTrigger, Framer Motion, Tailwind keyframes + Lenis smooth scrolling",
-        "Premium UI: TiltCard, MagneticButton, CursorGlow, Dental3DObject, Lottie animations",
-        "23 routes, 12 service categories, 50+ pricing items, bilingual (English + Bengali)",
-        "Admin Panel: 10 modules including audit logs, user management, security incidents, data retention",
-        "60-check compliance audit scanner as CI/CD deploy gate (npm run predeploy)",
-        "PWA with service worker, Cloudflare Pages deployment with security headers",
-      ],
-
-      liveUrl: "https://dental-clinic-anq.pages.dev",
-
-      githubLinks: [
-        { label: "Full Stack", url: "https://github.com/Zahidulislam2222/dental-clinic" },
-      ],
-
-      pdfLinks: [
-        { label: "Project Documentation", url: "https://github.com/user-attachments/files/26647795/EDS_Project_Documentation.pdf" },
-      ],
-
-      videoId: "8QjGhAE7gpw",
-      featured: true,
-      isHealthcare: true,
-
-      metrics: {
-        compliance: "HIPAA 2026 (95%) \u00b7 FHIR R4 (100%) \u00b7 SOC 2 Type II Ready (83%) \u00b7 93% Overall",
-        pages: "23 Routes (16 Public + 5 Auth + 2 Protected) \u00b7 12 Service Categories \u00b7 50+ Pricing Items",
-        backend: "11 Edge Functions \u00b7 11 Migrations \u00b7 AES-256 Encryption \u00b7 RLS",
-        fhirResources: "10 FHIR R4 Resource Types",
-        terminologySystems: "3 Medical Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
-        security: "4-Role RBAC \u00b7 RLS \u00b7 Breach Detection \u00b7 15-Min Timeout \u00b7 CAPTCHA",
-        animations: "GSAP + Framer Motion + Tailwind (Three-Tier) \u00b7 Lenis Smooth Scroll",
-        i18n: "Bilingual (English + Bengali) \u00b7 Complete Coverage",
-        payments: "Stripe PaymentIntents (Server-Side, PCI Compliant)",
-        audit: "60-Check Scanner \u00b7 CI/CD Deploy Gate \u00b7 0 Critical Failures",
-        roles: "Patient \u00b7 Doctor \u00b7 Receptionist \u00b7 Admin",
-        deployment: "Cloudflare Pages \u00b7 PWA \u00b7 Security Headers (CSP, HSTS, COEP, COOP)",
-      },
-    },
-    {
       id: "rag-production-stack",
       title: "RAG Production Stack \u2014 Healthcare AI Infrastructure",
       category: ["ai-ml", "hybrid-cloud", "healthcare"],
@@ -509,6 +387,122 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
     },
 
     {
+      id: "everyday-dental-surgery",
+      title: "EDS Dental — Clinic Platform for Real Client",
+      category: ["healthcare", "fullstack", "compliance"],
+
+      description:
+        "Problem: A real dental clinic in Dhaka needed a compliant digital platform — not a WordPress template, but a system that passes HIPAA audits. Solution: A production-grade, HIPAA / FHIR R4 / SOC 2 Type II-ready dental clinic platform with Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
+
+      fullDescription: `Everyday Dental Surgery & Implant Center is a production-grade healthcare web application built to HIPAA 2026, FHIR R4, and SOC 2 Type II compliance standards for a dental clinic in Dhaka, Bangladesh.
+
+PLATFORM
+23 routes (16 public + 5 auth + 2 protected) with lazy loading, 11 Supabase Edge Functions, 11 database migrations, 4 user roles (Patient, Doctor, Receptionist, Admin), bilingual interface (English + Bengali).
+
+COMPLIANCE (93% Audit Score \u2014 56/60 Checks)
+HIPAA: AES-256 encryption via pgcrypto Vault, trigger-based audit logging, 15-min session timeout with BroadcastChannel cross-tab sync, breach detection with hourly pg_cron jobs. FHIR R4: 10 resource types, 3 terminology systems (SNOMED CT, ICD-10-CM, LOINC), REST API via Edge Function, 421-line client-side validator. SOC 2: 11 policy documents, data retention with pg_cron purge, MFA enrollment, RBAC.
+
+SECURITY
+Row-Level Security on all PHI tables (database-enforced, not application-level), Cloudflare Turnstile CAPTCHA, rate limiting, DOMPurify sanitization, CSP + HSTS + COEP + COOP headers.
+
+ANIMATIONS & UI
+Three-tier system: GSAP + ScrollTrigger (scroll reveals), Framer Motion (page transitions), Tailwind keyframes (ambient). Premium components: TiltCard, MagneticButton, CursorGlow, Dental3DObject, Lottie animations, Lenis smooth scrolling.
+
+PAYMENTS & DEPLOYMENT
+Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare Pages with PWA support and 60-check compliance audit scanner as CI/CD deploy gate.`,
+
+      images: [
+        "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
+        "https://github.com/user-attachments/assets/1fe6bd5b-8f25-4601-80bc-a52d93fcfca8",
+        "https://github.com/user-attachments/assets/bb0618a9-50ff-4fa4-acc2-7bc21bdeb7aa",
+        "https://github.com/user-attachments/assets/f3f117cc-fd7d-4079-a13f-1aa7cf7f2200",
+        "https://github.com/user-attachments/assets/7a961f32-9563-48d2-ad60-35d8aa4455e3",
+      ],
+      thumbnail: "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
+
+      technologies: [
+        "React 18 + Vite 5 (SPA)",
+        "React Router v6 (23 Routes, Lazy-Loaded)",
+        "Tailwind CSS 3 (Custom Navy/Teal/Gold Palette)",
+        "React Hook Form (Client + Server Validation)",
+        "React Helmet Async (SEO)",
+        "DOMPurify (XSS Prevention)",
+        "Lucide React (Icon System)",
+        "GSAP 3.14 + ScrollTrigger (Scroll Reveals, Parallax, Stagger)",
+        "Framer Motion 11 (Page Transitions, Micro-Interactions)",
+        "Lenis (Physics-Based Smooth Scrolling)",
+        "Lottie React (SVG Dental Animations)",
+        "TiltCard + MagneticButton + CursorGlow (Premium UI)",
+        "Supabase (PostgreSQL, Auth, Edge Functions, Realtime)",
+        "11 Deno Edge Functions (Validation, Encryption, FHIR, Payments)",
+        "11 Database Migrations (Idempotent, Sequential)",
+        "pgcrypto + Vault (AES-256 PHI Encryption)",
+        "Row-Level Security (Database-Enforced RBAC)",
+        "pg_cron (Breach Detection + Data Retention Jobs)",
+        "Stripe (PaymentIntents, Server-Side Secret Key, PCI Compliant)",
+        "HIPAA 2026 (95% \u2014 18/19 Checks Passing)",
+        "HL7 FHIR R4 (100% \u2014 16/16 Checks Passing)",
+        "SOC 2 Type II Ready (83% \u2014 5/6 Checks Passing)",
+        "3 Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
+        "10 FHIR R4 Resource Types",
+        "10 SOC 2 Policy Documents",
+        "CSP + HSTS + COEP + COOP + CORP Headers",
+        "Cloudflare Turnstile (CAPTCHA)",
+        "15-Min HIPAA Session Timeout (BroadcastChannel Cross-Tab)",
+        "Trigger-Based Audit Logging (IP, User Agent, PHI Access)",
+        "Breach Detection (Hourly Cron + Auto-Containment)",
+        "Bilingual i18n (English + Bengali, Inline t() System)",
+        "Cloudflare Pages (SPA Deployment)",
+        "PWA (Service Worker, Manifest, Offline Fallback)",
+        "60-Check Compliance Audit Scanner (CI/CD Deploy Gate)",
+      ],
+
+      achievements: [
+        "93% Compliance Audit Score: 56/60 checks across HIPAA (95%), FHIR R4 (100%), SOC 2 (83%), zero critical failures",
+        "Row-Level Security on all PHI tables \u2014 database-enforced, not application-level",
+        "AES-256 PHI encryption (pgcrypto Vault), breach detection, 15-min session timeout, consent enforcement",
+        "10 FHIR R4 resource types with REST API, 3 terminology systems, 421-line client-side validator",
+        "11 Supabase Edge Functions + 11 database migrations covering RBAC, RLS, encryption, audit, FHIR, retention",
+        "Stripe server-side payments: PaymentIntent via Edge Function, PCI compliant",
+        "Three-tier animation: GSAP + ScrollTrigger, Framer Motion, Tailwind keyframes + Lenis smooth scrolling",
+        "Premium UI: TiltCard, MagneticButton, CursorGlow, Dental3DObject, Lottie animations",
+        "23 routes, 12 service categories, 50+ pricing items, bilingual (English + Bengali)",
+        "Admin Panel: 10 modules including audit logs, user management, security incidents, data retention",
+        "60-check compliance audit scanner as CI/CD deploy gate (npm run predeploy)",
+        "PWA with service worker, Cloudflare Pages deployment with security headers",
+      ],
+
+      liveUrl: "https://dental-clinic-anq.pages.dev",
+
+      githubLinks: [
+        { label: "Full Stack", url: "https://github.com/Zahidulislam2222/dental-clinic" },
+      ],
+
+      pdfLinks: [
+        { label: "Project Documentation", url: "https://github.com/user-attachments/files/26647795/EDS_Project_Documentation.pdf" },
+      ],
+
+      videoId: "8QjGhAE7gpw",
+      featured: false,
+      isHealthcare: true,
+
+      metrics: {
+        compliance: "HIPAA 2026 (95%) \u00b7 FHIR R4 (100%) \u00b7 SOC 2 Type II Ready (83%) \u00b7 93% Overall",
+        pages: "23 Routes (16 Public + 5 Auth + 2 Protected) \u00b7 12 Service Categories \u00b7 50+ Pricing Items",
+        backend: "11 Edge Functions \u00b7 11 Migrations \u00b7 AES-256 Encryption \u00b7 RLS",
+        fhirResources: "10 FHIR R4 Resource Types",
+        terminologySystems: "3 Medical Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
+        security: "4-Role RBAC \u00b7 RLS \u00b7 Breach Detection \u00b7 15-Min Timeout \u00b7 CAPTCHA",
+        animations: "GSAP + Framer Motion + Tailwind (Three-Tier) \u00b7 Lenis Smooth Scroll",
+        i18n: "Bilingual (English + Bengali) \u00b7 Complete Coverage",
+        payments: "Stripe PaymentIntents (Server-Side, PCI Compliant)",
+        audit: "60-Check Scanner \u00b7 CI/CD Deploy Gate \u00b7 0 Critical Failures",
+        roles: "Patient \u00b7 Doctor \u00b7 Receptionist \u00b7 Admin",
+        deployment: "Cloudflare Pages \u00b7 PWA \u00b7 Security Headers (CSP, HSTS, COEP, COOP)",
+      },
+    },
+
+    {
       id: "groza-ada-compliance",
       title: "Groza Learning Center — ADA & GDPR Compliance (Client Project)",
       category: ["wordpress", "compliance", "fullstack"],
@@ -575,7 +569,7 @@ WP_HTML_Tag_Processor for alt text injection, style_loader_tag filter for contra
         { label: "Case Study", url: "https://github.com/user-attachments/files/26782337/ADA.GDPR.Compliance.Case.Study.Groza.Learning.Center._.Zahidul.Islam.pdf" },
       ],
 
-      featured: true,
+      featured: false,
       isWordpress: true,
 
       metrics: {
@@ -665,7 +659,7 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
         { label: "Full Documentation", url: "https://github.com/user-attachments/files/26647771/HealthCode.Analysis.pdf" },
       ],
 
-      featured: true,
+      featured: false,
       isWordpress: true,
       metrics: {
         automation: "Single-Command Multi-Customer Deployment",
@@ -781,6 +775,64 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
       isWordpress: true,
 
       metrics: { conversion: "High Patient Intent", performance: "Optimized for Local SEO" },
+    },
+
+    {
+      id: "email-finder",
+      title: "EmailFinder — HTTP Email Discovery & Verification",
+      category: ["fullstack", "automation"],
+      description: "Problem: Email finder tools charge per lookup and rely on SMTP verification that most ISPs block (port 25). Solution: HTTP-only email discovery tool with a 5-step waterfall pipeline — DNS validation, web scraping (15+ pages per domain), pattern generation (8 formats), multi-signal verification (Gravatar + GitHub + disposable detection), and confidence scoring (0-99%). Single dependency. 46 test assertions. Works from any internet connection.",
+      fullDescription: `EmailFinder is a Python CLI tool that discovers and verifies business emails using only HTTP requests — no SMTP, no paid API keys, no rate limits.
+
+PIPELINE
+5-step waterfall: DNS/MX validation with provider detection (Google/Microsoft/Zoho), web scraping across 15+ pages per domain (HTML, mailto links, obfuscated patterns), pattern generation (8 common email formats), multi-signal verification (Gravatar avatar lookup, GitHub commit search, disposable domain detection), and weighted confidence scoring (0-99%).
+
+DNS INTELLIGENCE
+MX record resolution, SPF record parsing, DMARC policy detection, email provider identification (Google Workspace, Microsoft 365, Zoho, ProtonMail, Fastmail, self-hosted).
+
+WEB SCRAPING
+Crawls homepage, about, team, contact, staff, people pages with both www and non-www variants. Extracts standard emails, mailto links, and obfuscated patterns (name [at] domain [dot] com). Filters junk domains and non-email patterns.
+
+VERIFICATION
+Gravatar check (MD5 hash → avatar lookup), GitHub user search (public commit email), disposable domain detection (100+ providers), RFC 5322 syntax validation. All HTTP-based — works behind ISP port 25 blocks.
+
+SCORING
+Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gravatar = 65-75%. Pattern only = 45-50%. Disposable domain = 0%.`,
+
+      thumbnail: "",
+      technologies: [
+        "Python 3.10+",
+        "dnspython (DNS/MX Resolution)",
+        "urllib (HTTP Client — stdlib)",
+        "hashlib (Gravatar MD5 — stdlib)",
+        "Modular Architecture (scrapers, verifiers, utils)",
+        "CLI + Python Module (Dual Interface)",
+        "CSV Batch Processing",
+        "46 Test Assertions (4 Suites)",
+      ],
+      achievements: [
+        "5-step waterfall pipeline: DNS → scrape → patterns → verify → score",
+        "Web scraper crawls 15+ pages per domain, extracts emails from HTML, mailto links, and obfuscated patterns",
+        "Multi-signal verification: Gravatar (MD5 avatar check), GitHub (commit search), disposable detection (100+ domains)",
+        "DNS intelligence: MX records, SPF, DMARC, provider detection (Google/Microsoft/Zoho/ProtonMail)",
+        "Confidence scoring engine: 0-99% weighted by discovery method and verification signals",
+        "Zero SMTP required — works from any internet connection (ISP port 25 blocks don't matter)",
+        "Single external dependency (dnspython). 1,092 lines of Python. 46 test assertions.",
+        "Security: no eval/exec, no subprocess, no POST requests, rate limited, read-only HTTP",
+      ],
+
+      githubLinks: [
+        { label: "Project", url: "https://github.com/Zahidulislam2222/email-finder" },
+      ],
+
+      featured: false,
+      metrics: {
+        pipeline: "5-Step Waterfall (DNS → Scrape → Patterns → Verify → Score)",
+        verification: "Gravatar + GitHub + Disposable Detection",
+        scraping: "15+ Pages Per Domain (HTML + mailto + Obfuscated)",
+        tests: "46 Assertions · 4 Test Suites",
+        dependencies: "1 (dnspython) · 1,092 LOC",
+      },
     },
 
   ],
