@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADA & GDPR Compliance Case Study — Groza Learning Center | Zahidul Islam</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a0a0f; color: #e0e0e0; line-height: 1.7; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+        /* Header */
+        .header { margin-bottom: 48px; }
+        .badge { display: inline-block; background: #22c55e20; color: #22c55e; border: 1px solid #22c55e40; padding: 4px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 16px; }
+        h1 { font-size: 32px; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+        .subtitle { color: #888; font-size: 15px; }
+        .subtitle a { color: #06b6d4; text-decoration: none; }
+        .subtitle a:hover { text-decoration: underline; }
+
+        /* Stats Grid */
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+        .stat { background: #111118; border: 1px solid #1e1e2e; border-radius: 12px; padding: 20px; text-align: center; }
+        .stat-value { font-size: 28px; font-weight: 700; color: #06b6d4; }
+        .stat-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+
+        /* Sections */
+        h2 { font-size: 20px; color: #fff; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 1px solid #1e1e2e; }
+        h3 { font-size: 16px; color: #06b6d4; margin: 24px 0 8px; }
+
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 14px; }
+        th { background: #111118; color: #06b6d4; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        td { padding: 10px 14px; border-bottom: 1px solid #1a1a2a; }
+        tr:hover { background: #111118; }
+        .fixed { color: #22c55e; font-weight: 600; }
+        .before { color: #ef4444; }
+        .after { color: #22c55e; }
+
+        /* Code blocks */
+        .technique { background: #111118; border: 1px solid #1e1e2e; border-radius: 8px; padding: 16px 20px; margin: 12px 0; font-family: 'Cascadia Code', 'Fira Code', monospace; font-size: 13px; color: #06b6d4; overflow-x: auto; }
+        .technique .comment { color: #555; }
+        .technique .fn { color: #c084fc; }
+        .technique .str { color: #22c55e; }
+
+        /* Phase cards */
+        .phase { background: #111118; border: 1px solid #1e1e2e; border-radius: 12px; padding: 24px; margin: 16px 0; }
+        .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .phase-number { background: #06b6d420; color: #06b6d4; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+        .phase-title { font-size: 16px; color: #fff; font-weight: 600; }
+        .phase-badge { display: inline-block; background: #22c55e20; color: #22c55e; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; margin-left: auto; }
+
+        /* Lists */
+        ul { margin: 8px 0 12px 20px; }
+        li { margin-bottom: 6px; font-size: 14px; color: #ccc; }
+
+        /* Before/After */
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+        .comparison-card { border-radius: 8px; padding: 16px; }
+        .comparison-card.bad { background: #ef444410; border: 1px solid #ef444430; }
+        .comparison-card.good { background: #22c55e10; border: 1px solid #22c55e30; }
+        .comparison-card h4 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+        .comparison-card.bad h4 { color: #ef4444; }
+        .comparison-card.good h4 { color: #22c55e; }
+
+        /* Tools */
+        .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+        .tool { background: #1e1e2e; color: #ccc; padding: 6px 14px; border-radius: 6px; font-size: 13px; }
+
+        /* Footer */
+        .footer { margin-top: 48px; padding-top: 24px; border-top: 1px solid #1e1e2e; text-align: center; color: #555; font-size: 13px; }
+        .footer a { color: #06b6d4; text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .comparison { grid-template-columns: 1fr; }
+            h1 { font-size: 24px; }
+        }
+
+        /* Print / PDF */
+        @media print {
+            body { background: #fff !important; color: #1a1a1a !important; font-size: 11px; line-height: 1.5; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .container { max-width: 100%; padding: 0; }
+
+            .badge { background: #e6f9ee !important; color: #166534 !important; border-color: #86efac !important; }
+            h1 { color: #111 !important; font-size: 24px; }
+            h2 { color: #111 !important; font-size: 16px; border-bottom-color: #ddd !important; margin-top: 24px; }
+            h3 { color: #0e7490 !important; font-size: 13px; }
+            .subtitle { color: #555 !important; }
+            .subtitle a { color: #0e7490 !important; }
+
+            .stats { gap: 8px; margin: 16px 0; }
+            .stat { background: #f8fafc !important; border-color: #e2e8f0 !important; padding: 12px; border-radius: 6px; }
+            .stat-value { color: #0e7490 !important; font-size: 22px; }
+            .stat-label { color: #555 !important; }
+
+            .phase { background: #f8fafc !important; border-color: #e2e8f0 !important; padding: 16px; margin: 10px 0; border-radius: 6px; page-break-inside: avoid; }
+            .phase-number { background: #e0f2fe !important; color: #0e7490 !important; }
+            .phase-title { color: #111 !important; }
+            .phase-badge { background: #dcfce7 !important; color: #166534 !important; }
+
+            table { font-size: 11px; }
+            th { background: #f1f5f9 !important; color: #0e7490 !important; padding: 6px 8px; }
+            td { padding: 6px 8px; border-bottom-color: #e2e8f0 !important; color: #333 !important; }
+            tr:hover { background: transparent !important; }
+            .fixed { color: #166534 !important; }
+            .before { color: #dc2626 !important; }
+            .after { color: #166534 !important; }
+
+            .technique { background: #f8fafc !important; border-color: #e2e8f0 !important; color: #0e7490 !important; font-size: 11px; padding: 10px 14px; page-break-inside: avoid; }
+            .technique .comment { color: #888 !important; }
+            .technique .fn { color: #7c3aed !important; }
+            .technique .str { color: #166534 !important; }
+
+            .comparison-card.bad { background: #fef2f2 !important; border-color: #fca5a5 !important; }
+            .comparison-card.good { background: #f0fdf4 !important; border-color: #86efac !important; }
+            .comparison-card.bad h4 { color: #dc2626 !important; }
+            .comparison-card.good h4 { color: #166534 !important; }
+            .comparison-card p { color: #333 !important; }
+            .comparison-card strong { color: #111 !important; }
+
+            .tool { background: #f1f5f9 !important; color: #333 !important; }
+
+            ul li { color: #333 !important; }
+            p { color: #333 !important; }
+
+            .footer { border-top-color: #ddd !important; color: #888 !important; }
+            .footer a { color: #0e7490 !important; }
+
+            /* Page breaks */
+            h2 { page-break-after: avoid; }
+            .phase, table, .technique { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <div class="badge">Client Case Study</div>
+        <h1>ADA & GDPR Compliance Remediation</h1>
+        <p class="subtitle">Groza Learning Center &mdash; <a href="https://grozalearningcenter.com" target="_blank">grozalearningcenter.com</a><br>WordPress / Elementor &bull; April 2026 &bull; Upwork Contract</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-value">30+</div>
+            <div class="stat-label">Pages Audited</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">100+</div>
+            <div class="stat-label">Errors Fixed</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">200+</div>
+            <div class="stat-label">Contrast Fixes</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">6</div>
+            <div class="stat-label">PHP Snippets</div>
+        </div>
+    </div>
+
+    <!-- Problem / Solution -->
+    <h2>The Problem</h2>
+    <p style="color:#ccc; font-size:15px;">A Los Angeles-based learning center needed their WordPress/Elementor website brought into ADA/WCAG 2.1 AA compliance, GDPR cookie consent implemented, and tracking scripts properly managed. The site had 100+ accessibility errors across 30+ pages, 200+ color contrast failures, tracking scripts firing without consent, and an accessibility overlay widget (UserWay) that increased legal liability rather than reducing it.</p>
+
+    <h2>Scope of Work</h2>
+
+    <!-- Phase 1 -->
+    <div class="phase">
+        <div class="phase-header">
+            <div class="phase-number">1</div>
+            <div class="phase-title">ADA / WCAG 2.1 AA Compliance</div>
+            <div class="phase-badge">COMPLETE</div>
+        </div>
+        <p style="font-size:14px; color:#aaa; margin-bottom:12px;">Full accessibility audit and remediation across 30+ pages. All fixes applied via server-side PHP Code Snippets &mdash; zero theme or plugin files modified. Fully reversible.</p>
+
+        <table>
+            <tr><th>Issue Type</th><th>WCAG</th><th>Scope</th><th>Status</th></tr>
+            <tr><td>Missing image alt text (50+ images)</td><td>1.1.1</td><td>All pages</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Broken ARIA references (mega-menus)</td><td>4.1.2</td><td>All pages</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Empty buttons &amp; links (search, nav, social icons)</td><td>2.4.4</td><td>All pages</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Missing form labels (reCAPTCHA, CF7 inputs)</td><td>1.3.1</td><td>All form pages</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Broken skip navigation link</td><td>2.4.1</td><td>All pages</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Heading hierarchy issues</td><td>1.3.1</td><td>Multiple pages</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Empty social share links (blog posts)</td><td>2.4.4</td><td>All blog posts</td><td class="fixed">FIXED</td></tr>
+            <tr><td>Color contrast failures (200+ elements)</td><td>1.4.3</td><td>Site-wide</td><td class="fixed">FIXED</td></tr>
+        </table>
+
+        <h3>Contrast Ratio Fixes (Sample)</h3>
+        <table>
+            <tr><th>Original</th><th>Ratio</th><th>Fixed To</th><th>New Ratio</th><th>Location</th></tr>
+            <tr><td class="before">#B4C539 on white</td><td class="before">1.91:1</td><td class="after">#5a6a08</td><td class="after">6.00:1</td><td>Buttons, sections site-wide</td></tr>
+            <tr><td class="before">#1986A0 on white</td><td class="before">4.23:1</td><td class="after">#146a80</td><td class="after">6.17:1</td><td>Links, buttons, teal sections</td></tr>
+            <tr><td class="before">#60cfdd on white</td><td class="before">2.50:1</td><td class="after">#1a8a9a</td><td class="after">4.58:1</td><td>Hover states</td></tr>
+            <tr><td class="before">#AAAAAA on white</td><td class="before">2.32:1</td><td class="after">#767676</td><td class="after">4.54:1</td><td>Slider arrows, misc elements</td></tr>
+        </table>
+
+        <p style="font-size:13px; color:#888; margin-top:8px;">15 distinct color corrections applied site-wide. All meet WCAG AA minimum 4.5:1 ratio.</p>
+
+        <h3>UserWay Overlay Removed</h3>
+        <p style="font-size:14px; color:#aaa;">Disabled the UserWay accessibility overlay widget. Reason: overlay widgets increase legal liability (active class action lawsuit against UserWay Feb 2026, 1,023 companies sued in 2024 while using overlays, National Federation of the Blind formally opposes overlays). Replaced with native, code-level ADA fixes.</p>
+    </div>
+
+    <!-- Phase 2 -->
+    <div class="phase">
+        <div class="phase-header">
+            <div class="phase-number">2</div>
+            <div class="phase-title">Tracking &amp; Privacy Cleanup</div>
+            <div class="phase-badge">COMPLETE</div>
+        </div>
+        <ul>
+            <li>Removed dead Universal Analytics (UA) tracking &mdash; had been loading on every page for ~2 years sending data to a shut-down endpoint</li>
+            <li>Restricted Google reCAPTCHA v3 to form pages only &mdash; was loading on all 30+ pages unnecessarily</li>
+            <li>Switched all YouTube embeds to privacy-enhanced mode (youtube-nocookie.com) &mdash; future-proof, any new video auto-applies</li>
+        </ul>
+    </div>
+
+    <!-- Phase 3 -->
+    <div class="phase">
+        <div class="phase-header">
+            <div class="phase-number">3</div>
+            <div class="phase-title">GDPR Cookie Consent System</div>
+            <div class="phase-badge">COMPLETE</div>
+        </div>
+        <ul>
+            <li>Installed and configured CookieYes consent banner (GDPR worldwide)</li>
+            <li>Scanned and categorized 25 cookies across 4 categories (Necessary, Analytics, Advertisement, Functional)</li>
+            <li>Manually fixed 3 cookies that auto-scan missed (OptiMonk x2, ChamberMaster)</li>
+            <li>Enabled Google Consent Mode and Microsoft UET Consent Mode</li>
+        </ul>
+    </div>
+
+    <!-- Phase 4 -->
+    <div class="phase">
+        <div class="phase-header">
+            <div class="phase-number">4</div>
+            <div class="phase-title">GDPR Script Blocking (Hardcoded Tracking)</div>
+            <div class="phase-badge">COMPLETE</div>
+        </div>
+        <p style="font-size:14px; color:#aaa; margin-bottom:12px;">Discovered 4 tracking scripts hardcoded directly in the HTML (not managed by any plugin). Built a custom PHP solution to strip them before consent and reload after.</p>
+
+        <table>
+            <tr><th>Script</th><th>Consent Category</th><th>Method</th></tr>
+            <tr><td>Meta/Facebook Pixel</td><td>Advertisement</td><td>Stripped from HTML, reloaded on consent</td></tr>
+            <tr><td>AdRoll</td><td>Advertisement</td><td>Stripped from HTML, reloaded on consent</td></tr>
+            <tr><td>Google Ads Remarketing</td><td>Advertisement</td><td>Stripped from HTML, reloaded on consent</td></tr>
+            <tr><td>Microsoft/Bing UET</td><td>Advertisement</td><td>Stripped from HTML, reloaded on consent</td></tr>
+        </table>
+
+        <div class="comparison">
+            <div class="comparison-card bad">
+                <h4>Before Fix</h4>
+                <p style="font-size:14px;">4 Facebook tracking requests firing on every page load <strong>without consent</strong>. Each page view = potential GDPR violation.</p>
+            </div>
+            <div class="comparison-card good">
+                <h4>After Fix</h4>
+                <p style="font-size:14px;">0 tracking requests before consent. Full tracking restored after "Accept All". Verified across 16 pages.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technical Approach -->
+    <h2>Technical Approach</h2>
+    <p style="color:#aaa; font-size:14px; margin-bottom:16px;">All fixes applied via WordPress Code Snippets plugin (server-side PHP). Zero theme files modified. Zero plugin files modified. Every change is fully reversible by deactivating the snippet.</p>
+
+    <h3>Key PHP Techniques Used</h3>
+
+    <div class="technique">
+        <span class="comment">// Alt text injection via WP_HTML_Tag_Processor (WordPress 6.2+)</span><br>
+        <span class="fn">$processor</span> = new <span class="fn">WP_HTML_Tag_Processor</span>($content);<br>
+        while ($processor-><span class="fn">next_tag</span>(<span class="str">'img'</span>)) {<br>
+        &nbsp;&nbsp;if (!$processor-><span class="fn">get_attribute</span>(<span class="str">'alt'</span>)) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;$processor-><span class="fn">set_attribute</span>(<span class="str">'alt'</span>, $derived_alt);<br>
+        &nbsp;&nbsp;}<br>
+        }
+    </div>
+
+    <div class="technique">
+        <span class="comment">// Color contrast fix via str_ireplace (site-wide CSS override)</span><br>
+        add_filter(<span class="str">'style_loader_tag'</span>, function($html) {<br>
+        &nbsp;&nbsp;<span class="comment">// Inject contrast-corrected CSS after each stylesheet loads</span><br>
+        &nbsp;&nbsp;$fixes = <span class="str">'.btn { color: #5a6a08 !important; }'</span>;<br>
+        &nbsp;&nbsp;return $html . <span class="str">'&lt;style&gt;'</span> . $fixes . <span class="str">'&lt;/style&gt;'</span>;<br>
+        });
+    </div>
+
+    <div class="technique">
+        <span class="comment">// GDPR script blocking via PHP output buffer</span><br>
+        <span class="fn">ob_start</span>(function($html) {<br>
+        &nbsp;&nbsp;<span class="comment">// 1. Strip hardcoded tracking scripts with preg_replace</span><br>
+        &nbsp;&nbsp;<span class="comment">// 2. Store scripts in JS function in page footer</span><br>
+        &nbsp;&nbsp;<span class="comment">// 3. Read cookieyes-consent cookie</span><br>
+        &nbsp;&nbsp;<span class="comment">// 4. Load scripts only after "advertisement" consent</span><br>
+        &nbsp;&nbsp;<span class="comment">// 5. Listen for real-time consent changes (no page refresh needed)</span><br>
+        &nbsp;&nbsp;return $modified_html;<br>
+        });
+    </div>
+
+    <h3>6 Active Code Snippets Deployed</h3>
+    <table>
+        <tr><th>#</th><th>Snippet</th><th>Purpose</th></tr>
+        <tr><td>1</td><td>ADA Compliance Fixes</td><td>Alt text, ARIA labels, skip link, empty buttons/links, contrast overrides</td></tr>
+        <tr><td>2</td><td>ADA Fix &mdash; reCAPTCHA Label</td><td>ARIA labels for reCAPTCHA textarea elements</td></tr>
+        <tr><td>3</td><td>Restrict reCAPTCHA to Form Pages</td><td>Dequeue reCAPTCHA on pages without Contact Form 7</td></tr>
+        <tr><td>4</td><td>YouTube Privacy Enhanced Mode</td><td>Auto-replace youtube.com with youtube-nocookie.com site-wide</td></tr>
+        <tr><td>5</td><td>Disable UserWay Overlay</td><td>Remove overlay widget, native ADA fixes in place</td></tr>
+        <tr><td>6</td><td>GDPR Script Blocking</td><td>Output buffer strips tracking scripts, reloads on consent</td></tr>
+    </table>
+
+    <!-- Tools -->
+    <h2>Tools Used</h2>
+    <div class="tools">
+        <span class="tool">WAVE Accessibility Evaluator</span>
+        <span class="tool">Google Lighthouse</span>
+        <span class="tool">Chrome DevTools</span>
+        <span class="tool">WCAG 2.1 AA Standard</span>
+        <span class="tool">WordPress Code Snippets</span>
+        <span class="tool">CookieYes (GDPR)</span>
+        <span class="tool">Manual Keyboard Testing</span>
+    </div>
+
+    <!-- Verification -->
+    <h2>Verification</h2>
+    <table>
+        <tr><th>Test</th><th>Before</th><th>After</th></tr>
+        <tr><td>WAVE Errors (homepage)</td><td class="before">15 errors + 15 contrast errors</td><td class="after">0 errors + 0 contrast errors</td></tr>
+        <tr><td>WAVE Errors (site-wide, 30+ pages)</td><td class="before">100+ errors + 200+ contrast</td><td class="after">All resolved</td></tr>
+        <tr><td>Facebook tracking before consent</td><td class="before">4 requests per page</td><td class="after">0 requests</td></tr>
+        <tr><td>Facebook tracking after Accept</td><td class="after">4 requests (working normally)</td><td class="after">4 requests (working normally)</td></tr>
+        <tr><td>Facebook tracking after Reject</td><td class="before">4 requests (GDPR violation)</td><td class="after">0 requests</td></tr>
+        <tr><td>Keyboard navigation</td><td class="before">Skip link broken, focus traps</td><td class="after">Full keyboard accessibility verified</td></tr>
+        <tr><td>Pages verified post-fix</td><td>&mdash;</td><td class="after">16 pages individually tested</td></tr>
+    </table>
+
+    <!-- Platform -->
+    <h2>Platform Details</h2>
+    <table>
+        <tr><th>Component</th><th>Technology</th></tr>
+        <tr><td>CMS</td><td>WordPress + Elementor</td></tr>
+        <tr><td>Fix Method</td><td>PHP Code Snippets (server-side, no theme modifications)</td></tr>
+        <tr><td>Compliance Standard</td><td>WCAG 2.1 Level AA</td></tr>
+        <tr><td>Privacy Framework</td><td>GDPR (worldwide enforcement)</td></tr>
+        <tr><td>Cookie Consent</td><td>CookieYes (25 cookies categorized)</td></tr>
+        <tr><td>Reversibility</td><td>100% &mdash; deactivate any snippet to revert</td></tr>
+    </table>
+
+    <div class="footer">
+        <p>Case study by <a href="https://zahidul-islam.vercel.app">Zahidul Islam</a> &bull; <a href="https://github.com/Zahidulislam2222">GitHub</a> &bull; <a href="mailto:muhammadzahidulislam2222@gmail.com">muhammadzahidulislam2222@gmail.com</a></p>
+        <p style="margin-top:8px;">April 2026 &bull; Upwork Contract</p>
+    </div>
+
+</div>
+</body>
+</html>

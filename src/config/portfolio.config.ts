@@ -37,7 +37,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Production Projects", value: 7, suffix: "" },
+    { label: "Production Projects", value: 10, suffix: "+" },
     { label: "Cloud Providers", value: 3, suffix: "" },
     { label: "Test Assertions", value: 756, suffix: "+" },
     { label: "FHIR R4 Resources", value: 42, suffix: "" },
@@ -125,7 +125,7 @@ TESTING & PAYMENTS
         "AI Circuit Breaker (Bedrock / Vertex / Azure OpenAI — 99.99% Uptime)",
         "Model Router (Dynamic Model Selection per Task Type)",
         "Amazon Transcribe Medical (AI Scribe → SOAP Notes → EHR)",
-        "HL7 FHIR R4 (35 Resources) + SMART on FHIR 2.0 + DICOMweb",
+        "HL7 FHIR R4 (42 Resources) + SMART on FHIR 2.0 + DICOMweb",
         "10 Medical Terminology Systems (RxNorm, SNOMED CT, ICD-10/11, LOINC, CVX, NDC, CPT, HCPCS)",
         "C-CDA 2.1 Document Generation + ONC-Compliant Interoperability",
         "HIPAA 2026 + GDPR/Schrems II + SOC 2 Type II + ISO 27001",
@@ -509,6 +509,88 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
     },
 
     {
+      id: "groza-ada-compliance",
+      title: "Groza Learning Center — ADA & GDPR Compliance (Client Project)",
+      category: ["wordpress", "compliance", "fullstack"],
+
+      description:
+        "Problem: A Los Angeles learning center's WordPress/Elementor site had 100+ accessibility errors across 30+ pages, 200+ color contrast failures, tracking scripts firing without consent, and a UserWay overlay increasing legal liability. Solution: Full ADA/WCAG 2.1 AA remediation via 6 server-side PHP code snippets (zero theme modifications), GDPR cookie consent with CookieYes (25 cookies categorized), and custom PHP output buffer that strips 4 hardcoded tracking scripts (Meta Pixel, AdRoll, Google Ads, Bing UET) before consent and reloads after — verified 0 tracking requests before consent across 16 pages.",
+
+      fullDescription: `Groza Learning Center is a real client project (Upwork contract, April 2026) — full ADA accessibility remediation and GDPR compliance implementation for a WordPress/Elementor education website in Los Angeles.
+
+PHASE 1: ADA / WCAG 2.1 AA COMPLIANCE
+Full WAVE + Lighthouse audit across 30+ pages. Fixed 100+ accessibility errors: 50+ missing alt texts (WP_HTML_Tag_Processor), broken ARIA references on mega-menus, empty buttons/links (search, nav, social icons), missing form labels (reCAPTCHA, CF7), broken skip navigation, heading hierarchy issues. Resolved 200+ color contrast failures with 15 distinct color corrections (all meeting 4.5:1 AA minimum). Disabled UserWay overlay widget (active class action lawsuit Feb 2026, 1,023 companies sued while using overlays). All fixes via server-side PHP Code Snippets — zero theme or plugin files modified, fully reversible.
+
+PHASE 2: TRACKING & PRIVACY CLEANUP
+Removed dead Universal Analytics (loading for ~2 years to shut-down endpoint). Restricted reCAPTCHA v3 to form pages only (was loading on all 30+ pages). Switched YouTube embeds to privacy-enhanced mode (youtube-nocookie.com), future-proof for any new videos.
+
+PHASE 3: GDPR COOKIE CONSENT
+Installed CookieYes consent banner (GDPR worldwide). Scanned and categorized 25 cookies across 4 categories (Necessary, Analytics, Advertisement, Functional). Manually fixed 3 cookies auto-scan missed. Enabled Google Consent Mode and Microsoft UET Consent Mode.
+
+PHASE 4: GDPR SCRIPT BLOCKING
+Discovered 4 tracking scripts hardcoded directly in HTML (not managed by any WordPress plugin). Built custom PHP output buffer solution: strips scripts from HTML at server level using preg_replace, stores in JS function in footer, reads cookieyes-consent cookie, loads scripts only after "advertisement" consent, listens for real-time consent changes. Verified: 0 Facebook requests before consent, full tracking after Accept, across 16 pages.
+
+KEY PHP TECHNIQUES
+WP_HTML_Tag_Processor for alt text injection, style_loader_tag filter for contrast CSS overrides, str_ireplace for site-wide text replacements, ob_start output buffer for GDPR script masking, preg_replace for tracking script removal, wp_dequeue_script for conditional reCAPTCHA loading.`,
+
+      images: [
+        "https://github.com/user-attachments/assets/d10d1fad-7eb2-4b19-b0fe-264645c063d3",
+        "https://github.com/user-attachments/assets/9c02e98d-5551-4ae9-a206-c870d57e07d8",
+        "https://github.com/user-attachments/assets/664c7d2c-1dd1-4eb8-b8a8-f42c578f079d",
+        "https://github.com/user-attachments/assets/fe3d08ad-0156-41b9-8f23-a8d5f04a9b0b",
+      ],
+      thumbnail: "https://github.com/user-attachments/assets/d10d1fad-7eb2-4b19-b0fe-264645c063d3",
+
+      technologies: [
+        "WordPress + Elementor (Client Site)",
+        "PHP 8.x (6 Custom Code Snippets)",
+        "WP_HTML_Tag_Processor (Alt Text Injection)",
+        "style_loader_tag Filter (Contrast CSS Overrides)",
+        "PHP Output Buffer (GDPR Script Masking)",
+        "preg_replace (Tracking Script Removal)",
+        "CookieYes (GDPR Consent — 25 Cookies Categorized)",
+        "Google Consent Mode + Microsoft UET Consent Mode",
+        "WAVE Accessibility Evaluator",
+        "Google Lighthouse",
+        "WCAG 2.1 Level AA Standard",
+        "Contact Form 7 + reCAPTCHA v3",
+      ],
+
+      achievements: [
+        "Real client project (Upwork contract) — not a personal project or demo",
+        "100+ accessibility errors fixed across 30+ pages — all via server-side PHP, zero theme modifications",
+        "200+ color contrast failures resolved with 15 distinct corrections (all meeting WCAG AA 4.5:1 minimum)",
+        "Disabled UserWay overlay (legal liability — 1,023 companies sued in 2024 while using overlays) and replaced with native code-level ADA fixes",
+        "Built custom PHP output buffer to strip 4 hardcoded tracking scripts before consent and reload after — verified 0 tracking requests before consent",
+        "GDPR cookie consent system: 25 cookies scanned, categorized, and managed across 4 categories",
+        "Restricted reCAPTCHA v3 to form pages only (was loading on all 30+ pages unnecessarily)",
+        "YouTube embeds switched to privacy-enhanced mode site-wide — future-proof for new videos",
+        "All 6 code snippets fully reversible — deactivate to revert any change",
+        "16 pages individually verified post-fix for ADA + GDPR compliance",
+      ],
+
+      liveUrl: "https://grozalearningcenter.com",
+
+      pdfLinks: [
+        { label: "Case Study", url: "https://github.com/user-attachments/files/26782337/ADA.GDPR.Compliance.Case.Study.Groza.Learning.Center._.Zahidul.Islam.pdf" },
+      ],
+
+      featured: true,
+      isWordpress: true,
+
+      metrics: {
+        client: "Real Upwork Client (Los Angeles, CA)",
+        pages: "30+ Pages Audited & Fixed",
+        errors: "100+ ADA Errors Fixed + 200+ Contrast Fixes",
+        compliance: "WCAG 2.1 AA + GDPR (Worldwide)",
+        method: "6 PHP Code Snippets (Zero Theme Modifications)",
+        cookies: "25 Cookies Categorized + 4 Tracking Scripts Blocked Before Consent",
+        verification: "WAVE 0 Errors + 16 Pages Individually Tested",
+        reversibility: "100% Reversible (Snippet-Based Architecture)",
+      },
+    },
+
+    {
       id: "healthcode-analysis",
       title: "HealthCode Analysis — WordPress Automation Engine",
       category: ["wordpress", "ai-ml", "automation"],
@@ -768,6 +850,20 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
         { name: "LangChain + n8n Automation", tier: "proficient" },
         { name: "Dialogflow ES", tier: "proficient" },
         { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
+      ],
+    },
+    {
+      category: "ADA / WCAG Accessibility",
+      icon: "Shield",
+      color: "primary",
+      skills: [
+        { name: "WCAG 2.1 Level AA (Full Site Remediation)", tier: "expert" },
+        { name: "WAVE + Lighthouse Accessibility Auditing", tier: "expert" },
+        { name: "Alt Text, ARIA Labels, Skip Navigation, Form Labels", tier: "expert" },
+        { name: "Color Contrast Remediation (4.5:1 AA Minimum)", tier: "expert" },
+        { name: "Keyboard Navigation & Focus Management", tier: "proficient" },
+        { name: "WordPress/Elementor ADA Fixes (PHP Code Snippets)", tier: "expert" },
+        { name: "ADA Lawsuit Risk Reduction (Overlay Removal)", tier: "proficient" },
       ],
     },
     {
