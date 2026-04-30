@@ -37,12 +37,10 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Production Projects", value: 10, suffix: "+" },
-    { label: "Cloud Providers", value: 3, suffix: "" },
+    { label: "Production Projects", value: 20, suffix: "+" },
     { label: "Test Assertions", value: 756, suffix: "+" },
     { label: "FHIR R4 Resources", value: 42, suffix: "" },
-    { label: "Cost Reduction", value: "99.3", suffix: "%" },
-    { label: "Lines of Code", value: "44.5", suffix: "K" },
+    { label: "Cost Reduction", value: "99.3", suffix: "%" }
   ],
 
   /* ========================================
@@ -835,6 +833,335 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
       },
     },
 
+    {
+      id: "yuktha-wellness",
+      title: "Yuktha Wellness — PCOS RAG Chatbot Hardening (Client Project)",
+      category: ["ai-ml", "fullstack", "healthcare"],
+
+      description:
+        "Problem: An India-based women's health startup had a PCOS chatbot leaking errors, missing safety gates, and returning ungrounded answers. Solution: 8-commit, +1,484-line rebuild of the RAG pipeline — PCOS knowledge corpus ingestion (SHA-256 idempotent upserts), native Pinecone retriever with 0.7 score threshold, GPT-4o-mini query rewriting, hybrid dense+BM25 retrieval with Cohere rerank-english-v3.0, code-enforced safety gates (structured-output JSON schema, cosine grounding gate, 47-pattern emergency detector firing before any LLM call), and Redis-backed embedding + response caches.",
+
+      fullDescription: `Yuktha Wellness is a paid Milestone 1 engagement (April 2026, ongoing) — backend / AI engineering for an India-based women's health startup's PCOS chatbot. Static-verified delivery contract: 8 commits, +1,484 / -175 lines across 18 files, all locally committed and pending client funding.
+
+PIPELINE REBUILD
+Native Pinecone retriever (replaced LangChain wrapper) with hoisted lazy singletons for Pinecone client, embedder, and index handle. Score threshold 0.7 enforced. GPT-4o-mini query rewriting (max 80 tokens, temp 0.2) before retrieval. Hybrid dense top-20 + BM25 top-20 merge with deduplication, then Cohere rerank-english-v3.0 to top-5. Cohere failure or missing API key falls back to dense-only top-5 with 0.7 threshold.
+
+KNOWLEDGE INGESTION
+PCOS corpus ingestion script with recursive splitter (size 1000, overlap 200), per-chunk metadata (source_id, title, section, last_reviewed_date, reviewer_initials, jurisdiction), SHA-256 idempotent upserts, Pinecone describeIndex dimension safety check before any work. Static-only ship per "engineer ships code, clinician ships content" decision.
+
+SAFETY GATES (CODE-ENFORCED)
+Structured outputs json_schema with {reply, confidence, citations[], emergency_flag}. Empty citations OR confidence < 0.6 triggers safe fallback. Cosine grounding gate at threshold 0.55, skipped only when confidence ≥ 0.9. Emergency detector with 47 patterns (cardiac, respiratory, neurological, stroke FAST, bleeding, anaphylaxis, mental-health crisis) fires BEFORE any LLM round-trip — 17/17 true positives, 15/15 false-positive guards.
+
+LATENCY WINS
+Promise.allSettled for parallel weather + geocode (soft geocode failure no longer poisons weather). Redis-backed embedding cache (SHA-256 of normalized rewritten query, 1h TTL) and response cache (SHA-256 of query + age + category, 1h TTL) via utils/cache.js. Cache key normalization (lowercase, collapse whitespace, strip trailing punctuation). Lazy Redis client + isReady gate ensures Redis-down does not break the request path.
+
+CONTEXT LEAKAGE FIXES
+XML-tagged userCtx (<user_query>, <user_profile>, <rag_context>, <conversation_history>). Both system prompts reference all four tag names verbatim. Topic-aware history filter via cosine similarity threshold 0.5, cap 6, preserve chronological order. embedTurn caches per-turn embeddings via the same Redis embedding cache.
+
+VERIFICATION
+node --check clean on 17 files. /security-review NO_FINDINGS at confidence ≥8 — NoSQL/Mongoose injection, SSRF, path traversal, hardcoded secrets, weak crypto, JWT bypass, response cache cross-user leakage, embedding cache poisoning, error/stack-trace exposure all checked. cosineSimilarity, sha256Hex, normalizeKey, detectEmergency all unit-tested. Trust contract: every change labeled "static-verified, runtime-untested" — runtime gates explicitly named.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "Node.js / Express",
+        "Pinecone (Vector DB, 1536-dim, native client)",
+        "OpenAI GPT-4o + GPT-4o-mini (Structured Outputs)",
+        "Cohere rerank-english-v3.0",
+        "BM25 (Custom utils/bm25.js)",
+        "Redis (Embedding + Response Caches, 1h TTL)",
+        "Mongoose / MongoDB (Chat History, additive embedding field)",
+        "SHA-256 Idempotent Upserts",
+        "47-Pattern Emergency Detector",
+        "Cosine Grounding Gate (Threshold 0.55)",
+        "Promise.allSettled (Parallel External Calls)",
+        "/security-review NO_FINDINGS at Confidence ≥8",
+      ],
+
+      achievements: [
+        "Real paid milestone (India client, ongoing) — 8 commits / +1,484 lines / 18 files in static-verified hand-off",
+        "Rebuilt RAG pipeline end-to-end — native Pinecone retriever (0.7 score threshold), GPT-4o-mini query rewriting, hybrid dense + BM25 + Cohere rerank-english-v3.0",
+        "Code-enforced safety gates — structured JSON schema, cosine grounding gate at 0.55, 47-pattern emergency detector firing BEFORE any LLM call (17/17 true positives, 15/15 false-positive guards)",
+        "Redis-backed embedding + response caches with SHA-256 keys, normalized for hit rate, 1h TTL — graceful no-op when Redis is down",
+        "XML-tagged userCtx (<user_query>, <user_profile>, <rag_context>, <conversation_history>) closes context-leakage bugs",
+        "Topic-aware history filter — cosine similarity ≥0.5, cap 6, chronological-tail fallback when fewer than 2 entries embedded",
+        "PCOS corpus ingestion script — recursive splitter (1000/200), per-chunk metadata, SHA-256 idempotent upserts, dimension safety check",
+        "/security-review NO_FINDINGS at confidence ≥8 — NoSQL injection, SSRF, prompt injection, cache cross-user leakage, stack-trace exposure all checked",
+        "node --check clean on all 17 modified files — full unit-test pass on cosineSimilarity, sha256Hex, normalizeKey, detectEmergency",
+      ],
+
+      featured: true,
+      isHealthcare: true,
+
+      metrics: {
+        client: "Yuktha Wellness (India) — paid Milestone 1, ongoing",
+        scope: "8 commits · +1,484 / -175 lines · 18 files",
+        retrieval: "Hybrid Dense (Pinecone top-20) + BM25 top-20 → Cohere Rerank → top-5",
+        safety: "47-Pattern Emergency Detector (17/17 TP · 15/15 FP guards)",
+        grounding: "Structured JSON Output + Cosine Gate at 0.55",
+        caching: "Redis Embedding + Response Caches · SHA-256 Keys · 1h TTL",
+        verification: "/security-review NO_FINDINGS at confidence ≥8",
+        contract: "Static-Verified, Runtime-Untested (Smoke-Gated by Client)",
+      },
+    },
+
+    {
+      id: "regenai-shopify",
+      title: "RegenAI — Shopify Plus + Hydrogen Headless Commerce",
+      category: ["shopify", "fullstack", "ai-ml"],
+
+      description:
+        "Problem: Build a clinician-grade wellness commerce platform with FDA-claim linting, DSHEA supplement validation, and contraindication-presence as compile-time concerns. Solution: 105-day Shopify Plus + Hydrogen build (Day 19/105 shipped) — 4 Shopify Functions in Rust → WASM (cart contraindication, B2B tiered pricing, delivery customization, discount stacking) with 47 cargo tests passing, custom Polaris merchant app on Cloudflare Workers + D1 with hand-rolled OAuth + HMAC, 150+ SKUs across 5 markets and 5 locales (including Arabic RTL), 17 ADRs, and 10 honest-green CI workflows.",
+
+      fullDescription: `RegenAI is a 105-day portfolio build of a clinician-reviewed wellness commerce platform on Shopify Plus + Hydrogen — scoped as commerce + content + data + regulatory across four engineering layers. Day 19 of 105 delivered as of April 2026.
+
+LAYER 1 — STOREFRONT
+Hydrogen 2026.4 on React Router v7, deployed to Cloudflare Workers (pivoted from Shopify Oxygen at Day 10 / ADR-011 after Shopify confirmed Hydrogen channel is not available on dev stores). Tailwind v4 @theme block drives the token system. Radix primitives wrapped in @regenai/ui design-system package (15 primitives + Storybook). Sentry client + web-vitals integration ships as first-class concern.
+
+LAYER 2 — CUSTOM MERCHANT APP
+Remix application on Cloudflare Worker + D1, OAuth install flow 302-redirects to real Shopify authorize URL with correct scopes + state + redirect (tested end-to-end). Polaris-rendered clinician-review queue UI. Hand-rolled Shopify OAuth + HMAC helpers (no library dependency).
+
+LAYER 3 — SHOPIFY FUNCTIONS (RUST → WASM)
+4 functions written in Rust, compiled to WASM, all under 200 KB (Shopify cap is 1.5 MB per extension). 47 pure-rules-core cargo tests pass.
+- cart-contraindication — blocks checkout when customer's medical-flag metafield conflicts with product's contraindication tag
+- b2b-tiered-pricing — wholesale tier pricing logic
+- delivery-customization — market-aware delivery routing
+- discount-stacking — combinable discount rules
+
+LAYER 4 — REGULATORY POSTURE
+FDA claim linting (regex-based, runs in CI on every PDP copy change). DSHEA supplement validator (flags unsubstantiated structure/function claims). Contraindication presence check (any PDP for a Class II device fails compliance-lint workflow if it lacks a ContraindicationCallout block). Age-gated checkout via Shopify Function. WCAG 2.2 AA as default — skip link, semantic main landmark, focus-visible rings, nonce-respecting inline scripts, ARIA role-descriptions on gallery + body-area carousel.
+
+CATALOG
+150+ SKUs across 7 categories (recovery devices, sleep systems, mental recovery, biomarker diagnostics, supplements, home gym, women's health). All modeled as real commerce objects with variants, metaobjects, and compliance-critical metafields.
+
+MARKETS & LOCALES
+5 markets — US, CA, UK, EU, AU — with FDA vs CE-marked SKU segmentation, market-aware storefront routing, checkout profiles, per-market inventory routing, and tax profiles.
+5 locales — English, Spanish, French, German, Arabic — with full right-to-left layout flipping for Arabic.
+
+CI / QUALITY
+10 CI workflows run honest-green (no masked failures): 7 truly pass, 2 intentionally warn-only with documented Day-16 and Day-36 resolution dates, 1 clean-skip until Percy specs land. 17 Architecture Decision Records on file. $0 spent on infrastructure (one paid item, $5 OpenAI credit, deferred to Day 31).`,
+
+      thumbnail: "",
+
+      technologies: [
+        "Shopify Plus",
+        "Hydrogen 2026.4",
+        "React Router v7",
+        "Rust → WASM (4 Shopify Functions, all under 200 KB)",
+        "Polaris (Custom Merchant App UI)",
+        "Cloudflare Workers + D1",
+        "Hand-Rolled Shopify OAuth + HMAC Helpers",
+        "Tailwind v4 (@theme Block Token System)",
+        "Radix Primitives + @regenai/ui Design System",
+        "Storybook (15 Primitives)",
+        "Sentry + Web Vitals",
+        "FDA Claim Linting (Regex CI Gate)",
+        "DSHEA Supplement Validator",
+        "Contraindication Presence Check (Compile-Time)",
+        "Age-Gated Checkout (Shopify Function)",
+        "WCAG 2.2 AA",
+        "Markets API (5 markets — US/CA/UK/EU/AU)",
+        "5 Locales incl. Arabic RTL",
+        "10 GitHub Actions CI Workflows",
+      ],
+
+      achievements: [
+        "Day 19 of 105 — 4 Shopify Functions in Rust → WASM with 47 cargo tests passing, all 4 WASM artefacts under 200 KB (Shopify cap is 1.5 MB)",
+        "Custom Polaris merchant app on Cloudflare Workers + D1 — hand-rolled Shopify OAuth + HMAC, end-to-end install flow tested",
+        "Pivoted Hydrogen hosting from Shopify Oxygen to Cloudflare Workers at Day 10 (ADR-011) when dev-store hosting limitation surfaced",
+        "150+ SKUs across 7 categories with variants, metaobjects, and compliance-critical metafields",
+        "5 markets (US, CA, UK, EU, AU) with FDA vs CE-marked SKU segmentation, per-market routing and tax profiles",
+        "5 locales including Arabic with full right-to-left layout flipping",
+        "Compliance-as-code: FDA claim linting (regex CI gate), DSHEA supplement validator, contraindication presence check on every PDP, age-gated checkout via WASM Function",
+        "WCAG 2.2 AA default — skip link, semantic main landmark, focus-visible rings, nonce-respecting inline scripts, ARIA role-descriptions",
+        "17 Architecture Decision Records on file — every architectural pivot documented with context and consequence",
+        "10 CI workflows honest-green (no masked failures) — $0 infrastructure spend through Day 19",
+      ],
+
+      featured: true,
+      isHeadless: true,
+
+      metrics: {
+        platform: "Shopify Plus + Hydrogen 2026.4 + React Router v7",
+        hosting: "Cloudflare Workers + D1 (Pivoted from Oxygen at Day 10 / ADR-011)",
+        functions: "4 Shopify Functions (Rust → WASM) · 47 Cargo Tests · All Under 200 KB",
+        catalog: "150+ SKUs · 7 Categories · Compliance Metafields",
+        markets: "5 Markets (US, CA, UK, EU, AU) · FDA vs CE-Marked Segmentation",
+        locales: "5 Locales (EN, ES, FR, DE, AR with RTL Layout Flipping)",
+        compliance: "FDA Claim Linting + DSHEA Validator + Contraindication Check + Age Gate",
+        a11y: "WCAG 2.2 AA Default",
+        ci: "10 GitHub Actions Workflows · Honest-Green · No Masked Failures",
+        infra: "$0 Through Day 19 · 17 ADRs",
+      },
+    },
+
+    {
+      id: "kindred-grove",
+      title: "Kindred Grove — Custom Shopify Theme (DTC Pantry Brand)",
+      category: ["shopify", "fullstack"],
+
+      description:
+        "Problem: Pre-launch single-origin pantry-staples DTC brand (olive oil, dates, honey, saffron, black seed) needed an agency-tier Shopify storefront with Arabic RTL support and CI-enforced quality bars. Solution: 21-day build sprint, 14/14 storefront templates shipped, Theme Blocks architecture (Horizon-style 8-level nesting), zero front-end framework runtime (vanilla JS + Web Components), English + Arabic with CLDR-correct plural forms, and CI quality gates (Lighthouse Perf 0.90 / A11y 0.95, axe-core, Playwright E2E, Percy visual regression, gitleaks, Dependabot).",
+
+      fullDescription: `Kindred Grove is a Phase 1 portfolio build (April 2026, code-complete in 21 days) — a custom, agency-tier Shopify storefront for a pre-launch single-origin pantry-staples DTC brand. 14 of 14 SOW build-sprint days shipped and tagged (v0.0-day1 through v0.0-day21-complete), 13 public documentation artifacts in the repo, 9 continuous-integration workflows configured and passing.
+
+STOREFRONT — 14 of 14 TEMPLATES
+1. Homepage with editorial hero + section blocks
+2. Collection / product listing
+3. Product detail with 3D model viewer, variant picker, subscription, farm story, recipes, FAQ
+4. Cart drawer + full cart page (no-JavaScript fallback)
+5. Predictive search with debounced live results across products, pages, articles
+6. Origin / farm detail pages — metaobject-driven
+7. Build Your Pantry quiz — merchant-editable questions and personas
+8. Recipes blog with article template and comment system
+9. Wholesale inquiry page with honeypot, rate limit, optional Admin-API draft-order creation
+10. Gift boxes collection with curated hero
+11. Customer account — sign-in, register, dashboard, order history, addresses, order detail, password reset, activation
+12. Checkout extension scaffolded
+13. Styleguide at /pages/styleguide — living component library
+14. 404 page + Shopify-native policy pages
+
+ARCHITECTURE
+Theme Blocks architecture throughout (Horizon-style, 8-level nesting). Every storefront surface block-composable by the merchant. Vanilla JavaScript with Web Components — zero runtime dependency on any front-end framework, theme ships unbundled. Modern design-token CSS with full brand system (cream, olive, saffron, terracotta, espresso). Serif-heading + sans-body pair with Arabic fallback stack (Aref Ruqaa and IBM Plex Sans Arabic under [dir="rtl"]). Spacing, motion, radii, shadows all tokenized. Metaobjects first for editorial content (Farm, Farmer, Region, Certification, Recipe). Full WCAG 2.1 AA — deeper olive tokens (5.76 contrast on cream), axe-core scanned on every PR. English and Arabic locales shipped with hreflang tags and CLDR-correct Arabic plural forms.
+
+OBSERVABILITY
+Sentry frontend error tracking (CDN Loader pattern, PII scrubbing in beforeSend hook). Web Vitals library reporting Core Web Vitals as custom events to GA4. localStorage-based feature-flag system with URL override, Do-Not-Track compliance, and exposure analytics events.
+
+CI / QUALITY GATES (every PR)
+Liquid lint via Shopify theme-check — 181 tracked files, zero offenses. Shopify Lighthouse CI with Performance 0.90 and Accessibility 0.95 thresholds. Accessibility scan via axe-core through Playwright across home, cart, collection, search routes. Playwright golden-path E2E tests for PDP, cart, quiz, search, navigation. Percy visual regression with 6 snapshots across 4 viewport widths. Secret scanning via gitleaks on every PR, every push, plus weekly scheduled deep scan. Dependabot weekly updates grouped by vendor. Deploy workflows for dev, staging, production — production gated by required-reviewer rule.
+
+PUBLIC DOCS — 13 ARTIFACTS
+README, CONTRIBUTING, LICENSE (MIT), ARCHITECTURE, SECURITY (threat model, CSP breakdown, form hardening, escape audit), TESTING runbook, plus ADRs.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "Shopify (Custom Theme, Theme Blocks)",
+        "Liquid (181 Tracked Files, Zero theme-check Offenses)",
+        "Vanilla JavaScript + Web Components (Zero Framework Runtime)",
+        "Modern Design-Token CSS",
+        "Shopify Metaobjects (Farm, Farmer, Region, Certification, Recipe)",
+        "Theme Blocks Architecture (Horizon-Style 8-Level Nesting)",
+        "English + Arabic (RTL) with CLDR Plural Forms",
+        "Sentry (CDN Loader + PII Scrubbing)",
+        "Web Vitals → GA4 Custom Events",
+        "localStorage Feature-Flag System (DNT-Compliant)",
+        "Shopify theme-check (Liquid Lint)",
+        "Shopify Lighthouse CI (Perf 0.90 / A11y 0.95 Thresholds)",
+        "axe-core via Playwright",
+        "Playwright Golden-Path E2E",
+        "Percy Visual Regression (6 Snapshots × 4 Viewports)",
+        "gitleaks Secret Scanning",
+        "Dependabot Weekly Grouped Updates",
+      ],
+
+      achievements: [
+        "21-day build sprint — 14 of 14 storefront templates shipped and tagged (v0.0-day1 through v0.0-day21-complete)",
+        "Theme Blocks architecture with Horizon-style 8-level nesting — every surface block-composable by merchant",
+        "Zero front-end framework runtime — vanilla JS + Web Components, theme ships unbundled (npm only needed for tests)",
+        "English + Arabic locales with hreflang tags and CLDR-correct Arabic plural forms; deeper olive tokens (5.76 contrast on cream) for small-text WCAG AA",
+        "9 CI workflows passing on every PR — Liquid lint (zero offenses), Lighthouse Perf 0.90 / A11y 0.95, axe-core, Playwright E2E, Percy 6×4 snapshots, gitleaks, Dependabot",
+        "13 public documentation artifacts — README, CONTRIBUTING, LICENSE (MIT), ARCHITECTURE, SECURITY threat model, TESTING runbook, ADRs",
+        "Sentry CDN Loader with beforeSend PII scrubbing; Web Vitals → GA4; DNT-compliant feature-flag system",
+        "Production deploy workflow gated by required-reviewer rule",
+      ],
+
+      githubLinks: [
+        { label: "GitHub Repository", url: "https://github.com/Zahidulislam2222/kindred-grove" },
+      ],
+
+      featured: false,
+      isHeadless: false,
+
+      metrics: {
+        sprint: "21 Days · 14/14 Templates Shipped · v0.0-day21-complete Tagged",
+        architecture: "Theme Blocks (Horizon-Style 8-Level Nesting) · Zero Framework Runtime",
+        a11y: "WCAG 2.1 AA · 5.76 Contrast Ratio (Olive on Cream) · axe-core on Every PR",
+        ci: "9 Workflows · Lighthouse Perf 0.90 / A11y 0.95 · 181 Liquid Files Zero Offenses",
+        i18n: "English + Arabic (RTL) · CLDR Plural Forms · hreflang Tags",
+        observability: "Sentry CDN Loader (PII Scrub) · Web Vitals → GA4 · Feature-Flag System (DNT-Compliant)",
+        regression: "Percy Visual (6 Snapshots × 4 Viewports) · Playwright Golden-Path E2E",
+        docs: "13 Public Artifacts (README, ARCHITECTURE, SECURITY, TESTING, ADRs)",
+      },
+    },
+
+    {
+      id: "abcker-technologies",
+      title: "Abcker Technologies — WordPress Healthcare IT Site (Client Project, Canada)",
+      category: ["wordpress", "healthcare"],
+
+      description:
+        "Problem: An Ottawa-based healthcare IT consultancy had a WordPress site full of placeholder content, fake stats, broken nav, lorem-ipsum FAQs, 24 plugins (most unused), no SMTP, no SEO, and 12 irrelevant template pages. Solution: Full content + technical cleanup — wrote a real Healthcare Solutions page, 6 unique service descriptions, full Privacy Policy; deleted 12 template pages and 13 junk plugins (24 → 11); fixed all broken navigation and 404s; configured SMTP with verified delivery; installed and configured Yoast SEO with meta titles and descriptions on all pages.",
+
+      fullDescription: `Abcker Technologies is a paid WordPress engagement (April 2026) — full content and technical cleanup for an Ottawa-based healthcare IT consultancy at abckertechnologies.com.
+
+CONTENT CLEANUP
+Removed all fake/placeholder stats — '5K+ Reviews', '0k+ Applications', '0%' counters. Removed 'Innovative Healthcare Solutions' page heading per client request. Replaced entire Email Marketing content on Healthcare Solutions page with real Healthcare IT content. Replaced all 6 identical service card descriptions on Services page with unique real descriptions. Removed Lorem Ipsum placeholder text from all FAQ answers. Replaced stock office photos on Services page with healthcare-relevant images. Removed unrelated stock photo from 'Who we are' section on Home page. Fixed awkward footer tagline across all pages.
+
+PAGE DELETION — 12 IRRELEVANT TEMPLATE PAGES
+Business Strategy, Content Writer, Email Marketing, Extras, PixelPulse Media, Pricing, Projects, Sample Page, SEO Management, Social Media Management, Hello, Blog — all permanently deleted.
+
+CONTACT DETAILS — UPDATED ALL PAGES
+Phone: +1 613 800 0310 · Email: contact@abckertechnologies.com · Address: Ottawa ON Canada. Removed all fake placeholder contact details (fake US address, fake phone numbers, template emails). Google Map on Contact page updated to Ottawa, ON, Canada.
+
+BROKEN LINKS FIXED
+'Let's Talk Now' nav button — was pointing to /mediazen/contact/ (broken). Fixed to /contact/. 'Get Started' hero button — had no link. Fixed to /contact/. 'More About Us' button — was pointing to old broken URL. Fixed to /healthcare-solutions/.
+
+SEO OPTIMIZATION
+URL slug fixed from /halthcare-solutions/ (typo) to /healthcare-solutions/. Meta title and description added to all 4 pages (Home, Services, Healthcare Solutions, Contact). Yoast SEO plugin installed and configured. Heading structure reviewed across all pages.
+
+NEW CONTENT WRITTEN
+Healthcare Solutions page — full new page content: main description, Our Approach section (4 subsections), 6 FAQ answers all healthcare IT specific. Services page — 6 unique service descriptions written for each card. Privacy Policy — complete Privacy Policy written and published.
+
+EMAIL & FORM CONFIGURATION
+WP Mail SMTP plugin activated and configured. SMTP Host: secure.emailsrvr.com · Port: 465 · From: contact@abckertechnologies.com. SMTP test email sent successfully — email delivery confirmed working.
+
+PLUGIN CLEANUP
+Site reduced from 24 plugins to 11 plugins. 13 junk/unused plugins removed.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "WordPress",
+        "Yoast SEO",
+        "WP Mail SMTP (Configured + Verified)",
+        "Elementor (Cleanup + Manual Edits)",
+        "Custom WordPress Privacy Policy",
+        "Google Maps (Embed Update)",
+        "URL Slug + Permalinks",
+        "Meta Titles + Descriptions (All Pages)",
+        "SMTP (secure.emailsrvr.com · Port 465)",
+      ],
+
+      achievements: [
+        "Real paid WordPress engagement — Ottawa, Canada healthcare IT consultancy (April 2026)",
+        "Plugin count reduced from 24 → 11 (13 junk/unused plugins removed)",
+        "Wrote full new Healthcare Solutions page, 6 unique service descriptions, and complete Privacy Policy",
+        "Removed all fake stats ('5K+ Reviews', '0k+ Applications', '0%' counters) and placeholder Lorem Ipsum FAQ answers",
+        "Deleted 12 irrelevant template pages (Business Strategy, Content Writer, Email Marketing, Pricing, Sample Page, Hello, Blog, etc.)",
+        "Fixed 3 broken navigation buttons (Let's Talk Now, Get Started, More About Us) and URL slug typo (/halthcare-solutions/ → /healthcare-solutions/)",
+        "Configured WP Mail SMTP (secure.emailsrvr.com, port 465) — verified delivery test passed",
+        "Installed and configured Yoast SEO with meta titles and descriptions on all 4 pages; reviewed heading hierarchy across the site",
+        "Updated Google Map embed and replaced all fake US contact details with real Ottawa contact info",
+      ],
+
+      liveUrl: "https://abckertechnologies.com",
+
+      featured: false,
+      isWordpress: true,
+      isHealthcare: true,
+
+      metrics: {
+        client: "Abcker Technologies (Ottawa, Canada) — paid WordPress cleanup",
+        plugins: "24 → 11 (13 Junk Plugins Removed)",
+        pages: "12 Template Pages Deleted · 4 Real Pages With New Meta Titles + Descriptions",
+        content: "New Healthcare Solutions Page · 6 Service Descriptions · Privacy Policy",
+        smtp: "WP Mail SMTP Configured · Verified Delivery Test Passed",
+        seo: "Yoast SEO Installed + Configured · URL Slug Typo Fixed",
+        nav: "3 Broken Buttons Fixed (Let's Talk Now · Get Started · More About Us)",
+      },
+    },
+
   ],
 
   /* ========================================
@@ -899,9 +1226,26 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
       skills: [
         { name: "AI Circuit Breaker (Bedrock / Vertex / Azure OpenAI)", tier: "expert" },
         { name: "LightRAG + RAG-Anything", tier: "proficient" },
+        { name: "Pinecone + Cohere Rerank + BM25 Hybrid Retrieval", tier: "expert" },
+        { name: "OpenAI GPT-4o (Structured Outputs + Query Rewriting)", tier: "expert" },
         { name: "LangChain + n8n Automation", tier: "proficient" },
         { name: "Dialogflow ES", tier: "proficient" },
         { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
+      ],
+    },
+    {
+      category: "Shopify & E-Commerce",
+      icon: "ShoppingBag",
+      color: "primary",
+      skills: [
+        { name: "Shopify Plus + Hydrogen 2026.4 + React Router v7", tier: "expert" },
+        { name: "Shopify Functions (Rust → WASM, Cargo Tested)", tier: "expert" },
+        { name: "Custom Shopify Theme Blocks (Horizon-Style 8-Level Nesting)", tier: "expert" },
+        { name: "Shopify Polaris (Custom Merchant Apps)", tier: "expert" },
+        { name: "Shopify OAuth + HMAC (Hand-Rolled, No Library)", tier: "proficient" },
+        { name: "Liquid + theme-check (Zero Offenses)", tier: "expert" },
+        { name: "Metaobjects + Markets API (5 Markets, 5 Locales incl. Arabic RTL)", tier: "expert" },
+        { name: "WooCommerce + WPGraphQL (Headless WordPress E-Commerce)", tier: "expert" },
       ],
     },
     {
@@ -952,7 +1296,7 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
   services: [
     {
       name: "WordPress & CMS",
-      price: "From $1,500",
+      price: "From $500",
       period: "/project",
       description: "Professional WordPress sites with custom themes, headless architecture, and Gutenberg blocks.",
       features: [
@@ -969,7 +1313,7 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
     },
     {
       name: "Full Stack Application",
-      price: "From $5,000",
+      price: "From $2,000",
       period: "/project",
       description: "Production-grade web applications with cloud infrastructure, real-time features, and AI integration.",
       features: [
@@ -1115,6 +1459,7 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
    ======================================== */
 export const projectCategories = [
   { id: "all", label: "All Projects" },
+  { id: "shopify", label: "Shopify" },
   { id: "hybrid-cloud", label: "Hybrid Cloud" },
   { id: "wordpress", label: "WordPress" },
   { id: "mobile", label: "Mobile Apps" },

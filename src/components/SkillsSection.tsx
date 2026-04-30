@@ -10,6 +10,7 @@ import {
   Heart,
   Shield,
   Zap,
+  ShoppingBag,
   type LucideIcon,
 } from "lucide-react";
 import { portfolioConfig } from "@/config/portfolio.config";
@@ -24,6 +25,7 @@ const iconMap: Record<string, LucideIcon> = {
   Heart,
   Shield,
   Zap,
+  ShoppingBag,
 };
 
 const tierStyles: Record<string, { label: string; className: string }> = {
