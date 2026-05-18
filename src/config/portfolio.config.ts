@@ -835,11 +835,11 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
 
     {
       id: "yuktha-wellness",
-      title: "Yuktha Wellness — PCOS RAG Chatbot Hardening (Client Project)",
+      title: "Yuktha Wellness — Multi-Condition AI Health Chatbot (M1 + M2, Client Project)",
       category: ["ai-ml", "fullstack", "healthcare"],
 
       description:
-        "Problem: An India-based women's health startup had a PCOS chatbot leaking errors, missing safety gates, and returning ungrounded answers. Solution: 8-commit, +1,484-line rebuild of the RAG pipeline — PCOS knowledge corpus ingestion (SHA-256 idempotent upserts), native Pinecone retriever with 0.7 score threshold, GPT-4o-mini query rewriting, hybrid dense+BM25 retrieval with Cohere rerank-english-v3.0, code-enforced safety gates (structured-output JSON schema, cosine grounding gate, 47-pattern emergency detector firing before any LLM call), and Redis-backed embedding + response caches.",
+        "Problem: An India-based women's health startup had a PCOS chatbot leaking stack traces, missing safety gates, and returning ungrounded answers — and needed expansion to 6 conditions with multilingual support for 1 billion Indian users (Hindi/Tamil/Telugu/Bengali). Solution: Two paid milestones ($500 total) — M1 (8 commits, +1,484 lines, 18 files): native Pinecone RAG pipeline, hybrid dense+BM25+Cohere rerank, 47-pattern emergency detector, structured-output grounding gates, Redis caching. M2 (9 tasks, 302 tests all pass): BGE-M3 multilingual embedding (1024-dim), 6 condition namespaces (PCOS + diabetes + MASLD + obesity + mental wellness + home remedies), self-hosted cross-encoder reranking (zero Cohere cost), per-user Pinecone health memory, eval framework (220+ queries — 97.2% routing, 100% safety, 80%+ Hindi retrieval).",
 
       fullDescription: `Yuktha Wellness is a paid Milestone 1 engagement (April 2026, ongoing) — backend / AI engineering for an India-based women's health startup's PCOS chatbot. Static-verified delivery contract: 8 commits, +1,484 / -175 lines across 18 files, all locally committed and pending client funding.
 
@@ -858,20 +858,28 @@ Promise.allSettled for parallel weather + geocode (soft geocode failure no longe
 CONTEXT LEAKAGE FIXES
 XML-tagged userCtx (<user_query>, <user_profile>, <rag_context>, <conversation_history>). Both system prompts reference all four tag names verbatim. Topic-aware history filter via cosine similarity threshold 0.5, cap 6, preserve chronological order. embedTurn caches per-turn embeddings via the same Redis embedding cache.
 
-VERIFICATION
-node --check clean on 17 files. /security-review NO_FINDINGS at confidence ≥8 — NoSQL/Mongoose injection, SSRF, path traversal, hardcoded secrets, weak crypto, JWT bypass, response cache cross-user leakage, embedding cache poisoning, error/stack-trace exposure all checked. cosineSimilarity, sha256Hex, normalizeKey, detectEmergency all unit-tested. Trust contract: every change labeled "static-verified, runtime-untested" — runtime gates explicitly named.`,
+VERIFICATION (M1)
+node --check clean on 17 files. /security-review NO_FINDINGS at confidence ≥8 — NoSQL/Mongoose injection, SSRF, path traversal, hardcoded secrets, weak crypto, JWT bypass, response cache cross-user leakage, embedding cache poisoning, error/stack-trace exposure all checked. cosineSimilarity, sha256Hex, normalizeKey, detectEmergency all unit-tested.
+
+MILESTONE 2 — MULTI-CONDITION + MULTILINGUAL EXPANSION (9 tasks, 302 tests all pass)
+BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) — supports Hindi, Tamil, Telugu, Bengali and 100+ languages. Pinecone index recreated at 1024 dims, all 6 conditions re-ingested (346 chunks total across 6 namespaces). Self-hosted cross-encoder: Xenova/ms-marco-MiniLM-L-6-v2 loads once at server boot, eliminates Cohere per-request cost, warmup at startup. 6 condition namespaces: pcos-knowledge, diabetes-knowledge, masld-knowledge, obesity-knowledge, mental-wellness-knowledge, home-remedies-knowledge. conditionRouter.js classifies queries into conditions — supports cross-condition queries (e.g., "PCOS with insulin resistance" → [pcos, diabetes]). Mental wellness crisis detection: detectMentalCrisis with Hindi transliterations (marna chahta hoon, jina nahi chahta, khud ko hurt karna) + iCall/Vandrevala Foundation escalation. Per-user health profile: {conditions, symptoms, labValues, medications} persisted to user-{id} Pinecone namespace and injected into every response. Evaluation framework: 220 reference queries + 30 Hindi transliteration queries — routing 97.2%, safety 100%, fallback 100%. Branch: milestone-2, final commit: ea5bf7c.`,
 
       thumbnail: "",
 
       technologies: [
         "Node.js / Express",
-        "Pinecone (Vector DB, 1536-dim, native client)",
-        "OpenAI GPT-4o + GPT-4o-mini (Structured Outputs)",
-        "Cohere rerank-english-v3.0",
-        "BM25 (Custom utils/bm25.js)",
+        "BGE-M3 (BAAI/bge-m3 via @xenova/transformers, 1024-dim, Multilingual)",
+        "Pinecone (6 Condition Namespaces + Per-User Namespaces, 1024-dim)",
+        "OpenAI GPT-4o + GPT-4o-mini (Structured Outputs + Query Rewriting)",
+        "Self-Hosted Cross-Encoder (Xenova/ms-marco-MiniLM-L-6-v2, Zero Cohere Cost)",
+        "Cohere rerank-english-v3.0 (M1 fallback)",
+        "BM25 (Custom utils/bm25.js, Per-Namespace)",
         "Redis (Embedding + Response Caches, 1h TTL)",
-        "Mongoose / MongoDB (Chat History, additive embedding field)",
-        "SHA-256 Idempotent Upserts",
+        "Mongoose / MongoDB (Chat History + healthProfile Schema)",
+        "conditionRouter.js (Multi-Condition Detection, Cross-Condition Support)",
+        "Mental Wellness Crisis Detector (Hindi Transliterations + English Patterns)",
+        "Per-User Pinecone Namespace (user-{id}) + Personalization Service",
+        "Evaluation Framework (220 Queries + 30 Hindi, 97.2% Routing Accuracy)",
         "47-Pattern Emergency Detector",
         "Cosine Grounding Gate (Threshold 0.55)",
         "Promise.allSettled (Parallel External Calls)",
@@ -879,29 +887,36 @@ node --check clean on 17 files. /security-review NO_FINDINGS at confidence ≥8 
       ],
 
       achievements: [
-        "Real paid milestone (India client, ongoing) — 8 commits / +1,484 lines / 18 files in static-verified hand-off",
-        "Rebuilt RAG pipeline end-to-end — native Pinecone retriever (0.7 score threshold), GPT-4o-mini query rewriting, hybrid dense + BM25 + Cohere rerank-english-v3.0",
-        "Code-enforced safety gates — structured JSON schema, cosine grounding gate at 0.55, 47-pattern emergency detector firing BEFORE any LLM call (17/17 true positives, 15/15 false-positive guards)",
-        "Redis-backed embedding + response caches with SHA-256 keys, normalized for hit rate, 1h TTL — graceful no-op when Redis is down",
-        "XML-tagged userCtx (<user_query>, <user_profile>, <rag_context>, <conversation_history>) closes context-leakage bugs",
-        "Topic-aware history filter — cosine similarity ≥0.5, cap 6, chronological-tail fallback when fewer than 2 entries embedded",
-        "PCOS corpus ingestion script — recursive splitter (1000/200), per-chunk metadata, SHA-256 idempotent upserts, dimension safety check",
+        "Two completed paid milestones — M1 ($200, April 2026) + M2 ($300, May 2026) — $500 total engagement for India-based women's health startup",
+        "M1: RAG pipeline rebuilt end-to-end — native Pinecone retriever (0.7 threshold), GPT-4o-mini query rewriting, hybrid dense+BM25+Cohere rerank-english-v3.0",
+        "M1: Code-enforced safety gates — structured JSON schema, cosine grounding gate at 0.55, 47-pattern emergency detector BEFORE any LLM call (17/17 true positives, 15/15 false-positive guards)",
+        "M1: Redis-backed embedding + response caches (SHA-256 keys, 1h TTL) — graceful no-op when Redis is down",
+        "M1: XML-tagged userCtx closes context-leakage bugs; topic-aware history filter (cosine ≥0.5, cap 6, chronological fallback)",
+        "M2: BGE-M3 multilingual embedding (1024-dim via @xenova/transformers) — Hindi, Tamil, Telugu, Bengali, 100+ languages; Pinecone index recreated + 346 chunks re-ingested across 6 namespaces",
+        "M2: Self-hosted cross-encoder (Xenova/ms-marco-MiniLM-L-6-v2) — zero Cohere cost, singleton loads at boot, under 200ms reranking for 20 candidates",
+        "M2: 6 condition namespaces with conditionRouter — PCOS, diabetes, MASLD, obesity, mental wellness, home remedies; cross-condition queries supported",
+        "M2: Mental wellness crisis detection with Hindi transliterations (marna chahta hoon, etc.) + iCall/Vandrevala Foundation escalation paths",
+        "M2: Per-user Pinecone namespace (user-{id}) with health profile memory — HbA1c mentioned in turn 1 reflected in turn 5",
+        "M2: Evaluation framework — 220 reference queries + 30 Hindi queries: 97.2% routing accuracy, 100% safety gate, 80%+ Hindi retrieval",
+        "M2: 302 test assertions across 9 tasks, 0 failed — milestone-2 branch, commit ea5bf7c",
         "/security-review NO_FINDINGS at confidence ≥8 — NoSQL injection, SSRF, prompt injection, cache cross-user leakage, stack-trace exposure all checked",
-        "node --check clean on all 17 modified files — full unit-test pass on cosineSimilarity, sha256Hex, normalizeKey, detectEmergency",
       ],
 
       featured: true,
       isHealthcare: true,
 
       metrics: {
-        client: "Yuktha Wellness (India) — paid Milestone 1, ongoing",
-        scope: "8 commits · +1,484 / -175 lines · 18 files",
-        retrieval: "Hybrid Dense (Pinecone top-20) + BM25 top-20 → Cohere Rerank → top-5",
-        safety: "47-Pattern Emergency Detector (17/17 TP · 15/15 FP guards)",
+        client: "Yuktha Wellness (India) — M1 ($200) + M2 ($300) = $500 paid · milestone-2 complete",
+        scope: "M1: 8 commits · +1,484 lines · 18 files | M2: 9 tasks · 302 tests · 346 chunks ingested",
+        retrieval: "Hybrid Dense (Pinecone top-20) + BM25 top-20 → Self-Hosted Cross-Encoder → top-5",
+        embedding: "BGE-M3 (1024-dim) — Hindi · Tamil · Telugu · Bengali · 100+ Languages",
+        conditions: "6 Namespaces: PCOS · Diabetes · MASLD · Obesity · Mental Wellness · Home Remedies",
+        eval: "97.2% Routing · 100% Safety · 80%+ Hindi Retrieval (220 Queries + 30 Hindi)",
+        safety: "47-Pattern Emergency Detector (17/17 TP · 15/15 FP guards) + Mental Crisis Hindi Detection",
+        personalization: "Per-User Pinecone Namespace (user-{id}) · Health Profile Memory Across Sessions",
         grounding: "Structured JSON Output + Cosine Gate at 0.55",
         caching: "Redis Embedding + Response Caches · SHA-256 Keys · 1h TTL",
         verification: "/security-review NO_FINDINGS at confidence ≥8",
-        contract: "Static-Verified, Runtime-Untested (Smoke-Gated by Client)",
       },
     },
 
@@ -1159,6 +1174,66 @@ Site reduced from 24 plugins to 11 plugins. 13 junk/unused plugins removed.`,
         smtp: "WP Mail SMTP Configured · Verified Delivery Test Passed",
         seo: "Yoast SEO Installed + Configured · URL Slug Typo Fixed",
         nav: "3 Broken Buttons Fixed (Let's Talk Now · Get Started · More About Us)",
+      },
+    },
+
+    {
+      id: "ftm-automation-suite",
+      title: "Fine Touch Marketing — 3-System n8n Automation Suite (Client Project)",
+      category: ["automation", "ai-ml", "wordpress"],
+
+      description:
+        "Problem: A med-spa marketing agency running 15-20 WordPress client sites manually handled on-page SEO, post-submission SMS follow-ups, and social media content — hours of repetitive work per site, no consistency. Solution: 3 interlocking n8n automation systems deployed to a dedicated VPS: (1) Claude AI-powered bulk SEO processor — generates 60-char titles, 160-char meta descriptions, and 40 location-specific keywords per page via AIOSEO (up to 20 pages per run); (2) JotForm-to-Twilio multi-site SMS follow-up engine — 6-touchpoint sequence (days 1/3/7/11/14/30), config-driven via Google Sheets, 29/29 tests passed, live on dedicated server; (3) full social media content pipeline — AI image generation (7 themes), dual client/admin approval workflow, AI regeneration on rejection, client ZIP download portal — 17 n8n workflows total.",
+
+      fullDescription: `Fine Touch Marketing (FTM) is an ongoing paid client engagement — three production automation systems built for a med-spa marketing agency operating 15-20 WordPress client sites.
+
+SYSTEM 1 — SEO AUTOMATION (Claude API + WordPress + n8n Cloud)
+Bulk on-page SEO processor: client submits page/post titles via a web form (up to 20 at once), Claude generates a unique 60-char SEO title, 160-char meta description, and 40 location-aware keywords per page (format: "Keyword City, City Keyword"), then pushes all values to AIOSEO settings (Page Title, Meta Description, Focus Keyword, Facebook + Twitter OG tags, Advanced keywords tab, WordPress post tags) via WordPress REST API in a single run. Dynamic location extraction — Claude detects the city from the page title, no hardcoded location. All updates are saved automatically. Deployed to n8n Cloud (finetouch.app.n8n.cloud), tested across sample2 and sample3.finetouchmarketing.com.
+
+SYSTEM 2 — SMS FOLLOW-UP AUTOMATION (JotForm + Twilio + n8n + Google Sheets)
+Automated SMS sequence for new patient form submissions across all client sites. JotForm webhook fires on submission, extracts fields from rawRequest, saves contact to a site-specific Google Sheets tab (Contacts_{site_id}), and sends a Twilio welcome SMS using the best-matching template (site-specific first, global fallback). Daily cron workflow checks all active sites for contacts due follow-up messages (days 3/7/11/14/30) and marks each as sent. Broadcast workflow allows instant or scheduled SMS blasts to all contacts across selected sites. Multi-site: one config row per site (site_id, Twilio from-number, day template keys). 29/29 automated tests passed. Live on John's InMotion dedicated server with n8n auto-restart cron. Three workflows end-to-end verified (contacts saved, SMS fired, Twilio API confirmed).
+
+SYSTEM 3 — SOCIAL MEDIA AUTOMATION (17 n8n Workflows + Client/Admin Portal)
+Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 generates AI captions, hashtags, and watermarked images in 7 visual themes using Claude. Client portal (web app) shows all pending posts — client can approve (sets client_approved), request AI regeneration, or inline-edit caption/hashtags. After client approval, admin panel shows "Awaiting Your Approval" queue — admin allows (→ approved) or rejects (→ WF6 AI regeneration → back to pending). Approved posts available as individual downloads or full ZIP via WF9. Optional Twilio SMS fires to admin on client approval. Two-layer approval prevents unauthorized content reaching social channels. All data stored in Google Sheets (Posts, Clients, Settings tabs). Full E2E test: 7/8 scenarios pass (Twilio optional pending admin phone config). Key bugs fixed: n8n IF-node routing bug (string equals always true), Google Sheets 0-item propagation, WF9 OAuth token refresh failure, corrupt webhook_entity rows.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "n8n (17 Workflows — Cloud + Self-Hosted VPS)",
+        "Claude API (Anthropic) — SEO Titles + Meta + Keywords + Social Content",
+        "WordPress REST API + AIOSEO Plugin (Bulk SEO Updates)",
+        "JotForm Webhooks (Form Submission Trigger)",
+        "Twilio SMS API (Multi-Site, Per-Site From-Number)",
+        "Google Sheets API (OAuth + Refresh Token, Posts + Contacts + Config + Templates)",
+        "Node.js (n8n Code Nodes — Business Logic)",
+        "Python (Deployment Scripts + Automated Tests)",
+        "Nginx Reverse Proxy + VPS (Ubuntu, n8n Self-Hosted)",
+        "Google OAuth 2.0 (Token Refresh Handling)",
+        "ZIP Generation (Client Bulk Download Portal)",
+        "29/29 Automated Tests (Follow-Up System)",
+      ],
+
+      achievements: [
+        "Real ongoing paid client engagement — Fine Touch Marketing (med-spa marketing agency, 15-20 WordPress client sites)",
+        "SEO system: Claude AI generates 60-char titles, 160-char meta descriptions, 40 location-specific keywords — bulk-pushes to AIOSEO across up to 20 WordPress pages per run with zero manual copy-paste",
+        "SMS system: JotForm webhook → contact saved → Twilio welcome SMS → 5 scheduled follow-ups (days 3/7/11/14/30) — 29/29 automated tests passed, live on dedicated server",
+        "Social media pipeline: 7-theme AI image generation, captions + hashtags, watermarked output, client portal, admin panel with awaiting-approval queue and notification badge",
+        "Two-layer approval: client_approved → admin allows/rejects → AI regenerates on rejection (WF6) or client downloads individual images or full ZIP (WF9)",
+        "Multi-site architecture: all 3 systems handle 15-20 sites via site_id config in Google Sheets — no hardcoded values anywhere",
+        "Debugged 6 n8n-specific bugs: IF-node string-comparison routing bug, 0-item propagation in Sheets nodes, WF9 OAuth token refresh failure, corrupt webhook_entity rows — fixed with linear workflow redesign",
+        "17 n8n workflows deployed and active — VPS ulimit tuned for stability, auto-restart cron, end-to-end verified",
+      ],
+
+      featured: false,
+
+      metrics: {
+        client: "Fine Touch Marketing (med-spa marketing agency) — ongoing paid engagement",
+        systems: "3 Production Systems: SEO Automation + SMS Follow-Up + Social Media Pipeline",
+        workflows: "17 n8n Workflows (Cloud + Self-Hosted VPS)",
+        seo: "Claude AI: 60-char Title + 160-char Meta + 40 Keywords per Page · Bulk up to 20 pages",
+        sms: "6-Touchpoint SMS Sequence · Multi-Site via Google Sheets Config · 29/29 Tests Passed",
+        social: "7 AI Image Themes · Dual Client/Admin Approval · AI Regeneration on Reject · ZIP Download",
+        scale: "15-20 WordPress Sites · All Config in Google Sheets · Zero Hardcoded Values",
       },
     },
 
