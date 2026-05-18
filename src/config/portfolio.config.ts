@@ -60,6 +60,7 @@ export const portfolioConfig = {
   navigation: [
     { label: "Home", href: "#home" },
     { label: "About", href: "#about" },
+    { label: "Reviews", href: "#testimonials" },
     { label: "Projects", href: "#projects" },
     { label: "Skills", href: "#skills" },
     { label: "Process", href: "#process" },
@@ -1459,30 +1460,30 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
      }
      
      ======================================== */
+  upworkProfileUrl: "https://www.upwork.com/freelancers/~015799bfae8562d0eb",
+
   testimonials: [
     {
-      name: "Dr. Sarah Chen",
-      role: "Chief Medical Officer",
-      company: "HealthFirst Clinic",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&q=80",
-      content: "Zahidul transformed our clinic's digital infrastructure with MediConnect. The hybrid cloud solution exceeded our expectations, and the HIPAA-compliant architecture gave us peace of mind. Highly recommended!",
+      name: "Verified Upwork Client",
+      role: "Claude Code Expert Needed",
+      company: "via Upwork",
+      image: "",
+      content: "We needed a true Claude Code expert, and Zahidul exceeded every expectation. From the start, he fully understood the project requirements, communicated clearly, and got to work immediately. His knowledge of AI development, Claude-based projects, and automation workflows is outstanding, and the final results were beyond impressive. He also worked extensively with the n8n platform and our server environment to successfully implement everything we needed. Zahidul handled the integrations, automation setup, and technical deployment smoothly and professionally, making the entire process stress-free for our team. What really stood out was his speed, problem-solving ability, and attention to detail throughout the entire project. If you need someone reliable, skilled, and highly experienced in AI, Claude projects, n8n automations, or server-side implementations, Zahidul is absolutely the person to hire. Highly recommended, and I look forward to working with him again.",
       rating: 5,
+      date: "May 2026",
+      tags: ["Reliable", "Clear Communicator", "Detail Oriented", "Accountable for Outcomes", "Professional"],
+      upwork: true,
     },
     {
-      name: "Michael Roberts",
-      role: "CTO",
-      company: "TechVentures Inc.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
-      content: "The n8n automation workflows Zahidul created saved our team over 100 hours per month. His expertise in cloud architecture and attention to detail is exceptional.",
+      name: "Verified Upwork Client",
+      role: "WordPress Website Content Cleanup",
+      company: "via Upwork",
+      image: "",
+      content: "Excellent freelancer. Very professional and quick delivery. Will rehire for future projects.",
       rating: 5,
-    },
-    {
-      name: "Lisa Park",
-      role: "E-Commerce Director",
-      company: "Global Retail Co.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80",
-      content: "Chronos headless e-commerce solution tripled our page speed and increased conversions by 50%. Zahidul's understanding of both technical and business needs is remarkable.",
-      rating: 5,
+      date: "Apr–May 2026",
+      tags: ["Committed to Quality", "Clear Communicator", "Accountable for Outcomes", "Professional"],
+      upwork: true,
     },
   ],
 
