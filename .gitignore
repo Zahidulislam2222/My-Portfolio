@@ -28,5 +28,8 @@ dist-ssr
 CLAUDE.md
 .claude/
 
+# Codex (mirrors CLAUDE.md — contains private Career-Ops content)
+AGENTS.md
+
 # CV & Career-Ops (personal — never commit)
 CV/

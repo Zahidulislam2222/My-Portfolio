@@ -1,45 +1,7 @@
-import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { portfolioConfig } from "@/config/portfolio.config";
 import { Button } from "@/components/ui/button";
-
-const TypewriterText = ({ texts }: { texts: string[] }) => {
-  const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const type = useCallback(() => {
-    const currentFullText = texts[currentTextIndex];
-
-    if (!isDeleting) {
-      if (displayText.length < currentFullText.length) {
-        setDisplayText(currentFullText.slice(0, displayText.length + 1));
-      } else {
-        setTimeout(() => setIsDeleting(true), 2000);
-      }
-    } else {
-      if (displayText.length > 0) {
-        setDisplayText(displayText.slice(0, -1));
-      } else {
-        setIsDeleting(false);
-        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-      }
-    }
-  }, [displayText, isDeleting, currentTextIndex, texts]);
-
-  useEffect(() => {
-    const timer = setTimeout(type, isDeleting ? 50 : 100);
-    return () => clearTimeout(timer);
-  }, [type, isDeleting]);
-
-  return (
-    <span className="text-primary">
-      {displayText}
-      <span className="typewriter-cursor" />
-    </span>
-  );
-};
 
 // Animated background particles
 const ParticleField = () => {
@@ -160,25 +122,42 @@ export const HeroSection = () => {
             <span className="gradient-text">{personal.name}</span>
           </motion.h1>
 
-          {/* Typewriter Roles */}
+          {/* Primary Title — AI Harness Engineer */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl lg:text-3xl font-medium mb-8 h-12 flex items-center justify-center"
+            className="flex flex-wrap items-center justify-center gap-3 mb-5"
           >
-            <TypewriterText texts={personal.roles} />
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold gradient-text leading-tight">
+              {personal.title}
+            </h2>
           </motion.div>
 
-          {/* Bio */}
+          {/* Tagline — plain-English explainer */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
+            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-5"
           >
-            {personal.shortBio}
+            {personal.tagline}
           </motion.p>
+
+          {/* Anchor roles — recognizable terms so the title lands */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-sm md:text-base text-muted-foreground/70 mb-8"
+          >
+            {personal.roles.map((role, i) => (
+              <span key={role} className="flex items-center gap-2">
+                {i > 0 && <span className="text-primary/50">·</span>}
+                {role}
+              </span>
+            ))}
+          </motion.div>
 
           {/* Location */}
           <motion.div
@@ -246,16 +225,15 @@ export const HeroSection = () => {
                 <Linkedin className="w-5 h-5" />
               </motion.a>
             )}
-            {socials.email && (
-              <motion.a
-                href={socials.email}
-                className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Mail className="w-5 h-5" />
-              </motion.a>
-            )}
+            <motion.button
+              onClick={scrollToContact}
+              aria-label="Go to contact section"
+              className="p-3 rounded-full bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-secondary transition-colors"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Mail className="w-5 h-5" />
+            </motion.button>
           </motion.div>
         </div>
 

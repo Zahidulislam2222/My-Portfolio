@@ -14,13 +14,17 @@ export const portfolioConfig = {
      ======================================== */
   personal: {
     name: "Zahidul Islam",
-    title: "Full Stack Engineer & Cloud Architect",
-    // These roles will rotate in the hero typewriter effect
+    title: "AI Harness Engineer",
+    // Small accent label shown next to the headline
+    frontierTag: "Frontier AI",
+    // Plain-English explainer line under the headline (so the title is instantly understood)
+    tagline: "I orchestrate frontier AI to ship production-grade systems — HealthTech, multi-cloud, and automation.",
+    // Secondary anchor terms shown as a muted line beneath the headline
     roles: [
-      "Full Stack Engineer",
       "Cloud Architect",
-      "HealthTech Specialist",
-      "AI & RAG Engineer"
+      "HealthTech Engineer",
+      "AI & RAG Engineer",
+      "Full Stack Engineer"
     ],
     bio: "The rare developer who has treated patients AND built the platforms they use. Former Physiotherapy Technologist (4 years clinical care) turned Full Stack Engineer. I architect multi-cloud healthcare platforms that pass HIPAA/GDPR compliance scans — not on slides, but in production code verified by Prowler and Checkov. I reduced a $300/month cloud bill to $2/month. I ship with 756+ automated test assertions.",
     shortBio: "Former clinician turned engineer — building HIPAA/FHIR-compliant healthcare platforms with multi-cloud infrastructure and AI.",
@@ -189,6 +193,41 @@ TESTING & PAYMENTS
         rto: "RTO 5 min / RPO 0 (Critical Tier)",
         security: "96 Checkov IaC Fixes \u00b7 OIDC Zero Static Keys \u00b7 KMS RSA-256",
       },
+
+      beforeAfter: [
+        { label: "Idle cost", before: "$300+/month sitting idle", after: "$2/month idle \u2014 99.3% reduction" },
+        { label: "IaC vs cloud", before: "Terraform state drifted from the real cloud", after: "Every table imported with a zero-change plan; stale resources reconciled" },
+        { label: "Encryption", before: "Many resources unencrypted or unlogged", after: "96 fixes \u2014 KMS encryption across the stack plus access logging" },
+        { label: "Threat detection", before: "None", after: "GuardDuty + Security Hub against HIPAA / CIS / NIST / PCI" },
+      ],
+
+      challenges: [
+        {
+          problem: "The infrastructure code had drifted away from what was actually running in the cloud.",
+          solution: "Reconciled it first \u2014 imported every table with a zero-change plan to prove the code matched reality, and removed resources that no longer existed \u2014 before building anything new.",
+          outcome: "Infrastructure-as-code that genuinely mirrors the live cloud.",
+        },
+        {
+          problem: "A compliance scanner flagged dozens of resources that weren't encrypted or logged.",
+          solution: "Worked through 96 fixes in one pass \u2014 KMS encryption across queues, parameters, repositories and logs, plus access logging and threat detection.",
+          outcome: "The compliance scan came back clean: 129 pass, 0 fail.",
+        },
+        {
+          problem: "Latent bugs in the subscription and event-streaming code weren't showing up at runtime.",
+          solution: "Added a strict type-check gate that surfaced 15 hidden issues \u2014 including audit-logging calls with the wrong shape \u2014 and fixed every one.",
+          outcome: "Zero type errors and audit logging verified across every service.",
+        },
+        {
+          problem: "A discount system invites abuse if pricing can be influenced from the client side.",
+          solution: "Calculated every discount on the server, gated activation on a confirmed payment, and proved the platform stays profitable across all plan and tier combinations.",
+          outcome: "A subscription system that holds up against the obvious loopholes.",
+        },
+        {
+          problem: "Local event-streaming wouldn't run reliably on Windows Docker.",
+          solution: "Switched to a known-good image with dual listeners and verified publish and consume before building on top of it.",
+          outcome: "Stable local streaming with topics created and message flow verified.",
+        },
+      ],
     },
     {
       id: "rag-production-stack",
@@ -244,6 +283,31 @@ TESTING & PAYMENTS
         monitoring: "Prometheus + Grafana + Loki + Jaeger + AlertManager",
         cost: "Zero Additional Cost (Full Production Stack)",
       },
+
+      beforeAfter: [
+        { label: "Auth", before: "Open localhost RAG, no gate", after: "Zero-trust 2FA gateway in front of the engine" },
+        { label: "Observability", before: "None", after: "Metrics, logs and traces in one place" },
+        { label: "Compliance", before: "None", after: "Built-in scanning (Prowler, OWASP ZAP, Inferno, HAPI FHIR)" },
+        { label: "Footprint", before: "Assumed a cloud cluster", after: "Runs the full stack on a single 8GB machine" },
+      ],
+
+      challenges: [
+        {
+          problem: "Most RAG setups stop at 'it works on localhost' — no auth, observability or compliance story.",
+          solution: "Wrapped the engine in a zero-trust 2FA gateway, full metrics/logs/traces, and built-in compliance scanning — all on a single modest machine.",
+          outcome: "A production-shaped stack rather than a demo.",
+        },
+        {
+          problem: "The repo needed to be safe to open-source.",
+          solution: "Audited and removed all secrets, machine-specific paths and cloud identifiers, replaced them with environment variables, and excluded all scanner output from version control.",
+          outcome: "A clean public repository with nothing sensitive in it.",
+        },
+        {
+          problem: "The documentation claimed more than the stack actually did.",
+          solution: "Reconciled the docs against the real running services — corrected the inaccurate claims, added the missing services, and split them into core vs on-demand.",
+          outcome: "Docs that match reality, which matters most for a security-focused project.",
+        },
+      ],
     },
     {
       id: "chronos",
@@ -383,6 +447,36 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
       isHeadless: true,
       isContentful: true,
       metrics: { ai: "3 AI Providers", offline: "SHA-256 Integrity", security: "25 Vulns Fixed" },
+
+      beforeAfter: [
+        { label: "Inspections", before: "Paper checklists and filing cabinets (~73% audit failure)", after: "Phone-based AI inspections with signed, timestamped OSHA reports (~96% digital)" },
+        { label: "Security", before: "Pre-launch gaps across the stack", after: "25 issues fixed — auth, validation, rate limiting, access rules, integrity checks" },
+        { label: "Plan limits", before: "Enforced only in the UI", after: "Enforced at the database level" },
+        { label: "Uptime", before: "Managed DB auto-paused, app went dark", after: "Scheduled keep-alive, always on" },
+      ],
+
+      challenges: [
+        {
+          problem: "The AI endpoint and some data-access rules needed locking down before launch.",
+          solution: "Ran a full security audit and closed 25 issues in one pass — added authentication, input validation and rate limiting to the AI endpoint, tightened row-level data access, and added integrity checks to the offline sync.",
+          outcome: "A hardened, compliant platform ready for real OSHA-grade use.",
+        },
+        {
+          problem: "Plan limits were only enforced in the interface, which isn't real enforcement.",
+          solution: "Moved enforcement into the database itself so the limits can't be bypassed by calling the API directly.",
+          outcome: "Free-plan limits hold no matter how the request is made.",
+        },
+        {
+          problem: "The Android build kept failing in continuous integration.",
+          solution: "Pinned the correct Java version, fixed the build permissions and wired in the signing secrets.",
+          outcome: "Reliable one-tap Android builds.",
+        },
+        {
+          problem: "The managed database kept pausing and taking the app offline.",
+          solution: "Added a scheduled keep-alive so it never sleeps.",
+          outcome: "The app and live demo stay up.",
+        },
+      ],
     },
 
     {
@@ -668,6 +762,36 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
         design: "Dark Glassmorphism Design System (Zero Dependencies)",
         deployment: "REST API Bridge + Elementor JSON Parser + Dry-Run Preview",
       },
+
+      beforeAfter: [
+        { label: "New site setup", before: "Manual content swap per customer", after: "One-command clone with content and SEO replaced" },
+        { label: "Animations", before: "Heavy external library", after: "Built-in browser APIs, zero dependency" },
+        { label: "Security headers", before: "None / applied late", after: "CSP + HSTS from the earliest hook" },
+        { label: "Rate limiting", before: "Keyed on the CDN's IP (ineffective)", after: "Keyed on the real visitor IP" },
+      ],
+
+      challenges: [
+        {
+          problem: "Another script on the site kept overwriting the chatbot's styling, so messages were unreadable.",
+          solution: "Used a MutationObserver to re-apply the correct styles whenever they were overwritten, and handled the CDN's delayed script loading.",
+          outcome: "Chat bubbles stay readable on every message.",
+        },
+        {
+          problem: "Tightening the security policy broke the login form.",
+          solution: "Pinpointed the exact plugin requirement, restored only the minimum it needed, and documented it as a known exception.",
+          outcome: "A strict security policy with a working login.",
+        },
+        {
+          problem: "Animations relied on a heavy external library.",
+          solution: "Replaced it with built-in browser APIs — IntersectionObserver, CSS transitions and requestAnimationFrame.",
+          outcome: "The same animations with zero external dependency.",
+        },
+        {
+          problem: "Rate limiting behind the CDN was keyed on the wrong IP, so it wasn't actually limiting anyone.",
+          solution: "Switched to the CDN's forwarded client-IP header.",
+          outcome: "Rate limiting that works per real visitor.",
+        },
+      ],
     },
 
     {
@@ -832,6 +956,25 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
         tests: "46 Assertions · 4 Test Suites",
         dependencies: "1 (dnspython) · 1,092 LOC",
       },
+
+      beforeAfter: [
+        { label: "Verification", before: "SMTP checks (blocked on most home connections)", after: "HTTP-only signals — scrape, Gravatar, GitHub and DNS" },
+        { label: "Cost", before: "Per-lookup SaaS fees", after: "$0, no API keys" },
+        { label: "Where it runs", before: "Needs an unblocked mail port", after: "Any internet connection" },
+      ],
+
+      challenges: [
+        {
+          problem: "The obvious way to verify an email — an SMTP check — is blocked on most home internet connections.",
+          solution: "Redesigned around HTTP-only signals stacked together (on-page scrape, Gravatar, GitHub and DNS) with a weighted confidence score.",
+          outcome: "Reliable verification that works from any connection, with no paid API.",
+        },
+        {
+          problem: "Some verification signals only cover part of the population, so confidence varies.",
+          solution: "Made the score honest — anything without an external signal is flagged 'verify manually' rather than shown as confirmed.",
+          outcome: "Actionable confidence bands instead of false certainty.",
+        },
+      ],
     },
 
     {
@@ -919,6 +1062,42 @@ BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) �
         caching: "Redis Embedding + Response Caches · SHA-256 Keys · 1h TTL",
         verification: "/security-review NO_FINDINGS at confidence ≥8",
       },
+
+      beforeAfter: [
+        { label: "Grounding", before: "Ungrounded answers — the bot confidently made things up", after: "Citation + confidence gate and a cosine grounding gate, with a safe fallback" },
+        { label: "Errors", before: "Stack traces leaked straight to users", after: "Caught and handled — security review came back clean" },
+        { label: "Coverage", before: "PCOS only, English only", after: "6 conditions across Hindi, Tamil, Telugu and Bengali (1024-dim multilingual model)" },
+        { label: "Reranking", before: "Reranker silently dead — couldn't tell relevant from irrelevant", after: "Self-hosted cross-encoder with real separation and zero per-request rerank cost" },
+        { label: "Caching", before: "In-memory caches lost between requests", after: "Redis-backed, ~100x faster on repeat questions" },
+      ],
+
+      challenges: [
+        {
+          problem: "The reranker looked like it worked, but it wasn't actually ranking anything.",
+          solution: "Traced it to a silent fallback plus a saturated scoring path, then loaded the model directly and read its raw relevance score one pair at a time.",
+          outcome: "Relevant answers now clearly outrank irrelevant ones, and all 302 tests still pass.",
+        },
+        {
+          problem: "Messages about self-harm were getting a cold emergency-room reply instead of a compassionate one.",
+          solution: "Reordered the safety detectors so crisis language reaches the mental-wellness layer with real helplines before the medical-emergency path.",
+          outcome: "Those messages now return supportive replies with verified crisis helplines.",
+        },
+        {
+          problem: "Old personal details resurfaced on unrelated questions, and the bot started interrogating users instead of answering them.",
+          solution: "Added a relevance gate on personal memory and fixed the behaviour at the prompt layer — answer first, use at most one remembered detail, never stack conditions.",
+          outcome: "Replies stay on-topic and conversational; the client kept these fixes through every later change.",
+        },
+        {
+          problem: "The multilingual model could quietly fall back to the wrong setup and only fail once real users hit it.",
+          solution: "Warmed the model up at server boot so any degraded mode shows in the logs before a single user query.",
+          outcome: "Boot logs now confirm the correct multilingual model for both English and Hindi.",
+        },
+        {
+          problem: "Two production hotfixes lived only on the live server and were missing from the next milestone.",
+          solution: "Ported them forward into the milestone before deploying and made location data optional so a missing value never crashes the chat.",
+          outcome: "No regression of fixes the client had already seen — and the test suite stayed green.",
+        },
+      ],
     },
 
     {
@@ -1225,7 +1404,7 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         "17 n8n workflows deployed and active — VPS ulimit tuned for stability, auto-restart cron, end-to-end verified",
       ],
 
-      featured: false,
+      featured: true,
 
       metrics: {
         client: "Fine Touch Marketing (med-spa marketing agency) — ongoing paid engagement",
@@ -1236,6 +1415,41 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         social: "7 AI Image Themes · Dual Client/Admin Approval · AI Regeneration on Reject · ZIP Download",
         scale: "15-20 WordPress Sites · All Config in Google Sheets · Zero Hardcoded Values",
       },
+
+      beforeAfter: [
+        { label: "SEO", before: "Hand-written titles, meta and keywords, one page at a time", after: "AI bulk-generates and pushes to the site — up to 20 pages per run" },
+        { label: "Lead follow-up", before: "Manual and inconsistent", after: "Instant welcome SMS plus 5 scheduled follow-ups, multi-site, 29/29 tests passing" },
+        { label: "Social content", before: "Manual captions/images and an email approval loop", after: "AI 7-theme images and captions with a two-layer approval portal and ZIP download" },
+        { label: "Scale", before: "A handful of sites, all by hand", after: "15-20 sites driven by one config row each, zero hardcoded values" },
+      ],
+
+      challenges: [
+        {
+          problem: "A workflow tool's branching node quietly sent every action down the same path, so approve and reject behaved identically.",
+          solution: "Stopped relying on that node for routing and switched to expression-based logic — then found and fixed the same trap in four different places.",
+          outcome: "Approve, reject and edit each do the right thing now, verified end-to-end.",
+        },
+        {
+          problem: "A data fetch silently hung inside the automation sandbox, so the portal showed 'no posts' for every client.",
+          solution: "Replaced the raw HTTP calls with the platform's native data nodes so the fetch couldn't hang.",
+          outcome: "Posts load reliably and the bulk download works.",
+        },
+        {
+          problem: "Page titles wouldn't match because the site and the user encoded the same characters differently.",
+          solution: "Normalised both sides — HTML entities, curly quotes and dashes — before comparing them.",
+          outcome: "Titles match reliably, so SEO updates land on the right page.",
+        },
+        {
+          problem: "The self-hosted automation server crashed on every restart.",
+          solution: "Raised the file-descriptor limit in the start script and added an auto-restart watcher.",
+          outcome: "Restarts are stable and the workflows stay up.",
+        },
+        {
+          problem: "The AI sometimes hardcoded a city and produced characters that hurt SEO.",
+          solution: "Rewrote the prompt to detect the city from each page and explicitly forbade the bad characters.",
+          outcome: "Every page gets correct, location-aware SEO with clean formatting.",
+        },
+      ],
     },
 
   ],
@@ -1256,6 +1470,24 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
      ======================================== */
   skillCategories: [
     {
+      category: "AI, RAG & Agents",
+      icon: "Brain",
+      color: "primary",
+      skills: [
+        { name: "Agentic AI Harness Orchestration (Claude Code / Agent SDK)", tier: "expert" },
+        { name: "MCP + Tool-Use / Function Calling Integration", tier: "proficient" },
+        { name: "AI Circuit Breaker (Bedrock / Vertex / Azure OpenAI)", tier: "expert" },
+        { name: "LightRAG + RAG-Anything", tier: "proficient" },
+        { name: "Pinecone + Cohere Rerank + BM25 Hybrid Retrieval", tier: "expert" },
+        { name: "OpenAI GPT-4o (Structured Outputs + Query Rewriting)", tier: "expert" },
+        { name: "Anthropic Claude API (Agentic + Content Generation)", tier: "expert" },
+        { name: "BGE-M3 Multilingual Embeddings (1024-dim) + Self-Hosted Cross-Encoder Rerank", tier: "expert" },
+        { name: "LangChain + n8n Automation", tier: "proficient" },
+        { name: "Dialogflow ES", tier: "proficient" },
+        { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
+      ],
+    },
+    {
       category: "Cloud & DevOps",
       icon: "Cloud",
       color: "primary",
@@ -1267,6 +1499,9 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "Docker & Kubernetes (AKS/EKS)", tier: "proficient" },
         { name: "GitHub Actions CI/CD", tier: "expert" },
         { name: "Cloudflare (Tunnels, Pages, Workers)", tier: "proficient" },
+        { name: "Vercel + nginx + PM2 (Deploy / Reverse Proxy / Process Mgmt)", tier: "expert" },
+        { name: "Security & Compliance Scanning (Checkov, Prowler, Trivy, OWASP ZAP, SonarQube, Inferno)", tier: "expert" },
+        { name: "AWS GuardDuty + Security Hub (Threat Detection)", tier: "proficient" },
       ],
     },
     {
@@ -1279,6 +1514,7 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "Tailwind CSS + shadcn/ui", tier: "expert" },
         { name: "Vite + Framer Motion + GSAP", tier: "expert" },
         { name: "Capacitor 8 (Mobile)", tier: "proficient" },
+        { name: "TanStack React Query + React Router v7", tier: "expert" },
       ],
     },
     {
@@ -1293,20 +1529,9 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "PostgreSQL (RLS, pgcrypto) + DynamoDB + Supabase", tier: "expert" },
         { name: "Redis + MySQL + BigQuery", tier: "proficient" },
         { name: "Stripe (Subscriptions + Webhooks)", tier: "expert" },
-      ],
-    },
-    {
-      category: "AI & RAG",
-      icon: "Brain",
-      color: "primary",
-      skills: [
-        { name: "AI Circuit Breaker (Bedrock / Vertex / Azure OpenAI)", tier: "expert" },
-        { name: "LightRAG + RAG-Anything", tier: "proficient" },
-        { name: "Pinecone + Cohere Rerank + BM25 Hybrid Retrieval", tier: "expert" },
-        { name: "OpenAI GPT-4o (Structured Outputs + Query Rewriting)", tier: "expert" },
-        { name: "LangChain + n8n Automation", tier: "proficient" },
-        { name: "Dialogflow ES", tier: "proficient" },
-        { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
+        { name: "Strapi + Contentful (Headless CMS)", tier: "proficient" },
+        { name: "MongoDB / Mongoose", tier: "proficient" },
+        { name: "Twilio (SMS) + AWS SES / Mailgun (Transactional Email)", tier: "proficient" },
       ],
     },
     {
@@ -1581,6 +1806,18 @@ export interface Project {
   isStrapi?: boolean;
   isContentful?: boolean;
   metrics?: Record<string, string>;
+  // Before → After state change pairs (shown in the project modal)
+  beforeAfter?: {
+    label?: string;          // optional row label e.g. "Cost", "Security"
+    before: string;
+    after: string;
+  }[];
+  // Problems faced and how they were solved (scrubbed — no exploit/vuln detail)
+  challenges?: {
+    problem: string;
+    solution: string;
+    outcome?: string;
+  }[];
 }
 
 // Update these to use the new Interface

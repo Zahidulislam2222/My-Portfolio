@@ -127,12 +127,14 @@ const ProjectDetailModal = ({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isCodeMenuOpen, setIsCodeMenuOpen] = useState(false);
   const [isPdfMenuOpen, setIsPdfMenuOpen] = useState(false);
+  const [openChallenge, setOpenChallenge] = useState<number | null>(null);
 
   useEffect(() => {
     if (!isOpen) return;
     setCurrentImageIndex(0);
     setIsCodeMenuOpen(false);
     setIsPdfMenuOpen(false);
+    setOpenChallenge(null);
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
@@ -290,6 +292,36 @@ const ProjectDetailModal = ({
               {project.fullDescription}
             </p>
 
+            {/* Before → After */}
+            {project.beforeAfter && project.beforeAfter.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-foreground flex items-center gap-2">
+                  Before <span className="text-primary">→</span> After
+                </h4>
+                <div className="space-y-3">
+                  {project.beforeAfter.map((row, i) => (
+                    <div key={i} className="rounded-lg border border-border/60 bg-secondary/30 p-3">
+                      {row.label && (
+                        <div className="text-xs font-semibold text-primary mb-2 uppercase tracking-wider">
+                          {row.label}
+                        </div>
+                      )}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="rounded-md border border-destructive/25 bg-destructive/5 p-2.5">
+                          <span className="text-[10px] uppercase tracking-wider text-destructive/80 block mb-1">Before</span>
+                          <span className="text-sm text-muted-foreground">{row.before}</span>
+                        </div>
+                        <div className="rounded-md border border-success/30 bg-success/5 p-2.5">
+                          <span className="text-[10px] uppercase tracking-wider text-success/90 block mb-1">After</span>
+                          <span className="text-sm text-foreground">{row.after}</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Technologies */}
             <div className="mb-6">
               <h4 className="text-sm font-semibold mb-2 text-foreground">Technologies</h4>
@@ -324,6 +356,58 @@ const ProjectDetailModal = ({
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {/* Problems I solved */}
+            {project.challenges && project.challenges.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold mb-3 text-foreground">Problems I solved</h4>
+                <div className="space-y-2">
+                  {project.challenges.map((c, i) => {
+                    const open = openChallenge === i;
+                    return (
+                      <div key={i} className="rounded-lg border border-border/60 bg-secondary/30 overflow-hidden">
+                        <button
+                          onClick={() => setOpenChallenge(open ? null : i)}
+                          className="w-full flex items-center justify-between gap-3 p-3 text-left hover:bg-secondary/50 transition-colors"
+                        >
+                          <span className="text-sm font-medium text-foreground flex items-start gap-2">
+                            <span className="text-primary mt-0.5 flex-shrink-0">▸</span>
+                            {c.problem}
+                          </span>
+                          <ChevronDown
+                            className={`w-4 h-4 flex-shrink-0 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+                          />
+                        </button>
+                        <AnimatePresence initial={false}>
+                          {open && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="px-3 pb-3 text-sm space-y-2">
+                                <p className="text-muted-foreground">
+                                  <span className="text-foreground font-medium">How I solved it: </span>
+                                  {c.solution}
+                                </p>
+                                {c.outcome && (
+                                  <p className="text-success/90">
+                                    <span className="font-medium">Outcome: </span>
+                                    {c.outcome}
+                                  </p>
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
 
@@ -530,11 +614,14 @@ const ProjectListItem = ({
           {project.description}
         </p>
 
-        {/* All tech tags — none hidden */}
+        {/* Tech tags — capped to keep cards short; full list is in the modal */}
         <div className="flex flex-wrap gap-1.5">
-          {project.technologies.map((tech) => (
+          {project.technologies.slice(0, 5).map((tech) => (
             <span key={tech} className="tech-badge text-xs">{tech}</span>
           ))}
+          {project.technologies.length > 5 && (
+            <span className="tech-badge text-xs opacity-70">+{project.technologies.length - 5} more</span>
+          )}
         </div>
 
         {/* Button — below tags on mobile */}
@@ -551,17 +638,129 @@ const ProjectListItem = ({
   );
 };
 
+// Featured Project Card — larger, glowing, animated gradient border
+const FeaturedProjectCard = ({
+  project,
+  index,
+  onShowDetails,
+}: {
+  project: Project;
+  index: number;
+  onShowDetails: (p: Project) => void;
+}) => {
+  const [imgError, setImgError] = useState(false);
+  const showPlaceholder = !project.thumbnail || imgError;
+
+  const initials = project.title
+    .split(/[\s\-—]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0].toUpperCase())
+    .join("");
+
+  const categoryLabel = project.category
+    .map((catId) => projectCategories.find((c) => c.id === catId)?.label)
+    .filter(Boolean)
+    .join(", ");
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.4) }}
+      whileHover={{ y: -6 }}
+      className="animated-border pulse-glow group flex flex-col overflow-hidden"
+    >
+      {/* Image */}
+      <div className="relative aspect-video bg-secondary overflow-hidden">
+        {showPlaceholder ? (
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/25 via-primary/10 to-secondary">
+            <span className="text-primary font-bold text-4xl tracking-tight select-none">{initials}</span>
+          </div>
+        ) : (
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+            onError={() => setImgError(true)}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent pointer-events-none" />
+        <div className="absolute top-3 left-3 flex flex-wrap gap-2 z-10">
+          <Badge className="bg-primary/90 text-primary-foreground flex items-center gap-1">
+            <Star className="w-3 h-3" />Featured
+          </Badge>
+          {project.isHealthcare && (
+            <Badge className="healthcare-badge flex items-center gap-1">
+              <Heart className="w-3 h-3" />Healthcare
+            </Badge>
+          )}
+          {project.isHybridCloud && (
+            <Badge className="hybridcloud-badge flex items-center gap-1">
+              <Cloud className="w-3 h-3" />Hybrid Cloud
+            </Badge>
+          )}
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="flex flex-col flex-1 p-5">
+        <span className="text-xs text-primary font-medium uppercase tracking-wider">{categoryLabel}</span>
+        <h3 className="text-lg md:text-xl font-bold mt-1 mb-2 leading-snug">{project.title}</h3>
+        <p className="text-muted-foreground text-sm line-clamp-2 mb-4 leading-relaxed">{project.description}</p>
+        <div className="flex flex-wrap gap-1.5 mb-4">
+          {project.technologies.slice(0, 5).map((tech) => (
+            <span key={tech} className="tech-badge text-xs">{tech}</span>
+          ))}
+          {project.technologies.length > 5 && (
+            <span className="tech-badge text-xs opacity-70">+{project.technologies.length - 5} more</span>
+          )}
+        </div>
+        <button
+          onClick={() => onShowDetails(project)}
+          className="mt-auto bg-primary text-primary-foreground px-4 py-2.5 rounded-lg text-sm font-semibold
+            shadow-[0_0_16px_rgba(6,182,212,0.5)] hover:shadow-[0_0_28px_rgba(6,182,212,0.9)]
+            transition-all duration-300 hover:scale-[1.02]"
+        >
+          Full Details
+        </button>
+      </div>
+    </motion.div>
+  );
+};
+
 export const ProjectsSection = () => {
+  const NORMAL_LIMIT = 6;
   const [activeCategory, setActiveCategory] = useState("all");
+  const [showAll, setShowAll] = useState(false);
   const [videoModalId, setVideoModalId] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
-  const filteredProjects = portfolioConfig.projects
-    .filter((p) => activeCategory === "all" || p.category.includes(activeCategory))
-    .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+  // Reset "show more" whenever the category filter changes
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeCategory]);
+
+  const filteredProjects = portfolioConfig.projects.filter(
+    (p) => activeCategory === "all" || p.category.includes(activeCategory)
+  );
+  // Pin these to the front of the featured grid; everything else keeps its order
+  const FEATURED_ORDER = ["yuktha-wellness", "ftm-automation-suite"];
+  const featuredProjects = filteredProjects
+    .filter((p) => p.featured)
+    .sort((a, b) => {
+      const ai = FEATURED_ORDER.indexOf(a.id);
+      const bi = FEATURED_ORDER.indexOf(b.id);
+      return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+    });
+  const normalProjects = filteredProjects.filter((p) => !p.featured);
+  const visibleNormal = showAll ? normalProjects : normalProjects.slice(0, NORMAL_LIMIT);
+  const hiddenCount = normalProjects.length - visibleNormal.length;
 
   return (
     <section
@@ -609,19 +808,85 @@ export const ProjectsSection = () => {
             ))}
           </div>
 
-          {/* Project List */}
-          <motion.div layout className="flex flex-col gap-4">
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <ProjectListItem
-                  key={project.id}
-                  project={project}
-                  index={index}
-                  onShowDetails={setSelectedProject}
-                />
-              ))}
-            </AnimatePresence>
-          </motion.div>
+          {/* Featured Projects — glowing cards */}
+          {featuredProjects.length > 0 && (
+            <div className="mb-14">
+              <div className="flex items-center gap-3 mb-6">
+                <Star className="w-4 h-4 text-primary flex-shrink-0" />
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                  Featured Work
+                </h3>
+                <div className="h-px flex-1 bg-border/60" />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6">
+                {featuredProjects.map((project, index) => (
+                  <FeaturedProjectCard
+                    key={project.id}
+                    project={project}
+                    index={index}
+                    onShowDetails={setSelectedProject}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Other Projects — compact list */}
+          {normalProjects.length > 0 && (
+            <div>
+              {featuredProjects.length > 0 && (
+                <div className="flex items-center gap-3 mb-6">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground whitespace-nowrap">
+                    More Projects
+                  </h3>
+                  <div className="h-px flex-1 bg-border/60" />
+                </div>
+              )}
+              <motion.div layout className="flex flex-col gap-4">
+                <AnimatePresence mode="popLayout">
+                  {visibleNormal.map((project, index) => (
+                    <ProjectListItem
+                      key={project.id}
+                      project={project}
+                      index={index}
+                      onShowDetails={setSelectedProject}
+                    />
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+
+              {hiddenCount > 0 && (
+                <div className="flex justify-center mt-8">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    onClick={() => setShowAll(true)}
+                    className="border-primary/40 text-primary hover:bg-primary/10"
+                  >
+                    Show more projects ({hiddenCount})
+                  </Button>
+                </div>
+              )}
+              {showAll && normalProjects.length > NORMAL_LIMIT && (
+                <div className="flex justify-center mt-6">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setShowAll(false)}
+                    className="text-muted-foreground hover:text-primary"
+                  >
+                    Show less
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {filteredProjects.length === 0 && (
+            <p className="text-center text-muted-foreground py-12">
+              No projects in this category yet.
+            </p>
+          )}
         </motion.div>
       </div>
 
