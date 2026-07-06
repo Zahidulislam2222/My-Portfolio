@@ -1483,6 +1483,7 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "Anthropic Claude API (Agentic + Content Generation)", tier: "expert" },
         { name: "BGE-M3 Multilingual Embeddings (1024-dim) + Self-Hosted Cross-Encoder Rerank", tier: "expert" },
         { name: "LangChain + n8n Automation", tier: "proficient" },
+        { name: "LangGraph Agent Orchestration", tier: "proficient" },
         { name: "Dialogflow ES", tier: "proficient" },
         { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
       ],
