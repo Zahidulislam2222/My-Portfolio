@@ -239,7 +239,7 @@ TESTING & PAYMENTS
         "https://github.com/user-attachments/assets/52babe2f-1ecd-4b03-bbaf-64e03d80868f",
       ],
       description: "Problem: RAG demos are everywhere — production-grade RAG infrastructure with security, observability, and compliance scanning is not. Solution: Production-hardened RAG infrastructure with 23 containerized services on a single 8GB machine — 3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges), 6 compliance scanners (Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno ONC G10), full observability stack, all at zero additional cost.",
-      fullDescription: "A self-hosted, production-grade RAG (Retrieval-Augmented Generation) infrastructure stack designed for healthcare AI applications. Deploys 23 containerized services on a single 8GB RAM machine with carefully calibrated resource limits.\n\nCORE SERVICES\nLightRAG 1.4.6 for knowledge graph-based retrieval with Gemini 2.5 Flash, ragAnything for multi-format document processing (PDF, DOCX, images), Nginx reverse proxy with SSL termination, Authelia SSO with single-user admin access, and Certbot for automated Let's Encrypt certificates.\n\nINFRASTRUCTURE\n3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges). Docker Compose orchestration, Restic encrypted backups with verification scripts.\n\nOBSERVABILITY\nPrometheus metrics collection, Grafana dashboards, Loki log aggregation, Jaeger distributed tracing, and AlertManager for incident routing \u2014 full production monitoring at zero additional cost.\n\nSECURITY SCANNING\n6 compliance scanners: Checkov for IaC security, SonarQube for code quality, Trivy for container vulnerability scanning, OWASP ZAP for web app security, HAPI FHIR validator, and Inferno ONC G10 for FHIR compliance testing.\n\nHosted on healthcodeanalysis.com with Let's Encrypt SSL.",
+      fullDescription: "A self-hosted, production-grade RAG (Retrieval-Augmented Generation) infrastructure stack designed for healthcare AI applications. Deploys 23 containerized services on a single 8GB RAM machine with carefully calibrated resource limits.\n\nCORE SERVICES\nLightRAG 1.4.6 for knowledge graph-based retrieval with Gemini 2.5 Flash, ragAnything for multi-format document processing (PDF, DOCX, images), Nginx reverse proxy with SSL termination, Authelia SSO with single-user admin access, and Certbot for automated Let's Encrypt certificates.\n\nINFRASTRUCTURE\n3-network isolation (frontend/backend/monitoring), zero-trust 2FA on every route, container hardening (read-only root, dropped capabilities, no-new-privileges). Docker Compose orchestration, Restic encrypted backups with verification scripts.\n\nOBSERVABILITY\nPrometheus metrics collection, Grafana dashboards, Loki log aggregation, Jaeger distributed tracing, and AlertManager for incident routing \u2014 full production monitoring at zero additional cost.\n\nSECURITY SCANNING\n6 compliance scanners: Checkov for IaC security, SonarQube for code quality, Trivy for container vulnerability scanning, OWASP ZAP for web app security, HAPI FHIR validator, and Inferno ONC G10 for FHIR compliance testing.\n\nSelf-hosted behind a hardened Nginx reverse proxy with automated Let's Encrypt SSL.",
       thumbnail: "",
       technologies: [
         "Docker Compose (23 Services)",
@@ -266,7 +266,7 @@ TESTING & PAYMENTS
         "LightRAG 1.4.6 knowledge graph with Gemini 2.5 Flash for healthcare document retrieval",
         "ragAnything multi-format processing (PDF, DOCX, images) with HyDE question generation",
         "Authelia SSO with 2FA, security-hardened Nginx reverse proxy with SSL termination",
-        "Production deployment on healthcodeanalysis.com with automated Let's Encrypt certificates",
+        "Production deployment behind a hardened Nginx reverse proxy with automated Let's Encrypt certificates",
       ],
       githubLinks: [
         { label: "Infrastructure", url: "https://github.com/Zahidulislam2222/rag-production-stack" },
@@ -313,7 +313,7 @@ TESTING & PAYMENTS
       id: "chronos",
       title: "Chronos V2 — Headless E-Commerce Platform",
       category: ["wordpress", "fullstack"],
-      description: "Problem: Traditional WordPress e-commerce is slow and monolithic — themes are tightly coupled to the CMS. Solution: Production-ready headless e-commerce for luxury watches — React 18 SPA (48 shadcn/ui components, 11 routes, 9 lazy-loaded) decoupled from WordPress 7.0/WooCommerce via WPGraphQL + REST API. Custom OOP PHP 8.1+ plugin (27 classes, 4,613 LOC, PSR-4), real Stripe Checkout with webhook signature verification, WordPress 7.0 AI Client for auto-generated descriptions, 52 tests (0 PHPCS errors), 3 CI/CD workflows, WCAG 2.1 AA + GDPR compliance.",
+      description: "Problem: Traditional WordPress e-commerce is slow and monolithic — themes are tightly coupled to the CMS. Solution: Production-ready headless e-commerce for luxury watches — React 18 SPA (48 shadcn/ui components, 14 routes, 9 lazy-loaded) decoupled from WordPress 7.0/WooCommerce via WPGraphQL + REST API. Custom OOP PHP 8.1+ plugin (27 classes, 4,613 LOC, PSR-4), real Stripe Checkout with webhook signature verification, WordPress 7.0 AI Client for auto-generated descriptions, 52 tests (0 PHPCS errors), WCAG 2.1 AA + GDPR compliance. Runs 24/7 at $0/month — static frontend on Cloudflare Pages, WordPress backend on a GCP always-free VM.",
       fullDescription: `Chronos is a production-ready headless e-commerce platform for luxury watches using a decoupled architecture where a React SPA communicates with WordPress 7.0 backend via GraphQL and REST APIs.
 
 FRONTEND
@@ -326,7 +326,10 @@ AI & PAYMENTS
 WordPress 7.0 AI Client for auto-generated watch descriptions and smart contact auto-responder. Real Stripe Checkout Sessions with webhook handling and signature verification, custom checkout fields.
 
 TESTING & CI/CD
-52 tests (33 PHPUnit + 19 Jest), 0 PHPCS errors. GitHub Actions CI/CD with 4 jobs: PHP Tests, Blocks Build & Tests, Frontend Build, Deploy to Production via cPanel API. Dependabot weekly scanning. Manual deploy with dry-run gate.
+52 tests (33 PHPUnit + 19 Jest), 0 PHPCS errors. GitHub Actions CI/CD with 4 jobs: PHP Tests, Blocks Build & Tests, Frontend Build, and a manual production deploy gated behind dry-run validation and an explicit enable flag (no automatic infrastructure activity). Dependabot weekly scanning.
+
+HOSTING — $0/MONTH, ALWAYS ON
+Static React frontend on Cloudflare Pages; WordPress/WooCommerce backend on a GCP always-free e2-micro VM behind nginx with a free hostname and Let's Encrypt TLS. Migrated off an expiring custom domain: nginx server_name change, fresh certificate, WP_HOME/WP_SITEURL constants, and 108 database URL replacements — verified live with GraphQL returning products and correct CORS for the Pages origin, and zero old-domain references in the deployed bundle.
 
 COMPLIANCE
 WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, cookie consent.`,
@@ -361,7 +364,8 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         "JWT Authentication (Stateless Headless Auth)",
         "Docker + Docker Compose (Local Dev)",
         "GitHub Actions CI/CD (4 Jobs) + Dependabot",
-        "cPanel API Deployment + Manual Deploy with Dry-Run",
+        "Cloudflare Pages (Frontend) + GCP Always-Free e2-micro (Backend, $0/month)",
+        "nginx + Let's Encrypt (Backend TLS)",
         "PHPUnit + Jest (52 Tests) + PHPCS (0 Errors)",
         "WCAG 2.1 AA + GDPR (WordPress Privacy API)",
         "SEO (react-helmet-async, JSON-LD, Open Graph)",
@@ -374,9 +378,10 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         "48 shadcn/ui components, 14 routes (9 lazy-loaded), TanStack React Query caching",
         "WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, cookie consent",
         "Custom Post Type + Taxonomies (chronos_watch, chronos_brand, chronos_movement)",
-        "GitHub Actions CI/CD with auto-deploy via cPanel API, Dependabot scanning, manual deploy with dry-run gate",
+        "Migrated frontend + backend off an expiring domain to a $0/month always-on stack (Cloudflare Pages + GCP always-free e2-micro) — 108 DB URL replacements, fresh Let's Encrypt cert, live GraphQL verified from the new origin",
+        "GitHub Actions CI/CD with Dependabot scanning and a manual production deploy gated by dry-run validation",
       ],
-      liveUrl: "https://chronos.healthcodeanalysis.com/",
+      liveUrl: "https://chronos-vwg.pages.dev/",
 
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/Chronos" },
@@ -398,8 +403,33 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         ai: "WordPress 7.0 AI Client (Auto Descriptions + Smart Replies)",
         payments: "Real Stripe Checkout + Webhook Signature Verification",
         compliance: "WCAG 2.1 AA \u00b7 GDPR \u00b7 Cookie Consent",
-        cicd: "GitHub Actions (4 Jobs) \u00b7 Dependabot \u00b7 cPanel API Deploy",
+        cicd: "GitHub Actions (4 Jobs, Manual Deploy Gate) \u00b7 Dependabot",
+        hosting: "$0/month \u2014 Cloudflare Pages (Frontend) + GCP Always-Free e2-micro (Backend)",
       },
+
+      beforeAfter: [
+        { label: "Hosting", before: "Frontend + backend tied to an expiring custom domain", after: "Cloudflare Pages + free GCP VM \u2014 $0/month, zero old-domain references in the deployed bundle" },
+        { label: "Infrastructure truth", before: "Conflicting deployment claims in docs vs reality", after: "Every claim verified read-only (GitHub, Cloudflare, GCP CLIs) before any change" },
+        { label: "Baseline safety", before: "90 modified files of unknown origin in the worktree", after: "Proven to be line-ending-only drift, preserved under a SHA-256 manifest" },
+      ],
+
+      challenges: [
+        {
+          problem: "The repository had 90 modified files of unknown origin before work began \u2014 a risky baseline to build on.",
+          solution: "Characterized the diff before touching anything: an end-of-line-insensitive comparison proved every change was whitespace-only, and a read-only SHA-256 manifest preserved the exact state.",
+          outcome: "A scary 14,000-line diff turned out to be transport noise \u2014 and all pre-existing work was protected.",
+        },
+        {
+          problem: "Both the storefront and the WordPress backend lived on a domain that was expiring \u2014 on expiry the shop would have shown no products.",
+          solution: "Re-pointed the backend to a free hostname on the existing VM with a fresh TLS certificate, updated the WordPress URL constants (which silently override the database), replaced 108 database URLs, and rebuilt the frontend against the new API endpoint.",
+          outcome: "The store runs 24/7 at $0/month, verified live \u2014 GraphQL returns products with correct CORS for the new origin.",
+        },
+        {
+          problem: "A database-only URL change appeared to work but was silently ignored in production.",
+          solution: "Traced it to WP_HOME/WP_SITEURL being pinned as wp-config constants, which override the database \u2014 changed the constants, not just the option.",
+          outcome: "URL migration that actually holds; the lesson is baked into the deploy checklist.",
+        },
+      ],
     },
     {
       id: "equipcert",
@@ -681,7 +711,7 @@ WP_HTML_Tag_Processor for alt text injection, style_loader_tag filter for contra
       id: "healthcode-analysis",
       title: "HealthCode Analysis — WordPress Automation Engine",
       category: ["wordpress", "ai-ml", "automation"],
-      description: "Problem: Deploying identical WordPress sites for multiple clients required hours of manual content swapping, image replacement, and SEO updates per site. Solution: Full-stack WordPress automation platform that clones Elementor-based template websites and programmatically replaces all content for multiple customers via a single command. Features NeuroScan v5.0 custom PHP engine, AskMe AI chatbot on Cloudflare Workers with Dialogflow ES ($0/month), 313 tests (55% coverage), 2 CI/CD pipelines, and Dark Glassmorphism Design System.",
+      description: "Problem: Deploying identical WordPress sites for multiple clients required hours of manual content swapping, image replacement, and SEO updates per site. Solution: Full-stack WordPress automation platform that clones Elementor-based template websites and programmatically replaces all content for multiple customers via a single command. Features NeuroScan v5.0 custom PHP engine, AskMe AI chatbot on Cloudflare Workers with a bundled static content index ($0/month), a domain-independent static publishing pipeline to Cloudflare Pages — verified to keep serving with WordPress, the tunnel, and the custom domain all offline — 292 tests (281 core + 11 exporter), 2 CI/CD pipelines, and Dark Glassmorphism Design System.",
       fullDescription: `HealthCode Analysis is a full-stack WordPress automation platform that clones Elementor-based template websites and programmatically replaces all content — photos, text, headings, and SEO metadata — for multiple customers via a single command.
 
 AUTOMATION ENGINE
@@ -691,10 +721,16 @@ NEUROSCAN v5.0
 Custom PHP framework with modular grid system, intelligent metadata calculation (server-side read time), and multi-instance architecture with scoped JavaScript for zero-conflict grids. Zero-reload AJAX filtering, live contextual search, and smart routing protection.
 
 AI & CLOUD
-AskMe AI chatbot on Cloudflare Workers with Dialogflow ES — $0/month, scales to unlimited posts. AI content augmentation with auto-generated summaries and medical prompt engineering.
+AskMe AI chatbot on Cloudflare Workers with Dialogflow ES — $0/month, scales to unlimited posts. Publishing bundles a generated public content index directly into the Worker, so the chatbot answers from real site content without needing WordPress at request time. AI content augmentation with auto-generated summaries and medical prompt engineering.
+
+DOMAIN-INDEPENDENT PUBLISHING
+Local WordPress is the authoring source; a deterministic static exporter publishes the site to Cloudflare Pages and the chatbot reaches its Worker through a same-origin proxy. Verified in production: with WordPress, Docker, the tunnel, and the custom domain all offline, the Pages frontend and chatbot still return HTTP 200 with real content. Bundle validation fails the build if any localhost, private-IP, tunnel, or expired-domain reference leaks into HTML, CSS, JS, or JSON.
+
+ZERO-COST LIVE DEMO
+A 24/7 live WordPress admin/Elementor demo runs co-hosted on an existing always-free GCP e2-micro — isolated memory-capped PHP-FPM pool, dedicated database, its own nginx server block and Let's Encrypt cert — at $0, with an nginx FastCGI micro-cache serving cached pages in ~8ms on a 0.25 vCPU machine.
 
 DESIGN & TESTING
-Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated tests (unit + integration + end-to-end swap verification), 59% code coverage with enforcement threshold. 2 CI/CD pipelines with Ruff linter, Bandit security scan, pre-commit hooks, and Dependabot.`,
+Dark Glassmorphism Design System (vanilla JS, zero dependencies). 292 automated tests — 281 core (unit + integration + end-to-end swap verification, ~59% coverage with enforcement threshold) + 11 static-exporter tests. 2 CI/CD pipelines with Ruff linter, Bandit security scan, pre-commit hooks, and Dependabot.`,
 
       images: [
         "https://github.com/user-attachments/assets/477fc801-f7da-436e-b8a7-574368524761",
@@ -725,15 +761,17 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
         "AJAX Pipeline (Zero-Reload Filtering)",
         "WordPress REST API Bridge Plugin",
         "Dark Glassmorphism Design System (Vanilla JS)",
-        "LiteSpeed Cache + Cloudflare CDN",
+        "Cloudflare Pages (Domain-Independent Static Publishing)",
+        "nginx FastCGI Micro-Cache (~8ms Cached Loads on a Free VM)",
         "GitHub Actions CI/CD (2 Pipelines)",
         "Ruff + Bandit (Linting + Security)",
-        "281 Automated Tests (55% Coverage)",
-        "cPanel Git + SSH Deploy Key (RSA 4096)",
+        "292 Automated Tests (281 Core + 11 Exporter)",
       ],
       achievements: [
         "Automated multi-customer site deployment — single command swaps all content, images, and SEO metadata via custom REST API bridge with dry-run preview",
-        "313 automated tests (unit + integration + E2E swap verification), 59% code coverage with enforcement threshold",
+        "Domain-independent publishing: static export to Cloudflare Pages + content index bundled into the chatbot — production verified to keep serving with WordPress, the tunnel, and the custom domain all offline",
+        "24/7 live WordPress demo co-hosted on an always-free GCP VM at $0 — isolated PHP-FPM pool, dedicated DB, nginx FastCGI micro-cache serving cached pages in ~8ms",
+        "292 automated tests (281 core: unit + integration + E2E swap verification, ~59% coverage with enforcement threshold; + 11 exporter tests)",
         "Built Dark Glassmorphism Design System (vanilla JS, zero dependencies) and AskMe AI chatbot on Cloudflare Workers with Dialogflow ES — $0/month",
         "NeuroScan v5.0: custom PHP content engine with modular grid system, zero-reload AJAX filtering, and multi-instance scoped architecture",
         "Elementor JSON Parser recursively walks nested trees to replace images, headings, testimonials, and CSS backgrounds",
@@ -741,7 +779,7 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
         "WordPress REST API Bridge Plugin with timing-safe API key auth and Application Password fallback",
         "Idempotent operations, filename-based image matching, per-post Elementor CSS cache clearing",
       ],
-      liveUrl: "https://healthcodeanalysis.com/",
+      liveUrl: "https://healthcodeanalysis.pages.dev/",
 
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/healthcodeanalysis" },
@@ -756,15 +794,19 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
       isWordpress: true,
       metrics: {
         automation: "Single-Command Multi-Customer Deployment",
-        tests: "313 Tests \u00b7 55% Coverage \u00b7 2 CI/CD Pipelines",
+        tests: "292 Tests (281 Core + 11 Exporter) \u00b7 ~59% Coverage \u00b7 2 CI/CD Pipelines",
         engine: "NeuroScan v5.0 Custom PHP Framework",
-        ai: "AskMe AI Chatbot (Cloudflare Workers + Dialogflow) \u00b7 $0/month",
+        ai: "AskMe AI Chatbot (Cloudflare Workers + Bundled Content Index) \u00b7 $0/month",
+        publishing: "Domain-Independent: Static Pages + Same-Origin Chatbot Proxy \u00b7 Survives Backend Fully Offline",
+        demo: "$0 Live WordPress Demo on an Always-Free VM \u00b7 ~8ms Cached Loads",
         design: "Dark Glassmorphism Design System (Zero Dependencies)",
         deployment: "REST API Bridge + Elementor JSON Parser + Dry-Run Preview",
       },
 
       beforeAfter: [
         { label: "New site setup", before: "Manual content swap per customer", after: "One-command clone with content and SEO replaced" },
+        { label: "Runtime dependency", before: "Site and chatbot depended on a paid domain and live WordPress", after: "Static Pages + bundled index \u2014 verified serving with the backend fully offline" },
+        { label: "Demo hosting", before: "Heavy Elementor pages took 33s to render on a free VM (timeouts)", after: "~8ms cached loads via nginx FastCGI micro-cache, at $0" },
         { label: "Animations", before: "Heavy external library", after: "Built-in browser APIs, zero dependency" },
         { label: "Security headers", before: "None / applied late", after: "CSP + HSTS from the earliest hook" },
         { label: "Rate limiting", before: "Keyed on the CDN's IP (ineffective)", after: "Keyed on the real visitor IP" },
@@ -790,6 +832,26 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
           problem: "Rate limiting behind the CDN was keyed on the wrong IP, so it wasn't actually limiting anyone.",
           solution: "Switched to the CDN's forwarded client-IP header.",
           outcome: "Rate limiting that works per real visitor.",
+        },
+        {
+          problem: "Exported CSS still pointed at a local development address, so visitors' browsers asked for permission to reach the local network.",
+          solution: "Extended the exporter to rewrite origins inside CSS, recursively collect nested url(...) assets, and fail the build if any local, private, or expired-domain reference survives in any file type.",
+          outcome: "A clean production bundle — zero local references across HTML, CSS, JS, and JSON.",
+        },
+        {
+          problem: "The 'live' chatbot URL recorded in every document returned empty answers — it looked like the chatbot was broken.",
+          solution: "Probed the endpoint the frontend actually calls and diffed the responses byte-for-byte, proving the documented URL was a stale older deployment while the real one was healthy.",
+          outcome: "Docs corrected — and a rule learned: an HTTP 200 that says 'no results' is a stale backend, not a working service.",
+        },
+        {
+          problem: "A tiny free-tier VM took 33 seconds to render heavy page-builder pages — visitors got timeouts.",
+          solution: "Added an nginx micro-cache that serves cached HTML instantly and refreshes in the background, and pre-warmed the heavy pages once.",
+          outcome: "Public pages load in ~8ms from cache, and the co-hosted neighbor site stayed healthy throughout.",
+        },
+        {
+          problem: "After moving web servers, a path everyone assumed was protected turned out to be publicly reachable.",
+          solution: "The old protection relied on Apache-style rules the new server silently ignores — removed the exposed files, added explicit deny rules for sensitive paths, and re-audited every previously 'protected' path.",
+          outcome: "Sensitive paths now return 403, with the audit habit built into every server migration.",
         },
       ],
     },
@@ -855,8 +917,6 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 313 automated 
         "Custom grayscale Google Maps API styling for dark-mode consistency",
         "Built interactive, high-performance service filtering system"
       ],
-      liveUrl: "https://agency.healthcodeanalysis.com/",
-
       featured: false,
       isWordpress: true,
       metrics: { automation: "100% Sales Flow", performance: "A+ Core Web Vitals" },
@@ -979,11 +1039,11 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
 
     {
       id: "yuktha-wellness",
-      title: "Yuktha Wellness — Multi-Condition AI Health Chatbot (M1 + M2, Client Project)",
+      title: "Yuktha Wellness — Multi-Condition AI Health Chatbot (M1–M3, Client Project)",
       category: ["ai-ml", "fullstack", "healthcare"],
 
       description:
-        "Problem: An India-based women's health startup had a PCOS chatbot leaking stack traces, missing safety gates, and returning ungrounded answers — and needed expansion to 6 conditions with multilingual support for 1 billion Indian users (Hindi/Tamil/Telugu/Bengali). Solution: Two paid milestones ($500 total) — M1 (8 commits, +1,484 lines, 18 files): native Pinecone RAG pipeline, hybrid dense+BM25+Cohere rerank, 47-pattern emergency detector, structured-output grounding gates, Redis caching. M2 (9 tasks, 302 tests all pass): BGE-M3 multilingual embedding (1024-dim), 6 condition namespaces (PCOS + diabetes + MASLD + obesity + mental wellness + home remedies), self-hosted cross-encoder reranking (zero Cohere cost), per-user Pinecone health memory, eval framework (220+ queries — 97.2% routing, 100% safety, 80%+ Hindi retrieval).",
+        "Problem: An India-based women's health startup had a PCOS chatbot leaking stack traces, missing safety gates, and returning ungrounded answers — and needed expansion to 6 conditions with multilingual support for 1 billion Indian users (Hindi/Tamil/Telugu/Bengali). Solution: Two paid milestones ($500 total) — M1 (8 commits, +1,484 lines, 18 files): native Pinecone RAG pipeline, hybrid dense+BM25+Cohere rerank, 47-pattern emergency detector, structured-output grounding gates, Redis caching. M2 (9 tasks, 302 tests all pass): BGE-M3 multilingual embedding (1024-dim), 6 condition namespaces (PCOS + diabetes + MASLD + obesity + mental wellness + home remedies), self-hosted cross-encoder reranking (zero Cohere cost), per-user Pinecone health memory, eval framework (220+ queries — 97.2% routing, 100% safety, 80%+ Hindi retrieval). M3 (live): WhatsApp channel via Interakt — HMAC-verified webhook, SSE token streaming, Redis caching in production, and one-orchestrator gating so the AI answers only Health-Query conversations.",
 
       fullDescription: `Yuktha Wellness is a paid Milestone 1 engagement (April 2026, ongoing) — backend / AI engineering for an India-based women's health startup's PCOS chatbot. Static-verified delivery contract: 8 commits, +1,484 / -175 lines across 18 files, all locally committed and pending client funding.
 
@@ -1006,7 +1066,10 @@ VERIFICATION (M1)
 node --check clean on 17 files. /security-review NO_FINDINGS at confidence ≥8 — NoSQL/Mongoose injection, SSRF, path traversal, hardcoded secrets, weak crypto, JWT bypass, response cache cross-user leakage, embedding cache poisoning, error/stack-trace exposure all checked. cosineSimilarity, sha256Hex, normalizeKey, detectEmergency all unit-tested.
 
 MILESTONE 2 — MULTI-CONDITION + MULTILINGUAL EXPANSION (9 tasks, 302 tests all pass)
-BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) — supports Hindi, Tamil, Telugu, Bengali and 100+ languages. Pinecone index recreated at 1024 dims, all 6 conditions re-ingested (346 chunks total across 6 namespaces). Self-hosted cross-encoder: Xenova/ms-marco-MiniLM-L-6-v2 loads once at server boot, eliminates Cohere per-request cost, warmup at startup. 6 condition namespaces: pcos-knowledge, diabetes-knowledge, masld-knowledge, obesity-knowledge, mental-wellness-knowledge, home-remedies-knowledge. conditionRouter.js classifies queries into conditions — supports cross-condition queries (e.g., "PCOS with insulin resistance" → [pcos, diabetes]). Mental wellness crisis detection: detectMentalCrisis with Hindi transliterations (marna chahta hoon, jina nahi chahta, khud ko hurt karna) + iCall/Vandrevala Foundation escalation. Per-user health profile: {conditions, symptoms, labValues, medications} persisted to user-{id} Pinecone namespace and injected into every response. Evaluation framework: 220 reference queries + 30 Hindi transliteration queries — routing 97.2%, safety 100%, fallback 100%. Branch: milestone-2, final commit: ea5bf7c.`,
+BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) — supports Hindi, Tamil, Telugu, Bengali and 100+ languages. Pinecone index recreated at 1024 dims, all 6 conditions re-ingested (346 chunks total across 6 namespaces). Self-hosted cross-encoder: Xenova/ms-marco-MiniLM-L-6-v2 loads once at server boot, eliminates Cohere per-request cost, warmup at startup. 6 condition namespaces: pcos-knowledge, diabetes-knowledge, masld-knowledge, obesity-knowledge, mental-wellness-knowledge, home-remedies-knowledge. conditionRouter.js classifies queries into conditions — supports cross-condition queries (e.g., "PCOS with insulin resistance" → [pcos, diabetes]). Mental wellness crisis detection: detectMentalCrisis with Hindi transliterations (marna chahta hoon, jina nahi chahta, khud ko hurt karna) + iCall/Vandrevala Foundation escalation. Per-user health profile: {conditions, symptoms, labValues, medications} persisted to user-{id} Pinecone namespace and injected into every response. Evaluation framework: 220 reference queries + 30 Hindi transliteration queries — routing 97.2%, safety 100%, fallback 100%. Branch: milestone-2, final commit: ea5bf7c.
+
+MILESTONE 3 — WHATSAPP CHANNEL + STREAMING (LIVE, July 2026)
+Interakt WhatsApp Business webhook with HMAC signature verification (valid → 200, tampered or missing → 401), SSE token streaming via /ask/stream, Redis-backed caching live in production, product suggestions, and human handoff. Orchestration gating: the client's no-code Interakt flow owns greetings and menus, so the AI stays silent on greetings and button taps and answers only conversations routed to it via a per-user Health-Query lane marker (stored in chat history — no schema change). A "free-answer limit reached" CTA fires exactly once per user via a persisted marker turn instead of re-firing on every message. Deploy discipline on every release: drift-check live vs local first, full server backup, SHA-256 parity between deployed and committed files, and flat process restart counts (no crash loops) — verified with a stubbed end-to-end harness run on the live server with zero real WhatsApp sends.`,
 
       thumbnail: "",
 
@@ -1027,6 +1090,9 @@ BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) �
         "47-Pattern Emergency Detector",
         "Cosine Grounding Gate (Threshold 0.55)",
         "Promise.allSettled (Parallel External Calls)",
+        "Interakt WhatsApp Business API (HMAC-Verified Webhook)",
+        "SSE Streaming (/ask/stream Token Deltas)",
+        "PM2 + nginx (SHA-256 Parity-Verified Deploys)",
         "/security-review NO_FINDINGS at Confidence ≥8",
       ],
 
@@ -1043,6 +1109,9 @@ BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) �
         "M2: Per-user Pinecone namespace (user-{id}) with health profile memory — HbA1c mentioned in turn 1 reflected in turn 5",
         "M2: Evaluation framework — 220 reference queries + 30 Hindi queries: 97.2% routing accuracy, 100% safety gate, 80%+ Hindi retrieval",
         "M2: 302 test assertions across 9 tasks, 0 failed — milestone-2 branch, commit ea5bf7c",
+        "M3: WhatsApp channel live via Interakt — HMAC-verified webhook (valid 200 / tampered 401), SSE token streaming, Redis caching in production",
+        "M3: One-orchestrator gating — the AI defers to the client's no-code WhatsApp flow and answers only Health-Query conversations; 'limit reached' CTA fires exactly once per user via a persisted marker",
+        "M3: Every live deploy drift-checked and SHA-256 parity-verified against the committed artifact, with full server backups and flat restart counts — verified on the live server with zero real WhatsApp sends",
         "/security-review NO_FINDINGS at confidence ≥8 — NoSQL injection, SSRF, prompt injection, cache cross-user leakage, stack-trace exposure all checked",
       ],
 
@@ -1050,8 +1119,9 @@ BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) �
       isHealthcare: true,
 
       metrics: {
-        client: "Yuktha Wellness (India) — M1 ($200) + M2 ($300) = $500 paid · milestone-2 complete",
-        scope: "M1: 8 commits · +1,484 lines · 18 files | M2: 9 tasks · 302 tests · 346 chunks ingested",
+        client: "Yuktha Wellness (India) — M1 ($200) + M2 ($300) = $500 paid · M3 (WhatsApp) live",
+        scope: "M1: 8 commits · +1,484 lines · 18 files | M2: 9 tasks · 302 tests · 346 chunks | M3: WhatsApp + streaming live",
+        whatsapp: "Interakt Webhook (HMAC) · SSE Streaming · CTA-Once · Health-Query Lane Gating",
         retrieval: "Hybrid Dense (Pinecone top-20) + BM25 top-20 → Self-Hosted Cross-Encoder → top-5",
         embedding: "BGE-M3 (1024-dim) — Hindi · Tamil · Telugu · Bengali · 100+ Languages",
         conditions: "6 Namespaces: PCOS · Diabetes · MASLD · Obesity · Mental Wellness · Home Remedies",
@@ -1069,6 +1139,8 @@ BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) �
         { label: "Coverage", before: "PCOS only, English only", after: "6 conditions across Hindi, Tamil, Telugu and Bengali (1024-dim multilingual model)" },
         { label: "Reranking", before: "Reranker silently dead — couldn't tell relevant from irrelevant", after: "Self-hosted cross-encoder with real separation and zero per-request rerank cost" },
         { label: "Caching", before: "In-memory caches lost between requests", after: "Redis-backed, ~100x faster on repeat questions" },
+        { label: "Channels", before: "Website chat only", after: "Website + WhatsApp via HMAC-verified Interakt webhook with token streaming" },
+        { label: "WhatsApp behaviour", before: "Two systems answered every message — stacked duplicate replies", after: "One orchestrator: the AI answers only Health-Query conversations, silent otherwise" },
       ],
 
       challenges: [
@@ -1096,6 +1168,16 @@ BGE-M3 multilingual embedding (BAAI/bge-m3 via @xenova/transformers, 1024-dim) �
           problem: "Two production hotfixes lived only on the live server and were missing from the next milestone.",
           solution: "Ported them forward into the milestone before deploying and made location data optional so a missing value never crashes the chat.",
           outcome: "No regression of fixes the client had already seen — and the test suite stayed green.",
+        },
+        {
+          problem: "After a WhatsApp user hit their free-answer limit, the upgrade prompt re-fired on every later message — greetings, menu taps, everything.",
+          solution: "The gate recomputed from a counter that could never change, so it stayed true forever. Persisted a one-time marker in the existing chat history the moment the prompt is sent, and stayed silent afterwards.",
+          outcome: "The prompt fires exactly once per user — verified with a stubbed end-to-end harness on the live server, zero real messages sent.",
+        },
+        {
+          problem: "The client's no-code WhatsApp flow and the AI webhook both answered every message, so users got stacked duplicate replies.",
+          solution: "Made the AI defer: greetings and menu taps stay silent, and a per-user marker switches the AI on only when the user picks 'Health Query' — one brain per conversation.",
+          outcome: "Duplicate replies gone, verified live with signed test messages producing zero unwanted sends.",
         },
       ],
     },
@@ -1484,6 +1566,7 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "BGE-M3 Multilingual Embeddings (1024-dim) + Self-Hosted Cross-Encoder Rerank", tier: "expert" },
         { name: "LangChain + n8n Automation", tier: "proficient" },
         { name: "LangGraph Agent Orchestration", tier: "proficient" },
+        { name: "WhatsApp AI Chatbots (Interakt Webhooks, HMAC, SSE Streaming)", tier: "expert" },
         { name: "Dialogflow ES", tier: "proficient" },
         { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
       ],
@@ -1494,13 +1577,14 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
       color: "primary",
       skills: [
         { name: "AWS (Cognito, DynamoDB, KMS, Bedrock, IoT, Lambda, MSK)", tier: "expert" },
-        { name: "GCP (Cloud Run, BigQuery, Vertex AI)", tier: "expert" },
+        { name: "GCP (Cloud Run, Compute Engine, BigQuery, Vertex AI)", tier: "expert" },
         { name: "Azure (AKS, Cosmos DB, OpenAI)", tier: "proficient" },
         { name: "Terraform (Multi-Cloud IaC, 414 Resources)", tier: "expert" },
         { name: "Docker & Kubernetes (AKS/EKS)", tier: "proficient" },
         { name: "GitHub Actions CI/CD", tier: "expert" },
         { name: "Cloudflare (Tunnels, Pages, Workers)", tier: "proficient" },
-        { name: "Vercel + nginx + PM2 (Deploy / Reverse Proxy / Process Mgmt)", tier: "expert" },
+        { name: "nginx (FastCGI Micro-Cache, Multi-Tenant TLS) + PM2 + Vercel", tier: "expert" },
+        { name: "Zero-Cost Hosting Architecture (Cloudflare Pages + Always-Free GCP VM + Let's Encrypt)", tier: "expert" },
         { name: "Security & Compliance Scanning (Checkov, Prowler, Trivy, OWASP ZAP, SonarQube, Inferno)", tier: "expert" },
         { name: "AWS GuardDuty + Security Hub (Threat Detection)", tier: "proficient" },
       ],
@@ -1689,6 +1773,17 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
   upworkProfileUrl: "https://www.upwork.com/freelancers/~015799bfae8562d0eb",
 
   testimonials: [
+    {
+      name: "Verified Upwork Client",
+      role: "Freelance RAG Engineer (LLM Systems) — Evaluation & Optimization",
+      company: "via Upwork",
+      image: "",
+      content: "We had an excellent experience working with this freelancer on enhancing our RAG (Retrieval-Augmented Generation) chatbot. From the beginning, he demonstrated strong technical expertise, a clear understanding of our requirements, and exceptional professionalism. The quality of work delivered exceeded our expectations. He successfully improved the accuracy, performance, and overall functionality of our RAG bot while maintaining high development standards. All deliverables were completed on time, and communication throughout the project was outstanding. What impressed us the most was his quick response time, attention to detail, and ability to provide effective solutions whenever challenges arose. He was proactive, reliable, and consistently focused on delivering the best possible outcome. Additionally, his services were very affordable compared to the value and quality of work provided, making him an excellent choice for any AI, chatbot, or RAG-related project. We are extremely happy with the results and would highly recommend him to anyone looking for a skilled, dependable, and cost-effective freelancer. We look forward to working with him again in the future.",
+      rating: 5,
+      date: "Jul 2026",
+      tags: ["RAG / LLM Systems", "Accuracy & Performance", "On-Time Delivery", "Proactive", "Cost-Effective"],
+      upwork: true,
+    },
     {
       name: "Verified Upwork Client",
       role: "Claude Code Expert Needed",
