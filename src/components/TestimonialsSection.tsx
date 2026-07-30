@@ -49,7 +49,7 @@ export const TestimonialsSection = () => {
   const next = () => setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
-  const t = testimonials[currentIndex] as any;
+  const t = testimonials[currentIndex];
 
   return (
     <section id="testimonials" className="py-20 md:py-32 relative overflow-hidden">

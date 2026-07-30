@@ -76,8 +76,8 @@ export const ContactSection = () => {
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      value: (personal as any).whatsapp,
-      href: `https://wa.me/${((personal as any).whatsapp || "").replace("+", "")}`,
+      value: personal.whatsapp,
+      href: `https://wa.me/${(personal.whatsapp || "").replace("+", "")}`,
     },
     {
       icon: MapPin,

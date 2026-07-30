@@ -15,17 +15,8 @@ const AnimatedCounter = ({
 }) => {
   const [count, setCount] = useState(0);
 
-  // CHANGED: If it's text (like "2-3"), just show it immediately
-  if (typeof value === "string") {
-    return (
-      <span className="text-4xl md:text-5xl font-bold gradient-text">
-        {value}
-        {suffix}
-      </span>
-    );
-  }
-
-  // If it's a number, do the animation logic
+  // If it's a number, do the animation logic. This must run before any early
+  // return so the hook order stays identical on every render.
   useEffect(() => {
     if (!inView || typeof value !== "number") return;
 
@@ -46,6 +37,16 @@ const AnimatedCounter = ({
 
     return () => clearInterval(timer);
   }, [value, inView]);
+
+  // CHANGED: If it's text (like "2-3"), just show it immediately
+  if (typeof value === "string") {
+    return (
+      <span className="text-4xl md:text-5xl font-bold gradient-text">
+        {value}
+        {suffix}
+      </span>
+    );
+  }
 
   return (
     <span className="text-4xl md:text-5xl font-bold gradient-text">

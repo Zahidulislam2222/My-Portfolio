@@ -23,4 +23,14 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    // shadcn/ui primitives are generated and managed by the shadcn CLI, not
+    // hand-edited (see CLAUDE.md). Fixing lint there is undone by the next
+    // `shadcn add`, so relax the rules that only flag its codegen style.
+    files: ["src/components/ui/**/*.{ts,tsx}"],
+    rules: {
+      "@typescript-eslint/no-empty-object-type": "off",
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );
