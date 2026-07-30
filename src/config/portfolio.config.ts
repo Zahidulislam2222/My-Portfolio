@@ -192,6 +192,7 @@ TESTING & PAYMENTS
         payments: "3-Tier Stripe Subscriptions \u00b7 24-Loophole Protection",
         rto: "RTO 5 min / RPO 0 (Critical Tier)",
         security: "96 Checkov IaC Fixes \u00b7 OIDC Zero Static Keys \u00b7 KMS RSA-256",
+        scopeNote: "Reconciled July 2026 against the integrated source tree. Control implementation is evidence of engineering readiness, not an independent compliance certification \u2014 and it does not claim every local change is deployed or that every Terraform resource exists in the active cloud",
       },
 
       beforeAfter: [
@@ -282,6 +283,10 @@ TESTING & PAYMENTS
         scanners: "6 Compliance Scanners (Checkov, Trivy, SonarQube, OWASP ZAP, HAPI FHIR, Inferno)",
         monitoring: "Prometheus + Grafana + Loki + Jaeger + AlertManager",
         cost: "Zero Additional Cost (Full Production Stack)",
+        verifiedJul2026: "Source reconciliation: 23 Compose services (9 core + 14 profile-activated) · 3 declared networks · 9 core services with source-defined health checks",
+        retention: "Prometheus 15s scrape interval · 5 alert rules · Loki 744h (31-day) retention · Restic encrypted backup + isolated restore-verification workflows",
+        engine: "LightRAG v1.4.6 + RAG-Anything v1.2.10 · Gemini 2.5 Flash · Authelia zero-trust 2FA · ~4.3GB of containers on an 8GB host",
+        scopeNote: "Documents architecture and configuration intent — does not claim a particular live environment is deployed, healthy, certified, or processing production data",
       },
 
       beforeAfter: [
@@ -405,6 +410,9 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         compliance: "WCAG 2.1 AA \u00b7 GDPR \u00b7 Cookie Consent",
         cicd: "GitHub Actions (4 Jobs, Manual Deploy Gate) \u00b7 Dependabot",
         hosting: "$0/month \u2014 Cloudflare Pages (Frontend) + GCP Always-Free e2-micro (Backend)",
+        verifiedJul2026: "Source reconciliation: 240 tracked files \u00b7 55 commits \u00b7 92 tracked frontend files \u00b7 13 concrete application routes \u00b7 41 bridge-plugin + 52 block-plugin files \u00b7 27 production PHP classes",
+        gutenberg: "All 3 Gutenberg suites passed \u2014 19 tests total",
+        openIssues: "Open and documented: server-authority gap in checkout pricing (most consequential) \u00b7 2 TypeScript landing-page prop-contract errors \u00b7 PHP and live-system evidence not re-run in that pass",
       },
 
       beforeAfter: [
@@ -476,7 +484,16 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
       featured: true,
       isHeadless: true,
       isContentful: true,
-      metrics: { ai: "3 AI Providers", offline: "SHA-256 Integrity", security: "25 Vulns Fixed" },
+      metrics: {
+        ai: "3 AI Providers",
+        offline: "SHA-256 Integrity",
+        security: "25 Vulns Fixed",
+        verifiedJul2026: "14 production route entries emitted by the verified static build · source-scoped CI lint completed with 0 errors and 6 warnings",
+        data: "1 database migration defines core tenant, equipment, action, schedule, notification and audit controls while extending an assumed inspections table",
+        stack: "Statically exported Next.js client (packageable to Android via Capacitor) · Supabase auth, RLS, storage and realtime · Contentful checklist content · server-side AI analysis handler · payment webhook",
+        openGaps: "Repository-wide lint command is over-broad and currently fails after scanning generated mobile assets · several screens intentionally limited · some integrations depend on external configuration",
+        scopeNote: "Not equivalent to a completed certification authority — verified gaps materially affect production readiness. No live database, content service, AI provider, payment provider or installed mobile app was exercised in that documentation pass",
+      },
 
       beforeAfter: [
         { label: "Inspections", before: "Paper checklists and filing cabinets (~73% audit failure)", after: "Phone-based AI inspections with signed, timestamped OSHA reports (~96% digital)" },
@@ -622,6 +639,9 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
         audit: "60-Check Scanner \u00b7 CI/CD Deploy Gate \u00b7 0 Critical Failures",
         roles: "Patient \u00b7 Doctor \u00b7 Receptionist \u00b7 Admin",
         deployment: "Cloudflare Pages \u00b7 PWA \u00b7 Security Headers (CSP, HSTS, COEP, COOP)",
+        verifiedJul2026: "Fresh read-only static compliance scan: 52 passes \u00b7 4 failures \u00b7 4 warnings across 60 checks",
+        build: "Verified production build processed 2,071 modules and completed successfully with 1 dependency security warning",
+        openGaps: "Documented current gaps: form writes to columns removed by a later migration \u00b7 missing active medical-data consent \u00b7 over-broad serverless query/read authority \u00b7 unauthenticated notification and breach handlers \u00b7 inactive schedules \u00b7 incomplete payment verification",
       },
     },
 
@@ -801,6 +821,8 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 292 automated 
         demo: "$0 Live WordPress Demo on an Always-Free VM \u00b7 ~8ms Cached Loads",
         design: "Dark Glassmorphism Design System (Zero Dependencies)",
         deployment: "REST API Bridge + Elementor JSON Parser + Dry-Run Preview",
+        verifiedJul2026: "247 safely executed Python checks passed (2026-07-21) · 51 tracked files · 43 commits · 11 Python automation scripts · 3 PHP files · 9 REST route registrations",
+        known: "2 AskMe tests blocked by a Node 22 JSON-import compatibility boundary · 3 retained workflow files are manual and guarded in current source · no live WordPress, Docker, DNS, tunnel or credential-dependent workflow executed in that pass",
       },
 
       beforeAfter: [
@@ -919,7 +941,15 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 292 automated 
       ],
       featured: false,
       isWordpress: true,
-      metrics: { automation: "100% Sales Flow", performance: "A+ Core Web Vitals" },
+      metrics: {
+        automation: "100% Sales Flow",
+        performance: "A+ Core Web Vitals",
+        stack: "WordPress + Elementor Pro + Jeg Kit — dark, high-end agency UI with scroll-animated skill bars, sticky nav and tabbed service showcase",
+        booking: "Calendly scheduling embedded directly in the contact flow — removes the email back-and-forth to find a slot",
+        forms: "MetForm captures inquiries into the backend rather than relying on a single email that can land in spam",
+        edge: "Cloudflare Worker (booking + payment bot) running an edge chat agent for preliminary questions ahead of a human",
+        localSeo: "Interactive Google Maps API embed with a custom grayscale/dark filter matched to the theme",
+      },
     },
 
     {
@@ -1013,8 +1043,11 @@ Weighted confidence engine: scraped + name match + Gravatar = 99%. Pattern + Gra
         pipeline: "5-Step Waterfall (DNS → Scrape → Patterns → Verify → Score)",
         verification: "Gravatar + GitHub + Disposable Detection",
         scraping: "15+ Pages Per Domain (HTML + mailto + Obfuscated)",
-        tests: "46 Assertions · 4 Test Suites",
-        dependencies: "1 (dnspython) · 1,092 LOC",
+        tests: "60 Assertions · 4 Test Suites — all 4 deterministic test scripts passed 2026-07-21",
+        dependencies: "1 declared external dependency (dnspython) · 20 Python files · 1,092 LOC",
+        commands: "4 CLI Commands: find · verify · scrape · batch",
+        version: "v1.0.0",
+        boundary: "Local research assistant — not a mailbox-existence authority, deliverability guarantee, consent decision, or hardened multi-user service. Confidence values are deterministic heuristic scores, not calibrated probabilities",
       },
 
       beforeAfter: [
@@ -1131,6 +1164,10 @@ Interakt WhatsApp Business webhook with HMAC signature verification (valid → 2
         grounding: "Structured JSON Output + Cosine Gate at 0.55",
         caching: "Redis Embedding + Response Caches · SHA-256 Keys · 1h TTL",
         verification: "/security-review NO_FINDINGS at confidence ≥8",
+        models: "GPT-4.1-mini produces the final structured RAG answer · GPT-4o-mini rewrites the retrieval query — roles kept deliberately separate",
+        verifiedJul2026: "Integrated backend + frontend source verified 18 July 2026 · 20-candidate rerank window · 5-result final set · 0.7 relevance threshold",
+        latency: "Controlled 7-case live suite: 6.956s and 8.716s uncached · 5.666s contextual · 0.161s exact cached repeat · emergency/off-topic/ambiguous fast paths 0.146–0.214s (observed samples, not a service-level bound)",
+        frontendTests: "Production build passes with existing static-analysis warnings; the frontend source contains no automated test files",
       },
 
       beforeAfter: [
@@ -1440,96 +1477,508 @@ Site reduced from 24 plugins to 11 plugins. 13 junk/unused plugins removed.`,
     },
 
     {
-      id: "ftm-automation-suite",
-      title: "Fine Touch Marketing — 3-System n8n Automation Suite (Client Project)",
+      id: "ftm-seo-automation",
+      title: "Fine Touch Marketing — WordPress SEO Automation (Client Project)",
       category: ["automation", "ai-ml", "wordpress"],
 
       description:
-        "Problem: A med-spa marketing agency running 15-20 WordPress client sites manually handled on-page SEO, post-submission SMS follow-ups, and social media content — hours of repetitive work per site, no consistency. Solution: 3 interlocking n8n automation systems deployed to a dedicated VPS: (1) Claude AI-powered bulk SEO processor — generates 60-char titles, 160-char meta descriptions, and 40 location-specific keywords per page via AIOSEO (up to 20 pages per run); (2) JotForm-to-Twilio multi-site SMS follow-up engine — 6-touchpoint sequence (days 1/3/7/11/14/30), config-driven via Google Sheets, 29/29 tests passed, live on dedicated server; (3) full social media content pipeline — AI image generation (7 themes), dual client/admin approval workflow, AI regeneration on rejection, client ZIP download portal — 17 n8n workflows total.",
+        "Problem: A med-spa marketing agency running 15-20 WordPress client sites hand-wrote on-page SEO one page at a time — titles, meta descriptions, focus keyphrases and tags — with no consistency across sites and no way to work in bulk. Solution: An operator submits existing page or post titles with optional location context; the system matches them to live WordPress content, generates industry-locked and location-aware SEO copy with Claude, repairs the output against deterministic length and shape rules, writes it through AIOSEO, and assigns WordPress tags on a best-effort basis. The current live runtime is a protected PHP operator interface in front of a supervised Python Flask job API, so a long run no longer depends on one browser request staying open. July 2026 added an independent heatmap analyzer, a geo relevance planner, plan-by-address without a heatmap, and full-article generation for pages and posts.",
 
-      fullDescription: `Fine Touch Marketing (FTM) is an ongoing paid client engagement — three production automation systems built for a med-spa marketing agency operating 15-20 WordPress client sites.
+      fullDescription: `Fine Touch Marketing (FTM) is an ongoing paid client engagement — a med-spa marketing agency operating 15-20 WordPress client sites. This is the SEO system of three separate production systems built for them.
 
-SYSTEM 1 — SEO AUTOMATION (Claude API + WordPress + n8n Cloud)
-Bulk on-page SEO processor: client submits page/post titles via a web form (up to 20 at once), Claude generates a unique 60-char SEO title, 160-char meta description, and 40 location-aware keywords per page (format: "Keyword City, City Keyword"), then pushes all values to AIOSEO settings (Page Title, Meta Description, Focus Keyword, Facebook + Twitter OG tags, Advanced keywords tab, WordPress post tags) via WordPress REST API in a single run. Dynamic location extraction — Claude detects the city from the page title, no hardcoded location. All updates are saved automatically. Deployed to n8n Cloud (finetouch.app.n8n.cloud), tested across sample2 and sample3.finetouchmarketing.com.
+WHAT IT DOES
+An authorized operator supplies a WordPress site, selects pages or posts, and submits one or more existing titles with optional location context. The system discovers the matching content over the WordPress REST API, validates that AIOSEO is available, generates a structured SEO draft, validates and repairs that draft against deterministic rules, persists it through AIOSEO, assigns relevant WordPress tags where supported, and returns a per-item result summary as CSV and in the interface.
 
-SYSTEM 2 — SMS FOLLOW-UP AUTOMATION (JotForm + Twilio + n8n + Google Sheets)
-Automated SMS sequence for new patient form submissions across all client sites. JotForm webhook fires on submission, extracts fields from rawRequest, saves contact to a site-specific Google Sheets tab (Contacts_{site_id}), and sends a Twilio welcome SMS using the best-matching template (site-specific first, global fallback). Daily cron workflow checks all active sites for contacts due follow-up messages (days 3/7/11/14/30) and marks each as sent. Broadcast workflow allows instant or scheduled SMS blasts to all contacts across selected sites. Multi-site: one config row per site (site_id, Twilio from-number, day template keys). 29/29 automated tests passed. Live on John's InMotion dedicated server with n8n auto-restart cron. Three workflows end-to-end verified (contacts saved, SMS fired, Twilio API confirmed).
+CURRENT RUNTIME — PHP INTERFACE + SUPERVISED PYTHON API
+The live path is a protected PHP web interface proxying same-origin authenticated operator actions to a local Python Flask API. The API creates a job, returns a job identifier immediately, runs the work in the background, and exposes safe status summaries the browser polls. This removes the original constraint where a long SEO run depended on a single browser request remaining open. The project also retains a substantial n8n workflow history — that earlier automation path established the title matching, structured generation, AIOSEO updates, tag creation and result aggregation that the current runtime inherited. The n8n lineage is history, not the current live runtime.
 
-SYSTEM 3 — SOCIAL MEDIA AUTOMATION (17 n8n Workflows + Client/Admin Portal)
-Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 generates AI captions, hashtags, and watermarked images in 7 visual themes using Claude. Client portal (web app) shows all pending posts — client can approve (sets client_approved), request AI regeneration, or inline-edit caption/hashtags. After client approval, admin panel shows "Awaiting Your Approval" queue — admin allows (→ approved) or rejects (→ WF6 AI regeneration → back to pending). Approved posts available as individual downloads or full ZIP via WF9. Optional Twilio SMS fires to admin on client approval. Two-layer approval prevents unauthorized content reaching social channels. All data stored in Google Sheets (Posts, Clients, Settings tabs). Full E2E test: 7/8 scenarios pass (Twilio optional pending admin phone config). Key bugs fixed: n8n IF-node routing bug (string equals always true), Google Sheets 0-item propagation, WF9 OAuth token refresh failure, corrupt webhook_entity rows.`,
+GENERATION CONTRACT AND DETERMINISTIC REPAIR
+The AI output path constrains industry, location, title length, description length, focus keyword shape and keyword count. Claude produces the draft inside those supplied constraints; deterministic repair rules then fix what the model got wrong rather than trusting the output as-is. Location is derived per page rather than hardcoded, so one run can cover pages for different cities.
+
+JULY 2026 ADDITIONS — PLANNING AND ARTICLE GENERATION
+An independent heatmap analyzer, a geo relevance planner, plan-by-address without a heatmap, and full-article generation for both pages and posts with factual controls on the generated content.
+
+OPERATIONAL POSTURE
+Public interface health and backend API health are checked separately — a page that loads does not prove the worker API is alive — and a health-based watchdog restarts the API when the service is genuinely unavailable. Local and deployed sources were compared during the latest recovery evidence. The system is presented as an automation accelerator with operational controls, not as a ranking guarantee: it makes no promise about rankings, traffic or indexing time, and client review of location accuracy, branding and regulated wording is still required.`,
 
       thumbnail: "",
 
       technologies: [
-        "n8n (17 Workflows — Cloud + Self-Hosted VPS)",
-        "Claude API (Anthropic) — SEO Titles + Meta + Keywords + Social Content",
-        "WordPress REST API + AIOSEO Plugin (Bulk SEO Updates)",
-        "JotForm Webhooks (Form Submission Trigger)",
-        "Twilio SMS API (Multi-Site, Per-Site From-Number)",
-        "Google Sheets API (OAuth + Refresh Token, Posts + Contacts + Config + Templates)",
-        "Node.js (n8n Code Nodes — Business Logic)",
-        "Python (Deployment Scripts + Automated Tests)",
-        "Nginx Reverse Proxy + VPS (Ubuntu, n8n Self-Hosted)",
-        "Google OAuth 2.0 (Token Refresh Handling)",
-        "ZIP Generation (Client Bulk Download Portal)",
-        "29/29 Automated Tests (Follow-Up System)",
+        "PHP + Browser JavaScript (Protected Operator Interface, Same-Origin Proxy)",
+        "Python Flask (Job Creation, Background Execution, Health, Status, Timeout)",
+        "Python Automation Worker (Preflight, Matching, Repair, Writes, Reporting)",
+        "Claude API (Anthropic) — Structured SEO Draft Generation",
+        "WordPress REST API (Content Discovery + Metadata Persistence)",
+        "AIOSEO API (Title, Description, Focus Keyphrase, Keywords, Social Metadata)",
+        "Deterministic Output Repair (Length, Shape, Keyword Count Rules)",
+        "Asynchronous Job Status + CSV Result Reporting",
+        "Health-Based Backend Supervision (Not Process-Name Checks)",
+        "n8n (Retained Workflow History — Earlier Automation Path)",
       ],
 
       achievements: [
         "Real ongoing paid client engagement — Fine Touch Marketing (med-spa marketing agency, 15-20 WordPress client sites)",
-        "SEO system: Claude AI generates 60-char titles, 160-char meta descriptions, 40 location-specific keywords — bulk-pushes to AIOSEO across up to 20 WordPress pages per run with zero manual copy-paste",
-        "SMS system: JotForm webhook → contact saved → Twilio welcome SMS → 5 scheduled follow-ups (days 3/7/11/14/30) — 29/29 automated tests passed, live on dedicated server",
-        "Social media pipeline: 7-theme AI image generation, captions + hashtags, watermarked output, client portal, admin panel with awaiting-approval queue and notification badge",
-        "Two-layer approval: client_approved → admin allows/rejects → AI regenerates on rejection (WF6) or client downloads individual images or full ZIP (WF9)",
-        "Multi-site architecture: all 3 systems handle 15-20 sites via site_id config in Google Sheets — no hardcoded values anywhere",
-        "Debugged 6 n8n-specific bugs: IF-node string-comparison routing bug, 0-item propagation in Sheets nodes, WF9 OAuth token refresh failure, corrupt webhook_entity rows — fixed with linear workflow redesign",
-        "17 n8n workflows deployed and active — VPS ulimit tuned for stability, auto-restart cron, end-to-end verified",
+        "Migrated the live runtime off a workflow-tool-only path onto a protected PHP interface plus supervised Python job API, so long SEO runs no longer depend on one open browser request",
+        "Industry-locked, location-aware generation: location is derived per page instead of hardcoded, so one run covers pages across different cities",
+        "Deterministic repair layer validates and fixes AI output against title length, description length, focus keyword shape and keyword count rules rather than trusting the model",
+        "Writes the full AIOSEO field set — title, description, focus keyphrase, keywords, social metadata and analysis support — plus WordPress tags on a best-effort basis",
+        "Separated AIOSEO save success from optional tag behavior, so a tag failure no longer reports the whole item as failed",
+        "Health-based watchdog supervises the backend API by actual health rather than process name, after a live incident where the page was up while the API was down",
+        "July 2026: added an independent heatmap analyzer, geo relevance planner, plan-by-address without a heatmap, and full-article generation for pages and posts with factual controls",
+        "Historical workflow evidence includes a three-title run with all three targets matched and updated, a forty-tag concurrency repair, entity-clean output, and verified page and post flows",
       ],
 
       featured: true,
 
       metrics: {
         client: "Fine Touch Marketing (med-spa marketing agency) — ongoing paid engagement",
-        systems: "3 Production Systems: SEO Automation + SMS Follow-Up + Social Media Pipeline",
-        workflows: "17 n8n Workflows (Cloud + Self-Hosted VPS)",
-        seo: "Claude AI: 60-char Title + 160-char Meta + 40 Keywords per Page · Bulk up to 20 pages",
-        sms: "6-Touchpoint SMS Sequence · Multi-Site via Google Sheets Config · 29/29 Tests Passed",
-        social: "7 AI Image Themes · Dual Client/Admin Approval · AI Regeneration on Reject · ZIP Download",
-        scale: "15-20 WordPress Sites · All Config in Google Sheets · Zero Hardcoded Values",
+        status: "Live maintenance — production project",
+        runtime: "Protected PHP Operator Interface → Supervised Python Flask Job API → SEO Worker",
+        ai: "Claude structured generation inside supplied industry + location constraints, then deterministic repair",
+        writes: "AIOSEO Title + Description + Focus Keyphrase + Keywords + Social Metadata · WordPress Tags (best-effort)",
+        modes: "Pages · Posts · Content creation · Heatmap analyzer · Geo relevance planner · Full-article generation",
+        scale: "15-20 WordPress client sites · Per-site industry, location and service context preserved",
       },
 
       beforeAfter: [
-        { label: "SEO", before: "Hand-written titles, meta and keywords, one page at a time", after: "AI bulk-generates and pushes to the site — up to 20 pages per run" },
-        { label: "Lead follow-up", before: "Manual and inconsistent", after: "Instant welcome SMS plus 5 scheduled follow-ups, multi-site, 29/29 tests passing" },
-        { label: "Social content", before: "Manual captions/images and an email approval loop", after: "AI 7-theme images and captions with a two-layer approval portal and ZIP download" },
-        { label: "Scale", before: "A handful of sites, all by hand", after: "15-20 sites driven by one config row each, zero hardcoded values" },
+        { label: "SEO editing", before: "Open and edit each page by hand, one at a time", after: "Submit a batch of existing titles and get matched, generated, repaired and saved metadata with a per-item report" },
+        { label: "Long runs", before: "A run died if the browser request timed out", after: "Job identifier returned immediately, work continues in the background, browser polls status" },
+        { label: "Output quality", before: "Whatever the model returned went in", after: "Deterministic repair enforces length, shape and keyword-count rules before anything is saved" },
+        { label: "Uptime signal", before: "A loading page was treated as proof the system worked", after: "Interface and backend health checked separately, with a health-based watchdog that restarts the API" },
+        { label: "Location", before: "City hardcoded per run", after: "Location derived per page, so one run spans multiple cities" },
       ],
 
       challenges: [
         {
-          problem: "A workflow tool's branching node quietly sent every action down the same path, so approve and reject behaved identically.",
-          solution: "Stopped relying on that node for routing and switched to expression-based logic — then found and fixed the same trap in four different places.",
-          outcome: "Approve, reject and edit each do the right thing now, verified end-to-end.",
+          problem: "The public page loaded normally while the backend that does the actual work was offline, so the system looked healthy when it was not.",
+          solution: "Split the health checks — the interface and the worker API are probed separately — and added a watchdog that restarts the API based on real health rather than whether a process name exists.",
+          outcome: "An outage now shows up as an outage, and the backend comes back without manual intervention.",
         },
         {
-          problem: "A data fetch silently hung inside the automation sandbox, so the portal showed 'no posts' for every client.",
-          solution: "Replaced the raw HTTP calls with the platform's native data nodes so the fetch couldn't hang.",
-          outcome: "Posts load reliably and the bulk download works.",
+          problem: "Page titles would not match because the site and the operator encoded the same characters differently — HTML entities, curly quotes and dash variants.",
+          solution: "Normalised both sides symmetrically before comparing, covering entities, punctuation variation and dash differences.",
+          outcome: "Titles match reliably, so updates land on the intended page instead of silently skipping.",
         },
         {
-          problem: "Page titles wouldn't match because the site and the user encoded the same characters differently.",
-          solution: "Normalised both sides — HTML entities, curly quotes and dashes — before comparing them.",
-          outcome: "Titles match reliably, so SEO updates land on the right page.",
+          problem: "Creating a large batch of tags exceeded practical timing and stalled the run.",
+          solution: "Reworked tag creation for concurrency and separated tag success from metadata success.",
+          outcome: "Metadata still saves and reports success even when optional tagging cannot finish.",
         },
         {
-          problem: "The self-hosted automation server crashed on every restart.",
-          solution: "Raised the file-descriptor limit in the start script and added an auto-restart watcher.",
-          outcome: "Restarts are stable and the workflows stay up.",
+          problem: "The AI examples leaked the wrong business context into generated copy, and it sometimes hardcoded a city or emitted characters that hurt SEO.",
+          solution: "Locked the prompt to the supplied industry, made it derive the city from each page, forbade the problem characters explicitly, and added deterministic repair as a second line of defence.",
+          outcome: "Copy stays on-industry and location-correct with clean formatting, verified per item.",
+        },
+      ],
+    },
+
+    {
+      id: "ftm-sms-followup",
+      title: "Fine Touch Marketing — Multi-Site SMS Follow-Up Automation (Client Project)",
+      category: ["automation", "wordpress"],
+
+      description:
+        "Problem: New patient leads arrived through web forms across 15-20 med-spa client sites and follow-up was manual and inconsistent — no guarantee a lead got a reply, and no way to run one messaging system across many sites without rebuilding it per site. Solution: A validated form submission resolves the correct client site, records the contact in that site's own data boundary, sends the approved welcome message from that site's own sender, and later evaluates the contact for scheduled follow-ups. Three lanes stay deliberately separate — immediate submission handling, scheduled follow-up evaluation, and operator broadcasts — so a marketing blast cannot interfere with lead capture. Routing, senders, templates, reply information, activation state and follow-up timing are all controlled sheet configuration, not code.",
+
+      fullDescription: `Fine Touch Marketing (FTM) is an ongoing paid client engagement — a med-spa marketing agency operating 15-20 WordPress client sites. This is the SMS follow-up system of three separate production systems built for them.
+
+WHAT IT DOES
+A customer submits a web form. The system resolves which client site the submission belongs to, records the contact inside that site's own data area, sends the configured welcome message from that site's configured sender, and later evaluates that contact against explicit due dates for scheduled follow-ups. A separate broadcast lane lets an authorized operator send or schedule approved campaign messages through the same site-aware configuration model.
+
+THREE SEPARATE LANES, ON PURPOSE
+Immediate submission handling, scheduled follow-up evaluation, and broadcast processing are kept apart. That separation makes a failure easy to isolate, lets each lane be tested on its own, and stops a marketing operation from interfering with form capture.
+
+CONFIGURATION OWNS CLIENT BEHAVIOR
+The platform serves many client websites without duplicating the workflow set per site. Routing, sender selection, message-template selection, reply information, activation state and follow-up timing are all driven by controlled sheet data. The automation code owns reusable behavior; client-specific wording and routing data stay configuration. Templates resolve site-specific first with a global fallback, and inbound reply guidance is assembled from per-site configuration rather than hardcoded client details.
+
+VERIFIED IMPLEMENTATION CHARACTERISTICS
+A registered form route is authoritative — an untrusted hidden field in the submission cannot redirect a lead into another client's messaging path. Active sites are evaluated from configuration rather than a hardcoded list in control code. A valid first submission can provision the canonical contact structure without a workflow edit. One broken or missing site data area is isolated so it cannot abort follow-up processing for every other site. Day-one sent state is written only after the messaging provider reports a successful send. Deployment checks compare editable workflow state against the active published state before completion is claimed.
+
+EXPLICIT NON-GOALS
+No credentials or secret material in business-facing documentation. No uncontrolled messaging to an unverified form, an inactive site, or an ambiguous destination. No client-specific message text embedded in reusable workflow code. No assumption that a provider accepted a message merely because a workflow step started.
+
+HONEST STATUS
+Presented as controlled and production-oriented, not infallible. Historical evidence includes a complete 29-case end-to-end suite from the earlier release cycle, later production incident reproductions, controlled repair tests, and a live missing-site fault-injection check. Those results demonstrate specific behaviors at their recorded dates. Ongoing value depends on disciplined site onboarding, approved message content, provider health, consent controls, active monitoring, and verification after every workflow or configuration change.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "JotForm (Lead + Booking Field Capture)",
+        "Server-Side Webhook Boundary (Validated External Event Intake)",
+        "n8n (Routing, Persistence, Scheduling, Broadcasting, State Transitions)",
+        "Twilio SMS API (Per-Site Sender Number)",
+        "Google Sheets API (Config, Per-Site Contacts, Templates, Broadcast, SMS Log)",
+        "Scheduled Follow-Up Engine (Explicit Due Dates + Sent-State Markers)",
+        "Idempotency + Delivery-State Integrity Controls",
+        "Deployment Parity Verification (Editable vs Published Workflow State)",
+        "Node.js (Workflow Code Nodes — Business Logic)",
+        "Python (Deployment Scripts + Automated Tests)",
+      ],
+
+      achievements: [
+        "Real ongoing paid client engagement — Fine Touch Marketing (med-spa marketing agency, 15-20 WordPress client sites)",
+        "Registered form route is authoritative: an untrusted hidden field cannot redirect a submission into another client's messaging path",
+        "Per-site failure containment — one missing or broken site data area no longer aborts follow-up processing for every other site",
+        "Sent state is written only after the provider confirms a successful send, so a failed send is no longer recorded as delivered",
+        "Canonical contact structure is provisioned on a valid first submission without requiring a workflow edit",
+        "Deployment parity check compares editable workflow state against the active published state before completion is claimed",
+        "Inbound reply guidance and active-site evaluation both come from configuration rather than hardcoded client details",
+        "Three isolated lanes — immediate, scheduled follow-up, broadcast — so a campaign blast cannot interfere with lead capture",
+        "Historical 29-case end-to-end suite passed, plus incident reproductions, controlled repair tests, and a live missing-site fault-injection check",
+      ],
+
+      metrics: {
+        client: "Fine Touch Marketing (med-spa marketing agency) — ongoing paid engagement",
+        status: "Operational multi-site SMS automation — controlled, not infallible",
+        lanes: "3 Separate Lanes: Immediate Welcome · Scheduled Follow-Ups · Operator Broadcast",
+        config: "Per-Site Routing, Sender, Templates, Reply Info, Activation, Follow-Up Timing — All Sheet-Driven",
+        isolation: "Per-Site Contact Boundaries · One Broken Site Cannot Stop the Others",
+        integrity: "Post-Send State Writes · Idempotent Webhook Handling · Deployment Parity Checks",
+        scale: "15-20 WordPress client sites from one workflow set — no per-site rebuild",
+      },
+
+      beforeAfter: [
+        { label: "Lead follow-up", before: "Manual and inconsistent — a lead might get no reply at all", after: "Instant welcome message plus scheduled follow-ups evaluated against explicit due dates" },
+        { label: "Routing trust", before: "A submitted hidden field could decide which client a lead belonged to", after: "The registered form route is authoritative and unknown routes fail safely" },
+        { label: "Blast radius", before: "One site's missing data aborted follow-up processing for every site", after: "Per-site containment — the other sites keep processing" },
+        { label: "Delivery truth", before: "State moved to sent when the step started", after: "State moves only after the provider confirms the send succeeded" },
+        { label: "Adding a site", before: "Duplicate the whole workflow set per site", after: "One configuration row — code stays untouched" },
+      ],
+
+      challenges: [
+        {
+          problem: "Routing relied on a hint submitted with the form, which meant the submission itself could decide which client's messaging path it entered.",
+          solution: "Made the registered form route the only authority for site resolution and made unknown routes fail safely instead of guessing.",
+          outcome: "Cross-client message leakage is structurally prevented, not just unlikely.",
         },
         {
-          problem: "The AI sometimes hardcoded a city and produced characters that hurt SEO.",
-          solution: "Rewrote the prompt to detect the city from each page and explicitly forbade the bad characters.",
-          outcome: "Every page gets correct, location-aware SEO with clean formatting.",
+          problem: "One site with missing data blocked the scheduled follow-up run for every other site.",
+          solution: "Isolated per-site processing so a missing or malformed data area is contained and reported rather than aborting the whole run.",
+          outcome: "Verified with a live fault-injection check — the remaining sites processed normally.",
+        },
+        {
+          problem: "Sent state was written when the send step began, so failed sends were recorded as delivered and never retried.",
+          solution: "Moved the state write to after the provider reports success.",
+          outcome: "Delivery records now match what actually happened.",
+        },
+        {
+          problem: "The editable draft of a workflow and the published version that actually runs had quietly diverged, so fixes appeared applied but were not live.",
+          solution: "Added a deployment check that compares editable state against active published state before any completion claim.",
+          outcome: "Deploys are proven rather than assumed.",
+        },
+        {
+          problem: "An authentication change drifted and silently broke calls that had been working.",
+          solution: "Added operational checks specifically for authentication regressions alongside routing-gap and missing-tab checks.",
+          outcome: "The failure surfaces as a monitored condition instead of a silent gap in follow-ups.",
+        },
+      ],
+    },
+
+    {
+      id: "ftm-social-media",
+      title: "Fine Touch Marketing — Social Content Generation & Approval Platform (Client Project)",
+      category: ["automation", "ai-ml"],
+
+      description:
+        "Problem: The agency needed repeatable social content for many small-business clients without designing every image and writing every caption by hand — and the real risk was not generation, it was whether clients would actually review, request changes and approve. Solution: A team member onboards a business, the system researches the brand from its website and social profiles, AI generates scheduled post concepts with captions, hashtags and images, the client reviews watermarked assets through a tokenized portal, and the agency gives final internal approval before clean assets are packaged for download. Two approval layers mean nothing reaches a client's channels unreviewed. Latest recorded evidence: 21/21 live end-to-end checks passed.",
+
+      fullDescription: `Fine Touch Marketing (FTM) is an ongoing paid client engagement — a med-spa marketing agency. This is the social content system of three separate production systems built for them. Stage: live-maintenance trial platform.
+
+THE ACTUAL PRODUCT RISK
+The trial architecture deliberately validates the workflow and the commercial process before committing to a full multi-tenant SaaS rewrite. The main product risk was never whether content could be generated — it was whether clients reliably review, request changes and approve through a portal. The system is built to answer that question.
+
+FLOW
+A team member onboards a business. The system researches that brand from its website and social profiles. AI generates scheduled post concepts with captions, hashtags and images. Watermarked review assets go to a tokenized client portal where the client can approve, request changes, request repeated image changes, or edit caption and hashtag text directly. After client approval the agency sees an internal awaiting-approval queue and gives or withholds final approval. Only then are clean, unwatermarked assets packaged as a ZIP for download.
+
+ROLES AND BOUNDARIES
+Three roles: administrator, team member, end client. Team visibility is isolated — a team member sees their own clients. Clean assets are protected until internal approval; review assets are watermarked. The verified product boundary ends at generation, review, internal approval and clean-asset packaging: approved assets are downloaded for manual scheduling. Direct publishing to a social network is explicitly not the current verified path, and neither is a production-grade multi-tenant identity platform, guaranteed scraping coverage, or a transactional database.
+
+ARCHITECTURE
+Static browser applications (admin/team dashboard plus tokenized client portal) call a public proxy boundary that forwards approved routes to an n8n workflow suite. n8n owns orchestration and state transitions against Google Sheets state — clients, posts, users, settings and notification/log tabs. Server-side utilities handle image generation and editing, brand research, watermarking, clean-asset access and archive creation.
+
+VERIFIED TEST EVIDENCE
+An 18-phase full workflow trial covering admin login, team creation and login, client creation by both admin and team, brand scraping, content generation with images/captions/hashtags, approval-link creation, portal viewing, client approve/reject/regenerate/edit, admin awaiting counts and final decision, clean ZIP generation, team visibility isolation, and exact test-data cleanup. A reliability suite recorded 17/17 passing after repairs for sheet quota pressure, notification propagation, regeneration version handling, duplicate response data and image-generation timing. The current feature suite recorded 21/21 live checks passing after adding clean download behavior, portal presentation, multi-post-per-day scheduling, client and admin bulk approval, direct caption/hashtag editing, repeated image-change requests, live admin status filters, administrator AI edit and image upload, and social-profile brand enrichment.
+
+HONEST STATUS
+These are dated verification records, not permanent guarantees — the relevant suite is re-run after workflow, frontend, provider or schema changes. Local workflow snapshots are not assumed to be the active production revision: workflow exports, deployment payloads and live state can diverge, so active workflow identity and source parity are confirmed before changing behavior.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "n8n Workflow Suite (Orchestration + State Transitions)",
+        "Static HTML/CSS/JavaScript Admin Dashboard + Tokenized Client Portal",
+        "Public Webhook Proxy + Protected API Boundary",
+        "Claude API (Anthropic) — Captions, Hashtags, Post Concepts",
+        "AI Image Generation + Server-Side Image Editing Utilities",
+        "Watermarking Pipeline (Protected Clean Assets vs Review Assets)",
+        "Google Sheets API (Clients, Posts, Users, Settings, Logs)",
+        "Brand Research (Website + Social Profile Enrichment)",
+        "ZIP Archive Generation (Clean Asset Delivery)",
+        "Twilio SMS (Optional Admin Notification on Client Approval)",
+      ],
+
+      achievements: [
+        "Real ongoing paid client engagement — Fine Touch Marketing (med-spa marketing agency)",
+        "Latest recorded integrated evidence: 21/21 live end-to-end checks passed (current feature suite)",
+        "18-phase full workflow trial passed, including team visibility isolation and exact test-data cleanup",
+        "Reliability suite 17/17 after repairs for sheet quota pressure, notification propagation, regeneration versioning, duplicate response data and image-generation timing",
+        "Two-layer approval: client approves in a tokenized portal, then the agency gives final internal approval before any clean asset is released",
+        "Clean assets protected behind internal approval — clients review watermarked versions only",
+        "Client portal supports approve, request changes, repeated image-change requests, and direct caption/hashtag editing",
+        "Brand research pulls from website and social profiles so generated content matches the actual business",
+        "Multi-post-per-day scheduling, bulk approval for both client and admin, and live admin status filters",
+        "Scope stated honestly: the verified boundary ends at clean-asset packaging for manual scheduling — direct social publishing is not claimed",
+      ],
+
+      metrics: {
+        client: "Fine Touch Marketing (med-spa marketing agency) — ongoing paid engagement",
+        status: "Live-maintenance trial platform (validating workflow before a multi-tenant rewrite)",
+        evidence: "21/21 live end-to-end checks · 18-phase workflow trial · 17/17 reliability suite",
+        approval: "Two Layers: Tokenized Client Portal → Internal Agency Approval → Clean Asset Release",
+        roles: "Administrator · Team Member · End Client (team visibility isolated)",
+        assets: "Watermarked Review Assets · Protected Clean Assets · ZIP Packaging",
+        boundary: "Generation → Review → Approval → Packaging. Manual scheduling; direct publishing not claimed",
+      },
+
+      beforeAfter: [
+        { label: "Content creation", before: "Design every image and write every caption by hand per client", after: "Brand-researched AI generation of scheduled post concepts with captions, hashtags and images" },
+        { label: "Approval", before: "Email back-and-forth with no record of who approved what", after: "Tokenized client portal then internal agency approval, with state tracked per post" },
+        { label: "Asset protection", before: "Finished assets shared before sign-off", after: "Clients see watermarked reviews; clean assets release only after internal approval" },
+        { label: "Revisions", before: "One-shot — a rejection meant starting over manually", after: "Request changes, repeated image-change requests, and direct caption/hashtag editing in the portal" },
+      ],
+
+      challenges: [
+        {
+          problem: "A working interface hid missing or stale backend behavior, so the UI implied features that the deployed automation did not actually perform.",
+          solution: "Established source-of-truth rules — confirm active workflow identity and source parity before trusting any local snapshot — and traced single actions end to end.",
+          outcome: "Deployment drift is caught deliberately instead of being discovered by a client.",
+        },
+        {
+          problem: "A workflow tool's routing nodes produced empty outputs, so branches that should have carried data silently carried nothing.",
+          solution: "Stopped depending on those nodes for routing and rebuilt the paths with explicit logic, then audited the rest of the suite for the same trap.",
+          outcome: "Approve, reject and edit each do the right thing, verified in the live suite.",
+        },
+        {
+          problem: "One logical result was multiplied into duplicates, and multi-slot generation ran in the wrong execution mode.",
+          solution: "Fixed item propagation so one logical result stays one record, and corrected the execution mode for multi-slot generation.",
+          outcome: "Post counts and per-day scheduling match what the operator asked for.",
+        },
+        {
+          problem: "The data provider hit quota pressure under real usage, which stalled the pipeline.",
+          solution: "Reworked access patterns to reduce read/write pressure and added explicit failure behavior for quota conditions.",
+          outcome: "Recorded in the 17/17 reliability pass after the repair.",
+        },
+        {
+          problem: "Image editing had no fallback, so a failed edit blocked the post entirely.",
+          solution: "Added fallback behavior so a copy success with an image failure degrades instead of dead-ending.",
+          outcome: "A partial failure produces a recoverable state the operator can act on.",
+        },
+      ],
+    },
+
+    {
+      id: "secure-hybrid-ai-hub",
+      title: "Secure Hybrid AI Development Hub — Fail-Closed Local AI Broker",
+      category: ["ai-ml", "fullstack", "compliance"],
+
+      description:
+        "Status first: Phase 1 is incomplete and validation is synthetic only as of 30 July 2026 — no live client onboarding, no real provider transmission, no real credentials, no regulated data, no staging or production use. Problem: Handing a coding agent unrestricted access means the model itself decides its own filesystem scope, network access, credentials, provider choice and whether work is 'done'. Solution: A fail-closed local control plane that owns those decisions instead. Models reason and propose; deterministic code grants scope, egress, credentials and completion status, and every privileged transition is a typed record. Private local coding is separated from internet research, credentials are used as capabilities without their values entering model context, and the strictest applicable policy always wins.",
+
+      fullDescription: `A fail-closed local control plane for software work performed with Codex, Claude Code, VS Code, terminal workflows, local Ollama models, and separately approved provider-backed workers. It replaces the idea of one unrestricted coding agent with a deterministic broker that owns scope, policy, task state, isolation, artifacts, verification evidence and release decisions.
+
+HONEST STATUS — READ THIS FIRST
+As of 30 July 2026, Phase 1 is incomplete and validation remains synthetic only. The most recent integrated authority-foundation source passed its scoped synthetic gates before integration; the latest Phase 1 closure task was cancelled before complete quality, independent review, integration, release, deployment or push. Live client onboarding, real provider transmission, real credentials, regulated data, staging, production and deployment remain prohibited until later evidence and exact per-project authorization exist. Historical results establish only the tested synthetic state of their reviewed revision — they do not establish Phase 1 closure, authorize a real provider, prove every operating system configuration, or replace per-client production acceptance.
+
+THE CENTRAL SECURITY RULE — SEPARATION OF AUTHORITY
+Models may reason and propose; they do not grant themselves filesystem scope, network access, credentials, providers, production authority or completion status. Every privileged transition is mediated by deterministic code and a typed record. Design principles: deterministic authority, credentials as capabilities, private coding separated from internet research, strictest policy wins, evidence establishes completion, and recovery is part of correctness.
+
+ARCHITECTURE
+The broker core provides typed schemas, SQLite-backed transactional state, content-addressed artifacts, atomic writes, safe path handling, task transitions, leases, approvals, audit events and dossier checkpoints, with the hub CLI as its public entry point. Around it sit a registry, worker boundaries and an evidence plane. Supported topologies are single repository, monorepo, polyrepo microservices, hybrid systems, and client separation — with explicit registration and opt-in rather than ambient discovery.
+
+INTENDED OPERATING PATH (STILL UNDER SYNTHETIC VERIFICATION)
+A developer submits one outcome-oriented request such as "add appointment cancellation and fully verify it". The broker resolves the registered system, applies the strictest effective policy, prepares isolated workspaces, records an explicit task-specific worker selection, validates changes, runs quality gates, repairs within configured limits, records evidence, and ends in an explicit verified, paused, blocked, cancelled or infrastructure-failure state.
+
+WHAT IT IS FOR
+Start work from a familiar developer surface without bypassing central policy. Avoid re-explaining a large system to every new model session. Keep unrelated clients, repositories, caches, artifacts and task state separated. Use local models for private high-volume implementation, and provider-backed workers only when the project profile and human approvals permit. Isolate public internet research from private repository access. Use credentials through controlled capabilities without placing their values in model context. Produce reproducible evidence for tests, reviews, releases, deployment decisions and recovery. Fail visibly when information, authority, quality, isolation or infrastructure is insufficient.
+
+FAILURE MODES ARE PART OF THE DESIGN
+Explicit handling for worker unavailable, malformed or incomplete worker output, resource conflict, missing authorization, scanner or isolation unavailable, quality gate failure, deployment health failure and process interruption.
+
+SNAPSHOT
+Package baseline secure-hybrid-hub 0.11.0 with reviewed development commits beyond the public baseline. Python 3.11+, standard library only. Target hosts Linux, WSL2 and macOS, subject to phase-specific validation. Source and test inventories are evolving — only deterministic results for the exact reviewed revision are authoritative, which is why no line or test counts are quoted here. Apache-2.0.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "Python 3.11+ (Standard Library Only — No Runtime Dependencies)",
+        "SQLite-Backed Transactional Task State",
+        "Typed Schemas + Typed Privileged-Transition Records",
+        "Content-Addressed Artifact Store + Atomic Writes + Safe Path Handling",
+        "Policy Engine (Classification-Based Egress, Strictest-Policy-Wins)",
+        "Capability-Based Secret Handling (Values Never Enter Model Context)",
+        "Worker Boundary Isolation (Local Ollama + Approved Provider Workers)",
+        "Isolated Research Lane (Internet Research Separated from Repo Access)",
+        "Leases + Approvals + Audit Events + Dossier Checkpoints",
+        "Quality Engine (Layered Verification Gates)",
+        "Hub CLI (Public Entry Point)",
+        "Apache-2.0 Licensed",
+      ],
+
+      achievements: [
+        "Designed around separation of authority: the model proposes, deterministic code decides scope, egress, credentials, providers and completion — every privileged transition is a typed record",
+        "Fail-closed by default — insufficient information, authority, quality, isolation or infrastructure produces a visible failure rather than a silent best-effort result",
+        "Credentials modelled as capabilities: a worker can use a secret without the secret's value ever entering model context",
+        "Private coding and public internet research are separate lanes by construction, not by prompt instruction",
+        "Strictest-policy-wins evaluation across project, client and task scope, with explicit registration and opt-in instead of ambient repository discovery",
+        "Completion is an evidence claim: verified, paused, blocked, cancelled and infrastructure-failure are distinct explicit end states",
+        "Multi-topology design — single repo, monorepo, polyrepo microservices, hybrid systems, and hard client separation",
+        "Documented failure-and-recovery behavior for worker outage, malformed output, resource conflict, missing authorization, scanner unavailability, gate failure, deployment health failure and process interruption",
+        "Scope stated honestly in the technical overview: Phase 1 incomplete, synthetic validation only, no real providers or regulated data until per-project authorization exists",
+      ],
+
+      featured: true,
+
+      metrics: {
+        status: "Phase 1 INCOMPLETE — synthetic validation only as of 30 July 2026",
+        prohibited: "No live client onboarding, real provider transmission, real credentials, regulated data, staging or production",
+        baseline: "secure-hybrid-hub 0.11.0 · Python 3.11+ · standard library only",
+        hosts: "Linux · WSL2 · macOS (subject to phase-specific validation)",
+        principle: "Models propose; deterministic code grants scope, egress, credentials and completion",
+        surfaces: "Codex · Claude Code · VS Code · terminal · local Ollama · approved provider workers",
+        license: "Apache-2.0",
+      },
+
+      beforeAfter: [
+        { label: "Authority", before: "The coding agent decides its own filesystem scope, network access and provider", after: "A deterministic broker grants each of those, and records the grant as a typed transition" },
+        { label: "Credentials", before: "Secrets pasted into model context to get work done", after: "Secrets used through capabilities — the value never enters the model's context" },
+        { label: "Research vs code", before: "One agent with both private repo access and open internet access", after: "Separate lanes — isolated research cannot reach private repositories" },
+        { label: "\"Done\"", before: "The model says it finished", after: "Completion is an evidence claim with distinct verified / paused / blocked / cancelled / infrastructure-failure states" },
+        { label: "Failure", before: "Silent best-effort when something is missing", after: "Fail-closed and visible when information, authority, quality or isolation is insufficient" },
+      ],
+
+      challenges: [
+        {
+          problem: "An assistant that can grant itself scope, network access or credentials makes every safety rule advisory — a prompt instruction is not an access control.",
+          solution: "Moved every privileged decision out of the model and into deterministic code with typed records, so policy is enforced by the code path rather than requested politely in a prompt.",
+          outcome: "Scope, egress, credentials, provider choice and completion status are all decisions the model can propose but never make.",
+        },
+        {
+          problem: "Work across multiple clients in one environment risks bleeding repositories, caches, artifacts and task state across boundaries that must stay separate.",
+          solution: "Bounded per-task workspaces with leases, explicit registration and opt-in, and hard client separation as a supported topology.",
+          outcome: "Client separation is structural rather than a convention someone has to remember.",
+        },
+        {
+          problem: "A closure task was pushed toward completion before quality, independent review and integration were actually finished — the exact pattern this project exists to prevent.",
+          solution: "Cancelled the task rather than declaring it done, and recorded the cancellation as the current state in the technical overview instead of publishing a completion claim.",
+          outcome: "The documented status says Phase 1 incomplete with synthetic validation only — which is what the evidence supports.",
+        },
+      ],
+    },
+
+    {
+      id: "vitalprobe",
+      title: "VitalProbe — Healthcare AI Safety Testing & Evidence",
+      category: ["ai-ml", "healthcare", "compliance"],
+
+      description:
+        "Problem: A healthcare assistant that correctly escalated chest pain last month can quietly become vague, dismissive or unsafe after a prompt, model, retrieval-corpus or provider version change — and ordinary application tests rarely express conversational safety expectations at all. Solution: A local-first tool that runs chatbots, RAG applications and AI agents through synthetic patient scenarios, evaluates the responses with deterministic checks plus optional semantic judges, and produces reviewable JSON and self-contained HTML evidence showing what was tested, what passed, what failed and why each verdict was assigned. No-PHI by architecture — fictional synthetic patients only, no hosted accounts, no telemetry, no silent third-party transmission. Current evidence: 149 tests passing, Ruff clean, strict mypy clean.",
+
+      fullDescription: `A local-first safety and evidence-testing product for healthcare and wellness AI assistants. It runs chatbots, retrieval applications and AI agents through synthetic patient scenarios, evaluates the observed responses, and produces reviewable JSON and self-contained HTML evidence showing what was tested, what passed, what failed, and why each verdict was assigned.
+
+WHY IT EXISTS
+Healthcare-oriented assistants change behavior when prompts, models, code, retrieval corpora, safety policies or provider versions change. A response that previously escalated chest pain or crisis language may later become vague, dismissive, overly reassuring or unsafe. Ordinary application tests rarely express those conversational safety expectations clearly. VitalProbe converts them into repeatable synthetic scenarios and explicit evidence — so a builder can test an assistant before a demonstration, compare a release against a baseline, inspect individual checks, and hand a self-contained dossier to a reviewer.
+
+NO-PHI BY ARCHITECTURE
+Fictional synthetic patients only. No production conversations, no real patient records, no hosted accounts, no server-side customer-response storage, no telemetry, no analytics, no silent third-party transmission. This boundary is enforced in project rules and tests because it is part of the product design rather than a policy note.
+
+ARCHITECTURE — DEPENDENCIES FLOW TOWARD THE CORE
+Contracts (typed test cases, responses, checks, verdicts, run artifacts) · Packs (suite discovery, YAML loading, schema validation, draft/review status) · Targets (shared adapter protocol with REST and MCP implementations) · Evaluators (deterministic response and trajectory checks) · Judges (semantic judge protocol with local and opt-in provider backends) · Runner (concurrency, retries, target calls, checks, aggregation, timing) · Reporting (canonical JSON and self-contained HTML dossier) · Experience (local runs, baselines, regressions, labels, learning inputs) · Entitlements (offline signed-license verification and feature gates) · Simulator (multi-turn fictional patient generation and trajectory evaluation) · Dashboard (local clinical-ledger views and trigger-run workflow) · MCP (target adapter and licensed product-side agent tools). New product behavior belongs in the engine rather than being duplicated in a UI or command shell.
+
+WHAT IT DELIVERS
+Reproduce important safety scenarios without real patient data. Distinguish product findings from network and configuration errors. Combine deterministic checks with optional semantic scoring. Preserve exact synthetic inputs, observed outputs, evidence, latency and limitations. Detect PASS-to-WARN or PASS-to-FAIL regressions between runs. Track run history locally without accounts or hosted storage. Generate adversarial draft variants from failures while keeping a human review gate. Test both single-turn and multi-turn behavior. Integrate through CLI, dashboard, REST, MCP, Docker and agent-oriented tooling.
+
+VERIFICATION EVIDENCE
+55 Python source modules, approximately 4,836 source lines, 74 classes and 187 functions. 21 top-level test modules and approximately 3,169 test lines. 149 automated tests passing at the current checkpoint, Ruff clean, strict mypy clean. The automated suite verifies the implemented source and synthetic scenarios — it does not replace human clinical review, human calibration labels, attorney review, or a customer-specific acceptance process.
+
+DELIBERATE LIMITS
+VitalProbe does not certify a target, grant regulatory approval, replace clinical judgment, or provide legal advice. Reports describe observed results and limitations. Clinical and legal interpretation stays with qualified humans, and the product tiers keep explicit human-only gates. Law mapping is informational. Pre-release: package version 0.1.0.dev0, Python 3.12+, Apache-2.0 for the public code repository. Default operating cost is zero — local and synthetic workflows run without paid provider calls.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "Python 3.12+ (55 Modules, ~4,836 Source Lines)",
+        "Typed Test Contracts (Cases, Responses, Checks, Verdicts, Run Artifacts)",
+        "YAML Suite Loading + Schema Validation (Draft/Review Status)",
+        "REST + MCP Target Adapters (Shared Adapter Protocol)",
+        "Deterministic Evaluators (Response + Trajectory Checks)",
+        "Semantic Judges (Local + Opt-In Provider Backends)",
+        "Concurrent Runner with Bounded Retries + Timing Capture",
+        "Canonical JSON + Self-Contained HTML Evidence Dossier",
+        "Baseline + Regression Comparison (PASS→WARN / PASS→FAIL Detection)",
+        "Multi-Turn Synthetic Patient Simulator",
+        "Offline Signed-License Entitlements (Open-Core Feature Gates)",
+        "Local Dashboard (Clinical Ledger Views + Trigger Runs)",
+        "LangGraph Example + Product-Side MCP Server",
+        "Docker Packaging + CLI",
+        "Ruff + strict mypy (both clean) · 149 Tests Passing",
+      ],
+
+      achievements: [
+        "149 automated tests passing at the current checkpoint, with Ruff clean and strict mypy clean",
+        "21 top-level test modules and approximately 3,169 test lines against 55 source modules and roughly 4,836 source lines",
+        "No-PHI architecture enforced in project rules and tests — synthetic fictional patients only, no hosted accounts, no telemetry, no silent third-party transmission",
+        "Deterministic checks combined with optional semantic judges, so a finding can be traced to a rule rather than a model's opinion",
+        "Product findings are separated from network and configuration errors, so an infrastructure failure is not reported as a safety failure",
+        "Regression detection between runs — catches PASS-to-WARN and PASS-to-FAIL drift after a prompt, model, corpus or provider change",
+        "Self-contained HTML dossier plus canonical JSON, so a reviewer can be handed evidence without needing the tool installed",
+        "Multi-turn synthetic patient simulator with trajectory evaluation, not just single-turn prompts",
+        "Both REST and MCP target adapters, plus a licensed product-side MCP server and a LangGraph example",
+        "Runs at zero provider cost by default — local and synthetic workflows need no paid calls",
+        "Explicit human-only gates: the tool does not certify a target, grant regulatory approval, replace clinical judgment or give legal advice",
+      ],
+
+      featured: true,
+      isHealthcare: true,
+
+      metrics: {
+        status: "Pre-release — package 0.1.0.dev0, public source distribution",
+        tests: "149 automated tests passing · Ruff clean · strict mypy clean",
+        source: "55 Python modules · ~4,836 source lines · 74 classes · 187 functions",
+        testSource: "21 top-level test modules · ~3,169 test lines",
+        privacy: "No-PHI by architecture — synthetic fictional patients only, no telemetry, no hosted storage",
+        surfaces: "CLI · Local Dashboard · Docker Demo · JSON/HTML Evidence · REST/MCP Targets · LangGraph Example",
+        cost: "Zero default operating cost — local and synthetic workflows need no paid provider calls",
+        license: "Apache-2.0 (public code repository)",
+      },
+
+      beforeAfter: [
+        { label: "Safety testing", before: "Nobody notices the assistant stopped escalating chest pain until a user reports it", after: "Synthetic scenarios re-run on every change, with PASS→WARN and PASS→FAIL regressions flagged" },
+        { label: "Evidence", before: "\"We tested it\" with nothing a reviewer can inspect", after: "Canonical JSON plus a self-contained HTML dossier showing inputs, outputs, verdicts and why" },
+        { label: "Patient data", before: "Safety testing tempts you toward real conversations and real records", after: "No-PHI by architecture — fictional synthetic patients only, enforced in rules and tests" },
+        { label: "Failure attribution", before: "A network timeout looks the same as an unsafe answer", after: "Product findings are separated from network and configuration errors" },
+        { label: "Turn depth", before: "Single-prompt spot checks", after: "Multi-turn synthetic patient trajectories evaluated end to end" },
+      ],
+
+      challenges: [
+        {
+          problem: "A safety tool that scores answers with a model alone produces findings nobody can audit — the verdict is just another opinion.",
+          solution: "Made deterministic checks the base layer and semantic judges optional on top, with a documented calibration boundary between them.",
+          outcome: "Every verdict traces to either an explicit rule or a clearly labelled semantic score.",
+        },
+        {
+          problem: "An unreachable target or a malformed judge response can be misread as the assistant failing a safety check.",
+          solution: "Separated product findings from network and configuration errors, and gave each failure mode explicit handling — invalid suite, target unreachable, judge unavailable, learning generator failure, license invalid, dashboard trigger error.",
+          outcome: "An infrastructure problem reports as an infrastructure problem, not as a safety regression.",
+        },
+        {
+          problem: "Testing healthcare AI safety creates pressure to use real conversations and real patient records, which is exactly the data that must not be involved.",
+          solution: "Built the no-PHI boundary into the architecture and enforced it in project rules and tests rather than documenting it as a policy.",
+          outcome: "The tool cannot quietly drift into handling PHI, because the tests would fail.",
+        },
+        {
+          problem: "Auto-generating adversarial test variants from failures risks a tool that grades itself and drifts away from clinical reality.",
+          solution: "Kept learning-draft generation behind a mandatory human review gate, with human-only gates preserved in the product tiers.",
+          outcome: "Drafts accelerate coverage while a qualified human still decides what counts as a valid safety expectation.",
         },
       ],
     },
@@ -1569,6 +2018,13 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "WhatsApp AI Chatbots (Interakt Webhooks, HMAC, SSE Streaming)", tier: "expert" },
         { name: "Dialogflow ES", tier: "proficient" },
         { name: "Prometheus / Grafana / Loki / Jaeger", tier: "proficient" },
+        { name: "AI Safety Evaluation Harnesses (Deterministic Checks + Semantic Judges)", tier: "expert" },
+        { name: "LLM Regression Baselines (PASS→WARN / PASS→FAIL Drift Detection)", tier: "expert" },
+        { name: "MCP Server Authoring + REST/MCP Target Adapters", tier: "proficient" },
+        { name: "Fail-Closed AI Policy Brokering (Deterministic Authority Separation)", tier: "proficient" },
+        { name: "Local Model Workers (Ollama) + Bounded Provider Fallback", tier: "proficient" },
+        { name: "Multi-Turn Synthetic Scenario Simulation + Trajectory Evaluation", tier: "proficient" },
+        { name: "Evidence Artifacts for AI Runs (Canonical JSON + Self-Contained HTML Dossier)", tier: "expert" },
       ],
     },
     {
@@ -1587,6 +2043,11 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "Zero-Cost Hosting Architecture (Cloudflare Pages + Always-Free GCP VM + Let's Encrypt)", tier: "expert" },
         { name: "Security & Compliance Scanning (Checkov, Prowler, Trivy, OWASP ZAP, SonarQube, Inferno)", tier: "expert" },
         { name: "AWS GuardDuty + Security Hub (Threat Detection)", tier: "proficient" },
+        { name: "Health-Based Service Supervision + Watchdogs (Not Process-Name Checks)", tier: "expert" },
+        { name: "Deployment Parity Verification (Local vs Published/Live State)", tier: "expert" },
+        { name: "Capability-Based Secret Handling (Values Never Enter Model Context)", tier: "proficient" },
+        { name: "Ruff + strict mypy + Python Quality Gates", tier: "expert" },
+        { name: "gitleaks + Pre-Commit Security Gates", tier: "expert" },
       ],
     },
     {
@@ -1617,6 +2078,9 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "Strapi + Contentful (Headless CMS)", tier: "proficient" },
         { name: "MongoDB / Mongoose", tier: "proficient" },
         { name: "Twilio (SMS) + AWS SES / Mailgun (Transactional Email)", tier: "proficient" },
+        { name: "Python Flask (Async Job APIs, Background Workers, Status Polling)", tier: "proficient" },
+        { name: "SQLite Transactional State + Content-Addressed Artifact Stores", tier: "proficient" },
+        { name: "AIOSEO API (Bulk WordPress Metadata Persistence)", tier: "expert" },
       ],
     },
     {
@@ -1646,6 +2110,23 @@ Full social media content pipeline on a self-hosted VPS (209.182.212.164). WF3 g
         { name: "Keyboard Navigation & Focus Management", tier: "proficient" },
         { name: "WordPress/Elementor ADA Fixes (PHP Code Snippets)", tier: "expert" },
         { name: "ADA Lawsuit Risk Reduction (Overlay Removal)", tier: "proficient" },
+      ],
+    },
+    {
+      category: "Automation & Workflow Ops",
+      icon: "Workflow",
+      color: "primary",
+      skills: [
+        { name: "n8n Multi-Site Workflow Suites (Cloud + Self-Hosted VPS)", tier: "expert" },
+        { name: "Config-Driven Multi-Tenancy (One Row Per Site, Zero Hardcoded Values)", tier: "expert" },
+        { name: "Webhook Intake Boundaries + Payload Validation", tier: "expert" },
+        { name: "Idempotency + Delivery-State Integrity (Post-Send State Writes)", tier: "expert" },
+        { name: "Per-Site Failure Containment (One Broken Tenant Cannot Stop the Rest)", tier: "expert" },
+        { name: "Scheduled Follow-Up Engines (Explicit Due Dates + Sent Markers)", tier: "expert" },
+        { name: "Tokenized Client Approval Portals (Two-Layer Approval Gates)", tier: "expert" },
+        { name: "Watermarking + Protected Clean-Asset Delivery + ZIP Packaging", tier: "proficient" },
+        { name: "Google Sheets as Controlled Config & Operational State", tier: "expert" },
+        { name: "Google OAuth 2.0 Token Refresh Handling", tier: "proficient" },
       ],
     },
     {

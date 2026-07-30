@@ -33,3 +33,12 @@ AGENTS.md
 
 # CV & Career-Ops (personal — never commit)
 CV/
+
+# Claude auto memory (moved here via autoMemoryDirectory — private, never commit)
+/memory/
+
+# Private project docs (secrets, war-stories, defect history — never commit)
+CREDENTIALS.md
+PROJECT-DOSSIER.md
+DEFECT-LOG.md
+CLAUDE.local.md

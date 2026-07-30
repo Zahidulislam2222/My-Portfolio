@@ -11,6 +11,7 @@ import {
   Shield,
   Zap,
   ShoppingBag,
+  Workflow,
   type LucideIcon,
 } from "lucide-react";
 import { portfolioConfig } from "@/config/portfolio.config";
@@ -26,6 +27,7 @@ const iconMap: Record<string, LucideIcon> = {
   Shield,
   Zap,
   ShoppingBag,
+  Workflow,
 };
 
 const tierStyles: Record<string, { label: string; className: string }> = {

@@ -750,7 +750,12 @@ export const ProjectsSection = () => {
     (p) => activeCategory === "all" || p.category.includes(activeCategory)
   );
   // Pin these to the front of the featured grid; everything else keeps its order
-  const FEATURED_ORDER = ["yuktha-wellness", "ftm-automation-suite"];
+  const FEATURED_ORDER = [
+    "yuktha-wellness",
+    "ftm-seo-automation",
+    "secure-hybrid-ai-hub",
+    "vitalprobe",
+  ];
   const featuredProjects = filteredProjects
     .filter((p) => p.featured)
     .sort((a, b) => {
