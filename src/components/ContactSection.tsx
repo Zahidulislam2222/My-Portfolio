@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import emailjs from "@emailjs/browser";
+import { emailSettings } from "@/config/environment";
 
 export const ContactSection = () => {
   const { personal, socials } = portfolioConfig;
@@ -32,11 +33,12 @@ export const ContactSection = () => {
     setIsSubmitting(true);
 
     try {
+      if (!emailSettings) throw new Error("CONTACT_NOT_CONFIGURED");
       await emailjs.sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
+        emailSettings.serviceId,
+        emailSettings.templateId,
         formRef.current!,
-        import.meta.env.VITE_PUBLIC_KEY
+        emailSettings.publicKey
       );
 
       setIsSubmitted(true);
