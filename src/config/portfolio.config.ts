@@ -653,13 +653,13 @@ Eleven offline integration and behavior scripts covering connector parsing, hybr
 
     {
       id: "everyday-dental-surgery",
-      title: "EDS Dental — Clinic Platform for Real Client",
+      title: "Everyday Dental — Fictional Clinic Demonstration (Synthetic Data)",
       category: ["healthcare", "fullstack", "compliance"],
 
       description:
-        "Problem: A real dental clinic in Dhaka needed a compliant digital platform — not a WordPress template, but a system that passes HIPAA audits. Solution: A production-grade, HIPAA / FHIR R4 / SOC 2 Type II-ready dental clinic platform with Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
+        "Fictional portfolio demonstration (Sep 2026 source doc): a synthetic dental-practice site with a sample patient journey — no real clinic, patients or payments. All 11 historical Edge Functions are disabled by a deployed guard. Historical clinical prototype (documented with known security defects, not production-ready): Supabase backend, 11 Edge Functions, 11 database migrations, AES-256 PHI encryption, 4-role RBAC with Row-Level Security, FHIR R4 interoperability (10 resource types, 3 terminology systems), Stripe payments, bilingual i18n (English/Bengali), three-tier animation system (GSAP + Framer Motion + Tailwind), 93% compliance audit score (56/60 checks), and premium UI components (TiltCard, MagneticButton, CursorGlow).",
 
-      fullDescription: `Everyday Dental Surgery & Implant Center is a production-grade healthcare web application built to HIPAA 2026, FHIR R4, and SOC 2 Type II compliance standards for a dental clinic in Dhaka, Bangladesh.
+      fullDescription: `Everyday Dental Surgery & Implant Center is a fictional portfolio demonstration using synthetic data only. It is not a real clinic, a working patient portal or a HIPAA/SOC 2 certified system. The sections below describe the historical clinical prototype, whose known defects (including unauthenticated notification and breach handlers) are documented in the current technical overview; its public endpoints are disabled.
 
 PLATFORM
 23 routes (16 public + 5 auth + 2 protected) with lazy loading, 11 Supabase Edge Functions, 11 database migrations, 4 user roles (Patient, Doctor, Receptionist, Admin), bilingual interface (English + Bengali).
@@ -704,10 +704,10 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
         "pgcrypto + Vault (AES-256 PHI Encryption)",
         "Row-Level Security (Database-Enforced RBAC)",
         "pg_cron (Breach Detection + Data Retention Jobs)",
-        "Stripe (PaymentIntents, Server-Side Secret Key, PCI Compliant)",
+        "Stripe (PaymentIntents via Edge Function — historical prototype, disabled)",
         "HIPAA 2026 (95% \u2014 18/19 Checks Passing)",
         "HL7 FHIR R4 (100% \u2014 16/16 Checks Passing)",
-        "SOC 2 Type II Ready (83% \u2014 5/6 Checks Passing)",
+        "SOC 2-style policy drafts (historical self-assessment, not an audit)",
         "3 Terminology Systems (SNOMED CT, ICD-10-CM, LOINC)",
         "10 FHIR R4 Resource Types",
         "10 SOC 2 Policy Documents",
@@ -715,7 +715,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
         "Cloudflare Turnstile (CAPTCHA)",
         "15-Min HIPAA Session Timeout (BroadcastChannel Cross-Tab)",
         "Trigger-Based Audit Logging (IP, User Agent, PHI Access)",
-        "Breach Detection (Hourly Cron + Auto-Containment)",
+        "Breach-detection jobs (historical prototype; handler documented as unauthenticated)",
         "Bilingual i18n (English + Bengali, Inline t() System)",
         "Cloudflare Pages (SPA Deployment)",
         "PWA (Service Worker, Manifest, Offline Fallback)",
@@ -723,12 +723,12 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
       ],
 
       achievements: [
-        "93% Compliance Audit Score: 56/60 checks across HIPAA (95%), FHIR R4 (100%), SOC 2 (83%), zero critical failures",
+        "Historical self-assessment checklist (56/60 items) — not a certification; current doc lists material security defects",
         "Row-Level Security on all PHI tables \u2014 database-enforced, not application-level",
         "AES-256 PHI encryption (pgcrypto Vault), breach detection, 15-min session timeout, consent enforcement",
         "10 FHIR R4 resource types with REST API, 3 terminology systems, 421-line client-side validator",
         "11 Supabase Edge Functions + 11 database migrations covering RBAC, RLS, encryption, audit, FHIR, retention",
-        "Stripe server-side payments: PaymentIntent via Edge Function, PCI compliant",
+        "Stripe PaymentIntent via Edge Function in the historical prototype; payments disabled in the public demo",
         "Three-tier animation: GSAP + ScrollTrigger, Framer Motion, Tailwind keyframes + Lenis smooth scrolling",
         "Premium UI: TiltCard, MagneticButton, CursorGlow, Dental3DObject, Lottie animations",
         "23 routes, 12 service categories, 50+ pricing items, bilingual (English + Bengali)",
@@ -752,7 +752,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
       isHealthcare: true,
 
       metrics: {
-        compliance: "HIPAA 2026 (95%) \u00b7 FHIR R4 (100%) \u00b7 SOC 2 Type II Ready (83%) \u00b7 93% Overall",
+        compliance: "None claimed — fictional synthetic demonstration; historical self-assessment only",
         pages: "23 Routes (16 Public + 5 Auth + 2 Protected) \u00b7 12 Service Categories \u00b7 50+ Pricing Items",
         backend: "11 Edge Functions \u00b7 11 Migrations \u00b7 AES-256 Encryption \u00b7 RLS",
         fhirResources: "10 FHIR R4 Resource Types",
@@ -1925,7 +1925,7 @@ These are dated verification records, not permanent guarantees. Local snapshots 
     },
 
     {
-      id: "ftm-security-incident-response",
+      id: "wordpress-incident-response",
       title: "Server-Wide WordPress Malware Containment & Incident Response (Client Engagement)",
       category: ["security", "wordpress", "compliance"],
 

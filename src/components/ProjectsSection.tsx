@@ -768,7 +768,7 @@ export const ProjectsSection = () => {
   );
   // Pin these to the front of the featured grid; everything else keeps its order
   const FEATURED_ORDER = [
-    "ftm-security-incident-response",
+    "wordpress-incident-response",
     "yuktha-wellness",
     "ftm-seo-automation",
     "secure-hybrid-ai-hub",

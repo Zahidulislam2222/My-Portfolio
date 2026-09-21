@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Code2,
   Copy,
+  FileText,
   Github,
   Layers3,
   Linkedin,
@@ -28,6 +29,10 @@ import {
   projectResources,
   type StudioProject,
 } from "@/config/studio.config";
+import {
+  documentBasePath,
+  projectEvidence,
+} from "@/config/project-evidence.config";
 import "./studio.css";
 import HeroShowcase from "./HeroShowcase";
 
@@ -261,6 +266,7 @@ function ProjectDialog({
   const resources = project
     ? projectResources(project.id)
     : { links: [], liveUrl: undefined };
+  const evidence = project ? projectEvidence[project.id] : undefined;
   return (
     <dialog
       ref={dialog}
@@ -288,6 +294,18 @@ function ProjectDialog({
             <span>{config.labels.projectStatus}</span>
             <p>{project.status}</p>
           </div>
+          {evidence && (
+            <div className="studio-dialog-engagement">
+              <span>{config.labels.engagement}</span>
+              <p>
+                <strong>{evidence.engagement.type}</strong>
+                {evidence.engagement.client && (
+                  <> · {evidence.engagement.client}</>
+                )}
+              </p>
+              <p>{evidence.engagement.detail}</p>
+            </div>
+          )}
           <h3>{config.labels.projectScope}</h3>
           <p className="studio-dialog-detail">{project.detail}</p>
           <div className="studio-tags">
@@ -295,7 +313,42 @@ function ProjectDialog({
               <span key={tag}>{tag}</span>
             ))}
           </div>
+          {evidence && (
+            <>
+              <h3>{config.labels.problemsFixed}</h3>
+              <ol className="studio-dialog-challenges">
+                {evidence.challenges.map((item) => (
+                  <li key={item.problem}>
+                    <p>
+                      <span>{config.labels.problem}</span>{" "}
+                      {item.problem}
+                    </p>
+                    <p>
+                      <span>{config.labels.fix}</span>{" "}
+                      {item.fix}
+                    </p>
+                    <p>
+                      <span>{config.labels.result}</span>{" "}
+                      {item.result}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </>
+          )}
           <div className="studio-dialog-links">
+            {evidence && (
+              <a
+                className="studio-button secondary"
+                href={`${documentBasePath}${evidence.document.file}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FileText size={16} />
+                {evidence.document.label}
+                <ArrowUpRight size={15} />
+              </a>
+            )}
             {resources.links.map((link) => (
               <a
                 className="studio-button secondary"
@@ -339,11 +392,17 @@ function WorkSection({
     config.labels.filters[0],
   );
   const [indexOpen, setIndexOpen] = useState(false);
-  const matches = studioProjects.filter(
-    (project) =>
-      filter === config.labels.filters[0] || project.category === filter,
+  const clientView = filter === config.labels.clientFilter;
+  const matches = studioProjects.filter((project) =>
+    filter === config.labels.filters[0]
+      ? true
+      : clientView
+        ? projectEvidence[project.id]?.engagement.type === "Client project"
+        : project.category === filter,
   );
-  const featured = matches.filter((project) => project.featured);
+  const featured = clientView
+    ? matches
+    : matches.filter((project) => project.featured);
   return (
     <section id="projects" className="studio-section studio-shell">
       <Reveal className="studio-section-heading">
@@ -403,11 +462,20 @@ function WorkSection({
               </div>
               <h3>{project.name}</h3>
               <p>{project.summary}</p>
+              {projectEvidence[project.id]?.engagement.client && (
+                <p className="studio-project-client">
+                  <span>{config.labels.clientLabel}</span>
+                  {projectEvidence[project.id].engagement.client}
+                </p>
+              )}
               <div className="studio-project-evidence">
                 <span className="studio-eyebrow">
                   {config.labels.buildLabel}
                 </span>
-                <p>{config.projectHighlights[project.id]}</p>
+                <p>
+                  {config.projectHighlights[project.id] ??
+                    projectEvidence[project.id]?.engagement.detail}
+                </p>
                 <span className="studio-eyebrow">
                   {config.labels.deliveryLabel}
                 </span>

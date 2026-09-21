@@ -194,7 +194,7 @@ export const studioProjects = z.array(projectSchema).parse([
     evidence: "Operating model and workflow overview, July 2026",
   },
   {
-    id: "ftm-security-incident-response",
+    id: "wordpress-incident-response",
     name: "Incident Response & Recovery",
     category: "Cloud & Systems",
     domain: "SECURITY ENGINEERING",
@@ -410,7 +410,15 @@ export const studioConfig = {
     workTitle: "The work behind\nthe interface.",
     workIntro:
       "AI assistants, operational tools and connected applications. See what each system does, how it was built and where it stands today.",
-    filters: ["All work", "AI & Agents", "Cloud & Systems", "Web & Commerce"],
+    filters: [
+      "All work",
+      "Client work",
+      "AI & Agents",
+      "Cloud & Systems",
+      "Web & Commerce",
+    ],
+    clientFilter: "Client work",
+    clientLabel: "CLIENT",
     allProjects: "Explore the full project index",
     lessProjects: "Close project index",
     readProject: "Explore project",
@@ -449,6 +457,11 @@ export const studioConfig = {
     technologies: "BUILT WITH",
     allCount: "projects in the index",
     projectStatus: "CURRENT SCOPE",
+    engagement: "WHO IT'S FOR",
+    problemsFixed: "PROBLEMS I SOLVED",
+    problem: "Problem",
+    fix: "Fix",
+    result: "Result",
   },
   expertise: [
     {
