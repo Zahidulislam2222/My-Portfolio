@@ -54,6 +54,23 @@ describe("engineering studio content contract", () => {
     expect(projectResources("healthcode-analysis").liveUrl).toBe(
       "https://healthcodeanalysis.zahidul-islam.com/",
     );
+    expect(projectResources("equipcert").liveUrl).toBe(
+      "https://equipcert.zahidul-islam.com/",
+    );
+    expect(projectResources("everyday-dental-surgery").liveUrl).toBe(
+      "https://dental.zahidul-islam.com/",
+    );
+    expect(projectResources("regenai-shopify").liveUrl).toBe(
+      "https://regenai.zahidul-islam.com/",
+    );
+    // Kindred's subdomain is a Shopify password page; no live link until it opens.
+    expect(projectResources("kindred-grove").liveUrl).toBeUndefined();
+    for (const project of studioProjects) {
+      const url = projectResources(project.id).liveUrl ?? "";
+      expect(url, project.id).not.toMatch(
+        /\.pages\.dev|\.vercel\.app|\.web\.app|\.workers\.dev|\.myshopify\.com/,
+      );
+    }
     for (const project of studioProjects) {
       const resources = projectResources(project.id);
       for (const link of resources.links)
@@ -78,6 +95,12 @@ describe("engineering studio content contract", () => {
     expect(
       studioProjects.find((project) => project.id === "mediconnect-v3")?.status,
     ).toContain("development");
+    const regenai = studioProjects.find((project) => project.id === "regenai-shopify");
+    expect(regenai?.status).toContain("in progress");
+    expect(regenai?.detail).toMatch(/test checkout.*remain due/);
+    expect(
+      studioProjects.find((project) => project.id === "kindred-grove")?.status,
+    ).toContain("development theme");
   });
 
   it("keeps paid provider configuration and credential material out of the browser component", () => {

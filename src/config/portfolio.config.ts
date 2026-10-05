@@ -156,7 +156,7 @@ TESTING & PAYMENTS
         "Model Router with dynamic model selection per task type, AI Scribe (Transcribe Medical → SOAP Notes → EHR)",
       ],
 
-      liveUrl: "https://askme-82f72.web.app/",
+      liveUrl: "https://mediconnect.zahidul-islam.com/",
 
       githubLinks: [
         { label: "Frontend", url: "https://github.com/Zahidulislam2222/mediconnect-hub" },
@@ -386,7 +386,7 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         "Migrated frontend + backend off an expiring domain to a $0/month always-on stack (Cloudflare Pages + GCP always-free e2-micro) — 108 DB URL replacements, fresh Let's Encrypt cert, live GraphQL verified from the new origin",
         "GitHub Actions CI/CD with Dependabot scanning and a manual production deploy gated by dry-run validation",
       ],
-      liveUrl: "https://chronos-vwg.pages.dev/",
+      liveUrl: "https://chronos.zahidul-islam.com/",
 
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/Chronos" },
@@ -470,7 +470,7 @@ WCAG 2.1 AA accessibility, GDPR data export/erase via WordPress Privacy API, coo
         "Production SaaS: organizations, profiles, equipment registry, role-based access (admin/manager/technician)",
         "Real Android APK via Capacitor 8 with native camera and geolocation",
       ],
-      liveUrl: "https://equip-cert.vercel.app/",
+      liveUrl: "https://equipcert.zahidul-islam.com/",
 
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/equip-cert" },
@@ -737,7 +737,7 @@ Stripe PaymentIntents via Edge Function (server-side, PCI compliant). Cloudflare
         "PWA with service worker, Cloudflare Pages deployment with security headers",
       ],
 
-      liveUrl: "https://dental-clinic-anq.pages.dev",
+      liveUrl: "https://dental.zahidul-islam.com/",
 
       githubLinks: [
         { label: "Full Stack", url: "https://github.com/Zahidulislam2222/dental-clinic" },
@@ -924,7 +924,7 @@ Dark Glassmorphism Design System (vanilla JS, zero dependencies). 292 automated 
         "WordPress REST API Bridge Plugin with timing-safe API key auth and Application Password fallback",
         "Idempotent operations, filename-based image matching, per-post Elementor CSS cache clearing",
       ],
-      liveUrl: "https://healthcodeanalysis.pages.dev/",
+      liveUrl: "https://healthcodeanalysis.zahidul-islam.com/",
 
       githubLinks: [
         { label: "Project", url: "https://github.com/Zahidulislam2222/healthcodeanalysis" },

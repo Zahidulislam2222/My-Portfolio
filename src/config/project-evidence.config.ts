@@ -49,9 +49,9 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         result: "Live code is protected from an unproven overwrite; the digest linkage is recorded as remaining work.",
       },
       {
-        problem: "Subscription discounts invite abuse if any amount can be influenced from the browser.",
-        fix: "Calculated every amount on the server and covered the plan, tier and fee matrix plus abuse guards in tests.",
-        result: "44 of 44 recorded subscription cases passing.",
+        problem: "A website release can silently differ from the build that was tested, with no clean way back.",
+        fix: "Released with local, deployed and archive hash comparison, and kept the previous release for rollback.",
+        result: "37 of 37 release files matched, and 9 public browser checks passed on desktop and narrow mobile with zero browser errors.",
       },
     ],
     document: overview("mediconnect-technical-overview.pdf"),
@@ -68,14 +68,14 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         result: "Database suite went from 8 failing to 28 of 28 passing, erasure included.",
       },
       {
-        problem: "Tests said generated inspection PDFs carried the EU AI-content marking, but the real files did not.",
-        fix: "Rendered a real PDF and read the marking back from the file bytes, which exposed that the PDF library silently ignored its own declared metadata field. Wrote the marking through both paths.",
-        result: "The rendered-PDF check now passes against the actual file, not the object handed to the library.",
+        problem: "The live database went offline: the free hosting tier paused it after a week without activity, even though a keep-alive job reported success twice a week.",
+        fix: "Found that the keep-alive called a health endpoint that never touched the database. It now runs a real query every day and reports success only when a row comes back.",
+        result: "Live site rebuilt and redeployed, and every CI job passing for the first time since September 11.",
       },
       {
-        problem: "A visitor reported the hero looked broken for a few seconds on every reload.",
-        fix: "Traced it on the live site to markers positioned only by the 3-D render loop; they now stay hidden until the scene reports ready.",
-        result: "Fixed without touching the approved visual design.",
+        problem: "On the serverless host, the subscription webhook would have rejected every genuine payment event: the platform parsed the body first, but the provider signs the exact original bytes.",
+        fix: "Made the handler read the exact bytes on both deployment targets, and stopped logging event contents that can include customer details.",
+        result: "With provider-signed test payloads, the old handler fails the platform-replay and raw-stream cases and the new one passes all of them; serverless behavior was checked against the platform runtime's source.",
       },
     ],
     document: overview("equipcert-technical-overview.pdf"),
@@ -216,7 +216,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         problem: "The repository needed to be safe to publish.",
         fix: "Removed secrets, machine-specific paths and cloud identifiers, replaced them with environment variables, and excluded scanner output from version control.",
-        result: "A public repository with nothing sensitive in it.",
+        result: "Historical, staged and public-tree secret scans found no matches before publication.",
       },
       {
         problem: "The documentation claimed more than the stack actually did.",
@@ -420,18 +420,23 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "kindred-grove": {
     engagement: {
       type: "Portfolio demonstration",
-      detail: "A Shopify storefront built as a portfolio project for a pre-launch pantry brand concept.",
+      detail: "A Shopify storefront built as a portfolio project for a premium pantry brand concept. Demo mode shows sample prices and disables the theme's checkout controls.",
     },
     challenges: [
       {
-        problem: "An audit caught three statement-of-work templates glossed over when the sprint was first called done: recipes blog, gift boxes and customer accounts.",
-        fix: "Built the missing templates before accepting the sprint.",
-        result: "14 of 14 storefront templates shipped.",
+        problem: "A cart write can fail after Shopify may already have accepted it, and a blind retry adds the item twice.",
+        fix: "Serialized cart changes; after an uncertain failure the theme reads the real cart and tells the shopper, instead of repeating the write.",
+        result: "Tests cover hostile inputs, stale results, failed reads and ambiguous writes; real cart checks covered 0→1→2→0.",
       },
       {
-        problem: "Quality bars only mean something if every change is checked against them.",
-        fix: "Ran continuous-integration workflows on every tagged build commit.",
-        result: "9 workflows passing, with zero regressions across eleven tagged commits.",
+        problem: "A wholesale draft-order Worker was an extra backend service able to create Admin API side effects.",
+        fix: "Retired it in source: it now returns HTTP 410 without reading submitted data or calling any service.",
+        result: "A smaller exposed backend surface and no extra service on the buying path.",
+      },
+      {
+        problem: "Optional theme features must never run on unknown or missing consent.",
+        fix: "Required both the visitor's explicit consent and Shopify's matching allowed-processing result, and removed optional telemetry loaders.",
+        result: "Browser checks covered accept, partial consent, withdrawal and reload; Global Privacy Control and Do Not Track kept analytics and marketing denied.",
       },
     ],
     document: { label: "Project status (PDF)", file: "kindred-grove-project-status.pdf" },
@@ -439,18 +444,18 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "regenai-shopify": {
     engagement: {
       type: "Portfolio demonstration",
-      detail: "A headless commerce build for a fictional wellness brand. Development snapshot, not a live store.",
+      detail: "A headless commerce build for a fictional recovery brand. Concept products only; ordering, sign-in and checkout are closed.",
     },
     challenges: [
       {
-        problem: "CI looked green, but continue-on-error was masking real failures in five workflows.",
-        fix: "Removed the mask and fixed what it hid: Lighthouse runtime errors, test setup issues, a test directory mismatch and type regressions.",
-        result: "CI that fails when the build is actually broken.",
+        problem: "The approved 3D design ran as a static demo with fixture-only products, not a real commerce backend.",
+        fix: "Moved the live storefront onto Shopify Hydrogen, keeping the approved 3D design while reading six concept products from the development store.",
+        result: "137 storefront unit tests passed (one existing skip), and the same tested image released with 144 of 144 (staging) and 145 of 145 (main) file parity.",
       },
       {
-        problem: "The merchant app would not deploy because of a framework flag mismatch.",
-        fix: "Resolved the React Router v7 environment-API flag and deployed the app end to end on Cloudflare Workers with D1.",
-        result: "Merchant app deployed alongside four Rust Shopify Functions and 47 pure-rules tests.",
+        problem: "Source files and old compiled artifacts are not proof that the Shopify Functions still work.",
+        fix: "Re-ran the four Rust Functions' native tests and rebuilt them to WebAssembly on September 24.",
+        result: "47 of 47 tests passed, each build 159–181 KiB, under Shopify's 256 kB limit; store activation is still pending.",
       },
     ],
     document: { label: "Build snapshot (PDF)", file: "regenai-build-snapshot.pdf" },

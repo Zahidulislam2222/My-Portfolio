@@ -31,8 +31,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "Website deployed · platform in development",
     stack: ["React", "Multi-cloud", "FHIR"],
     detail:
-      "A telehealth and connected-care platform spanning patients, practitioners, pharmacy workflows and clinic operations. Regional routing, identity, interoperability and service boundaries support the broader architecture. The connected-care website is deployed; full clinical acceptance, infrastructure capacity and complete native-mobile readiness remain separate work.",
-    evidence: "Current platform overview, September 15, 2026",
+      "A telehealth and connected-care platform spanning patients, practitioners, pharmacy workflows and clinic operations. Regional routing, identity, interoperability and service boundaries support the broader architecture. The connected-care website is deployed, with all 37 release files matching across local, deployed and archive copies. Full clinical acceptance, infrastructure capacity and complete native-mobile readiness remain separate work.",
+    evidence: "Client and developer edition, September 28, 2026",
   },
   {
     id: "equipcert",
@@ -46,8 +46,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "Deployed application",
     stack: ["Next.js", "Flutter", "Supabase"],
     detail:
-      "A tenant-aware equipment inspection application: technicians capture equipment condition, photos, location and signatures; managers review inspections, corrective actions and schedules. Database-driven audit records, distributed rate limiting and report provenance strengthen accountability. The documented release passed 43 unit tests, 28 database tests and 13 container-lifecycle checks. Capacity models are targets, not measured million-user throughput.",
-    evidence: "Current release and verified snapshot, September 2026",
+      "A tenant-aware equipment inspection application: technicians capture equipment condition, photos, location and signatures; managers review inspections, corrective actions and schedules. Database-driven audit records, distributed rate limiting and report provenance strengthen accountability. On October 1, 2026 all four CI jobs passed; 104 of 104 web unit tests, 429 native client tests and 28 of 28 tenant-isolation and audit tests against the hosted database also passed. Capacity models are targets, not measured million-user throughput.",
+    evidence: "Early-October edition, verified October 1, 2026",
   },
   {
     id: "yuktha-wellness",
@@ -75,8 +75,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "Connected CMS · test checkout",
     stack: ["React", "WordPress", "WooCommerce"],
     detail:
-      "A cinematic watch storefront backed by authoritative WordPress and WooCommerce records. Visitors can browse, search, filter, manage a bag, sign in and use clearly labelled test checkout. Publication checks protect dynamic routes. The latest release recorded 23 connected-browser checks and a hosted Stripe test payment confirmed in WooCommerce. Real purchases and commercial transaction capacity are not claimed.",
-    evidence: "Verified implementation snapshot, September 14, 2026",
+      "A cinematic watch storefront backed by authoritative WordPress and WooCommerce records. Visitors can browse, search, filter, manage a bag, sign in and use clearly labelled test checkout. Publication checks protect dynamic routes. The latest release recorded 23 connected-browser checks and a hosted Stripe test payment confirmed in WooCommerce. Real purchases and commercial transaction capacity are not claimed. Open source since September 24, 2026.",
+    evidence: "Public technical edition, September 15, 2026",
   },
   {
     id: "vitalprobe",
@@ -128,8 +128,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "Source-reconciled infrastructure",
     stack: ["Docker", "LightRAG", "Observability"],
     detail:
-      "Containerized retrieval infrastructure with nine core services and fourteen profile-activated services, authentication, network isolation, metrics/logs/traces and encrypted-backup workflows. The documentation establishes configuration and source intent; it does not claim a currently healthy deployment or compliance certification.",
-    evidence: "Source-reconciled scope and architecture, July 2026",
+      "Containerized retrieval infrastructure with nine core services and fourteen profile-activated services, authentication, network isolation, metrics/logs/traces and encrypted-backup workflows. Published as MIT-licensed open source, with hosted Gitleaks, Semgrep and Bandit checks passing. The documentation establishes configuration and source intent; it does not claim a currently healthy deployment or compliance certification.",
+    evidence: "Open-source public edition, September 24, 2026",
   },
   {
     id: "jwalker-knowledge-assistant",
@@ -154,8 +154,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "Deployed editorial demonstration",
     stack: ["WordPress", "Elementor", "Browser tools"],
     detail:
-      "A medical-technology editorial demonstration with articles, a searchable library, local reading lists and six educational browser tools. The visual design is editable through native Elementor Free layouts. The September release preserved 63 original public routes and passed 13 browser scenarios. It is not a clinical provider or validated medical product; unapproved demo articles remain excluded from indexing.",
-    evidence: "Current native release overview, September 14, 2026",
+      "A medical-technology editorial demonstration with articles, a searchable library, local reading lists and six educational browser tools. The visual design is editable through native Elementor Free layouts. The September release preserved 63 original public routes, passed 13 browser scenarios and matched all 141 release files by SHA256. It is not a clinical provider or validated medical product; unapproved demo articles remain excluded from indexing.",
+    evidence: "Release verified September 14, documentation updated September 24, 2026",
   },
   {
     id: "everyday-dental-surgery",
@@ -166,8 +166,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "Synthetic portfolio demonstration",
     stack: ["Responsive UI", "Bilingual", "Privacy flows"],
     detail:
-      "A fictional dental-practice presentation with an interactive synthetic patient journey, consent examples, access-denial states and a sample FHIR-shaped export. State lives in browser memory. Real intake, clinical authentication, payments, messaging and the historical clinical endpoints are disabled. It demonstrates interface behavior and engineering boundaries, not an operating clinical portal.",
-    evidence: "Synthetic portfolio release, September 2026",
+      "A fictional dental-practice presentation with an interactive synthetic patient journey, consent examples, access-denial states and a sample FHIR-shaped export. State lives in browser memory. Real intake, clinical authentication, payments, messaging and the historical clinical endpoints are disabled. It demonstrates interface behavior and engineering boundaries, not an operating clinical portal. Source and documentation were published on GitHub with all 255 file hashes matching.",
+    evidence: "Synthetic portfolio release and GitHub publication, September 24, 2026",
   },
   {
     id: "ftm-seo-automation",
@@ -214,8 +214,8 @@ export const studioProjects = z.array(projectSchema).parse([
     status: "In development · synthetic verification",
     stack: ["Python", "Typed artifacts", "Policy broker"],
     detail:
-      "A local control plane that mediates scope, policy, task state, isolation and release evidence. Models propose work; deterministic code controls privileged transitions. Phase 1 remains incomplete, with synthetic verification only. Live client onboarding and real provider transmission are outside its verified operating boundary.",
-    evidence: "Current implementation boundary, July 30, 2026",
+      "A local control plane that mediates scope, policy, task state, isolation and release evidence. Models propose work; deterministic code controls privileged transitions. Phase 1 remains incomplete, with synthetic verification only: the published source passed 257 tests (one expected skip) on synthetic data and mocked providers. Live client onboarding and real provider transmission are outside its verified operating boundary.",
+    evidence: "Open-source public edition, aligned with GitHub main a9f45d6",
   },
   {
     id: "email-finder",
@@ -234,24 +234,24 @@ export const studioProjects = z.array(projectSchema).parse([
     name: "Kindred Grove",
     category: "Web & Commerce",
     domain: "SHOPIFY STOREFRONT",
-    summary: "A merchant-editable storefront built around provenance.",
-    status: "Phase 1 code complete · prelaunch QA pending",
+    summary: "A cinematic storefront with careful cart and consent engineering.",
+    status: "Phase 2 development complete · redesign in development theme",
     stack: ["Shopify", "Liquid", "Web Components"],
     detail:
-      "A custom storefront for a pre-launch pantry brand, with fourteen templates, composable theme blocks, farm/origin metaobjects, English/Arabic locales and a no-JavaScript cart fallback. The recorded engineering sprint is complete; prelaunch browser/admin QA and productization deliverables remain pending.",
-    evidence: "Latest project-status document, April 19, 2026",
+      "A premium pantry storefront concept on Shopify, built with Liquid, CSS and vanilla JavaScript Web Components: a film-led homepage, quick view, cart drawer, pantry quiz and English/Arabic locale source. The accepted Phase 2 build passed 95 of 95 security and configuration tests and 41 browser cases with none failing and five skipped, and all 150 theme files matched exact hashes. The reviewed redesign remains in a development theme; the custom domain still serves the existing live theme.",
+    evidence: "Project status document, September 24, 2026",
   },
   {
     id: "regenai-shopify",
     name: "RegenAI",
     category: "Web & Commerce",
     domain: "HEADLESS WELLNESS COMMERCE",
-    summary: "Commerce rules and content governance, built together.",
-    status: "Portfolio build · development snapshot",
-    stack: ["Hydrogen", "Rust / WASM", "Shopify"],
+    summary: "A 3D recovery storefront running on Shopify Hydrogen.",
+    status: "Live concept storefront · build in progress",
+    stack: ["Hydrogen", "Three.js", "Rust / WASM"],
     detail:
-      "A headless wellness-commerce portfolio project for a fictional brand. The recorded snapshot includes storefront and merchant-app previews, four Rust Shopify Functions and 47 pure-rules tests. It is an in-progress build; planned catalog, market coverage and later milestones are not presented as completed operations.",
-    evidence: "Latest build snapshot, April 2026",
+      "A recovery-commerce portfolio project for a fictional brand. The live storefront runs on Shopify Hydrogen, keeps the approved 3D design and reads six concept products from a development store; ordering, sign-in and checkout are disabled. The current source passed 137 storefront unit tests (one existing skip) and released with 145 of 145 file parity. Four Rust Shopify Functions passed 47 of 47 native tests but are not yet activated in a store. It is still an in-progress build: test checkout, account sign-in, merchant installation and production controls remain due.",
+    evidence: "Client review edition, September 24, 2026",
   },
 ]);
 
@@ -260,6 +260,8 @@ const currentProjectUrls: Record<string, string> = {
   "mediconnect-v3": "https://mediconnect.zahidul-islam.com/",
   chronos: "https://chronos.zahidul-islam.com/",
   "healthcode-analysis": "https://healthcodeanalysis.zahidul-islam.com/",
+  "everyday-dental-surgery": "https://dental.zahidul-islam.com/",
+  "regenai-shopify": "https://regenai.zahidul-islam.com/",
 };
 export const projectResources = (id: string) => {
   const project = portfolioConfig.projects.find((p) => p.id === id) as
