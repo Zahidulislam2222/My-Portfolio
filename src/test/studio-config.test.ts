@@ -35,7 +35,7 @@ describe("engineering studio content contract", () => {
     expect(new Set(studioProjects.map((project) => project.id)).size).toBe(
       studioProjects.length,
     );
-    expect(studioProjects.length).toBe(18);
+    expect(studioProjects.length).toBe(19);
     for (const project of studioProjects) {
       expect(studioConfig.labels.filters).toContain(project.category);
       expect(project.status.length).toBeGreaterThan(5);
@@ -62,6 +62,9 @@ describe("engineering studio content contract", () => {
     );
     expect(projectResources("regenai-shopify").liveUrl).toBe(
       "https://regenai.zahidul-islam.com/",
+    );
+    expect(projectResources("fleetwright").liveUrl).toBe(
+      "https://fleetwright.zahidul-islam.com/",
     );
     // Kindred's subdomain is a Shopify password page; no live link until it opens.
     expect(projectResources("kindred-grove").liveUrl).toBeUndefined();
@@ -101,6 +104,9 @@ describe("engineering studio content contract", () => {
     expect(
       studioProjects.find((project) => project.id === "kindred-grove")?.status,
     ).toContain("development theme");
+    const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
+    expect(fleetwright?.status).toContain("active development");
+    expect(fleetwright?.detail).toMatch(/still planned/);
   });
 
   it("keeps paid provider configuration and credential material out of the browser component", () => {

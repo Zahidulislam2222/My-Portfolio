@@ -2256,6 +2256,90 @@ VitalProbe does not certify a target, grant regulatory approval, replace clinica
       ],
     },
 
+    {
+      id: "fleetwright",
+      title: "Fleetwright — Control Plane for Fleets of Real Browsers",
+      category: ["automation", "fullstack", "security"],
+
+      description:
+        "Problem: Independent automation scripts that share many logged-in accounts book the same job twice, lose track of bookings when they crash, and cannot say how fast the fleet reacts. Solution: One coordinated system of Playwright workers with a database-enforced claim state machine, fencing tokens, a reconciler for uncertain outcomes and per-stage latency measurement. Against a fictitious load board built in the same repository: 0 duplicate bookings with 200 concurrent competitors over 10,000 jobs, and 99 automated tests passing. Live public console with capped demo controls; metrics, the crawler and the AI agent are still planned.",
+
+      fullDescription: `Fleetwright runs many logged-in Playwright browser sessions, watches a job feed, and books each matching job exactly once, even when workers crash, networks drop or two machines race for the same job. It is tested end to end against a fictitious freight load board built in the same repository (emailed one-time codes, captcha, live feed with ground-truth publish times, first-booker-wins booking and failure switches). It is never pointed at a real third-party site; that boundary is a legal requirement, not a convenience.
+
+STATUS (evidence checked October 6, 2026)
+Phases 1 to 5 complete: design prototype and live site, mock load board, coordination core, browser runtime and live engine. Phase 6, the live console, is shipped and running on the public site, with metrics and alerting still to do. The crawler, a local AI browser agent and the large-scale proof runs are planned.
+
+ARCHITECTURE
+Postgres is the source of truth: claims with full history, fencing tokens, an outbox and an append-only audit log, with row-level security enabled and forced on every tenant table. Redis Streams carry fast, short-lived traffic per cell; losing Redis loses speed, never correctness. Worker processes run one Chromium each with many isolated browser contexts (watcher and claimer slots). A control process per cell runs the dispatcher, outbox relay and reconciler.
+
+CLAIM STATE MACHINE
+Exactly one claim per job through a unique constraint. Leasing takes a fresh fencing token from a database sequence, so a worker that wakes up late is rejected. Lease expiry uses only the database clock. A claim that crashes mid-action becomes unknown and is never retried; the reconciler asks the target what the account actually booked.
+
+LIVE CONSOLE AND DEMO
+Next.js console served from the same origin as a versioned API with an exported OpenAPI contract. Password (argon2id) plus mandatory TOTP sign-in, four roles, CSRF protection, audit log and server-sent-event live updates. Anyone can watch a read-only view; a shared demo login can start a capped run and switch on failure modes, which reset automatically after 15 minutes.
+
+PRODUCTION
+One shared server running a single hardened container project behind a CDN: internal network, read-only file systems, no Linux capabilities, resource limits. Releases are rehearsed locally as the exact production stack and deployed with SHA-256 hash parity before and after. The demo has no redundancy or backup job yet and claims no availability figure.`,
+
+      thumbnail: "",
+
+      technologies: [
+        "Python 3.12",
+        "Playwright (Chromium)",
+        "PostgreSQL (Forced Row-Level Security)",
+        "Redis Streams",
+        "FastAPI",
+        "Next.js Console",
+        "Server-Sent Events",
+        "OpenAPI Contract",
+        "Argon2id + TOTP",
+        "AES-256-GCM Envelope Encryption",
+        "Docker Compose",
+        "GitHub Actions + Gitleaks + Bandit + Semgrep",
+      ],
+
+      achievements: [
+        "0 duplicate bookings with 200 concurrent competitors over 10,000 jobs; 9,897 claims confirmed equal 9,897 bookings on the board's own log",
+        "184 crashes after leasing and 213 during the action injected in the load test, all re-queued or reconciled",
+        "Detection to confirmed booking: median about 365 ms, 95th percentile about 540 ms",
+        "About 70 to 103 MB per browser context and about 1.8 cores at 32 contexts, measured on one developer PC",
+        "Tenant A cannot read or write tenant B rows, even as the table owner (mutation-checked)",
+        "99 automated tests against real Postgres, Redis, a mail server, Chromium and the mock board",
+        "Live end-to-end check through the CDN: 0 failures with three demo visitors at once, capped controls, owner TOTP sign-in, audit and live updates",
+      ],
+
+      liveUrl: "https://fleetwright.zahidul-islam.com/",
+      githubUrl: "https://github.com/Zahidulislam2222/fleetwright",
+      pdfUrl: "/docs/fleetwright-technical-overview.pdf",
+      featured: true,
+
+      metrics: {
+        duplicates: "0 across 10,000 jobs with 200 concurrent competitors",
+        latency: "p50 about 365 ms · p95 about 540 ms (detection to confirmed booking)",
+        capacity: "About 70–103 MB per context · about 1.8 cores at 32 contexts",
+        tests: "99 automated tests against real infrastructure",
+        scale: "Single shared demo server; 1M sessions and 99.9% are design targets, not achieved",
+      },
+
+      challenges: [
+        {
+          problem: "The first passing concurrency test booked only 77 of 10,000 jobs, so \"zero duplicates\" was trivially true.",
+          solution: "Switched to production-like timings and added coverage assertions: at least 95% of jobs booked and at least one crash during the action reconciled.",
+          outcome: "A passing run now proves it exercised the dangerous path.",
+        },
+        {
+          problem: "The public demo login let in only one visitor per 30 seconds, because one-time codes are single use per account.",
+          solution: "The shared demo account skips the per-account replay check while every personal account keeps it.",
+          outcome: "A test signs in three visitors with the same code, and the live check passed with three demo visitors at once.",
+        },
+        {
+          problem: "The first capacity number was wrong by a factor of two: summed memory counted shared Chromium memory many times and CPU always read zero.",
+          solution: "Measured unique memory per process with persistent process objects, and fixed the same CPU bug in the worker heartbeat.",
+          outcome: "About 70 to 103 MB per context and about 1.8 cores at 32 contexts.",
+        },
+      ],
+    },
+
   ],
 
   /* ========================================

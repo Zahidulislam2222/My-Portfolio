@@ -45,6 +45,11 @@ describe("project evidence", () => {
     }
   });
 
+  it("keeps Fleetwright scoped to its own mock board", () => {
+    expect(projectEvidence.fleetwright.engagement.type).toBe("Independent build");
+    expect(projectEvidence.fleetwright.engagement.detail).toMatch(/never pointed at a real third-party site/);
+  });
+
   it("offers a Client work filter listing exactly the paid client projects", () => {
     expect(studioConfig.labels.filters).toContain(studioConfig.labels.clientFilter);
     const clients = studioProjects

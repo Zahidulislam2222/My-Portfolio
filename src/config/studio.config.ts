@@ -50,6 +50,21 @@ export const studioProjects = z.array(projectSchema).parse([
     evidence: "Early-October edition, verified October 1, 2026",
   },
   {
+    id: "fleetwright",
+    name: "Fleetwright",
+    category: "Cloud & Systems",
+    domain: "BROWSER FLEET ORCHESTRATION",
+    featured: true,
+    image: "/studio/fleetwright.webp",
+    visual: "capture",
+    summary: "Many logged-in browsers. Every job booked exactly once.",
+    status: "Live demo · in active development",
+    stack: ["Python", "Playwright", "Postgres"],
+    detail:
+      "A control plane for fleets of logged-in Playwright browsers that watches a job feed and books each matching job exactly once, even when workers crash or race. A database-enforced claim state machine with fencing tokens, forced row-level tenant isolation and a reconciler for uncertain outcomes carry the correctness. Against a fictitious load board built in the same repository, 200 concurrent competitors over 10,000 jobs produced zero duplicate bookings, and 99 automated tests pass. The public console is live with capped demo controls. Metrics and alerting, the crawler, the AI agent and the scale runs are still planned.",
+    evidence: "Technical overview, evidence checked October 6, 2026",
+  },
+  {
     id: "yuktha-wellness",
     name: "Yuktha Wellness",
     category: "AI & Agents",
@@ -337,6 +352,8 @@ export const studioConfig = {
       "Patient, practitioner and pharmacy journeys connected through a shared platform architecture.",
     equipcert:
       "Tenant-aware inspections with photo evidence, signatures, corrective actions and audit records.",
+    fleetwright:
+      "Single claims enforced by the database, fencing tokens and a reconciler, audited against the board's own log.",
     "yuktha-wellness":
       "Hybrid retrieval, reranking and grounding checks with an emergency gate before generation.",
     chronos:
