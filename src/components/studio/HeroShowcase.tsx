@@ -7,7 +7,10 @@ import {
   Cpu,
   Layers3,
   Network,
+  Pause,
+  Play,
 } from "lucide-react";
+import IntelligenceScene from "./IntelligenceScene";
 import { heroShowcase as hero } from "@/config/hero.config";
 import {
   studioConfig as config,
@@ -24,6 +27,7 @@ export default function HeroShowcase({
 }) {
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState(false);
+  const [paused, setPaused] = useState(false);
   const reduced = useReducedMotionPreference();
   const scene = useRef<HTMLDivElement>(null);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -133,7 +137,7 @@ export default function HeroShowcase({
             <div
               className="showcase-stage"
               onPointerMove={(event) => {
-                if (reduced || event.pointerType !== "mouse" || !scene.current)
+                if (reduced || paused || event.pointerType !== "mouse" || !scene.current)
                   return;
                 const box = event.currentTarget.getBoundingClientRect();
                 scene.current.style.transform = `rotateY(${((event.clientX - box.left) / box.width - 0.5) * hero.motion.tiltDegrees}deg) rotateX(${-((event.clientY - box.top) / box.height - 0.5) * hero.motion.tiltDegrees}deg)`;
@@ -142,7 +146,7 @@ export default function HeroShowcase({
                 if (scene.current) scene.current.style.transform = "";
               }}
             >
-              <div className="showcase-scene" ref={scene}>
+              <div className="showcase-scene" ref={scene} data-motion={reduced || paused ? "paused" : "running"}>
                 <div className="showcase-backplate" aria-hidden="true" />
                 <motion.div
                   key={mode.id}
@@ -162,7 +166,18 @@ export default function HeroShowcase({
                     <span>
                       {mode.image ? hero.visualLabel : hero.architectureLabel}
                     </span>
-                    <span aria-hidden="true">↗</span>
+                    <button
+                      className="showcase-motion-toggle"
+                      aria-label={paused ? hero.animation.resume : hero.animation.pause}
+                      aria-pressed={paused}
+                      disabled={reduced}
+                      onClick={() => {
+                        setPaused(!paused);
+                        if (scene.current) scene.current.style.transform = "";
+                      }}
+                    >
+                      {paused || reduced ? <Play size={13} /> : <Pause size={13} />}
+                    </button>
                   </div>
                   {mode.image ? (
                     failed ? (
@@ -181,25 +196,7 @@ export default function HeroShowcase({
                       />
                     )
                   ) : (
-                    <div className="showcase-ai-diagram">
-                      <span className="showcase-diagram-caption">
-                        {mode.caption}
-                      </span>
-                      <div className="showcase-network">
-                        <span>{mode.nodes[0]}</span>
-                        <i aria-hidden="true" />
-                        <div>
-                          <Cpu size={42} strokeWidth={1} />
-                          <strong>{project.name}</strong>
-                        </div>
-                        <i aria-hidden="true" />
-                        <span>{mode.nodes[2]}</span>
-                      </div>
-                      <div className="showcase-diagram-foot">
-                        <span>{mode.nodes[1]}</span>
-                        <span>{hero.architectureLabel}</span>
-                      </div>
-                    </div>
+                    <IntelligenceScene nodes={mode.nodes} caption={mode.caption} />
                   )}
                 </motion.div>
                 <div className="showcase-flow">

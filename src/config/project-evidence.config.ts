@@ -32,6 +32,25 @@ export const documentBasePath = "/docs/";
 const overview = (file: string) => ({ label: "Technical overview (PDF)", file });
 
 export const projectEvidence = z.record(evidenceSchema).parse({
+  voicebridge: {
+    engagement: {
+      type: "Independent build",
+      detail: "My own voice-agent business platform. Frontend and backend are deployed; real audio and external provider acceptance remain separate gates.",
+    },
+    challenges: [
+      {
+        problem: "A booking retry or concurrent edit can create conflicting appointments.",
+        fix: "Added explicit confirmation, timezone validation, idempotency, conflict checks and revision control.",
+        result: "Persistent booking and recovery behavior was exercised with controlled test data; real calendar receipts remain pending.",
+      },
+      {
+        problem: "A follow-up timeout leaves the system uncertain whether an external service already acted.",
+        fix: "Used a leased worker with durable retries, receipts, dead letters and explicit unknown-delivery states.",
+        result: "The October 8 overview records 150 backend/tooling tests and 78 frontend tests; external CRM/email acceptance remains pending.",
+      },
+    ],
+    document: overview("voicebridge-technical-overview.pdf"),
+  },
   "mediconnect-v3": {
     engagement: {
       type: "Independent build",
@@ -420,7 +439,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "kindred-grove": {
     engagement: {
       type: "Portfolio demonstration",
-      detail: "A Shopify storefront built as a portfolio project for a premium pantry brand concept. Demo mode shows sample prices and disables the theme's checkout controls.",
+      detail: "A published Shopify development-store demonstration for a premium pantry brand concept. A shared visitor password is required; real transactions and commercial transfer are unavailable.",
     },
     challenges: [
       {
@@ -447,6 +466,11 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       detail: "A headless commerce build for a fictional recovery brand. Concept products only; ordering, sign-in and checkout are closed.",
     },
     challenges: [
+      {
+        problem: "An AI support recommendation must not silently become an unreviewed refund or email.",
+        fix: "Bound support decisions to current ticket, order and rulebook versions with human review; kept financial and email execution disabled.",
+        result: "Account reads, token renewal and restart persistence passed. Bounded AI cases verified preference recall and image-based advice; real refunds and sent replies are not claimed.",
+      },
       {
         problem: "The approved 3D design ran as a static demo with fixture-only products, not a real commerce backend.",
         fix: "Moved the live storefront onto Shopify Hydrogen, keeping the approved 3D design while reading six concept products from the development store.",

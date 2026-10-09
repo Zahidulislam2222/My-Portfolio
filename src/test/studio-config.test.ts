@@ -35,7 +35,7 @@ describe("engineering studio content contract", () => {
     expect(new Set(studioProjects.map((project) => project.id)).size).toBe(
       studioProjects.length,
     );
-    expect(studioProjects.length).toBe(19);
+    expect(studioProjects.length).toBe(20);
     for (const project of studioProjects) {
       expect(studioConfig.labels.filters).toContain(project.category);
       expect(project.status.length).toBeGreaterThan(5);
@@ -101,9 +101,14 @@ describe("engineering studio content contract", () => {
     const regenai = studioProjects.find((project) => project.id === "regenai-shopify");
     expect(regenai?.status).toContain("in progress");
     expect(regenai?.detail).toMatch(/test checkout.*remain due/);
+    expect(regenai?.detail).toContain("Financial execution and sent email replies remain disabled");
     expect(
       studioProjects.find((project) => project.id === "kindred-grove")?.status,
-    ).toContain("development theme");
+    ).toContain("password protected");
+    const voicebridge = studioProjects.find((project) => project.id === "voicebridge");
+    expect(voicebridge?.status).toContain("voice acceptance pending");
+    expect(voicebridge?.detail).toContain("remain integration gates");
+    expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
     const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
     expect(fleetwright?.status).toContain("active development");
     expect(fleetwright?.detail).toMatch(/still planned/);

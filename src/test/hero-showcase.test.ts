@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { heroShowcase } from "../config/hero.config";
 import { studioProjects } from "../config/studio.config";
 import source from "../components/studio/HeroShowcase.tsx?raw";
+import sceneSource from "../components/studio/IntelligenceScene.tsx?raw";
 
 describe("hero showcase content boundary", () => {
   it("connects every mode to a real indexed project", () => {
@@ -15,7 +16,7 @@ describe("hero showcase content boundary", () => {
     }
   });
   it("keeps provider secrets and environment details out of the visual component", () => {
-    expect(source).not.toMatch(
+    expect(source + sceneSource).not.toMatch(
       /https?:\/\/|import\.meta\.env|process\.env|sk-[a-zA-Z0-9_-]{16,}|-----BEGIN .*PRIVATE KEY-----/,
     );
   });

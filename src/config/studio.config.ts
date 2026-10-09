@@ -20,6 +20,20 @@ const projectSchema = z.object({
 
 export const studioProjects = z.array(projectSchema).parse([
   {
+    id: "voicebridge",
+    name: "VoiceBridge",
+    category: "AI & Agents",
+    domain: "VOICE & BUSINESS AUTOMATION",
+    featured: true,
+    visual: "network",
+    summary: "A conversation connected to a dependable business workflow.",
+    status: "Deployed platform · voice acceptance pending",
+    stack: ["Python", "PostgreSQL", "Retell / Vapi", "MCP"],
+    detail:
+      "A voice-agent business platform with an authenticated operator console, grounded knowledge and provider-authenticated tools. Booking, rescheduling and cancellation use explicit confirmation, timezone checks, idempotency and revision control. A leased worker handles calendar, CRM and follow-ups with durable retries and explicit uncertain-delivery states. The October 8 overview records 150 backend/tooling tests, 78 frontend tests and 21 public browser routes. Real voice/audio acceptance and external calendar, CRM and email receipts remain integration gates; million-user capacity is a roadmap target.",
+    evidence: "Comprehensive technical overview, October 8, 2026",
+  },
+  {
     id: "mediconnect-v3",
     name: "MediConnect",
     category: "Cloud & Systems",
@@ -250,28 +264,29 @@ export const studioProjects = z.array(projectSchema).parse([
     category: "Web & Commerce",
     domain: "SHOPIFY STOREFRONT",
     summary: "A cinematic storefront with careful cart and consent engineering.",
-    status: "Phase 2 development complete · redesign in development theme",
+    status: "Published Shopify storefront · password protected",
     stack: ["Shopify", "Liquid", "Web Components"],
     detail:
-      "A premium pantry storefront concept on Shopify, built with Liquid, CSS and vanilla JavaScript Web Components: a film-led homepage, quick view, cart drawer, pantry quiz and English/Arabic locale source. The accepted Phase 2 build passed 95 of 95 security and configuration tests and 41 browser cases with none failing and five skipped, and all 150 theme files matched exact hashes. The reviewed redesign remains in a development theme; the custom domain still serves the existing live theme.",
-    evidence: "Project status document, September 24, 2026",
+      "A premium pantry storefront concept built with Shopify Liquid, CSS and vanilla JavaScript Web Components. The published cinematic design includes a cart drawer, pantry quiz, consent controls and seven native content pages. The October 8 overview records 55 browser passes, three catalog-dependent skips and matching hashes for all 154 shipping files. Shopify development-store policy requires a shared visitor password and prevents real transactions or commercial transfer. Source is published on a review branch; approving review for main remains outstanding.",
+    evidence: "Project status document, October 8, 2026",
   },
   {
     id: "regenai-shopify",
     name: "RegenAI",
     category: "Web & Commerce",
     domain: "HEADLESS WELLNESS COMMERCE",
-    summary: "A 3D recovery storefront running on Shopify Hydrogen.",
+    summary: "Shopify commerce meets an AI support studio with human review.",
     status: "Live concept storefront · build in progress",
-    stack: ["Hydrogen", "Three.js", "Rust / WASM"],
+    stack: ["Hydrogen", "Python", "Shopify", "AI support"],
     detail:
-      "A recovery-commerce portfolio project for a fictional brand. The live storefront runs on Shopify Hydrogen, keeps the approved 3D design and reads six concept products from a development store; ordering, sign-in and checkout are disabled. The current source passed 137 storefront unit tests (one existing skip) and released with 145 of 145 file parity. Four Rust Shopify Functions passed 47 of 47 native tests but are not yet activated in a store. It is still an in-progress build: test checkout, account sign-in, merchant installation and production controls remain due.",
-    evidence: "Client review edition, September 24, 2026",
+      "A recovery-commerce portfolio project with a Shopify-backed Hydrogen storefront and a Python Support Studio. Six concept products retain the approved 3D design. The assistant combines encrypted saved memory, image understanding, allowlisted web retrieval, durable jobs and versioned human approval. Shopify and Gmail account reads, token renewal and restart persistence were verified; bounded AI checks exercised Spanish preference recall and an image-based support recommendation. Financial execution and sent email replies remain disabled. It is a build in progress: test checkout, account sign-in, merchant Function activation and full provider-action acceptance remain due. Earlier storefront evidence records 137 passing tests, one skip and 145 matching release files.",
+    evidence: "Client review edition and support assistant, October 8, 2026",
   },
 ]);
 
 export type StudioProject = z.infer<typeof projectSchema>;
 const currentProjectUrls: Record<string, string> = {
+  voicebridge: "https://voicebridge.zahidul-islam.com/",
   "mediconnect-v3": "https://mediconnect.zahidul-islam.com/",
   chronos: "https://chronos.zahidul-islam.com/",
   "healthcode-analysis": "https://healthcodeanalysis.zahidul-islam.com/",
@@ -348,6 +363,8 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    voicebridge:
+      "Confirmed bookings, grounded knowledge and durable follow-ups, with provider actions bounded by explicit acceptance gates.",
     "mediconnect-v3":
       "Patient, practitioner and pharmacy journeys connected through a shared platform architecture.",
     equipcert:

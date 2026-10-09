@@ -14,11 +14,11 @@ export const portfolioConfig = {
      ======================================== */
   personal: {
     name: "Zahidul Islam",
-    title: "AI Harness Engineer",
+    title: "Full Stack & AI Engineer",
     // Small accent label shown next to the headline
     frontierTag: "Frontier AI",
     // Plain-English explainer line under the headline (so the title is instantly understood)
-    tagline: "I orchestrate frontier AI to ship production-grade systems — HealthTech, multi-cloud, and automation.",
+    tagline: "I build grounded AI assistants, useful applications and the infrastructure behind them.",
     // Secondary anchor terms shown as a muted line beneath the headline
     roles: [
       "Cloud Architect",
@@ -26,8 +26,8 @@ export const portfolioConfig = {
       "AI & RAG Engineer",
       "Full Stack Engineer"
     ],
-    bio: "The rare developer who has treated patients AND built the platforms they use. Former Physiotherapy Technologist (4 years clinical care) turned Full Stack Engineer. I architect multi-cloud healthcare platforms that pass HIPAA/GDPR compliance scans — not on slides, but in production code verified by Prowler and Checkov. I reduced a $300/month cloud bill to $2/month. I ship with 756+ automated test assertions.",
-    shortBio: "Former clinician turned engineer — building HIPAA/FHIR-compliant healthcare platforms with multi-cloud infrastructure and AI.",
+    bio: "Full stack and AI engineer building grounded assistants, business automation, commerce experiences and cloud systems. Earlier physiotherapy work informs my healthcare engineering. Recent projects include VoiceBridge, Fleetwright and RegenAI Support Studio, with explicit boundaries between verified delivery, demonstrations and unfinished integrations.",
+    shortBio: "Former physiotherapy technologist building AI assistants, healthcare software, commerce and cloud systems.",
     location: "Dhaka, Bangladesh",
     email: "muhammadzahidulislam2222@gmail.com", // Replace with your email
     phone: "+8801794739339", // Replace with your phone
@@ -41,10 +41,10 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Production Projects", value: 20, suffix: "+" },
-    { label: "Test Assertions", value: 756, suffix: "+" },
-    { label: "FHIR R4 Resources", value: 42, suffix: "" },
-    { label: "Cost Reduction", value: "99.3", suffix: "%" }
+    { label: "Selected Projects", value: 20, suffix: "" },
+    { label: "VoiceBridge Backend Tests", value: 150, suffix: "" },
+    { label: "Kindred Browser Passes", value: 55, suffix: "" },
+    { label: "RegenAI Concept Products", value: 6, suffix: "" }
   ],
 
   /* ========================================
@@ -77,6 +77,43 @@ export const portfolioConfig = {
      ======================================== */
 
   projects: [
+    {
+      "id": "voicebridge",
+      "title": "VoiceBridge — Voice-Agent Business Platform",
+      "category": [
+        "ai-ml",
+        "automation",
+        "fullstack"
+      ],
+      "description": "A deployed business console and backend for grounded voice-agent workflows, confirmed bookings and durable follow-ups. Real audio and external provider acceptance remain pending.",
+      "fullDescription": "VoiceBridge connects a responsive public website and authenticated operator console to grounded knowledge, provider-authenticated Retell/Vapi tools and scoped MCP interfaces. Google OIDC, tenant and role checks, secure server sessions and CSRF protection establish business access boundaries.\n\nAvailability, booking, rescheduling and cancellation use explicit confirmation, timezone validation, conflict prevention, idempotency and revision checks. An independent leased worker handles calendar, CRM and follow-ups with persisted retries, receipts, dead letters and explicit unknown-delivery states.\n\nThe October 8 overview records 150 backend/tooling tests, 78 frontend tests, 21 public browser routes and backend/frontend release-file parity. Booking and recovery checks use controlled test data and captured follow-ups. Real voice/audio acceptance, custom-voice approval and external calendar, CRM and email receipts remain separate integration gates. Million-user capacity and service objectives are future targets.",
+      "thumbnail": "/studio/voicebridge.png",
+      "technologies": [
+        "Python",
+        "PostgreSQL",
+        "React",
+        "TypeScript",
+        "Retell / Vapi",
+        "MCP",
+        "OIDC",
+        "Durable jobs"
+      ],
+      "achievements": [
+        "Deployed authenticated frontend and backend",
+        "Confirmed bookings with idempotency and revision control",
+        "Leased follow-up worker with explicit uncertain outcomes",
+        "150 backend/tooling and 78 frontend tests recorded October 8"
+      ],
+      "liveUrl": "https://voicebridge.zahidul-islam.com/",
+      "githubUrl": "https://github.com/Zahidulislam2222/voicebridge",
+      "featured": true,
+      "metrics": {
+        "tests": "150 backend/tooling · 78 frontend",
+        "routes": "21 public browser routes",
+        "status": "Deployed · voice acceptance pending"
+      }
+    },
+
 
     {
       id: "mediconnect-v3",
@@ -1345,183 +1382,77 @@ Interakt WhatsApp Business webhook with HMAC signature verification (valid → 2
     },
 
     {
-      id: "regenai-shopify",
-      title: "RegenAI — Shopify Plus + Hydrogen Headless Commerce",
-      category: ["shopify", "fullstack", "ai-ml"],
-
-      description:
-        "Problem: Build a clinician-grade wellness commerce platform with FDA-claim linting, DSHEA supplement validation, and contraindication-presence as compile-time concerns. Solution: 105-day Shopify Plus + Hydrogen build (Day 19/105 shipped) — 4 Shopify Functions in Rust → WASM (cart contraindication, B2B tiered pricing, delivery customization, discount stacking) with 47 cargo tests passing, custom Polaris merchant app on Cloudflare Workers + D1 with hand-rolled OAuth + HMAC, 150+ SKUs across 5 markets and 5 locales (including Arabic RTL), 17 ADRs, and 10 honest-green CI workflows.",
-
-      fullDescription: `RegenAI is a 105-day portfolio build of a clinician-reviewed wellness commerce platform on Shopify Plus + Hydrogen — scoped as commerce + content + data + regulatory across four engineering layers. Day 19 of 105 delivered as of April 2026.
-
-LAYER 1 — STOREFRONT
-Hydrogen 2026.4 on React Router v7, deployed to Cloudflare Workers (pivoted from Shopify Oxygen at Day 10 / ADR-011 after Shopify confirmed Hydrogen channel is not available on dev stores). Tailwind v4 @theme block drives the token system. Radix primitives wrapped in @regenai/ui design-system package (15 primitives + Storybook). Sentry client + web-vitals integration ships as first-class concern.
-
-LAYER 2 — CUSTOM MERCHANT APP
-Remix application on Cloudflare Worker + D1, OAuth install flow 302-redirects to real Shopify authorize URL with correct scopes + state + redirect (tested end-to-end). Polaris-rendered clinician-review queue UI. Hand-rolled Shopify OAuth + HMAC helpers (no library dependency).
-
-LAYER 3 — SHOPIFY FUNCTIONS (RUST → WASM)
-4 functions written in Rust, compiled to WASM, all under 200 KB (Shopify cap is 1.5 MB per extension). 47 pure-rules-core cargo tests pass.
-- cart-contraindication — blocks checkout when customer's medical-flag metafield conflicts with product's contraindication tag
-- b2b-tiered-pricing — wholesale tier pricing logic
-- delivery-customization — market-aware delivery routing
-- discount-stacking — combinable discount rules
-
-LAYER 4 — REGULATORY POSTURE
-FDA claim linting (regex-based, runs in CI on every PDP copy change). DSHEA supplement validator (flags unsubstantiated structure/function claims). Contraindication presence check (any PDP for a Class II device fails compliance-lint workflow if it lacks a ContraindicationCallout block). Age-gated checkout via Shopify Function. WCAG 2.2 AA as default — skip link, semantic main landmark, focus-visible rings, nonce-respecting inline scripts, ARIA role-descriptions on gallery + body-area carousel.
-
-CATALOG
-150+ SKUs across 7 categories (recovery devices, sleep systems, mental recovery, biomarker diagnostics, supplements, home gym, women's health). All modeled as real commerce objects with variants, metaobjects, and compliance-critical metafields.
-
-MARKETS & LOCALES
-5 markets — US, CA, UK, EU, AU — with FDA vs CE-marked SKU segmentation, market-aware storefront routing, checkout profiles, per-market inventory routing, and tax profiles.
-5 locales — English, Spanish, French, German, Arabic — with full right-to-left layout flipping for Arabic.
-
-CI / QUALITY
-10 CI workflows run honest-green (no masked failures): 7 truly pass, 2 intentionally warn-only with documented Day-16 and Day-36 resolution dates, 1 clean-skip until Percy specs land. 17 Architecture Decision Records on file. $0 spent on infrastructure (one paid item, $5 OpenAI credit, deferred to Day 31).`,
-
-      thumbnail: "",
-
-      technologies: [
-        "Shopify Plus",
-        "Hydrogen 2026.4",
-        "React Router v7",
-        "Rust → WASM (4 Shopify Functions, all under 200 KB)",
-        "Polaris (Custom Merchant App UI)",
-        "Cloudflare Workers + D1",
-        "Hand-Rolled Shopify OAuth + HMAC Helpers",
-        "Tailwind v4 (@theme Block Token System)",
-        "Radix Primitives + @regenai/ui Design System",
-        "Storybook (15 Primitives)",
-        "Sentry + Web Vitals",
-        "FDA Claim Linting (Regex CI Gate)",
-        "DSHEA Supplement Validator",
-        "Contraindication Presence Check (Compile-Time)",
-        "Age-Gated Checkout (Shopify Function)",
-        "WCAG 2.2 AA",
-        "Markets API (5 markets — US/CA/UK/EU/AU)",
-        "5 Locales incl. Arabic RTL",
-        "10 GitHub Actions CI Workflows",
+      "id": "regenai-shopify",
+      "thumbnail": "",
+      "title": "RegenAI — Shopify Hydrogen & AI Support Studio",
+      "category": [
+        "shopify",
+        "fullstack",
+        "ai-ml"
       ],
-
-      achievements: [
-        "Day 19 of 105 — 4 Shopify Functions in Rust → WASM with 47 cargo tests passing, all 4 WASM artefacts under 200 KB (Shopify cap is 1.5 MB)",
-        "Custom Polaris merchant app on Cloudflare Workers + D1 — hand-rolled Shopify OAuth + HMAC, end-to-end install flow tested",
-        "Pivoted Hydrogen hosting from Shopify Oxygen to Cloudflare Workers at Day 10 (ADR-011) when dev-store hosting limitation surfaced",
-        "150+ SKUs across 7 categories with variants, metaobjects, and compliance-critical metafields",
-        "5 markets (US, CA, UK, EU, AU) with FDA vs CE-marked SKU segmentation, per-market routing and tax profiles",
-        "5 locales including Arabic with full right-to-left layout flipping",
-        "Compliance-as-code: FDA claim linting (regex CI gate), DSHEA supplement validator, contraindication presence check on every PDP, age-gated checkout via WASM Function",
-        "WCAG 2.2 AA default — skip link, semantic main landmark, focus-visible rings, nonce-respecting inline scripts, ARIA role-descriptions",
-        "17 Architecture Decision Records on file — every architectural pivot documented with context and consequence",
-        "10 CI workflows honest-green (no masked failures) — $0 infrastructure spend through Day 19",
+      "description": "A Shopify-backed 3D concept storefront with a Python support assistant, encrypted memory, image understanding and versioned human approval. Financial execution and sent email remain disabled.",
+      "fullDescription": "RegenAI combines a Shopify Hydrogen storefront reading six development-store concept products with a Python Support Studio. The storefront preserves the approved 3D design, product discovery, search and comparison. Ordering, account sign-in and checkout remain closed.\n\nThe support assistant provides contextual conversations, encrypted saved memory, image understanding, allowlisted web retrieval, durable jobs and a versioned human-review workflow. Shopify and Gmail account reads, token renewal and restart persistence passed. Bounded AI verification exercised Spanish preference recall and an image-based support recommendation. This is not broad multilingual or unrestricted image-understanding proof.\n\nHuman approval binds the current ticket, order and rulebook version. Financial and email execution are disabled; real refunds, populated-inbox processing and sent replies are not claimed. Provider receipts and crash recovery remain acceptance requirements before activation.\n\nEarlier storefront evidence records 137 passing tests with one skip and 145 matching release files. Test checkout, customer sign-in, merchant Function activation, full accessibility review and integrated launch remain unfinished. Source: client review edition, October 8, 2026.",
+      "technologies": [
+        "Shopify Hydrogen",
+        "React",
+        "TypeScript",
+        "Three.js",
+        "Python",
+        "Encrypted memory",
+        "MCP",
+        "Shopify / Gmail integrations"
       ],
-
-      featured: true,
-      isHeadless: true,
-
-      metrics: {
-        platform: "Shopify Plus + Hydrogen 2026.4 + React Router v7",
-        hosting: "Cloudflare Workers + D1 (Pivoted from Oxygen at Day 10 / ADR-011)",
-        functions: "4 Shopify Functions (Rust → WASM) · 47 Cargo Tests · All Under 200 KB",
-        catalog: "150+ SKUs · 7 Categories · Compliance Metafields",
-        markets: "5 Markets (US, CA, UK, EU, AU) · FDA vs CE-Marked Segmentation",
-        locales: "5 Locales (EN, ES, FR, DE, AR with RTL Layout Flipping)",
-        compliance: "FDA Claim Linting + DSHEA Validator + Contraindication Check + Age Gate",
-        a11y: "WCAG 2.2 AA Default",
-        ci: "10 GitHub Actions Workflows · Honest-Green · No Masked Failures",
-        infra: "$0 Through Day 19 · 17 ADRs",
-      },
+      "achievements": [
+        "Shopify-backed concept catalog and approved 3D storefront",
+        "Support Studio with image understanding and encrypted memory",
+        "Verified account reads, token renewal and restart persistence",
+        "Versioned human approval; financial and email execution disabled"
+      ],
+      "liveUrl": "https://regenai.zahidul-islam.com/",
+      "githubUrl": "https://github.com/Zahidulislam2222/regenai",
+      "featured": true,
+      "isHeadless": true,
+      "metrics": {
+        "catalog": "Six concept products · ordering closed",
+        "support": "Python Support Studio · human review",
+        "verification": "Bounded AI checks · provider actions pending",
+        "status": "Build in progress · October 8, 2026"
+      }
     },
 
     {
-      id: "kindred-grove",
-      title: "Kindred Grove — Custom Shopify Theme (DTC Pantry Brand)",
-      category: ["shopify", "fullstack"],
-
-      description:
-        "Problem: Pre-launch single-origin pantry-staples DTC brand (olive oil, dates, honey, saffron, black seed) needed an agency-tier Shopify storefront with Arabic RTL support and CI-enforced quality bars. Solution: 21-day build sprint, 14/14 storefront templates shipped, Theme Blocks architecture (Horizon-style 8-level nesting), zero front-end framework runtime (vanilla JS + Web Components), English + Arabic with CLDR-correct plural forms, and CI quality gates (Lighthouse Perf 0.90 / A11y 0.95, axe-core, Playwright E2E, Percy visual regression, gitleaks, Dependabot).",
-
-      fullDescription: `Kindred Grove is a Phase 1 portfolio build (April 2026, code-complete in 21 days) — a custom, agency-tier Shopify storefront for a pre-launch single-origin pantry-staples DTC brand. 14 of 14 SOW build-sprint days shipped and tagged (v0.0-day1 through v0.0-day21-complete), 13 public documentation artifacts in the repo, 9 continuous-integration workflows configured and passing.
-
-STOREFRONT — 14 of 14 TEMPLATES
-1. Homepage with editorial hero + section blocks
-2. Collection / product listing
-3. Product detail with 3D model viewer, variant picker, subscription, farm story, recipes, FAQ
-4. Cart drawer + full cart page (no-JavaScript fallback)
-5. Predictive search with debounced live results across products, pages, articles
-6. Origin / farm detail pages — metaobject-driven
-7. Build Your Pantry quiz — merchant-editable questions and personas
-8. Recipes blog with article template and comment system
-9. Wholesale inquiry page with honeypot, rate limit, optional Admin-API draft-order creation
-10. Gift boxes collection with curated hero
-11. Customer account — sign-in, register, dashboard, order history, addresses, order detail, password reset, activation
-12. Checkout extension scaffolded
-13. Styleguide at /pages/styleguide — living component library
-14. 404 page + Shopify-native policy pages
-
-ARCHITECTURE
-Theme Blocks architecture throughout (Horizon-style, 8-level nesting). Every storefront surface block-composable by the merchant. Vanilla JavaScript with Web Components — zero runtime dependency on any front-end framework, theme ships unbundled. Modern design-token CSS with full brand system (cream, olive, saffron, terracotta, espresso). Serif-heading + sans-body pair with Arabic fallback stack (Aref Ruqaa and IBM Plex Sans Arabic under [dir="rtl"]). Spacing, motion, radii, shadows all tokenized. Metaobjects first for editorial content (Farm, Farmer, Region, Certification, Recipe). Full WCAG 2.1 AA — deeper olive tokens (5.76 contrast on cream), axe-core scanned on every PR. English and Arabic locales shipped with hreflang tags and CLDR-correct Arabic plural forms.
-
-OBSERVABILITY
-Sentry frontend error tracking (CDN Loader pattern, PII scrubbing in beforeSend hook). Web Vitals library reporting Core Web Vitals as custom events to GA4. localStorage-based feature-flag system with URL override, Do-Not-Track compliance, and exposure analytics events.
-
-CI / QUALITY GATES (every PR)
-Liquid lint via Shopify theme-check — 181 tracked files, zero offenses. Shopify Lighthouse CI with Performance 0.90 and Accessibility 0.95 thresholds. Accessibility scan via axe-core through Playwright across home, cart, collection, search routes. Playwright golden-path E2E tests for PDP, cart, quiz, search, navigation. Percy visual regression with 6 snapshots across 4 viewport widths. Secret scanning via gitleaks on every PR, every push, plus weekly scheduled deep scan. Dependabot weekly updates grouped by vendor. Deploy workflows for dev, staging, production — production gated by required-reviewer rule.
-
-PUBLIC DOCS — 13 ARTIFACTS
-README, CONTRIBUTING, LICENSE (MIT), ARCHITECTURE, SECURITY (threat model, CSP breakdown, form hardening, escape audit), TESTING runbook, plus ADRs.`,
-
-      thumbnail: "",
-
-      technologies: [
-        "Shopify (Custom Theme, Theme Blocks)",
-        "Liquid (181 Tracked Files, Zero theme-check Offenses)",
-        "Vanilla JavaScript + Web Components (Zero Framework Runtime)",
-        "Modern Design-Token CSS",
-        "Shopify Metaobjects (Farm, Farmer, Region, Certification, Recipe)",
-        "Theme Blocks Architecture (Horizon-Style 8-Level Nesting)",
-        "English + Arabic (RTL) with CLDR Plural Forms",
-        "Sentry (CDN Loader + PII Scrubbing)",
-        "Web Vitals → GA4 Custom Events",
-        "localStorage Feature-Flag System (DNT-Compliant)",
-        "Shopify theme-check (Liquid Lint)",
-        "Shopify Lighthouse CI (Perf 0.90 / A11y 0.95 Thresholds)",
-        "axe-core via Playwright",
-        "Playwright Golden-Path E2E",
-        "Percy Visual Regression (6 Snapshots × 4 Viewports)",
-        "gitleaks Secret Scanning",
-        "Dependabot Weekly Grouped Updates",
+      "id": "kindred-grove",
+      "thumbnail": "",
+      "title": "Kindred Grove — Published Custom Shopify Storefront",
+      "category": [
+        "shopify",
+        "fullstack"
       ],
-
-      achievements: [
-        "21-day build sprint — 14 of 14 storefront templates shipped and tagged (v0.0-day1 through v0.0-day21-complete)",
-        "Theme Blocks architecture with Horizon-style 8-level nesting — every surface block-composable by merchant",
-        "Zero front-end framework runtime — vanilla JS + Web Components, theme ships unbundled (npm only needed for tests)",
-        "English + Arabic locales with hreflang tags and CLDR-correct Arabic plural forms; deeper olive tokens (5.76 contrast on cream) for small-text WCAG AA",
-        "9 CI workflows passing on every PR — Liquid lint (zero offenses), Lighthouse Perf 0.90 / A11y 0.95, axe-core, Playwright E2E, Percy 6×4 snapshots, gitleaks, Dependabot",
-        "13 public documentation artifacts — README, CONTRIBUTING, LICENSE (MIT), ARCHITECTURE, SECURITY threat model, TESTING runbook, ADRs",
-        "Sentry CDN Loader with beforeSend PII scrubbing; Web Vitals → GA4; DNT-compliant feature-flag system",
-        "Production deploy workflow gated by required-reviewer rule",
+      "description": "A cinematic Shopify Liquid storefront with native cart interactions, a pantry quiz, consent controls and seven content pages. Published behind Shopify's required development-store visitor password; no real transactions.",
+      "fullDescription": "Kindred Grove is a premium pantry portfolio storefront built with Shopify Liquid, CSS and vanilla JavaScript Web Components. Its published design combines a film-led opening, scroll-linked copy, arched product imagery, native cart interactions and merchant-editable content. Motion can be paused, and reduced-motion and no-JavaScript navigation remain supported.\n\nSeven native pages cover Our Story, Recipes, FAQ, Contact, Shipping & Returns, Find Your Pantry and Wholesale. The October 8 project status records 55 browser passes, three catalog-dependent skips, a separate native-search/mobile-accessibility check and all 154 shipping files matching local, frozen and downloaded copies.\n\nThe custom domain serves the published storefront, but Shopify development-store policy requires a visitor password and prevents real transactions and commercial transfer. No real order or customer-information submission was used in verification. Source is published on a review branch; main still requires an approving review. Million-visitor capacity and availability objectives are roadmap targets, not measured operating results.",
+      "technologies": [
+        "Shopify",
+        "Liquid",
+        "CSS",
+        "JavaScript",
+        "Web Components",
+        "Playwright",
+        "Consent controls"
       ],
-
-      githubLinks: [
-        { label: "GitHub Repository", url: "https://github.com/Zahidulislam2222/kindred-grove" },
+      "achievements": [
+        "Published cinematic design with native cart and seven content pages",
+        "55 recorded browser passes; three catalog-dependent skips",
+        "154 shipping-file hashes match",
+        "Explicit password and commercial-use boundaries"
       ],
-
-      featured: false,
-      isHeadless: false,
-
-      metrics: {
-        sprint: "21 Days · 14/14 Templates Shipped · v0.0-day21-complete Tagged",
-        architecture: "Theme Blocks (Horizon-Style 8-Level Nesting) · Zero Framework Runtime",
-        a11y: "WCAG 2.1 AA · 5.76 Contrast Ratio (Olive on Cream) · axe-core on Every PR",
-        ci: "9 Workflows · Lighthouse Perf 0.90 / A11y 0.95 · 181 Liquid Files Zero Offenses",
-        i18n: "English + Arabic (RTL) · CLDR Plural Forms · hreflang Tags",
-        observability: "Sentry CDN Loader (PII Scrub) · Web Vitals → GA4 · Feature-Flag System (DNT-Compliant)",
-        regression: "Percy Visual (6 Snapshots × 4 Viewports) · Playwright Golden-Path E2E",
-        docs: "13 Public Artifacts (README, ARCHITECTURE, SECURITY, TESTING, ADRs)",
-      },
+      "githubUrl": "https://github.com/Zahidulislam2222/kindred-grove",
+      "featured": false,
+      "metrics": {
+        "verification": "55 browser passes · 3 skips",
+        "parity": "154 shipping files",
+        "pages": "Seven native content pages",
+        "status": "Published · visitor password required · October 8, 2026"
+      }
     },
 
     {
