@@ -48,7 +48,7 @@ export const heroShowcase = {
         projectId: "yuktha-wellness",
         headline: ["I build software", "that puts", "AI to work."],
         description:
-          "Grounded RAG chatbots, AI agents and n8n workflows. I connect your knowledge, APIs and business tools with human approval where it matters.",
+          "AI agents, RAG chatbots, voice tools and n8n automation. I engineer the full system and build custom Claude Code/Codex workflows with MCP and project knowledge.",
         title: "Answers with a foundation.",
         caption: "Yuktha Wellness / retrieval architecture",
         nodes: ["Retrieve", "Rerank", "Ground"],

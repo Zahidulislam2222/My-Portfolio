@@ -20,21 +20,77 @@ const projectSchema = z.object({
 
 export const studioProjects = z.array(projectSchema).parse([
   {
-    "id": "ftm-social-media",
-    "name": "Campaign operations",
+    "id": "voicebridge",
+    "name": "VoiceBridge",
     "category": "AI & Agents",
-    "domain": "CLIENT AUTOMATION",
-    "summary": "Creative automation with a human approval loop.",
-    "status": "Production workflow",
-    "detail": "A media-first campaign workflow with approved asset intake, background copy generation, client media/date selection, revisions, internal approval and controlled asset delivery. The August release included real client dashboard/calendar approval checks and deployment parity. Approved deliverables are downloaded for manual publishing; direct social-network publishing is not the verified path.",
+    "domain": "VOICE & BUSINESS AUTOMATION",
+    "summary": "Voice-agent tools with explicit user confirmation and durable business workflows.",
+    "status": "Deployed platform · voice acceptance pending",
+    "detail": "A voice-agent business platform with an authenticated operator console, grounded knowledge and provider-authenticated tools. Booking, rescheduling and cancellation use explicit confirmation, timezone checks, idempotency and revision control. A leased worker handles calendar, CRM and follow-ups with durable retries and explicit uncertain-delivery states. The October 8 overview records 150 backend/tooling tests, 78 frontend tests and 21 public browser routes. Real voice/audio acceptance and external calendar, CRM and email receipts remain integration gates; million-user capacity is a roadmap target.",
     "stack": [
-      "n8n",
       "Python",
-      "Client portals"
+      "PostgreSQL",
+      "Retell / Vapi",
+      "MCP"
     ],
-    "visual": "pipeline",
+    "visual": "network",
     "featured": true,
-    "evidence": "Current platform snapshot, August 11, 2026"
+    "evidence": "Comprehensive technical overview, October 8, 2026"
+  },
+  {
+    "id": "fleetwright",
+    "name": "Fleetwright",
+    "category": "Cloud & Systems",
+    "domain": "BROWSER FLEET ORCHESTRATION",
+    "summary": "Zero duplicate bookings in a 10,000-job mock-board concurrency test.",
+    "status": "Live demo · in active development",
+    "detail": "An independent control plane for logged-in Playwright browser sessions. PostgreSQL claim fencing, tenant isolation, an outbox and a reconciler coordinate actions and handle uncertain outcomes. A recorded test with 200 concurrent competitors over 10,000 jobs on its own fictitious load board produced zero duplicate bookings: 9,897 confirmed claims matched 9,897 board bookings. Crash recovery was exercised in the same controlled environment. The public console is a capped live demonstration in active development. Metrics and alerting, the crawler, the AI agent and larger scale proof runs are still planned; this result does not establish real third-party booking or universal exactly-once behavior.",
+    "stack": [
+      "Python",
+      "Playwright",
+      "Postgres"
+    ],
+    "image": "/studio/fleetwright.webp",
+    "visual": "capture",
+    "featured": true,
+    "evidence": "Technical overview, evidence checked October 6, 2026"
+  },
+  {
+    "id": "agentic-environment",
+    "name": "Claude Code & Codex Workflows",
+    "category": "AI & Agents",
+    "domain": "ENGINEERING WORKFLOWS",
+    "summary": "Custom MCP, searchable project knowledge and repeatable engineering gates.",
+    "status": "Working engineering environment",
+    "detail": "My integrated Claude Code and Codex engineering environment combines a custom lossless knowledge MCP backed by SQLite FTS5, source audits, reusable skills, project context, project-local handoff checkpoints and provider routing. Security hooks, pre-commit/CI checks and review workflows make the engineering process inspectable. The contribution is integration and operation of the environment, not authorship of the underlying models or coding tools. No productivity multiplier or universal security guarantee is asserted.",
+    "stack": [
+      "Claude Code",
+      "Codex",
+      "MCP",
+      "Python",
+      "SQLite FTS5"
+    ],
+    "visual": "network",
+    "featured": true,
+    "evidence": "Engineering workflow overview, September 7, 2026"
+  },
+  {
+    "id": "regenai-shopify",
+    "name": "RegenAI / Shopify Support Studio",
+    "category": "Web & Commerce",
+    "domain": "HEADLESS WELLNESS COMMERCE",
+    "summary": "Shopify context, image-aware support and versioned human approval.",
+    "status": "Live concept storefront · build in progress",
+    "detail": "A recovery-commerce portfolio project with a Shopify-backed Hydrogen storefront and a Python Support Studio. Six concept products retain the approved 3D design. The assistant combines encrypted saved memory, image understanding, allowlisted web retrieval, durable jobs and versioned human approval. Shopify and Gmail account reads, token renewal and restart persistence were verified; bounded AI checks exercised Spanish preference recall and an image-based support recommendation. Financial execution and sent email replies remain disabled. It is a build in progress: test checkout, account sign-in, merchant Function activation and full provider-action acceptance remain due. Earlier storefront evidence records 137 passing tests, one skip and 145 matching release files.",
+    "stack": [
+      "Hydrogen",
+      "Python",
+      "Shopify",
+      "AI support"
+    ],
+    "visual": "network",
+    "featured": true,
+    "evidence": "Client review edition and support assistant, October 8, 2026"
   },
   {
     "id": "yuktha-wellness",
@@ -52,6 +108,23 @@ export const studioProjects = z.array(projectSchema).parse([
     "visual": "network",
     "featured": true,
     "evidence": "August release records · October 10 public case study"
+  },
+  {
+    "id": "ftm-social-media",
+    "name": "Campaign operations",
+    "category": "AI & Agents",
+    "domain": "CLIENT AUTOMATION",
+    "summary": "Creative automation with a human approval loop.",
+    "status": "Production workflow",
+    "detail": "A media-first campaign workflow with approved asset intake, background copy generation, client media/date selection, revisions, internal approval and controlled asset delivery. The August release included real client dashboard/calendar approval checks and deployment parity. Approved deliverables are downloaded for manual publishing; direct social-network publishing is not the verified path.",
+    "stack": [
+      "n8n",
+      "Python",
+      "Client portals"
+    ],
+    "visual": "pipeline",
+    "featured": true,
+    "evidence": "Current platform snapshot, August 11, 2026"
   },
   {
     "id": "jwalker-knowledge-assistant",
@@ -101,44 +174,8 @@ export const studioProjects = z.array(projectSchema).parse([
       "Async jobs"
     ],
     "visual": "network",
-    "featured": true,
+    "featured": false,
     "evidence": "September 4 recovery records · October 10 public case study"
-  },
-  {
-    "id": "voicebridge",
-    "name": "VoiceBridge",
-    "category": "AI & Agents",
-    "domain": "VOICE & BUSINESS AUTOMATION",
-    "summary": "A conversation connected to a dependable business workflow.",
-    "status": "Deployed platform · voice acceptance pending",
-    "detail": "A voice-agent business platform with an authenticated operator console, grounded knowledge and provider-authenticated tools. Booking, rescheduling and cancellation use explicit confirmation, timezone checks, idempotency and revision control. A leased worker handles calendar, CRM and follow-ups with durable retries and explicit uncertain-delivery states. The October 8 overview records 150 backend/tooling tests, 78 frontend tests and 21 public browser routes. Real voice/audio acceptance and external calendar, CRM and email receipts remain integration gates; million-user capacity is a roadmap target.",
-    "stack": [
-      "Python",
-      "PostgreSQL",
-      "Retell / Vapi",
-      "MCP"
-    ],
-    "visual": "network",
-    "featured": true,
-    "evidence": "Comprehensive technical overview, October 8, 2026"
-  },
-  {
-    "id": "regenai-shopify",
-    "name": "RegenAI",
-    "category": "Web & Commerce",
-    "domain": "HEADLESS WELLNESS COMMERCE",
-    "summary": "Shopify commerce meets an AI support studio with human review.",
-    "status": "Live concept storefront · build in progress",
-    "detail": "A recovery-commerce portfolio project with a Shopify-backed Hydrogen storefront and a Python Support Studio. Six concept products retain the approved 3D design. The assistant combines encrypted saved memory, image understanding, allowlisted web retrieval, durable jobs and versioned human approval. Shopify and Gmail account reads, token renewal and restart persistence were verified; bounded AI checks exercised Spanish preference recall and an image-based support recommendation. Financial execution and sent email replies remain disabled. It is a build in progress: test checkout, account sign-in, merchant Function activation and full provider-action acceptance remain due. Earlier storefront evidence records 137 passing tests, one skip and 145 matching release files.",
-    "stack": [
-      "Hydrogen",
-      "Python",
-      "Shopify",
-      "AI support"
-    ],
-    "visual": "network",
-    "featured": true,
-    "evidence": "Client review edition and support assistant, October 8, 2026"
   },
   {
     "id": "vitalprobe",
@@ -154,43 +191,8 @@ export const studioProjects = z.array(projectSchema).parse([
       "MCP"
     ],
     "visual": "terminal",
-    "featured": true,
+    "featured": false,
     "evidence": "Executive overview and product boundary, July 2026"
-  },
-  {
-    "id": "agentic-environment",
-    "name": "Agentic Development Environment",
-    "category": "AI & Agents",
-    "domain": "ENGINEERING WORKFLOWS",
-    "summary": "Continuity, knowledge and quality gates for AI-assisted engineering.",
-    "status": "Working engineering environment",
-    "detail": "An integrated coding environment with deliberate subscription/provider routing, project-local handoff checkpoints, a lossless knowledge MCP and reusable security/review workflows. The contribution is integration and operational discipline, not authorship of the underlying models or coding tools. No productivity multiplier is asserted.",
-    "stack": [
-      "Python",
-      "MCP",
-      "SQLite"
-    ],
-    "visual": "network",
-    "featured": false,
-    "evidence": "Engineering workflow overview, September 7, 2026"
-  },
-  {
-    "id": "fleetwright",
-    "name": "Fleetwright",
-    "category": "Cloud & Systems",
-    "domain": "BROWSER FLEET ORCHESTRATION",
-    "summary": "Duplicate-resistant booking workflows, tested against a fictitious load board.",
-    "status": "Live demo · in active development",
-    "detail": "An independent control plane for logged-in Playwright browser sessions. PostgreSQL claim fencing, tenant isolation, an outbox and a reconciler coordinate actions and handle uncertain outcomes. Concurrency and crash recovery were tested against a fictitious load board built in the same repository. The public console is a capped live demonstration in active development. Metrics and alerting, the crawler, the AI agent and larger scale proof runs are still planned. No real third-party booking service or universal exactly-once guarantee is claimed.",
-    "stack": [
-      "Python",
-      "Playwright",
-      "Postgres"
-    ],
-    "image": "/studio/fleetwright.webp",
-    "visual": "capture",
-    "featured": false,
-    "evidence": "Technical overview, evidence checked October 6, 2026"
   },
   {
     "id": "rag-production-stack",
@@ -447,18 +449,19 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "agentic-environment": "Custom Claude Code/Codex workflows, a lossless knowledge MCP and project-local handoffs with test/review/release gates.",
     "jwalker-knowledge-assistant": "Public source-linked answers from approved videos, with paid material excluded and scheduled knowledge refresh.",
     "ftm-sms-followup": "Form routing, welcome messages and scheduled follow-ups connected through n8n, Sheets and Twilio.",
     "ftm-seo-automation": "Validated AIOSEO updates through asynchronous jobs, with separate worker health and recovery checks.",
     "regenai-shopify": "A support studio with grounded context, persistent memory and versioned human approval; financial and email execution disabled.",
     voicebridge:
-      "Confirmed bookings, grounded knowledge and durable follow-ups, with provider actions bounded by explicit acceptance gates.",
+      "150 backend/tooling and 78 frontend tests recorded for booking tools, grounded knowledge and durable jobs; real audio and external receipts pending.",
     "mediconnect-v3":
       "Patient, practitioner and pharmacy journeys connected through a shared platform architecture.",
     equipcert:
       "Tenant-aware inspections with photo evidence, signatures, corrective actions and audit records.",
     fleetwright:
-      "Single claims enforced by the database, fencing tokens and a reconciler, audited against the board's own log.",
+      "Zero duplicates with 200 competitors over 10,000 mock-board jobs; 9,897 confirmed claims matched board bookings.",
     "yuktha-wellness":
       "Hybrid retrieval, reranking and grounding checks with an emergency gate before generation.",
     chronos:
@@ -533,7 +536,7 @@ export const studioConfig = {
     workEyebrow: "01 / SELECTED WORK",
     workTitle: "The work behind\nthe interface.",
     workIntro:
-      "Client AI assistants and automation workflows first, followed by independent builds and demonstrations. Explore the problem, implementation and verified delivery status.",
+      "Recent voice, browser and agentic engineering builds alongside paid AI and automation client work. Explore what I built, the evidence and the current delivery scope.",
     filters: [
       "All work",
       "Client work",
@@ -563,7 +566,7 @@ export const studioConfig = {
     aboutBody:
       "Before software, I worked as a physiotherapy technologist. That experience shapes how I approach engineering: understand the person using the system, the workflow around them and what happens when something goes wrong.",
     aboutSecond:
-      "Today I focus on AI assistants and business automation. I also build the dashboards, APIs and deployment workflows they need. You work directly with me, with clear updates, acceptance checks and documentation.",
+      "I build AI systems across the interface, backend and cloud. VoiceBridge, Fleetwright and RegenAI show my recent work; custom Claude Code/Codex workflows support the engineering process. Full-stack, cloud, WordPress and Shopify remain part of what I deliver, with clear acceptance checks and documentation.",
     contactEyebrow: "HAVE A PROBLEM WORTH SOLVING?",
     contactChannelsLabel: "Contact and professional profiles",
     contactTitle: "Let’s build\nwhat’s next.",
@@ -601,17 +604,17 @@ export const studioConfig = {
     {
       icon: "layers",
       title: "Business workflow automation.",
-      text: "Lead routing, follow-ups and content workflows that connect your tools and keep approval with your team.",
+      text: "n8n integrations, browser workflows, lead follow-up and content approvals. Durable jobs and explicit failure states keep the operational work inspectable.",
       tags: ["n8n & webhooks", "Twilio & form integrations", "Human approval workflows"],
     },
     {
       icon: "network",
-      title: "Agent tools & integrations.",
-      text: "Custom APIs, MCP tools and durable background jobs that connect AI to business systems with scoped access and recoverable failures.",
+      title: "Agentic software engineering.",
+      text: "Claude Code and Codex workflows with custom MCP, searchable project context, reusable skills and review gates. Full-stack, cloud and commerce engineering connect the system from interface to deployment.",
       tags: [
-        "Python & FastAPI",
-        "MCP & API integration",
-        "Retries & delivery evidence",
+        "Claude Code & Codex",
+        "Custom MCP & project knowledge",
+        "Full-stack, cloud & commerce",
       ],
     },
   ],

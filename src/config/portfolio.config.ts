@@ -18,7 +18,7 @@ export const portfolioConfig = {
     // Small accent label shown next to the headline
     frontierTag: "Frontier AI",
     // Plain-English explainer line under the headline (so the title is instantly understood)
-    tagline: "I build grounded AI assistants and automate business workflows with n8n, APIs and Python.",
+    tagline: "AI agents, voice tools and business automation—with full-stack, cloud and commerce engineering behind them.",
     // Secondary anchor terms shown as a muted line beneath the headline
     roles: [
       "AI Automation Engineer",
@@ -26,8 +26,8 @@ export const portfolioConfig = {
       "n8n Workflow Developer",
       "API & MCP Integrations"
     ],
-    bio: "AI automation engineer building grounded knowledge assistants, n8n workflows and business API integrations. Paid client work includes content approval, lead follow-up, WordPress automation and multilingual RAG. Earlier physiotherapy work informs healthcare projects. Independent builds are clearly separated from client delivery.",
-    shortBio: "AI assistants, n8n automation and API integrations, supported by full-stack engineering.",
+    bio: "AI automation engineer building voice-agent tools, browser workflows, RAG assistants and n8n integrations. Recent independent systems include VoiceBridge, Fleetwright, RegenAI and custom Claude Code/Codex workflows with a knowledge MCP. Paid client work covers multilingual RAG, content approvals, lead follow-up and WordPress automation. Full-stack, cloud, WordPress and Shopify engineering support delivery across the whole system.",
+    shortBio: "AI agents and automation, custom Claude Code/Codex workflows, full-stack and cloud delivery.",
     location: "Dhaka, Bangladesh",
     email: "muhammadzahidulislam2222@gmail.com", // Replace with your email
     phone: "+8801794739339", // Replace with your phone
@@ -85,7 +85,7 @@ export const portfolioConfig = {
       "automation",
       "fullstack"
     ],
-    "description": "A conversation connected to a dependable business workflow.",
+    "description": "Voice-agent tools with explicit user confirmation and durable business workflows.",
     "fullDescription": "A voice-agent business platform with an authenticated operator console, grounded knowledge and provider-authenticated tools. Booking, rescheduling and cancellation use explicit confirmation, timezone checks, idempotency and revision control. A leased worker handles calendar, CRM and follow-ups with durable retries and explicit uncertain-delivery states. The October 8 overview records 150 backend/tooling tests, 78 frontend tests and 21 public browser routes. Real voice/audio acceptance and external calendar, CRM and email receipts remain integration gates; million-user capacity is a roadmap target.",
     "thumbnail": "/studio/voicebridge.png",
     "technologies": [
@@ -403,14 +403,14 @@ export const portfolioConfig = {
   },
   {
     "id": "groza-ada-compliance",
-    "title": "Groza Learning Center — ADA & GDPR Compliance (Client Project)",
+    "title": "Groza Learning Center — Accessibility & Cookie Consent (Client Project)",
     "category": [
       "wordpress",
       "compliance",
       "fullstack"
     ],
-    "description": "Problem: A Los Angeles learning center's WordPress/Elementor site had 100+ accessibility errors across 30+ pages, 200+ color contrast failures, tracking scripts firing without consent, and a UserWay overlay increasing legal liability. Solution: Full ADA/WCAG 2.1 AA remediation via 6 server-side PHP code snippets (zero theme modifications), GDPR cookie consent with CookieYes (25 cookies categorized), and custom PHP output buffer that strips 4 hardcoded tracking scripts (Meta Pixel, AdRoll, Google Ads, Bing UET) before consent and reloads after — verified 0 tracking requests before consent across 16 pages.",
-    "fullDescription": "Groza Learning Center is a real client project (Upwork contract, April 2026) — full ADA accessibility remediation and GDPR compliance implementation for a WordPress/Elementor education website in Los Angeles.\n\nPHASE 1: ADA / WCAG 2.1 AA COMPLIANCE\nFull WAVE + Lighthouse audit across 30+ pages. Fixed 100+ accessibility errors: 50+ missing alt texts (WP_HTML_Tag_Processor), broken ARIA references on mega-menus, empty buttons/links (search, nav, social icons), missing form labels (reCAPTCHA, CF7), broken skip navigation, heading hierarchy issues. Resolved 200+ color contrast failures with 15 distinct color corrections (all meeting 4.5:1 AA minimum). Disabled UserWay overlay widget (active class action lawsuit Feb 2026, 1,023 companies sued while using overlays). All fixes via server-side PHP Code Snippets — zero theme or plugin files modified, fully reversible.\n\nPHASE 2: TRACKING & PRIVACY CLEANUP\nRemoved dead Universal Analytics (loading for ~2 years to shut-down endpoint). Restricted reCAPTCHA v3 to form pages only (was loading on all 30+ pages). Switched YouTube embeds to privacy-enhanced mode (youtube-nocookie.com), future-proof for any new videos.\n\nPHASE 3: GDPR COOKIE CONSENT\nInstalled CookieYes consent banner (GDPR worldwide). Scanned and categorized 25 cookies across 4 categories (Necessary, Analytics, Advertisement, Functional). Manually fixed 3 cookies auto-scan missed. Enabled Google Consent Mode and Microsoft UET Consent Mode.\n\nPHASE 4: GDPR SCRIPT BLOCKING\nDiscovered 4 tracking scripts hardcoded directly in HTML (not managed by any WordPress plugin). Built custom PHP output buffer solution: strips scripts from HTML at server level using preg_replace, stores in JS function in footer, reads cookieyes-consent cookie, loads scripts only after \"advertisement\" consent, listens for real-time consent changes. Verified: 0 Facebook requests before consent, full tracking after Accept, across 16 pages.\n\nKEY PHP TECHNIQUES\nWP_HTML_Tag_Processor for alt text injection, style_loader_tag filter for contrast CSS overrides, str_ireplace for site-wide text replacements, ob_start output buffer for GDPR script masking, preg_replace for tracking script removal, wp_dequeue_script for conditional reCAPTCHA loading.",
+    "description": "Problem: A Los Angeles learning center's WordPress/Elementor site had 100+ accessibility errors across 30+ pages, 200+ color contrast failures, tracking scripts firing without consent, and an accessibility overlay requiring review. Solution: Accessibility remediation targeting WCAG 2.1 AA via 6 server-side PHP code snippets (zero theme modifications), GDPR cookie consent with CookieYes (25 cookies categorized), and custom PHP output buffer that strips 4 hardcoded tracking scripts (Meta Pixel, AdRoll, Google Ads, Bing UET) before consent and reloads after — verified 0 Facebook requests before consent across 16 pages.",
+    "fullDescription": "Groza Learning Center is a real client project (Upwork contract, April 2026) — accessibility remediation and cookie-consent implementation for a WordPress/Elementor education website in Los Angeles.\n\nPHASE 1: ACCESSIBILITY REMEDIATION\nFull WAVE + Lighthouse audit across 30+ pages. Fixed 100+ accessibility errors: 50+ missing alt texts (WP_HTML_Tag_Processor), broken ARIA references on mega-menus, empty buttons/links (search, nav, social icons), missing form labels (reCAPTCHA, CF7), broken skip navigation, heading hierarchy issues. Resolved 200+ color contrast failures with 15 distinct color corrections (all meeting 4.5:1 AA minimum). Disabled the UserWay overlay widget. All fixes via server-side PHP Code Snippets — zero theme or plugin files modified, fully reversible.\n\nPHASE 2: TRACKING & PRIVACY CLEANUP\nRemoved dead Universal Analytics (loading for ~2 years to shut-down endpoint). Restricted reCAPTCHA v3 to form pages only (was loading on all 30+ pages). Switched YouTube embeds to privacy-enhanced mode (youtube-nocookie.com), future-proof for any new videos.\n\nPHASE 3: COOKIE CONSENT CONTROLS\nInstalled CookieYes consent banner shown worldwide. Scanned and categorized 25 cookies across 4 categories (Necessary, Analytics, Advertisement, Functional). Manually fixed 3 cookies auto-scan missed. Enabled Google Consent Mode and Microsoft UET Consent Mode.\n\nPHASE 4: CONSENT-BASED SCRIPT BLOCKING\nDiscovered 4 tracking scripts hardcoded directly in HTML (not managed by any WordPress plugin). Built custom PHP output buffer solution: strips scripts from HTML at server level using preg_replace, stores in JS function in footer, reads cookieyes-consent cookie, loads scripts only after \"advertisement\" consent, listens for real-time consent changes. Verified: 0 Facebook requests before consent, full tracking after Accept, across 16 pages.\n\nKEY PHP TECHNIQUES\nWP_HTML_Tag_Processor for alt text injection, style_loader_tag filter for contrast CSS overrides, str_ireplace for site-wide text replacements, ob_start output buffer for GDPR script masking, preg_replace for tracking script removal, wp_dequeue_script for conditional reCAPTCHA loading.",
     "images": [
       "https://github.com/user-attachments/assets/d10d1fad-7eb2-4b19-b0fe-264645c063d3",
       "https://github.com/user-attachments/assets/9c02e98d-5551-4ae9-a206-c870d57e07d8",
@@ -436,13 +436,13 @@ export const portfolioConfig = {
       "Real client project (Upwork contract) — not a personal project or demo",
       "100+ accessibility errors fixed across 30+ pages — all via server-side PHP, zero theme modifications",
       "200+ color contrast failures resolved with 15 distinct corrections (all meeting WCAG AA 4.5:1 minimum)",
-      "Disabled UserWay overlay (legal liability — 1,023 companies sued in 2024 while using overlays) and replaced with native code-level ADA fixes",
-      "Built custom PHP output buffer to strip 4 hardcoded tracking scripts before consent and reload after — verified 0 tracking requests before consent",
+      "Removed the accessibility overlay and applied native code-level accessibility fixes",
+      "Built custom PHP output buffer to strip 4 hardcoded tracking scripts before consent and reload after — verified 0 Facebook requests before consent",
       "GDPR cookie consent system: 25 cookies scanned, categorized, and managed across 4 categories",
       "Restricted reCAPTCHA v3 to form pages only (was loading on all 30+ pages unnecessarily)",
       "YouTube embeds switched to privacy-enhanced mode site-wide — future-proof for new videos",
       "All 6 code snippets fully reversible — deactivate to revert any change",
-      "16 pages individually verified post-fix for ADA + GDPR compliance"
+      "16 pages checked after accessibility remediation and consent-control changes"
     ],
     "liveUrl": "https://grozalearningcenter.com",
     "pdfLinks": [
@@ -457,7 +457,7 @@ export const portfolioConfig = {
       "client": "Real Upwork Client (Los Angeles, CA)",
       "pages": "30+ Pages Audited & Fixed",
       "errors": "100+ ADA Errors Fixed + 200+ Contrast Fixes",
-      "compliance": "WCAG 2.1 AA + GDPR (Worldwide)",
+      "scope": "Accessibility remediation and consent controls",
       "method": "6 PHP Code Snippets (Zero Theme Modifications)",
       "cookies": "25 Cookies Categorized + 4 Tracking Scripts Blocked Before Consent",
       "verification": "WAVE 0 Errors + 16 Pages Individually Tested",
@@ -703,7 +703,7 @@ export const portfolioConfig = {
       "fullstack",
       "ai-ml"
     ],
-    "description": "Shopify commerce meets an AI support studio with human review.",
+    "description": "Shopify context, image-aware support and versioned human approval.",
     "fullDescription": "A recovery-commerce portfolio project with a Shopify-backed Hydrogen storefront and a Python Support Studio. Six concept products retain the approved 3D design. The assistant combines encrypted saved memory, image understanding, allowlisted web retrieval, durable jobs and versioned human approval. Shopify and Gmail account reads, token renewal and restart persistence were verified; bounded AI checks exercised Spanish preference recall and an image-based support recommendation. Financial execution and sent email replies remain disabled. It is a build in progress: test checkout, account sign-in, merchant Function activation and full provider-action acceptance remain due. Earlier storefront evidence records 137 passing tests, one skip and 145 matching release files.",
     "technologies": [
       "Hydrogen",
@@ -755,19 +755,19 @@ export const portfolioConfig = {
       "wordpress",
       "healthcare"
     ],
-    "description": "Problem: An Ottawa-based healthcare IT consultancy had a WordPress site full of placeholder content, fake stats, broken nav, lorem-ipsum FAQs, 24 plugins (most unused), no SMTP, no SEO, and 12 irrelevant template pages. Solution: Full content + technical cleanup — wrote a real Healthcare Solutions page, 6 unique service descriptions, full Privacy Policy; deleted 12 template pages and 13 junk plugins (24 → 11); fixed all broken navigation and 404s; configured SMTP with verified delivery; installed and configured Yoast SEO with meta titles and descriptions on all pages.",
-    "fullDescription": "Abcker Technologies is a paid WordPress engagement (April 2026) — full content and technical cleanup for an Ottawa-based healthcare IT consultancy at abckertechnologies.com.\n\nCONTENT CLEANUP\nRemoved all fake/placeholder stats — '5K+ Reviews', '0k+ Applications', '0%' counters. Removed 'Innovative Healthcare Solutions' page heading per client request. Replaced entire Email Marketing content on Healthcare Solutions page with real Healthcare IT content. Replaced all 6 identical service card descriptions on Services page with unique real descriptions. Removed Lorem Ipsum placeholder text from all FAQ answers. Replaced stock office photos on Services page with healthcare-relevant images. Removed unrelated stock photo from 'Who we are' section on Home page. Fixed awkward footer tagline across all pages.\n\nPAGE DELETION — 12 IRRELEVANT TEMPLATE PAGES\nBusiness Strategy, Content Writer, Email Marketing, Extras, PixelPulse Media, Pricing, Projects, Sample Page, SEO Management, Social Media Management, Hello, Blog — all permanently deleted.\n\nCONTACT DETAILS — UPDATED ALL PAGES\nPhone: +1 613 800 0310 · Email: contact@abckertechnologies.com · Address: Ottawa ON Canada. Removed all fake placeholder contact details (fake US address, fake phone numbers, template emails). Google Map on Contact page updated to Ottawa, ON, Canada.\n\nBROKEN LINKS FIXED\n'Let's Talk Now' nav button — was pointing to /mediazen/contact/ (broken). Fixed to /contact/. 'Get Started' hero button — had no link. Fixed to /contact/. 'More About Us' button — was pointing to old broken URL. Fixed to /healthcare-solutions/.\n\nSEO OPTIMIZATION\nURL slug fixed from /halthcare-solutions/ (typo) to /healthcare-solutions/. Meta title and description added to all 4 pages (Home, Services, Healthcare Solutions, Contact). Yoast SEO plugin installed and configured. Heading structure reviewed across all pages.\n\nNEW CONTENT WRITTEN\nHealthcare Solutions page — full new page content: main description, Our Approach section (4 subsections), 6 FAQ answers all healthcare IT specific. Services page — 6 unique service descriptions written for each card. Privacy Policy — complete Privacy Policy written and published.\n\nEMAIL & FORM CONFIGURATION\nWP Mail SMTP plugin activated and configured. SMTP Host: secure.emailsrvr.com · Port: 465 · From: contact@abckertechnologies.com. SMTP test email sent successfully — email delivery confirmed working.\n\nPLUGIN CLEANUP\nSite reduced from 24 plugins to 11 plugins. 13 junk/unused plugins removed.",
+    "description": "Problem: An Ottawa-based healthcare IT consultancy had a WordPress site full of placeholder content, fake stats, broken nav, lorem-ipsum FAQs, 24 plugins (most unused), no SMTP, no SEO, and 12 irrelevant template pages. Solution: Full content + technical cleanup — wrote a real Healthcare Solutions page, 6 unique service descriptions, full Privacy Policy; deleted 12 template pages and 13 junk plugins (24 → 11); fixed all broken navigation and 404s; configured SMTP with a successful test submission; installed and configured Yoast SEO with meta titles and descriptions on the four main pages.",
+    "fullDescription": "Abcker Technologies is a paid WordPress engagement (April 2026) — full content and technical cleanup for an Ottawa-based healthcare IT consultancy at abckertechnologies.com.\n\nCONTENT CLEANUP\nRemoved all fake/placeholder stats — '5K+ Reviews', '0k+ Applications', '0%' counters. Removed 'Innovative Healthcare Solutions' page heading per client request. Replaced entire Email Marketing content on Healthcare Solutions page with real Healthcare IT content. Replaced all 6 identical service card descriptions on Services page with unique real descriptions. Removed Lorem Ipsum placeholder text from all FAQ answers. Replaced stock office photos on Services page with healthcare-relevant images. Removed unrelated stock photo from 'Who we are' section on Home page. Fixed awkward footer tagline across all pages.\n\nPAGE DELETION — 12 IRRELEVANT TEMPLATE PAGES\nBusiness Strategy, Content Writer, Email Marketing, Extras, PixelPulse Media, Pricing, Projects, Sample Page, SEO Management, Social Media Management, Hello, Blog — all permanently deleted.\n\nCONTACT DETAILS — UPDATED ALL PAGES\nPhone: +1 613 800 0310 · Email: contact@abckertechnologies.com · Address: Ottawa ON Canada. Removed all fake placeholder contact details (fake US address, fake phone numbers, template emails). Google Map on Contact page updated to Ottawa, ON, Canada.\n\nBROKEN LINKS FIXED\n'Let's Talk Now' nav button — was pointing to /mediazen/contact/ (broken). Fixed to /contact/. 'Get Started' hero button — had no link. Fixed to /contact/. 'More About Us' button — was pointing to old broken URL. Fixed to /healthcare-solutions/.\n\nSEO OPTIMIZATION\nURL slug fixed from /halthcare-solutions/ (typo) to /healthcare-solutions/. Meta title and description added to the four main pages (Home, Services, Healthcare Solutions, Contact). Yoast SEO plugin installed and configured. Heading structure reviewed across all pages.\n\nNEW CONTENT WRITTEN\nHealthcare Solutions page — full new page content: main description, Our Approach section (4 subsections), 6 FAQ answers all healthcare IT specific. Services page — 6 unique service descriptions written for each card. Privacy Policy — complete Privacy Policy written and published.\n\nEMAIL & FORM CONFIGURATION\nWP Mail SMTP plugin activated and configured. The site mailer was configured. SMTP test submission succeeded.\n\nPLUGIN CLEANUP\nSite reduced from 24 plugins to 11 plugins. 13 junk/unused plugins removed.",
     "thumbnail": "",
     "technologies": [
       "WordPress",
       "Yoast SEO",
-      "WP Mail SMTP (Configured + Verified)",
+      "WP Mail SMTP (Configured + Submission Tested)",
       "Elementor (Cleanup + Manual Edits)",
       "Custom WordPress Privacy Policy",
       "Google Maps (Embed Update)",
       "URL Slug + Permalinks",
-      "Meta Titles + Descriptions (All Pages)",
-      "SMTP (secure.emailsrvr.com · Port 465)"
+      "Meta Titles + Descriptions (Four Main Pages)",
+      "SMTP Configuration"
     ],
     "achievements": [
       "Real paid WordPress engagement — Ottawa, Canada healthcare IT consultancy (April 2026)",
@@ -776,8 +776,8 @@ export const portfolioConfig = {
       "Removed all fake stats ('5K+ Reviews', '0k+ Applications', '0%' counters) and placeholder Lorem Ipsum FAQ answers",
       "Deleted 12 irrelevant template pages (Business Strategy, Content Writer, Email Marketing, Pricing, Sample Page, Hello, Blog, etc.)",
       "Fixed 3 broken navigation buttons (Let's Talk Now, Get Started, More About Us) and URL slug typo (/halthcare-solutions/ → /healthcare-solutions/)",
-      "Configured WP Mail SMTP (secure.emailsrvr.com, port 465) — verified delivery test passed",
-      "Installed and configured Yoast SEO with meta titles and descriptions on all 4 pages; reviewed heading hierarchy across the site",
+      "Configured WP Mail SMTP — test submission succeeded",
+      "Installed and configured Yoast SEO with meta titles and descriptions on the four main pages; reviewed heading hierarchy across the site",
       "Updated Google Map embed and replaced all fake US contact details with real Ottawa contact info"
     ],
     "liveUrl": "https://abckertechnologies.com",
@@ -789,7 +789,7 @@ export const portfolioConfig = {
       "plugins": "24 → 11 (13 Junk Plugins Removed)",
       "pages": "12 Template Pages Deleted · 4 Real Pages With New Meta Titles + Descriptions",
       "content": "New Healthcare Solutions Page · 6 Service Descriptions · Privacy Policy",
-      "smtp": "WP Mail SMTP Configured · Verified Delivery Test Passed",
+      "smtp": "WP Mail SMTP Configured · Test Submission Passed",
       "seo": "Yoast SEO Installed + Configured · URL Slug Typo Fixed",
       "nav": "3 Broken Buttons Fixed (Let's Talk Now · Get Started · More About Us)"
     }
@@ -814,7 +814,7 @@ export const portfolioConfig = {
       "Operational PHP/Python workflow",
       "September 4 recovery records · October 10 public case study"
     ],
-    "featured": true,
+    "featured": false,
     "metrics": {
       "delivery": "Operational PHP/Python workflow"
     }
@@ -938,7 +938,7 @@ export const portfolioConfig = {
       "Local product · pre-release distribution",
       "Executive overview and product boundary, July 2026"
     ],
-    "featured": true,
+    "featured": false,
     "isHealthcare": true,
     "metrics": {
       "delivery": "Local product · pre-release distribution"
@@ -952,8 +952,8 @@ export const portfolioConfig = {
       "fullstack",
       "security"
     ],
-    "description": "Duplicate-resistant booking workflows, tested against a fictitious load board.",
-    "fullDescription": "An independent control plane for logged-in Playwright browser sessions. PostgreSQL claim fencing, tenant isolation, an outbox and a reconciler coordinate actions and handle uncertain outcomes. Concurrency and crash recovery were tested against a fictitious load board built in the same repository. The public console is a capped live demonstration in active development. Metrics and alerting, the crawler, the AI agent and larger scale proof runs are still planned. No real third-party booking service or universal exactly-once guarantee is claimed.",
+    "description": "Zero duplicate bookings in a 10,000-job mock-board concurrency test.",
+    "fullDescription": "An independent control plane for logged-in Playwright browser sessions. PostgreSQL claim fencing, tenant isolation, an outbox and a reconciler coordinate actions and handle uncertain outcomes. A recorded test with 200 concurrent competitors over 10,000 jobs on its own fictitious load board produced zero duplicate bookings: 9,897 confirmed claims matched 9,897 board bookings. Crash recovery was exercised in the same controlled environment. The public console is a capped live demonstration in active development. Metrics and alerting, the crawler, the AI agent and larger scale proof runs are still planned; this result does not establish real third-party booking or universal exactly-once behavior.",
     "thumbnail": "",
     "technologies": [
       "Python",
@@ -967,7 +967,7 @@ export const portfolioConfig = {
     "liveUrl": "https://fleetwright.zahidul-islam.com/",
     "githubUrl": "https://github.com/Zahidulislam2222/fleetwright",
     "pdfUrl": "/docs/fleetwright-technical-overview.pdf",
-    "featured": false,
+    "featured": true,
     "metrics": {
       "delivery": "Live demo · in active development"
     }
@@ -1111,7 +1111,7 @@ export const portfolioConfig = {
         { name: "Color Contrast Remediation (4.5:1 AA Minimum)", tier: "expert" },
         { name: "Keyboard Navigation & Focus Management", tier: "proficient" },
         { name: "WordPress/Elementor ADA Fixes (PHP Code Snippets)", tier: "expert" },
-        { name: "ADA Lawsuit Risk Reduction (Overlay Removal)", tier: "proficient" },
+        { name: "Accessibility Overlay Investigation & Removal", tier: "proficient" },
       ],
     },
     {
@@ -1123,7 +1123,7 @@ export const portfolioConfig = {
         { name: "Config-Driven Multi-Tenancy (One Row Per Site, Zero Hardcoded Values)", tier: "expert" },
         { name: "Webhook Intake Boundaries + Payload Validation", tier: "expert" },
         { name: "Idempotency + Delivery-State Integrity (Post-Send State Writes)", tier: "expert" },
-        { name: "Per-Site Failure Containment (One Broken Tenant Cannot Stop the Rest)", tier: "expert" },
+        { name: "Per-Site Failure Containment (Per-site malformed-data isolation with fault-injection verification)", tier: "expert" },
         { name: "Scheduled Follow-Up Engines (Explicit Due Dates + Sent Markers)", tier: "expert" },
         { name: "Tokenized Client Approval Portals (Two-Layer Approval Gates)", tier: "expert" },
         { name: "Watermarking + Protected Clean-Asset Delivery + ZIP Packaging", tier: "proficient" },
@@ -1155,7 +1155,7 @@ export const portfolioConfig = {
       icon: "Heart",
       color: "success",
       skills: [
-        { name: "HIPAA 2026 (Architecturally Enforced)", tier: "expert" },
+        { name: "Healthcare Privacy & Security Controls", tier: "expert" },
         { name: "GDPR / Schrems II + SOC 2 + CCPA", tier: "expert" },
         { name: "FHIR R4 (42 Resources) + SMART on FHIR + HL7 v2.x", tier: "expert" },
         { name: "C-CDA 2.1 + DICOMweb + OSHA + ESIGN", tier: "proficient" },
@@ -1183,6 +1183,23 @@ export const portfolioConfig = {
      ======================================== */
   services: [
     {
+      name: "AI Agents & Automation",
+      price: "Custom",
+      period: "pricing",
+      description: "AI assistants, n8n integrations and custom agent tools, with the full-stack engineering needed to connect them to your workflow.",
+      features: [
+        "RAG & Knowledge Assistants",
+        "n8n & Business API Integrations",
+        "Custom MCP Servers & Agent Tools",
+        "Claude Code / Codex Engineering Workflows",
+        "Browser Automation & Durable Jobs",
+        "Operator Interfaces & Cloud Deployment",
+        "Acceptance Checks & Documented Handoff",
+      ],
+      highlighted: true,
+      ctaText: "Discuss Your Workflow",
+    },
+    {
       name: "WordPress & CMS",
       price: "From $500",
       period: "/project",
@@ -1190,9 +1207,9 @@ export const portfolioConfig = {
       features: [
         "Custom Theme or Headless Build",
         "WooCommerce / E-Commerce Setup",
-        "Performance Optimization (Core Web Vitals A+)",
+        "Performance Investigation & Optimization",
         "SEO + Structured Data",
-        "WCAG 2.1 AA Accessibility",
+        "Accessibility Checks & Remediation",
         "CI/CD Pipeline + cPanel/Cloudflare Deploy",
         "3 Months Support",
       ],
@@ -1220,9 +1237,9 @@ export const portfolioConfig = {
       name: "Healthcare & Compliance",
       price: "Custom",
       period: "pricing",
-      description: "HIPAA/GDPR/SOC 2/FHIR-compliant systems with audit infrastructure and compliance documentation.",
+      description: "Healthcare systems with privacy controls, FHIR interoperability, audit infrastructure and documentation for compliance review.",
       features: [
-        "HIPAA 2026 Architecturally Enforced",
+        "Healthcare Privacy & Security Controls",
         "GDPR / Schrems II Data Sovereignty",
         "HL7 FHIR R4 Interoperability",
         "SOC 2 Type II Readiness",
@@ -1329,7 +1346,7 @@ export const portfolioConfig = {
     {
       step: "03",
       title: "Test & Harden",
-      description: "Security and compliance are not afterthoughts. I run Prowler, Checkov, and Trivy scans on infrastructure. I write test assertions that verify business logic, not just code coverage. HIPAA, GDPR, and SOC 2 controls are architecturally enforced.",
+      description: "Security and compliance are not afterthoughts. I run Prowler, Checkov, and Trivy scans on infrastructure. I write test assertions that verify business logic, not just code coverage. Implemented controls and scoped checks provide evidence for compliance review; they do not establish certification or whole-system legal compliance.",
       icon: "Shield",
     },
     {
