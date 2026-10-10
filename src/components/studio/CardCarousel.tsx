@@ -1,17 +1,16 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { animate, motion, useMotionValue, type AnimationPlaybackControls } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
 import { ArrowRight, Layers3 } from "lucide-react";
 import { heroShowcase as hero } from "@/config/hero.config";
-import { cardRotationDepth, cardRotationTarget } from "@/lib/card-rotation";
+import { cardRotationDepth, cardRotationIndex, cardRotationTarget } from "@/lib/card-rotation";
 import IntelligenceScene from "./IntelligenceScene";
 import "./intelligence-scene.css";
 import "./card-carousel.css";
 
-export default function CardCarousel({ active, selectionVersion = 0, paused, reduced }: { active: number; selectionVersion?: number; paused: boolean; reduced: boolean }) {
+export default function CardCarousel({ active, selectionVersion = 0, paused, reduced, onActiveChange }: { active: number; selectionVersion?: number; paused: boolean; reduced: boolean; onActiveChange?: (index: number) => void }) {
   const rotor = useRef<HTMLDivElement>(null);
-  const controls = useRef<AnimationPlaybackControls | null>(null);
-  const pausedNow = useRef(paused);
-  pausedNow.current = paused;
+  const lastSelection = useRef(selectionVersion);
+  const previousTime = useRef<number | null>(null);
   const rotation = useMotionValue(0);
   const [depth, setDepth] = useState(0);
   const [failed, setFailed] = useState<Record<string, boolean>>({});
@@ -27,22 +26,30 @@ export default function CardCarousel({ active, selectionVersion = 0, paused, red
   }, []);
 
   useEffect(() => {
-    controls.current?.stop();
-    const target = cardRotationTarget(rotation.get(), active, hero.modes.length);
-    if (reduced || pausedNow.current) {
-      rotation.set(target);
-      controls.current = null;
-      return;
+    // Automatic active-face changes must never restart or snap the rotation.
+    if (reduced || lastSelection.current !== selectionVersion) {
+      rotation.set(cardRotationTarget(rotation.get(), active, hero.modes.length));
     }
-    const turn = animate(rotation, target, { duration: hero.motion.turnSeconds, ease: hero.motion.turnEase });
-    controls.current = turn;
-    return () => turn.stop();
+    lastSelection.current = selectionVersion;
   }, [active, selectionVersion, reduced, rotation]);
 
   useEffect(() => {
-    if (paused) controls.current?.pause();
-    else controls.current?.play();
-  }, [paused]);
+    previousTime.current = null;
+  }, [paused, reduced]);
+
+  useAnimationFrame((time) => {
+    if (paused || reduced) {
+      previousTime.current = null;
+      return;
+    }
+    const previous = previousTime.current;
+    previousTime.current = time;
+    if (previous === null) return;
+    const angle = (rotation.get() - (time - previous) * 360 / (hero.motion.revolutionSeconds * 1000)) % 360;
+    rotation.set(angle);
+    const front = cardRotationIndex(angle, hero.modes.length);
+    if (front !== active) onActiveChange?.(front);
+  });
 
   return (
     <div className="showcase-stage showcase-card-stage">

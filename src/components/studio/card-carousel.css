@@ -39,10 +39,6 @@
 .showcase-cycle-control:disabled { opacity: .5; cursor: default; }
 .showcase-workspace-top { align-items: center; }
 .showcase-tabs { position: relative; overflow: hidden; }
-.showcase-cycle-progress { position: absolute; height: 2px; left: 0; right: 0; bottom: 0; pointer-events: none; background: rgba(var(--card-accent), .12); }
-.showcase-cycle-progress > i { display: block; height: 100%; background: rgb(var(--card-accent)); transform-origin: left; animation: showcase-cycle var(--cycle-duration) linear both; }
-.showcase-cycle-progress[data-running="false"] > i { animation: none; opacity: .3; }
-@keyframes showcase-cycle { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @media (max-width: 1100px) {
   .showcase-stage.showcase-card-stage { padding-inline: 6px; }
 }
@@ -52,5 +48,4 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .showcase-card-rotor { will-change: auto; }
-  .showcase-cycle-progress > i { animation: none; }
 }

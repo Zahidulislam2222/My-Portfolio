@@ -8,3 +8,8 @@ export function cardRotationTarget(current: number, active: number, count: numbe
 export function cardRotationDepth(width: number, count: number) {
   return width / (2 * Math.tan(Math.PI / count));
 }
+
+/** Card whose outward normal is nearest the viewer, including the wrap. */
+export function cardRotationIndex(angle: number, count: number) {
+  return ((Math.round(-angle / (360 / count)) % count) + count) % count;
+}

@@ -16,12 +16,11 @@ describe("hero showcase content boundary", () => {
       expect(mode.decision.length).toBeGreaterThan(30);
     }
   });
-  it("uses three original content panels and a valid configurable cycle", () => {
+  it("uses three original content panels and a valid configurable revolution", () => {
     expect(heroShowcase.modes.filter((mode) => mode.image)).toHaveLength(2);
-    expect(heroShowcase.motion.turnSeconds).toBeLessThan(heroShowcase.animation.cycleSeconds);
     expect(new Set(heroShowcase.modes.map((mode) => mode.accent)).size).toBe(3);
-    expect(Number.isFinite(heroShowcase.animation.cycleSeconds)).toBe(true);
-    expect(heroShowcase.animation.cycleSeconds).toBeGreaterThan(0);
+    expect(Number.isFinite(heroShowcase.motion.revolutionSeconds)).toBe(true);
+    expect(heroShowcase.motion.revolutionSeconds).toBeGreaterThan(0);
   });
   it("keeps provider secrets and environment details out of the visual component", () => {
     expect(source + sceneSource + aiSource).not.toMatch(

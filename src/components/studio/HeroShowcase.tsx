@@ -49,11 +49,6 @@ export default function HeroShowcase({
     if (workspace.current) observer?.observe(workspace.current);
     return () => { document.removeEventListener("visibilitychange", visible); observer?.disconnect(); };
   }, []);
-  useEffect(() => {
-    if (!cycling) return;
-    const timer = window.setTimeout(() => setActive((index) => (index + 1) % hero.modes.length), hero.animation.cycleSeconds * 1000);
-    return () => window.clearTimeout(timer);
-  }, [active, cycling]);
   const select = (index: number) => {
     setActive(index);
     setSelectionVersion((version) => version + 1);
@@ -98,7 +93,7 @@ export default function HeroShowcase({
           </a>
         </div>
         <div className="showcase-workspace" ref={workspace} role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
-          style={{ "--card-accent": mode.accent, "--cycle-duration": `${hero.animation.cycleSeconds}s` } as CSSProperties}
+          style={{ "--card-accent": mode.accent } as CSSProperties}
           onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
           onFocusCapture={() => setAutoStopped(true)}>
           <div className="showcase-workspace-top">
@@ -163,7 +158,6 @@ export default function HeroShowcase({
                 {item.label}
               </button>
             ))}
-            <div key={`${active}-${cycling}`} className="showcase-cycle-progress" data-running={cycling} aria-hidden="true"><i /></div>
           </div>
           <div
             id="hero-panel"
@@ -172,7 +166,7 @@ export default function HeroShowcase({
             aria-live={cycling ? "off" : "polite"}
             tabIndex={0}
           >
-            <CardCarousel active={active} selectionVersion={selectionVersion} paused={turnPaused} reduced={reduced} />
+            <CardCarousel active={active} selectionVersion={selectionVersion} paused={turnPaused} reduced={reduced} onActiveChange={setActive} />
             <div className="showcase-project-copy">
               <span className="studio-eyebrow">{project.name}</span>
               <h2>{mode.title}</h2>

@@ -3,13 +3,31 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import HeroShowcase from "@/components/studio/HeroShowcase";
 import { heroShowcase } from "@/config/hero.config";
 
+const frames = vi.hoisted(() => ({ callback: null as null | ((time: number, delta: number) => void), time: 0 }));
+vi.mock("framer-motion", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("framer-motion")>();
+  const React = await import("react");
+  return { ...actual, useAnimationFrame: (callback: (time: number, delta: number) => void) => {
+    frames.callback = callback;
+    React.useEffect(() => () => { frames.callback = null; }, []);
+  } };
+});
+
 describe("interactive hero", () => {
   beforeEach(() => {
     vi.useFakeTimers();
+    frames.time = 0;
     vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
   });
   afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); });
-  const advance = (cycles = 1) => act(() => vi.advanceTimersByTime(heroShowcase.animation.cycleSeconds * 1000 * cycles));
+  const advance = (faces = 1) => {
+    act(() => frames.callback?.(frames.time, 0));
+    const delta = heroShowcase.motion.revolutionSeconds * 1000 / heroShowcase.modes.length / 20;
+    for (let frame = 0; frame < faces * 20; frame++) {
+      frames.time += delta;
+      act(() => frames.callback?.(frames.time, delta));
+    }
+  };
   it("pauses the scene, changes tabs by keyboard and opens the selected project", () => {
     const onProject = vi.fn();
     const { container } = render(<HeroShowcase onProject={onProject} />);
@@ -89,7 +107,7 @@ describe("interactive hero", () => {
     advance();
     expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
   });
-  it("suspends in a hidden page and clears the cycle timer on unmount", () => {
+  it("suspends in a hidden page and releases the frame callback on unmount", () => {
     const hidden = vi.spyOn(document, "hidden", "get");
     hidden.mockReturnValue(false);
     const { container, unmount } = render(<HeroShowcase onProject={vi.fn()} />);
@@ -103,10 +121,11 @@ describe("interactive hero", () => {
     advance();
     expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
     unmount();
+    expect(frames.callback).toBeNull();
     advance(2);
     expect(vi.getTimerCount()).toBe(0);
   });
-  it("keeps a static globe and manual navigation with reduced motion", () => {
+  it("keeps static cards and manual navigation with reduced motion", () => {
     vi.spyOn(window, "matchMedia").mockImplementation((query) => ({ matches: true, media: query, onchange: null, addListener: vi.fn(), removeListener: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn(), dispatchEvent: vi.fn() }));
     const { container } = render(<HeroShowcase onProject={vi.fn()} />);
     expect(screen.getByRole("button", { name: heroShowcase.animation.pause })).toBeDisabled();

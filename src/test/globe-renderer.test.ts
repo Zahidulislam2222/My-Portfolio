@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { cardRotationDepth, cardRotationTarget } from "@/lib/card-rotation";
+import { cardRotationDepth, cardRotationIndex, cardRotationTarget } from "@/lib/card-rotation";
 import source from "@/components/studio/CardCarousel.tsx?raw";
 import heroSource from "@/components/studio/HeroShowcase.tsx?raw";
 
@@ -16,6 +16,11 @@ describe("regression: rotate cards rather than add globes inside them", () => {
   it("keeps adjacent card edges on the same regular polygon as the viewport resizes", () => {
     for (const width of [280, 500, 640]) {
       expect(cardRotationDepth(width, 3) * Math.tan(Math.PI / 3) * 2).toBeCloseTo(width);
+    }
+  });
+  it("selects the card nearest the viewer across both sides and the full-circle wrap", () => {
+    for (const [angle, expected] of [[0, 0], [-59, 0], [-61, 1], [-179, 1], [-181, 2], [-299, 2], [-301, 0], [-360, 0], [-421, 1], [120, 2]]) {
+      expect(cardRotationIndex(angle, 3)).toBe(expected);
     }
   });
   it("rotates the complete card frame and pipeline without rendering a geographic globe", () => {

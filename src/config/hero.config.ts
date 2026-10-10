@@ -11,15 +11,14 @@ export const heroShowcase = {
   architectureLabel: "INTELLIGENCE IN MOTION",
   detailLabel: "ENGINEERING DECISION",
   open: "Explore this project",
-  hint: "Three sides of the work. Hover to hold a card. Select a tab to explore.",
+  hint: "Three sides, slowly turning. Hover to pause. Select a tab to explore.",
   animation: {
-    pause: "Pause card rotation and automatic cycling",
-    resume: "Resume card rotation and automatic cycling",
+    pause: "Pause card rotation",
+    resume: "Resume card rotation",
     label: "Interactive retrieval architecture",
     automatic: "AUTO EXPLORING",
     held: "SCENE ON HOLD",
     still: "MOTION REDUCED",
-    cycleSeconds: 2,
     spinSeconds: 32,
     orbitSeconds: 24,
     floatSeconds: 6,
@@ -33,7 +32,7 @@ export const heroShowcase = {
     faces: ["front", "back", "right", "left", "top", "bottom"],
   },
   fallback: "Project screenshot unavailable. Explore the project details below.",
-  motion: { turnSeconds: 1.2, turnEase: [0.4, 0, 0.2, 1] as [number, number, number, number] },
+  motion: { revolutionSeconds: 36 },
   modes: z
     .array(
       z.object({
