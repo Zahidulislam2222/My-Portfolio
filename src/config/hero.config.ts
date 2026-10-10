@@ -19,7 +19,7 @@ export const heroShowcase = {
     automatic: "AUTO EXPLORING",
     held: "SCENE ON HOLD",
     still: "MOTION REDUCED",
-    cycleSeconds: 8,
+    cycleSeconds: 5,
     spinSeconds: 32,
     orbitSeconds: 24,
     floatSeconds: 6,
@@ -33,7 +33,7 @@ export const heroShowcase = {
     faces: ["front", "back", "right", "left", "top", "bottom"],
   },
   fallback: "Project screenshot unavailable. Explore the project details below.",
-  motion: { turnSeconds: 2.2, turnEase: [0.4, 0, 0.2, 1] as [number, number, number, number] },
+  motion: { turnSeconds: 1.2, turnEase: [0.4, 0, 0.2, 1] as [number, number, number, number] },
   modes: z
     .array(
       z.object({
