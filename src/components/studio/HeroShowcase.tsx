@@ -25,7 +25,6 @@ export default function HeroShowcase({
   const [active, setActive] = useState(0);
   const [selectionVersion, setSelectionVersion] = useState(0);
   const [focused, setFocused] = useState(false);
-  const [hovered, setHovered] = useState(false);
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const reduced = useReducedMotionPreference();
@@ -33,7 +32,7 @@ export default function HeroShowcase({
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const mode = hero.modes[active];
   const project = studioProjects.find((item) => item.id === mode.projectId)!;
-  const turnPaused = reduced || !inView || !pageVisible || hovered || focused;
+  const turnPaused = reduced || !inView || !pageVisible || focused;
   const cycling = !turnPaused;
   useEffect(() => {
     const visible = () => setPageVisible(!document.hidden);
@@ -86,7 +85,6 @@ export default function HeroShowcase({
         </div>
         <div className="showcase-workspace" ref={workspace} role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
           style={{ "--card-accent": mode.accent } as CSSProperties}
-          onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
           onFocusCapture={() => setFocused(true)}
           onBlurCapture={(event) => {
             if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);

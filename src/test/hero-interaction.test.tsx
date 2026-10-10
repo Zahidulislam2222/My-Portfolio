@@ -50,17 +50,19 @@ describe("interactive hero", () => {
       expect(document.activeElement).toBe(focus);
     }
   });
-  it("holds on hover and resumes automatically when the pointer leaves", () => {
+  it("keeps rotating through all cards while hovered and after the pointer leaves", () => {
     render(<HeroShowcase onProject={vi.fn()} />);
     const carousel = screen.getByRole("group", { name: heroShowcase.tabLabel });
     fireEvent.mouseEnter(carousel);
-    advance(2);
-    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.mouseLeave(carousel);
     advance();
     expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
     advance();
     expect(screen.getByRole("tab", { name: "Cloud" })).toHaveAttribute("aria-selected", "true");
+    advance();
+    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
+    fireEvent.mouseLeave(carousel);
+    advance();
+    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
   });
   it("holds during keyboard focus and resumes when focus leaves the workspace", () => {
     render(<HeroShowcase onProject={vi.fn()} />);
