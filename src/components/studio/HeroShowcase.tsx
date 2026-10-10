@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowRight,
@@ -10,7 +9,7 @@ import {
   Pause,
   Play,
 } from "lucide-react";
-import GlobeScene from "./GlobeScene";
+import CardCarousel from "./CardCarousel";
 import { heroShowcase as hero } from "@/config/hero.config";
 import {
   studioConfig as config,
@@ -26,6 +25,7 @@ export default function HeroShowcase({
   onProject: (project: StudioProject) => void;
 }) {
   const [active, setActive] = useState(0);
+  const [selectionVersion, setSelectionVersion] = useState(0);
   const [paused, setPaused] = useState(false);
   const [autoStopped, setAutoStopped] = useState(false);
   const [hovered, setHovered] = useState(false);
@@ -35,11 +35,11 @@ export default function HeroShowcase({
   const workspace = useRef<HTMLDivElement>(null);
   const rotationControl = useRef<HTMLButtonElement>(null);
   const pointerWasStopped = useRef<boolean | null>(null);
-  const scene = useRef<HTMLDivElement>(null);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const mode = hero.modes[active];
   const project = studioProjects.find((item) => item.id === mode.projectId)!;
   const motionPaused = reduced || paused || !inView || !pageVisible;
+  const turnPaused = motionPaused || hovered || autoStopped;
   const cycling = !motionPaused && !hovered && !autoStopped;
   const stopped = paused || autoStopped;
   useEffect(() => {
@@ -54,11 +54,9 @@ export default function HeroShowcase({
     const timer = window.setTimeout(() => setActive((index) => (index + 1) % hero.modes.length), hero.animation.cycleSeconds * 1000);
     return () => window.clearTimeout(timer);
   }, [active, cycling]);
-  useEffect(() => {
-    if (scene.current) scene.current.style.transform = "";
-  }, [reduced, active]);
   const select = (index: number) => {
     setActive(index);
+    setSelectionVersion((version) => version + 1);
     setAutoStopped(true);
   };
   return (
@@ -100,7 +98,7 @@ export default function HeroShowcase({
           </a>
         </div>
         <div className="showcase-workspace" ref={workspace} role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
-          style={{ "--globe-accent": mode.accent, "--cycle-duration": `${hero.animation.cycleSeconds}s` } as CSSProperties}
+          style={{ "--card-accent": mode.accent, "--cycle-duration": `${hero.animation.cycleSeconds}s` } as CSSProperties}
           onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
           onFocusCapture={() => setAutoStopped(true)}>
           <div className="showcase-workspace-top">
@@ -115,7 +113,6 @@ export default function HeroShowcase({
                 pointerWasStopped.current = null;
                 setPaused(!wasStopped);
                 setAutoStopped(false);
-                if (scene.current) scene.current.style.transform = "";
               }}>
               {stopped || reduced ? <Play size={11} /> : <Pause size={11} />}
               <span>{reduced ? hero.animation.still : cycling ? hero.animation.automatic : hero.animation.held}</span>
@@ -175,58 +172,7 @@ export default function HeroShowcase({
             aria-live={cycling ? "off" : "polite"}
             tabIndex={0}
           >
-            <div
-              className="showcase-stage"
-              onPointerMove={(event) => {
-                if (motionPaused || event.pointerType !== "mouse" || !scene.current)
-                  return;
-                const box = event.currentTarget.getBoundingClientRect();
-                scene.current.style.transform = `rotateY(${((event.clientX - box.left) / box.width - 0.5) * hero.motion.tiltDegrees}deg) rotateX(${-((event.clientY - box.top) / box.height - 0.5) * hero.motion.tiltDegrees}deg)`;
-              }}
-              onPointerLeave={() => {
-                if (scene.current) scene.current.style.transform = "";
-              }}
-            >
-              <div className="showcase-scene" ref={scene} data-motion={motionPaused ? "paused" : "running"}>
-                <div className="showcase-backplate" aria-hidden="true" />
-                <motion.div
-                  key={mode.id}
-                  className="showcase-surface"
-                  initial={
-                    reduced
-                      ? false
-                      : { opacity: 0, y: hero.motion.entranceDistance }
-                  }
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: reduced ? 0 : hero.motion.entranceSeconds,
-                  }}
-                >
-                  <div className="showcase-windowbar">
-                    <span aria-hidden="true">● ● ●</span>
-                    <span>
-                      {hero.architectureLabel}
-                    </span>
-                    <span aria-hidden="true">{mode.label.toUpperCase()}</span>
-                  </div>
-                  <GlobeScene mode={mode} paused={motionPaused} />
-                </motion.div>
-                <div className="showcase-flow">
-                  <span className="studio-eyebrow">
-                    {hero.architectureLabel}
-                  </span>
-                  <div>
-                    {mode.nodes.map((node, i) => (
-                      <span key={node}>
-                        <b>0{i + 1}</b>
-                        {node}
-                        {i < mode.nodes.length - 1 && <ArrowRight size={14} />}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            <CardCarousel active={active} selectionVersion={selectionVersion} paused={turnPaused} reduced={reduced} />
             <div className="showcase-project-copy">
               <span className="studio-eyebrow">{project.name}</span>
               <h2>{mode.title}</h2>

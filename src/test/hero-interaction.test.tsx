@@ -13,7 +13,7 @@ describe("interactive hero", () => {
   it("pauses the scene, changes tabs by keyboard and opens the selected project", () => {
     const onProject = vi.fn();
     const { container } = render(<HeroShowcase onProject={onProject} />);
-    expect(screen.getByRole("img", { name: /Rotating engineering globe: AI/ })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /Interactive retrieval architecture/ })).toBeInTheDocument();
     fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.pause }));
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
     fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.resume }));
@@ -29,7 +29,7 @@ describe("interactive hero", () => {
     for (const name of ["Applications", "Cloud", "AI"]) {
       advance();
       expect(screen.getByRole("tab", { name })).toHaveAttribute("aria-selected", "true");
-      expect(screen.getByRole("img", { name: new RegExp(`Rotating engineering globe: ${name}`) })).toBeInTheDocument();
+      expect(document.querySelector(`.showcase-card-face[data-card="${name === "Applications" ? "applications" : name.toLowerCase()}"]`)).toHaveAttribute("aria-hidden", "false");
       expect(document.activeElement).toBe(focus);
     }
   });

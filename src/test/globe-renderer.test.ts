@@ -1,26 +1,28 @@
 import { describe, expect, it } from "vitest";
-import { rotateGlobe } from "@/lib/globe-renderer";
-import land from "@/config/globe-land.json";
+import { cardRotationDepth, cardRotationTarget } from "@/lib/card-rotation";
+import source from "@/components/studio/CardCarousel.tsx?raw";
+import heroSource from "@/components/studio/HeroShowcase.tsx?raw";
 
-describe("globe geometry", () => {
-  it("preserves distance under rotation and completes a full turn", () => {
-    const point = { x: 0.3, y: 0.4, z: Math.sqrt(0.75) };
-    const initial = rotateGlobe(point, 0);
-    for (const angle of [0, Math.PI / 2, Math.PI, Math.PI * 2]) {
-      const rotated = rotateGlobe(point, angle);
-      expect(Math.hypot(rotated.x, rotated.y, rotated.z)).toBeCloseTo(1);
+describe("regression: rotate cards rather than add globes inside them", () => {
+  it("turns through all three faces and completes a revolution without reversing at the wrap", () => {
+    let angle = 0;
+    for (const [active, expected] of [[1, -120], [2, -240], [0, -360], [1, -480]]) {
+      angle = cardRotationTarget(angle, active, 3);
+      expect(angle).toBeCloseTo(expected);
     }
-    const complete = rotateGlobe(point, Math.PI * 2);
-    expect(complete.x).toBeCloseTo(initial.x);
-    expect(complete.y).toBeCloseTo(initial.y);
-    expect(complete.z).toBeCloseTo(initial.z);
+    expect(cardRotationTarget(0, 2, 3)).toBeCloseTo(120);
+    expect(cardRotationTarget(-190, 2, 3)).toBeCloseTo(-240);
   });
-  it("bundles valid finite public-domain land coordinates without a runtime data service", () => {
-    expect(land.license).toMatch(/Public domain/);
-    expect(land.points.length).toBeGreaterThan(1000);
-    for (const [lon, lat] of land.points) {
-      expect(Number.isFinite(lon) && lon >= -180 && lon <= 180).toBe(true);
-      expect(Number.isFinite(lat) && lat >= -90 && lat <= 90).toBe(true);
+  it("keeps adjacent card edges on the same regular polygon as the viewport resizes", () => {
+    for (const width of [280, 500, 640]) {
+      expect(cardRotationDepth(width, 3) * Math.tan(Math.PI / 3) * 2).toBeCloseTo(width);
     }
+  });
+  it("rotates the complete card frame and pipeline without rendering a geographic globe", () => {
+    expect(source).toContain("showcase-card-rotor");
+    expect(source).toContain("showcase-card-face");
+    expect(source).toContain("showcase-flow");
+    expect(source).toContain("IntelligenceScene");
+    expect(source + heroSource).not.toMatch(/GlobeScene|drawGlobe|<canvas/);
   });
 });

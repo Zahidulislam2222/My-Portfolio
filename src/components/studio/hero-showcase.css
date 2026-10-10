@@ -90,7 +90,7 @@
   border-radius: 4px;
 }
 .showcase-tabs button[aria-selected="true"] {
-  background: rgb(var(--globe-accent));
+  background: rgb(var(--card-accent));
   color: #14241a;
   box-shadow: 0 2px 12px #0003;
 }
@@ -319,7 +319,6 @@
 @media (prefers-reduced-motion: reduce) {
   .showcase-scene {
     transition: none;
-    transform: none !important;
   }
 }
 @media (max-width: 480px) {

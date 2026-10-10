@@ -1,0 +1,56 @@
+.showcase-stage.showcase-card-stage {
+  --card-body-height: 310px;
+  padding: 40px 16px;
+  overflow: hidden;
+  perspective: 1400px;
+}
+.showcase-scene.showcase-card-rotor {
+  height: calc(var(--card-body-height) + 120px);
+  transform-style: preserve-3d;
+  transition: none;
+  will-change: transform;
+}
+.showcase-card-face {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(var(--card-angle)) translateZ(var(--card-depth));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.showcase-card-face[aria-hidden="true"] { pointer-events: none; }
+.showcase-card-face > * {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.showcase-card-face[aria-hidden="true"] .intelligence-universe * { animation-play-state: paused; }
+.showcase-card-face .showcase-surface > img {
+  display: block;
+  width: 100%;
+  height: var(--card-body-height);
+  object-fit: cover;
+  object-position: top;
+}
+.showcase-image-fallback { height: var(--card-body-height); display: grid; place-content: center; justify-items: center; gap: 20px; padding: 30px; color: #b7cbbb; font-size: 13px; text-align: center; }
+.showcase-card-face .showcase-surface { border-color: rgba(var(--card-accent), .36); }
+.showcase-card-face .showcase-flow { border-color: rgba(var(--card-accent), .3); }
+.showcase-cycle-control { display: inline-flex; align-items: center; gap: 7px; color: rgb(var(--card-accent)); min-height: 30px; padding: 0 5px; border-radius: 4px; font: inherit; letter-spacing: .08em; }
+.showcase-cycle-control:focus-visible { outline: 2px solid rgb(var(--card-accent)); outline-offset: 3px; }
+.showcase-cycle-control:disabled { opacity: .5; cursor: default; }
+.showcase-workspace-top { align-items: center; }
+.showcase-tabs { position: relative; overflow: hidden; }
+.showcase-cycle-progress { position: absolute; height: 2px; left: 0; right: 0; bottom: 0; pointer-events: none; background: rgba(var(--card-accent), .12); }
+.showcase-cycle-progress > i { display: block; height: 100%; background: rgb(var(--card-accent)); transform-origin: left; animation: showcase-cycle var(--cycle-duration) linear both; }
+.showcase-cycle-progress[data-running="false"] > i { animation: none; opacity: .3; }
+@keyframes showcase-cycle { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 1100px) {
+  .showcase-stage.showcase-card-stage { padding-inline: 6px; }
+}
+@media (max-width: 480px) {
+  .showcase-stage.showcase-card-stage { --card-body-height: 280px; }
+  .showcase-cycle-control { font-size: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .showcase-card-rotor { will-change: auto; }
+  .showcase-cycle-progress > i { animation: none; }
+}
