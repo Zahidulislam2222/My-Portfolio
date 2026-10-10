@@ -6,8 +6,6 @@ import {
   Cpu,
   Layers3,
   Network,
-  Pause,
-  Play,
 } from "lucide-react";
 import CardCarousel from "./CardCarousel";
 import { heroShowcase as hero } from "@/config/hero.config";
@@ -26,22 +24,17 @@ export default function HeroShowcase({
 }) {
   const [active, setActive] = useState(0);
   const [selectionVersion, setSelectionVersion] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const [autoStopped, setAutoStopped] = useState(false);
+  const [focused, setFocused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const reduced = useReducedMotionPreference();
   const workspace = useRef<HTMLDivElement>(null);
-  const rotationControl = useRef<HTMLButtonElement>(null);
-  const pointerWasStopped = useRef<boolean | null>(null);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const mode = hero.modes[active];
   const project = studioProjects.find((item) => item.id === mode.projectId)!;
-  const motionPaused = reduced || paused || !inView || !pageVisible;
-  const turnPaused = motionPaused || hovered || autoStopped;
-  const cycling = !motionPaused && !hovered && !autoStopped;
-  const stopped = paused || autoStopped;
+  const turnPaused = reduced || !inView || !pageVisible || hovered || focused;
+  const cycling = !turnPaused;
   useEffect(() => {
     const visible = () => setPageVisible(!document.hidden);
     document.addEventListener("visibilitychange", visible);
@@ -52,7 +45,6 @@ export default function HeroShowcase({
   const select = (index: number) => {
     setActive(index);
     setSelectionVersion((version) => version + 1);
-    setAutoStopped(true);
   };
   return (
     <section id="home" className="showcase-hero studio-shell">
@@ -95,23 +87,12 @@ export default function HeroShowcase({
         <div className="showcase-workspace" ref={workspace} role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
           style={{ "--card-accent": mode.accent } as CSSProperties}
           onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
-          onFocusCapture={() => setAutoStopped(true)}>
+          onFocusCapture={() => setFocused(true)}
+          onBlurCapture={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget)) setFocused(false);
+          }}>
           <div className="showcase-workspace-top">
             <span>{hero.workspace}</span>
-            <button ref={rotationControl} className="showcase-cycle-control" disabled={reduced}
-              aria-label={stopped ? hero.animation.resume : hero.animation.pause}
-              onPointerDown={() => { pointerWasStopped.current = stopped; }}
-              onPointerCancel={() => { pointerWasStopped.current = null; }}
-              onClick={(event) => {
-                // Pointer focus pauses cycling before click; retain the intended action.
-                const wasStopped = event.detail === 0 ? stopped : pointerWasStopped.current ?? stopped;
-                pointerWasStopped.current = null;
-                setPaused(!wasStopped);
-                setAutoStopped(false);
-              }}>
-              {stopped || reduced ? <Play size={11} /> : <Pause size={11} />}
-              <span>{reduced ? hero.animation.still : cycling ? hero.animation.automatic : hero.animation.held}</span>
-            </button>
             <span aria-hidden="true">
               {String(active + 1).padStart(2, "0")} /{" "}
               {String(hero.modes.length).padStart(2, "0")}

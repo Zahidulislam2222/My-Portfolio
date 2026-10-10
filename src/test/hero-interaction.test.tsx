@@ -28,13 +28,12 @@ describe("interactive hero", () => {
       act(() => frames.callback?.(frames.time, delta));
     }
   };
-  it("pauses the scene, changes tabs by keyboard and opens the selected project", () => {
+  it("omits rotation controls and status, changes tabs by keyboard and opens the selected project", () => {
     const onProject = vi.fn();
     const { container } = render(<HeroShowcase onProject={onProject} />);
     expect(screen.getByRole("img", { name: /Interactive retrieval architecture/ })).toBeInTheDocument();
-    fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.pause }));
-    expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
-    fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.resume }));
+    expect(container.querySelector(".showcase-workspace-top button")).toBeNull();
+    expect(container.textContent).not.toMatch(/SCENE ON HOLD|AUTO EXPLORING|MOTION REDUCED/);
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "running");
     fireEvent.keyDown(screen.getByRole("tab", { name: "AI" }), { key: "ArrowRight" });
     expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
@@ -51,7 +50,7 @@ describe("interactive hero", () => {
       expect(document.activeElement).toBe(focus);
     }
   });
-  it("holds cycling on hover and stops motion and cycling when explicitly paused", () => {
+  it("holds on hover and resumes automatically when the pointer leaves", () => {
     render(<HeroShowcase onProject={vi.fn()} />);
     const carousel = screen.getByRole("group", { name: heroShowcase.tabLabel });
     fireEvent.mouseEnter(carousel);
@@ -60,52 +59,44 @@ describe("interactive hero", () => {
     fireEvent.mouseLeave(carousel);
     advance();
     expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.pause }));
-    advance(2);
-    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.resume }));
     advance();
     expect(screen.getByRole("tab", { name: "Cloud" })).toHaveAttribute("aria-selected", "true");
   });
-  it("requires explicit resume after keyboard focus or manual selection", () => {
+  it("holds during keyboard focus and resumes when focus leaves the workspace", () => {
     render(<HeroShowcase onProject={vi.fn()} />);
     fireEvent.focus(screen.getByRole("tab", { name: "AI" }));
-    fireEvent.blur(screen.getByRole("tab", { name: "AI" }));
     advance(2);
     expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.click(screen.getByRole("tab", { name: "Cloud" }));
-    advance(2);
-    expect(screen.getByRole("tab", { name: "Cloud" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.resume }));
-    advance();
-    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
-  });
-  it("stops on rotation-control focus, remains stopped after exit, and explicitly resumes", () => {
-    render(<HeroShowcase onProject={vi.fn()} />);
-    const control = screen.getByRole("button", { name: heroShowcase.animation.pause });
-    fireEvent.focus(control);
-    advance(2);
-    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.blur(control);
-    advance(2);
-    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.focus(control);
-    fireEvent.click(screen.getByRole("button", { name: heroShowcase.animation.resume }));
+    fireEvent.blur(screen.getByRole("tab", { name: "AI" }), { relatedTarget: document.body });
     advance();
     expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
   });
-  it("preserves a pointer pause click when focus first stops automatic cycling", () => {
+  it("keeps rotation held while focus transfers between elements inside the workspace", () => {
     const { container } = render(<HeroShowcase onProject={vi.fn()} />);
-    const control = screen.getByRole("button", { name: heroShowcase.animation.pause });
-    fireEvent.pointerDown(control);
-    fireEvent.focus(control);
-    fireEvent.click(control, { detail: 1 });
+    const ai = screen.getByRole("tab", { name: "AI" });
+    const cloud = screen.getByRole("tab", { name: "Cloud" });
+    fireEvent.focus(ai);
+    fireEvent.blur(ai, { relatedTarget: cloud });
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
-    fireEvent.pointerDown(control);
-    fireEvent.click(control, { detail: 1 });
+    fireEvent.focus(cloud);
+    advance(2);
+    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
+    fireEvent.blur(cloud, { relatedTarget: document.body });
+    advance();
+    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
+  });
+  it("holds a manually selected card until focus leaves, then continues from that card", () => {
+    const { container } = render(<HeroShowcase onProject={vi.fn()} />);
+    const cloud = screen.getByRole("tab", { name: "Cloud" });
+    fireEvent.focus(cloud);
+    fireEvent.click(cloud);
+    advance(2);
+    expect(cloud).toHaveAttribute("aria-selected", "true");
+    expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
+    fireEvent.blur(cloud, { relatedTarget: document.body });
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "running");
     advance();
-    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
+    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
   });
   it("suspends in a hidden page and releases the frame callback on unmount", () => {
     const hidden = vi.spyOn(document, "hidden", "get");
@@ -128,7 +119,7 @@ describe("interactive hero", () => {
   it("keeps static cards and manual navigation with reduced motion", () => {
     vi.spyOn(window, "matchMedia").mockImplementation((query) => ({ matches: true, media: query, onchange: null, addListener: vi.fn(), removeListener: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn(), dispatchEvent: vi.fn() }));
     const { container } = render(<HeroShowcase onProject={vi.fn()} />);
-    expect(screen.getByRole("button", { name: heroShowcase.animation.pause })).toBeDisabled();
+    expect(container.querySelector(".showcase-workspace-top button")).toBeNull();
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
     advance(3);
     expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
