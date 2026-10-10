@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const heroShowcase = {
-  identity: "Zahidul Islam · Full Stack & AI Engineer",
+  identity: "Zahidul Islam · AI Automation Engineer",
   workspace: "EXPLORE THE ENGINEERING",
   tabLabel: "Explore engineering disciplines",
   visualLabel: "PROJECT VIEW",
@@ -48,7 +48,7 @@ export const heroShowcase = {
         projectId: "yuktha-wellness",
         headline: ["I build software", "that puts", "AI to work."],
         description:
-          "From a grounded answer to a complete application. I connect interfaces, intelligence and infrastructure into systems people can use.",
+          "Grounded RAG chatbots, AI agents and n8n workflows. I connect your knowledge, APIs and business tools with human approval where it matters.",
         title: "Answers with a foundation.",
         caption: "Yuktha Wellness / retrieval architecture",
         nodes: ["Retrieve", "Rerank", "Ground"],

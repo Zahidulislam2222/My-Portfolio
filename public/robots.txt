@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://zahidul-islam.vercel.app/sitemap.xml
+Sitemap: https://zahidul-islam.com/sitemap.xml
