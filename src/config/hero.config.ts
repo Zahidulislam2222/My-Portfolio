@@ -19,7 +19,7 @@ export const heroShowcase = {
     automatic: "AUTO EXPLORING",
     held: "SCENE ON HOLD",
     still: "MOTION REDUCED",
-    cycleSeconds: 5,
+    cycleSeconds: 2,
     spinSeconds: 32,
     orbitSeconds: 24,
     floatSeconds: 6,
