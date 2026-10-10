@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowDown,
@@ -10,7 +10,7 @@ import {
   Pause,
   Play,
 } from "lucide-react";
-import IntelligenceScene from "./IntelligenceScene";
+import GlobeScene from "./GlobeScene";
 import { heroShowcase as hero } from "@/config/hero.config";
 import {
   studioConfig as config,
@@ -26,19 +26,40 @@ export default function HeroShowcase({
   onProject: (project: StudioProject) => void;
 }) {
   const [active, setActive] = useState(0);
-  const [failed, setFailed] = useState(false);
   const [paused, setPaused] = useState(false);
+  const [autoStopped, setAutoStopped] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const reduced = useReducedMotionPreference();
+  const workspace = useRef<HTMLDivElement>(null);
+  const rotationControl = useRef<HTMLButtonElement>(null);
+  const pointerWasStopped = useRef<boolean | null>(null);
   const scene = useRef<HTMLDivElement>(null);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const mode = hero.modes[active];
   const project = studioProjects.find((item) => item.id === mode.projectId)!;
+  const motionPaused = reduced || paused || !inView || !pageVisible;
+  const cycling = !motionPaused && !hovered && !autoStopped;
+  const stopped = paused || autoStopped;
+  useEffect(() => {
+    const visible = () => setPageVisible(!document.hidden);
+    document.addEventListener("visibilitychange", visible);
+    const observer = typeof IntersectionObserver === "undefined" ? null : new IntersectionObserver(([entry]) => setInView(entry.isIntersecting));
+    if (workspace.current) observer?.observe(workspace.current);
+    return () => { document.removeEventListener("visibilitychange", visible); observer?.disconnect(); };
+  }, []);
+  useEffect(() => {
+    if (!cycling) return;
+    const timer = window.setTimeout(() => setActive((index) => (index + 1) % hero.modes.length), hero.animation.cycleSeconds * 1000);
+    return () => window.clearTimeout(timer);
+  }, [active, cycling]);
   useEffect(() => {
     if (scene.current) scene.current.style.transform = "";
   }, [reduced, active]);
   const select = (index: number) => {
     setActive(index);
-    setFailed(false);
+    setAutoStopped(true);
   };
   return (
     <section id="home" className="showcase-hero studio-shell">
@@ -78,9 +99,27 @@ export default function HeroShowcase({
             </span>
           </a>
         </div>
-        <div className="showcase-workspace">
+        <div className="showcase-workspace" ref={workspace} role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
+          style={{ "--globe-accent": mode.accent, "--cycle-duration": `${hero.animation.cycleSeconds}s` } as CSSProperties}
+          onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}
+          onFocusCapture={() => setAutoStopped(true)}>
           <div className="showcase-workspace-top">
             <span>{hero.workspace}</span>
+            <button ref={rotationControl} className="showcase-cycle-control" disabled={reduced}
+              aria-label={stopped ? hero.animation.resume : hero.animation.pause}
+              onPointerDown={() => { pointerWasStopped.current = stopped; }}
+              onPointerCancel={() => { pointerWasStopped.current = null; }}
+              onClick={(event) => {
+                // Pointer focus pauses cycling before click; retain the intended action.
+                const wasStopped = event.detail === 0 ? stopped : pointerWasStopped.current ?? stopped;
+                pointerWasStopped.current = null;
+                setPaused(!wasStopped);
+                setAutoStopped(false);
+                if (scene.current) scene.current.style.transform = "";
+              }}>
+              {stopped || reduced ? <Play size={11} /> : <Pause size={11} />}
+              <span>{reduced ? hero.animation.still : cycling ? hero.animation.automatic : hero.animation.held}</span>
+            </button>
             <span aria-hidden="true">
               {String(active + 1).padStart(2, "0")} /{" "}
               {String(hero.modes.length).padStart(2, "0")}
@@ -127,17 +166,19 @@ export default function HeroShowcase({
                 {item.label}
               </button>
             ))}
+            <div key={`${active}-${cycling}`} className="showcase-cycle-progress" data-running={cycling} aria-hidden="true"><i /></div>
           </div>
           <div
             id="hero-panel"
             role="tabpanel"
             aria-labelledby={`hero-tab-${mode.id}`}
+            aria-live={cycling ? "off" : "polite"}
             tabIndex={0}
           >
             <div
               className="showcase-stage"
               onPointerMove={(event) => {
-                if (reduced || paused || event.pointerType !== "mouse" || !scene.current)
+                if (motionPaused || event.pointerType !== "mouse" || !scene.current)
                   return;
                 const box = event.currentTarget.getBoundingClientRect();
                 scene.current.style.transform = `rotateY(${((event.clientX - box.left) / box.width - 0.5) * hero.motion.tiltDegrees}deg) rotateX(${-((event.clientY - box.top) / box.height - 0.5) * hero.motion.tiltDegrees}deg)`;
@@ -146,7 +187,7 @@ export default function HeroShowcase({
                 if (scene.current) scene.current.style.transform = "";
               }}
             >
-              <div className="showcase-scene" ref={scene} data-motion={reduced || paused ? "paused" : "running"}>
+              <div className="showcase-scene" ref={scene} data-motion={motionPaused ? "paused" : "running"}>
                 <div className="showcase-backplate" aria-hidden="true" />
                 <motion.div
                   key={mode.id}
@@ -164,40 +205,11 @@ export default function HeroShowcase({
                   <div className="showcase-windowbar">
                     <span aria-hidden="true">● ● ●</span>
                     <span>
-                      {mode.image ? hero.visualLabel : hero.architectureLabel}
+                      {hero.architectureLabel}
                     </span>
-                    <button
-                      className="showcase-motion-toggle"
-                      aria-label={paused ? hero.animation.resume : hero.animation.pause}
-                      aria-pressed={paused}
-                      disabled={reduced}
-                      onClick={() => {
-                        setPaused(!paused);
-                        if (scene.current) scene.current.style.transform = "";
-                      }}
-                    >
-                      {paused || reduced ? <Play size={13} /> : <Pause size={13} />}
-                    </button>
+                    <span aria-hidden="true">{mode.label.toUpperCase()}</span>
                   </div>
-                  {mode.image ? (
-                    failed ? (
-                      <div className="showcase-image-fallback">
-                        <Layers3 />
-                        <p>{hero.fallback}</p>
-                      </div>
-                    ) : (
-                      <img
-                        key={mode.image}
-                        src={mode.image}
-                        width="1440"
-                        height="1000"
-                        alt={mode.caption}
-                        onError={() => setFailed(true)}
-                      />
-                    )
-                  ) : (
-                    <IntelligenceScene nodes={mode.nodes} caption={mode.caption} />
-                  )}
+                  <GlobeScene mode={mode} paused={motionPaused} />
                 </motion.div>
                 <div className="showcase-flow">
                   <span className="studio-eyebrow">
