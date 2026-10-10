@@ -8,6 +8,8 @@ import {
   Network,
 } from "lucide-react";
 import CardCarousel from "./CardCarousel";
+import HeroCopyCarousel from "./HeroCopyCarousel";
+import { useMotionValue } from "framer-motion";
 import { heroShowcase as hero } from "@/config/hero.config";
 import {
   studioConfig as config,
@@ -28,7 +30,8 @@ export default function HeroShowcase({
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
   const reduced = useReducedMotionPreference();
-  const workspace = useRef<HTMLDivElement>(null);
+  const rotation = useMotionValue(0);
+  const heroRegion = useRef<HTMLDivElement>(null);
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const mode = hero.modes[active];
   const project = studioProjects.find((item) => item.id === mode.projectId)!;
@@ -38,7 +41,7 @@ export default function HeroShowcase({
     const visible = () => setPageVisible(!document.hidden);
     document.addEventListener("visibilitychange", visible);
     const observer = typeof IntersectionObserver === "undefined" ? null : new IntersectionObserver(([entry]) => setInView(entry.isIntersecting));
-    if (workspace.current) observer?.observe(workspace.current);
+    if (heroRegion.current) observer?.observe(heroRegion.current);
     return () => { document.removeEventListener("visibilitychange", visible); observer?.disconnect(); };
   }, []);
   const select = (index: number) => {
@@ -54,16 +57,9 @@ export default function HeroShowcase({
           {config.hero.availability}
         </span>
       </div>
-      <div className="showcase-layout">
+      <div className="showcase-layout" ref={heroRegion}>
         <div className="showcase-copy">
-          <h1>
-            {hero.headline.map((line, i) => (
-              <span className={i === 2 ? "showcase-accent" : ""} key={line}>
-                {line}
-              </span>
-            ))}
-          </h1>
-          <p>{hero.description}</p>
+          <HeroCopyCarousel active={active} rotation={rotation} />
           <div className="studio-hero-actions">
             <a className="studio-button primary" href={config.socials.email}>
               {config.hero.primary}
@@ -83,7 +79,7 @@ export default function HeroShowcase({
             </span>
           </a>
         </div>
-        <div className="showcase-workspace" ref={workspace} role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
+        <div className="showcase-workspace" role="group" aria-roledescription="carousel" aria-label={hero.tabLabel}
           style={{ "--card-accent": mode.accent } as CSSProperties}
           onFocusCapture={() => setFocused(true)}
           onBlurCapture={(event) => {
@@ -145,7 +141,7 @@ export default function HeroShowcase({
             aria-live={cycling ? "off" : "polite"}
             tabIndex={0}
           >
-            <CardCarousel active={active} selectionVersion={selectionVersion} paused={turnPaused} reduced={reduced} onActiveChange={setActive} />
+            <CardCarousel active={active} selectionVersion={selectionVersion} paused={turnPaused} reduced={reduced} onActiveChange={setActive} rotation={rotation} />
             <div className="showcase-project-copy">
               <span className="studio-eyebrow">{project.name}</span>
               <h2>{mode.title}</h2>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
-import { motion, useAnimationFrame, useMotionValue } from "framer-motion";
+import { motion, useAnimationFrame, useMotionValue, type MotionValue } from "framer-motion";
 import { ArrowRight, Layers3 } from "lucide-react";
 import { heroShowcase as hero } from "@/config/hero.config";
 import { cardRotationDepth, cardRotationIndex, cardRotationTarget } from "@/lib/card-rotation";
@@ -7,11 +7,12 @@ import IntelligenceScene from "./IntelligenceScene";
 import "./intelligence-scene.css";
 import "./card-carousel.css";
 
-export default function CardCarousel({ active, selectionVersion = 0, paused, reduced, onActiveChange }: { active: number; selectionVersion?: number; paused: boolean; reduced: boolean; onActiveChange?: (index: number) => void }) {
+export default function CardCarousel({ active, selectionVersion = 0, paused, reduced, onActiveChange, rotation: sharedRotation }: { active: number; selectionVersion?: number; paused: boolean; reduced: boolean; onActiveChange?: (index: number) => void; rotation?: MotionValue<number> }) {
   const rotor = useRef<HTMLDivElement>(null);
   const lastSelection = useRef(selectionVersion);
   const previousTime = useRef<number | null>(null);
-  const rotation = useMotionValue(0);
+  const localRotation = useMotionValue(0);
+  const rotation = sharedRotation ?? localRotation;
   const [depth, setDepth] = useState(0);
   const [failed, setFailed] = useState<Record<string, boolean>>({});
 

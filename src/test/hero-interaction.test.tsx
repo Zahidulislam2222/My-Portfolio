@@ -19,7 +19,7 @@ describe("interactive hero", () => {
     frames.time = 0;
     vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null);
   });
-  afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); });
+  afterEach(() => { cleanup(); vi.useRealTimers(); vi.restoreAllMocks(); vi.unstubAllGlobals(); });
   const advance = (faces = 1) => {
     act(() => frames.callback?.(frames.time, 0));
     const delta = heroShowcase.motion.revolutionSeconds * 1000 / heroShowcase.modes.length / 20;
@@ -46,6 +46,10 @@ describe("interactive hero", () => {
     for (const name of ["Applications", "Cloud", "AI"]) {
       advance();
       expect(screen.getByRole("tab", { name })).toHaveAttribute("aria-selected", "true");
+      const mode = heroShowcase.modes.find((item) => item.label === name)!;
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(mode.headline.join(" "));
+      expect(document.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", mode.id);
+      expect(document.querySelector(".showcase-copy-stage > p")).toHaveTextContent(mode.description);
       expect(document.querySelector(`.showcase-card-face[data-card="${name === "Applications" ? "applications" : name.toLowerCase()}"]`)).toHaveAttribute("aria-hidden", "false");
       expect(document.activeElement).toBe(focus);
     }
@@ -94,6 +98,8 @@ describe("interactive hero", () => {
     fireEvent.click(cloud);
     advance(2);
     expect(cloud).toHaveAttribute("aria-selected", "true");
+    expect(document.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "cloud");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(heroShowcase.modes[2].headline.join(" "));
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
     fireEvent.blur(cloud, { relatedTarget: document.body });
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "running");
@@ -118,6 +124,28 @@ describe("interactive hero", () => {
     advance(2);
     expect(vi.getTimerCount()).toBe(0);
   });
+  it("observes both columns as one region, suspends when both leave and resumes in sync", () => {
+    let visibility: (entries: Array<{ isIntersecting: boolean }>) => void;
+    const observe = vi.fn();
+    const disconnect = vi.fn();
+    vi.stubGlobal("IntersectionObserver", class {
+      constructor(callback: typeof visibility) { visibility = callback; }
+      observe = observe;
+      disconnect = disconnect;
+    });
+    const { container, unmount } = render(<HeroShowcase onProject={vi.fn()} />);
+    expect(observe).toHaveBeenCalledWith(container.querySelector(".showcase-layout"));
+    act(() => visibility([{ isIntersecting: false }]));
+    advance(2);
+    expect(container.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "ai");
+    expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
+    act(() => visibility([{ isIntersecting: true }]));
+    advance();
+    expect(container.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "applications");
+    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
+    unmount();
+    expect(disconnect).toHaveBeenCalledOnce();
+  });
   it("keeps static cards and manual navigation with reduced motion", () => {
     vi.spyOn(window, "matchMedia").mockImplementation((query) => ({ matches: true, media: query, onchange: null, addListener: vi.fn(), removeListener: vi.fn(), addEventListener: vi.fn(), removeEventListener: vi.fn(), dispatchEvent: vi.fn() }));
     const { container } = render(<HeroShowcase onProject={vi.fn()} />);
@@ -127,5 +155,7 @@ describe("interactive hero", () => {
     expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
     fireEvent.click(screen.getByRole("tab", { name: "Cloud" }));
     expect(screen.getByRole("tab", { name: "Cloud" })).toHaveAttribute("aria-selected", "true");
+    expect(document.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "cloud");
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
   });
 });

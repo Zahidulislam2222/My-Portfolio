@@ -1,7 +1,8 @@
 import { act, cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { type MotionValue } from "framer-motion";
+import { motionValue, type MotionValue } from "framer-motion";
 import CardCarousel from "@/components/studio/CardCarousel";
+import HeroCopyCarousel from "@/components/studio/HeroCopyCarousel";
 import { heroShowcase as hero } from "@/config/hero.config";
 
 const frames = vi.hoisted(() => ({ callback: null as null | ((time: number, delta: number) => void), value: null as MotionValue<number> | null }));
@@ -24,6 +25,25 @@ const revolutionMs = hero.motion.revolutionSeconds * 1000;
 const degreesPerSecond = 360 / hero.motion.revolutionSeconds;
 
 describe("continuous whole-card rotation lifecycle", () => {
+  it("drives horizontal cards and vertical copy from one shared value through selection and suspension", () => {
+    const shared = motionValue(0);
+    const view = (active: number, paused: boolean, reduced: boolean, selectionVersion = 0) => <>
+      <HeroCopyCarousel active={active} rotation={shared} />
+      <CardCarousel active={active} paused={paused} reduced={reduced} selectionVersion={selectionVersion} rotation={shared} />
+    </>;
+    const { rerender } = render(view(0, false, false));
+    frame(0); frame(1000);
+    expect(shared.get()).toBeCloseTo(-degreesPerSecond);
+    rerender(view(0, true, false));
+    frame(9000);
+    expect(shared.get()).toBeCloseTo(-degreesPerSecond);
+    rerender(view(2, true, false, 1));
+    expect(shared.get()).toBeCloseTo(120);
+    rerender(view(1, true, true, 2));
+    expect(shared.get()).toBeCloseTo(240);
+    frame(12000);
+    expect(shared.get()).toBeCloseTo(240);
+  });
   it("starts immediately and keeps equal angular speed across automatic face changes", () => {
     const onActiveChange = vi.fn();
     const { rerender } = render(<CardCarousel active={0} paused={false} reduced={false} onActiveChange={onActiveChange} />);

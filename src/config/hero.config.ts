@@ -2,9 +2,6 @@ import { z } from "zod";
 
 export const heroShowcase = {
   identity: "Zahidul Islam · Full Stack & AI Engineer",
-  headline: ["I build software", "that puts", "AI to work."],
-  description:
-    "From a grounded answer to a complete application. I connect interfaces, intelligence and infrastructure into systems people can use.",
   workspace: "EXPLORE THE ENGINEERING",
   tabLabel: "Explore engineering disciplines",
   visualLabel: "PROJECT VIEW",
@@ -34,6 +31,8 @@ export const heroShowcase = {
         id: z.string(),
         label: z.string(),
         projectId: z.string(),
+        headline: z.array(z.string()).length(3),
+        description: z.string().min(30),
         title: z.string(),
         caption: z.string(),
         nodes: z.array(z.string()).length(3),
@@ -47,6 +46,9 @@ export const heroShowcase = {
         id: "ai",
         label: "AI",
         projectId: "yuktha-wellness",
+        headline: ["I build software", "that puts", "AI to work."],
+        description:
+          "From a grounded answer to a complete application. I connect interfaces, intelligence and infrastructure into systems people can use.",
         title: "Answers with a foundation.",
         caption: "Yuktha Wellness / retrieval architecture",
         nodes: ["Retrieve", "Rerank", "Ground"],
@@ -58,6 +60,9 @@ export const heroShowcase = {
         id: "applications",
         label: "Applications",
         projectId: "equipcert",
+        headline: ["I build apps", "that turn", "ideas into tools."],
+        description:
+          "From the first screen to the final record. I connect clear interfaces, practical workflows and reliable data into applications people can use.",
         title: "From the field to the record.",
         caption: "EquipCert AI / application preview",
         nodes: ["Capture", "Review", "Audit"],
@@ -70,6 +75,9 @@ export const heroShowcase = {
         id: "cloud",
         label: "Cloud",
         projectId: "mediconnect-v3",
+        headline: ["I build systems", "that connect", "every layer."],
+        description:
+          "From the interface to the infrastructure. I connect identity, services and regional routing into systems with clear boundaries.",
         title: "Connected by architecture.",
         caption: "MediConnect / website preview",
         nodes: ["Identity", "Route", "Services"],

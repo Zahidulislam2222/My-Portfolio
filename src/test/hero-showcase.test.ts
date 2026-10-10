@@ -4,6 +4,7 @@ import { studioProjects } from "../config/studio.config";
 import source from "../components/studio/HeroShowcase.tsx?raw";
 import sceneSource from "../components/studio/CardCarousel.tsx?raw";
 import aiSource from "../components/studio/IntelligenceScene.tsx?raw";
+import copySource from "../components/studio/HeroCopyCarousel.tsx?raw";
 
 describe("hero showcase content boundary", () => {
   it("connects every mode to a real indexed project", () => {
@@ -14,6 +15,8 @@ describe("hero showcase content boundary", () => {
       ).toBe(true);
       expect(mode.nodes).toHaveLength(3);
       expect(mode.decision.length).toBeGreaterThan(30);
+      expect(mode.headline).toHaveLength(3);
+      expect(mode.description.length).toBeGreaterThan(30);
     }
   });
   it("uses three original content panels and a valid configurable revolution", () => {
@@ -23,7 +26,7 @@ describe("hero showcase content boundary", () => {
     expect(heroShowcase.motion.revolutionSeconds).toBeGreaterThan(0);
   });
   it("keeps provider secrets and environment details out of the visual component", () => {
-    expect(source + sceneSource + aiSource).not.toMatch(
+    expect(source + sceneSource + aiSource + copySource).not.toMatch(
       /https?:\/\/|import\.meta\.env|process\.env|sk-[a-zA-Z0-9_-]{16,}|-----BEGIN .*PRIVATE KEY-----/,
     );
   });
