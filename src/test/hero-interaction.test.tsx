@@ -54,19 +54,43 @@ describe("interactive hero", () => {
       expect(document.activeElement).toBe(focus);
     }
   });
-  it("keeps rotating through all cards while hovered and after the pointer leaves", () => {
-    render(<HeroShowcase onProject={vi.fn()} />);
-    const carousel = screen.getByRole("group", { name: heroShowcase.tabLabel });
-    fireEvent.mouseEnter(carousel);
+  it("holds both sides while either is hovered and resumes in sync on leaving the hero", () => {
+    const { container } = render(<HeroShowcase onProject={vi.fn()} />);
+    for (const selector of [".showcase-copy-stage", ".showcase-workspace"]) {
+      const side = container.querySelector(selector)!;
+      fireEvent.pointerEnter(side);
+      const heldMode = container.querySelector(".showcase-copy-stage")!.getAttribute("data-copy");
+      advance(2);
+      expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
+      expect(container.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", heldMode);
+      fireEvent.pointerLeave(side);
+      expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "running");
+      advance();
+      expect(container.querySelector(".showcase-copy-stage")!.getAttribute("data-copy")).not.toBe(heldMode);
+    }
+  });
+  it("does not create a hover hold from a touch pointer", () => {
+    const { container } = render(<HeroShowcase onProject={vi.fn()} />);
+    const touch = new Event("pointerover", { bubbles: true });
+    Object.defineProperty(touch, "pointerType", { value: "touch" });
+    fireEvent(container.querySelector(".showcase-copy-stage")!, touch);
     advance();
-    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
+    expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "running");
+    expect(container.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "applications");
+  });
+  it("keeps keyboard focus held after the pointer leaves, then resumes on focus exit", () => {
+    const { container } = render(<HeroShowcase onProject={vi.fn()} />);
+    const region = container.querySelector(".showcase-layout")!;
+    const ai = screen.getByRole("tab", { name: "AI" });
+    fireEvent.pointerEnter(region);
+    fireEvent.focus(ai);
+    fireEvent.pointerLeave(region);
+    advance(2);
+    expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
+    expect(container.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "ai");
+    fireEvent.blur(ai, { relatedTarget: document.body });
     advance();
-    expect(screen.getByRole("tab", { name: "Cloud" })).toHaveAttribute("aria-selected", "true");
-    advance();
-    expect(screen.getByRole("tab", { name: "AI" })).toHaveAttribute("aria-selected", "true");
-    fireEvent.mouseLeave(carousel);
-    advance();
-    expect(screen.getByRole("tab", { name: "Applications" })).toHaveAttribute("aria-selected", "true");
+    expect(container.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "applications");
   });
   it("holds during keyboard focus and resumes when focus leaves the workspace", () => {
     render(<HeroShowcase onProject={vi.fn()} />);

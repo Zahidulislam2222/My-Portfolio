@@ -26,6 +26,7 @@ export default function HeroShowcase({
 }) {
   const [active, setActive] = useState(0);
   const [selectionVersion, setSelectionVersion] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [inView, setInView] = useState(true);
   const [pageVisible, setPageVisible] = useState(() => !document.hidden);
@@ -35,7 +36,7 @@ export default function HeroShowcase({
   const tabs = useRef<Array<HTMLButtonElement | null>>([]);
   const mode = hero.modes[active];
   const project = studioProjects.find((item) => item.id === mode.projectId)!;
-  const turnPaused = reduced || !inView || !pageVisible || focused;
+  const turnPaused = reduced || !inView || !pageVisible || focused || hovered;
   const cycling = !turnPaused;
   useEffect(() => {
     const visible = () => setPageVisible(!document.hidden);
@@ -57,7 +58,9 @@ export default function HeroShowcase({
           {config.hero.availability}
         </span>
       </div>
-      <div className="showcase-layout" ref={heroRegion}>
+      <div className="showcase-layout" ref={heroRegion}
+        onPointerEnter={(event) => { if (event.pointerType !== "touch") setHovered(true); }}
+        onPointerLeave={() => setHovered(false)}>
         <div className="showcase-copy">
           <HeroCopyCarousel active={active} rotation={rotation} />
           <div className="studio-hero-actions">
