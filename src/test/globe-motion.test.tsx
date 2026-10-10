@@ -2,6 +2,7 @@ import { act, cleanup, render } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { type MotionValue } from "framer-motion";
 import CardCarousel from "@/components/studio/CardCarousel";
+import { heroShowcase as hero } from "@/config/hero.config";
 
 const frames = vi.hoisted(() => ({ callback: null as null | ((time: number, delta: number) => void), value: null as MotionValue<number> | null }));
 vi.mock("framer-motion", async (importOriginal) => {
@@ -19,21 +20,23 @@ vi.mock("framer-motion", async (importOriginal) => {
 afterEach(() => { cleanup(); vi.clearAllMocks(); vi.unstubAllGlobals(); });
 
 const frame = (time: number) => act(() => frames.callback?.(time, 0));
+const revolutionMs = hero.motion.revolutionSeconds * 1000;
+const degreesPerSecond = 360 / hero.motion.revolutionSeconds;
 
 describe("continuous whole-card rotation lifecycle", () => {
   it("starts immediately and keeps equal angular speed across automatic face changes", () => {
     const onActiveChange = vi.fn();
     const { rerender } = render(<CardCarousel active={0} paused={false} reduced={false} onActiveChange={onActiveChange} />);
     frame(0); frame(1000);
-    expect(frames.value?.get()).toBeCloseTo(-10);
-    frame(6000);
+    expect(frames.value?.get()).toBeCloseTo(-degreesPerSecond);
+    frame(revolutionMs / 6);
     expect(frames.value?.get()).toBeCloseTo(-60);
     expect(onActiveChange).toHaveBeenLastCalledWith(1);
     rerender(<CardCarousel active={1} paused={false} reduced={false} onActiveChange={onActiveChange} />);
     expect(frames.value?.get()).toBeCloseTo(-60);
-    frame(7000);
-    expect(frames.value?.get()).toBeCloseTo(-70);
-    frame(36000);
+    frame(revolutionMs / 6 + 1000);
+    expect(frames.value?.get()).toBeCloseTo(-60 - degreesPerSecond);
+    frame(revolutionMs);
     expect(frames.value?.get()).toBeCloseTo(0);
     expect(onActiveChange).toHaveBeenLastCalledWith(0);
   });
@@ -42,12 +45,12 @@ describe("continuous whole-card rotation lifecycle", () => {
     frame(0); frame(1000);
     rerender(<CardCarousel active={0} paused reduced={false} />);
     frame(9000);
-    expect(frames.value?.get()).toBeCloseTo(-10);
+    expect(frames.value?.get()).toBeCloseTo(-degreesPerSecond);
     rerender(<CardCarousel active={0} paused={false} reduced={false} />);
     frame(20000);
-    expect(frames.value?.get()).toBeCloseTo(-10);
+    expect(frames.value?.get()).toBeCloseTo(-degreesPerSecond);
     frame(21000);
-    expect(frames.value?.get()).toBeCloseTo(-20);
+    expect(frames.value?.get()).toBeCloseTo(-2 * degreesPerSecond);
     unmount();
     expect(frames.callback).toBeNull();
   });

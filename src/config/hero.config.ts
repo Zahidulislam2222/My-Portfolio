@@ -32,7 +32,7 @@ export const heroShowcase = {
     faces: ["front", "back", "right", "left", "top", "bottom"],
   },
   fallback: "Project screenshot unavailable. Explore the project details below.",
-  motion: { revolutionSeconds: 36 },
+  motion: { revolutionSeconds: 30 },
   modes: z
     .array(
       z.object({
