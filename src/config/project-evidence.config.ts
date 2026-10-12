@@ -164,7 +164,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "vitalprobe": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own local-first testing product for healthcare and wellness AI assistants. Synthetic patients only."
+      "detail": "My own safety and evidence-testing product with a published website and public source. Audit execution remains local or operator-controlled. Synthetic patients only."
     },
     "challenges": [
       {
@@ -184,7 +184,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · October 12 (PDF)",
       "file": "vitalprobe-technical-overview.pdf"
     }
   },

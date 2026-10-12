@@ -1389,6 +1389,25 @@
   gap: 10px;
   margin-top: 30px;
 }
+.studio-dialog-links .studio-button {
+  max-width: 100%;
+  white-space: normal;
+  gap: 10px;
+  text-align: left;
+}
+.studio-dialog-links .studio-button > svg {
+  flex-shrink: 0;
+}
+.studio-link-label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.studio-link-host {
+  font-size: 10px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
 .studio-dialog-evidence {
   font-size: 10px;
   color: var(--s-muted);

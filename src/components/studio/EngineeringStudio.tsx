@@ -358,7 +358,7 @@ function ProjectDialog({
                 rel="noreferrer"
               >
                 <Github size={16} />
-                {link.label}
+                <span>{config.labels.sourceLabel} · {link.label}</span>
                 <ArrowUpRight size={15} />
               </a>
             ))}
@@ -369,7 +369,10 @@ function ProjectDialog({
                 target="_blank"
                 rel="noreferrer"
               >
-                {config.labels.demoLabel}
+                <span className="studio-link-label">
+                  <span>{config.labels.demoLabel}</span>
+                  <span className="studio-link-host">{new URL(resources.liveUrl).hostname}</span>
+                </span>
                 <ArrowUpRight size={17} />
               </a>
             )}

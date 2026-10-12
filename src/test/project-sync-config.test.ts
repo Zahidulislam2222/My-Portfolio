@@ -21,9 +21,20 @@ describe("project synchronization contract", () => {
     expect(project?.detail).toMatch(/Company-account activation and production backend promotion remain pending/);
     expect(project?.detail).toMatch(/reference economics are illustrative/);
     expect(projectResources("adrevora-ai").liveUrl).toBe("https://adrevora.zahidul-islam.com/");
-    expect(projectResources("adrevora-ai").links).toEqual([]);
+    expect(projectResources("adrevora-ai").links).toEqual([{
+      label: "Private repository", url: "https://github.com/Zahidulislam2222/AdRevora-AI",
+    }]);
     expect(projectEvidence["adrevora-ai"].engagement.type).toBe("Independent build");
     expect(projectEvidence["adrevora-ai"].document.file).toBe("adrevora-ai-technical-overview.pdf");
+  });
+
+  it("retains the verified links found by the complete resource audit", () => {
+    expect(projectResources("yuktha-wellness").liveUrl).toBe("https://yuktha.com/");
+    expect(projectResources("vitalprobe").liveUrl).toBe("https://vitalprobe.zahidul-islam.com/");
+    expect(projectResources("vitalprobe").links).toContainEqual({label: "Source code", url: "https://github.com/Zahidulislam2222/vitalprobe"});
+    expect(projectResources("secure-hybrid-ai-hub").links).toContainEqual({label: "Source code", url: "https://github.com/Zahidulislam2222/secure-hybrid-hub"});
+    expect(projectResources("mediconnect-v3").links).toContainEqual({label: "RAG knowledge service", url: "https://github.com/Zahidulislam2222/mediconnect-rag"});
+    expect(projectResources("kindred-grove").liveUrl).toBeUndefined();
   });
 
   it("keeps private configuration outside public runtime modules", () => {

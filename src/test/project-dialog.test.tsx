@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from "vitest";
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import EngineeringStudio from "@/components/studio/EngineeringStudio";
-import { studioConfig } from "@/config/studio.config";
+import { studioConfig, studioProjects } from "@/config/studio.config";
 import { documentBasePath, projectEvidence } from "@/config/project-evidence.config";
 
 beforeAll(() => {
@@ -31,6 +31,17 @@ const openProject = (name: string) => {
 };
 
 describe("project dialog", () => {
+  it("shows AdRevora's private GitHub link and the actual live subdomain", () => {
+    render(<EngineeringStudio />);
+    fireEvent.click(screen.getByRole("button", { name: `${studioConfig.labels.allProjects} (${studioProjects.length})` }));
+    fireEvent.click(screen.getByRole("button", { name: /AdRevora AI.*Published website/ }));
+    const dialog = screen.getByRole("dialog", { hidden: true });
+    expect(within(dialog).getByRole("link", { name: /GitHub.*Private repository/, hidden: true }))
+      .toHaveAttribute("href", "https://github.com/Zahidulislam2222/AdRevora-AI");
+    expect(within(dialog).getByRole("link", { name: /Live website.*adrevora.zahidul-islam.com/, hidden: true }))
+      .toHaveAttribute("href", "https://adrevora.zahidul-islam.com/");
+  });
+
   it("shows client, problems solved and the PDF link", () => {
     render(<EngineeringStudio />);
     const dialog = openProject("Campaign operations");

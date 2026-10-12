@@ -183,8 +183,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "AI SAFETY & EVALUATION",
     "summary": "Make AI behavior inspectable.",
-    "status": "Local product · pre-release distribution",
-    "detail": "A local-first safety and evidence-testing product for healthcare and wellness assistants. Synthetic patient scenarios exercise REST and MCP targets; deterministic checks and optional semantic judges produce JSON and self-contained HTML reports. Baseline comparison, local history and multi-turn simulation help reviewers investigate behavior. Only fictional patients are used; reports do not certify clinical safety or regulatory compliance.",
+    "status": "Published website · local audit engine",
+    "detail": "A safety and evidence-testing product for healthcare and wellness assistants with a published React/TypeScript website and public frontend/backend source. Audit runs execute locally or in an operator-controlled environment; the website has no hosted audit endpoint, customer uploads or payment collection. Synthetic patient scenarios exercise REST and MCP targets; deterministic checks and optional semantic judges produce JSON and self-contained HTML reports. Baseline comparison, local history and multi-turn simulation help reviewers investigate behavior. Only fictional patients are used; reports do not certify clinical safety or regulatory compliance.",
     "stack": [
       "Python",
       "FastAPI",
@@ -192,7 +192,7 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "terminal",
     "featured": false,
-    "evidence": "Executive overview and product boundary, July 2026"
+    "evidence": "Engineering and product overview, October 12, 2026"
   },
   {
     "id": "rag-production-stack",
@@ -570,8 +570,8 @@ export const studioConfig = {
     readProject: "Explore project",
     closeProject: "Close project",
     projectScope: "THE ENGINEERING",
-    sourceLabel: "Explore the source",
-    demoLabel: "Visit project",
+    sourceLabel: "GitHub",
+    demoLabel: "Live website",
     referenceLabel: "Evidence reviewed",
     index: "PROJECT INDEX",
     expertiseEyebrow: "03 / HOW I CAN HELP",

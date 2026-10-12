@@ -153,6 +153,10 @@ export const portfolioConfig = {
       {
         "label": "Backend (Strapi CMS)",
         "url": "https://github.com/Zahidulislam2222/mediconnect-cms"
+      },
+      {
+        "label": "RAG knowledge service",
+        "url": "https://github.com/Zahidulislam2222/mediconnect-rag"
       }
     ],
     "pdfLinks": [
@@ -680,7 +684,8 @@ export const portfolioConfig = {
     "metrics": {
       "delivery": "Production assistant · human judgment required"
     },
-    "pdfUrl": "/docs/yuktha-wellness-technical-overview.pdf"
+    "pdfUrl": "/docs/yuktha-wellness-technical-overview.pdf",
+    "liveUrl": "https://yuktha.com/"
   },
   {
     "id": "regenai-shopify",
@@ -911,7 +916,8 @@ export const portfolioConfig = {
     "metrics": {
       "delivery": "In development · synthetic verification"
     },
-    "pdfUrl": "/docs/secure-hybrid-ai-hub-technical-overview.pdf"
+    "pdfUrl": "/docs/secure-hybrid-ai-hub-technical-overview.pdf",
+    "githubUrl": "https://github.com/Zahidulislam2222/secure-hybrid-hub"
   },
   {
     "id": "vitalprobe",
@@ -922,7 +928,7 @@ export const portfolioConfig = {
       "compliance"
     ],
     "description": "Make AI behavior inspectable.",
-    "fullDescription": "A local-first safety and evidence-testing product for healthcare and wellness assistants. Synthetic patient scenarios exercise REST and MCP targets; deterministic checks and optional semantic judges produce JSON and self-contained HTML reports. Baseline comparison, local history and multi-turn simulation help reviewers investigate behavior. Only fictional patients are used; reports do not certify clinical safety or regulatory compliance.",
+    "fullDescription": "A safety and evidence-testing product for healthcare and wellness assistants with a published React/TypeScript website and public frontend/backend source. Audit runs execute locally or in an operator-controlled environment; the website has no hosted audit endpoint, customer uploads or payment collection. Synthetic patient scenarios exercise REST and MCP targets; deterministic checks and optional semantic judges produce JSON and self-contained HTML reports. Baseline comparison, local history and multi-turn simulation help reviewers investigate behavior. Only fictional patients are used; reports do not certify clinical safety or regulatory compliance.",
     "thumbnail": "",
     "technologies": [
       "Python",
@@ -930,15 +936,17 @@ export const portfolioConfig = {
       "MCP"
     ],
     "achievements": [
-      "Local product · pre-release distribution",
-      "Executive overview and product boundary, July 2026"
+      "Published website · local audit engine",
+      "Engineering and product overview, October 12, 2026"
     ],
     "featured": false,
     "isHealthcare": true,
     "metrics": {
-      "delivery": "Local product · pre-release distribution"
+      "delivery": "Published website · local audit engine"
     },
-    "pdfUrl": "/docs/vitalprobe-technical-overview.pdf"
+    "pdfUrl": "/docs/vitalprobe-technical-overview.pdf",
+    "githubUrl": "https://github.com/Zahidulislam2222/vitalprobe",
+    "liveUrl": "https://vitalprobe.zahidul-islam.com/"
   },
   {
     "id": "fleetwright",
@@ -996,7 +1004,13 @@ export const portfolioConfig = {
     "featured": false,
     "metrics": {
       "delivery": "Published website · production engine pending"
-    }
+    },
+    "githubLinks": [
+      {
+        "label": "Private repository",
+        "url": "https://github.com/Zahidulislam2222/AdRevora-AI"
+      }
+    ]
   }
 ],
 
