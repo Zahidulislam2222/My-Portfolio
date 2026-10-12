@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import componentSource from "../components/studio/EngineeringStudio.tsx?raw";
 import { portfolioConfig } from "../config/portfolio.config";
+import { projectEvidence } from "../config/project-evidence.config";
 import {
   studioConfig,
   studioProjects,
@@ -35,7 +36,7 @@ describe("engineering studio content contract", () => {
     expect(new Set(studioProjects.map((project) => project.id)).size).toBe(
       studioProjects.length,
     );
-    expect(studioProjects.length).toBe(20);
+    expect(studioProjects.length).toBe(Object.keys(projectEvidence).length);
     for (const project of studioProjects) {
       expect(studioConfig.labels.filters).toContain(project.category);
       expect(project.status.length).toBeGreaterThan(5);

@@ -560,5 +560,27 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       "label": "Technical overview (PDF)",
       "file": "fleetwright-technical-overview.pdf"
     }
+  },
+  "adrevora-ai": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "An owner-controlled advertising intelligence product. The website is published; the revenue engine is verified locally. Live company-account integrations and production backend rollout remain pending."
+    },
+    "challenges": [
+      {
+        "problem": "Advertising and CRM activity can be mistaken for collected revenue without a financial source of truth.",
+        "fix": "Built a financial ledger with payment/refund reconciliation, eligible-touch attribution and explicit unknown revenue.",
+        "result": "Local HTTP and fixture-backed connector flows exercise financial attribution; company-account acceptance remains pending."
+      },
+      {
+        "problem": "AI recommendations need bounded evidence and an approval record before business actions.",
+        "fix": "Combined deterministic financial policy, aggregate-only AI context and persisted human approvals.",
+        "result": "The current overview records local model execution, persisted decisions and 89 passing JavaScript/TypeScript tests; production acceptance remains separate."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · October 12 (PDF)",
+      "file": "adrevora-ai-technical-overview.pdf"
+    }
   }
 });

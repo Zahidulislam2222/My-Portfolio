@@ -1,0 +1,18 @@
+{
+  "registry": "memory/project-sync/registry.json",
+  "state": "memory/project-sync/state.json",
+  "backups": "memory/project-sync/backups",
+  "public_docs": "public/docs",
+  "service_account": "~/.config/gws/service_account.json",
+  "oauth_token": "~/.config/gws/python_token.json",
+  "drive_version": "v3",
+  "docs_version": "v1",
+  "timeout_seconds": 60,
+  "retries": 2,
+  "windows_mount": "/mnt",
+  "targets": {
+    "portfolio": {"file": "src/config/portfolio.config.ts", "marker": "  projects: "},
+    "studio": {"file": "src/config/studio.config.ts", "marker": "export const studioProjects = z.array(projectSchema).parse("},
+    "evidence": {"file": "src/config/project-evidence.config.ts", "marker": "export const projectEvidence = z.record(evidenceSchema).parse("}
+  }
+}

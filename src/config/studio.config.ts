@@ -367,6 +367,25 @@ export const studioProjects = z.array(projectSchema).parse([
     "visual": "network",
     "featured": false,
     "evidence": "Anonymized technical case study, August 26, 2026"
+  },
+  {
+    "id": "adrevora-ai",
+    "name": "AdRevora AI",
+    "category": "AI & Agents",
+    "domain": "ADVERTISING & REVENUE INTELLIGENCE",
+    "summary": "From advertising activity to traceable revenue decisions.",
+    "status": "Published website · local engine verified",
+    "detail": "An advertising-to-revenue intelligence product with a published React website and a separately verified local Node.js revenue engine. The local core provides authenticated workspaces, a SQLite financial ledger, first/last-touch attribution, explicit unknown revenue, policy-grounded AI recommendations and persisted human approvals. Meta and GoHighLevel connectors have fixture-backed end-to-end checks; Stripe readiness was checked read-only in test mode. The October 12 overview records 89 JavaScript/TypeScript tests, four deployment tests and 13 browser checks. Company-account activation and production backend promotion remain pending; reference economics are illustrative.",
+    "stack": [
+      "React",
+      "Node.js",
+      "SQLite",
+      "Meta / GoHighLevel"
+    ],
+    "image": "/studio/adrevora-ai.png",
+    "visual": "capture",
+    "featured": false,
+    "evidence": "Comprehensive technical overview, October 12, 2026"
   }
 ]);
 

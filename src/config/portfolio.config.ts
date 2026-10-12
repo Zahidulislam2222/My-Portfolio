@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 20, suffix: "" },
+    { label: "Selected Projects", value: 21, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 150, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Concept Products", value: 6, suffix: "" }
@@ -103,7 +103,8 @@ export const portfolioConfig = {
     "featured": true,
     "metrics": {
       "delivery": "Deployed platform · voice acceptance pending"
-    }
+    },
+    "pdfUrl": "/docs/voicebridge-technical-overview.pdf"
   },
   {
     "id": "mediconnect-v3",
@@ -157,11 +158,7 @@ export const portfolioConfig = {
     "pdfLinks": [
       {
         "label": "Technical Overview",
-        "url": "https://github.com/user-attachments/files/26647740/MediConnect.Comprehensive.Technical.Overview.pdf"
-      },
-      {
-        "label": "Enterprise Architecture",
-        "url": "https://github.com/user-attachments/files/26647741/MediConnect_Enterprise_Architecture.pdf"
+        "url": "/docs/mediconnect-technical-overview.pdf"
       }
     ],
     "videoId": "vPviXZOjx68",
@@ -208,7 +205,7 @@ export const portfolioConfig = {
     "pdfLinks": [
       {
         "label": "Technical Overview",
-        "url": "https://github.com/user-attachments/files/26647758/RAG_Production_Stack_Technical_Overview.pdf"
+        "url": "/docs/rag-production-stack-technical-overview.pdf"
       }
     ],
     "featured": false,
@@ -258,11 +255,7 @@ export const portfolioConfig = {
     "pdfLinks": [
       {
         "label": "Full Documentation",
-        "url": "https://github.com/user-attachments/files/26647807/Chronos.pdf"
-      },
-      {
-        "label": "The Blueprint",
-        "url": "https://github.com/user-attachments/files/26647808/The_Chronos_Blueprint.pdf"
+        "url": "/docs/chronos-technical-overview.pdf"
       }
     ],
     "featured": false,
@@ -314,11 +307,7 @@ export const portfolioConfig = {
     "pdfLinks": [
       {
         "label": "AI Blueprint",
-        "url": "https://github.com/user-attachments/files/26647775/EquipCert_AI_Blueprint.pdf"
-      },
-      {
-        "label": "Full Documentation",
-        "url": "https://github.com/user-attachments/files/26647776/EquipCert.pdf"
+        "url": "/docs/equipcert-technical-overview.pdf"
       }
     ],
     "featured": false,
@@ -352,7 +341,8 @@ export const portfolioConfig = {
     "isWordpress": true,
     "metrics": {
       "delivery": "Public WordPress assistant · deployed September 29"
-    }
+    },
+    "pdfUrl": "/docs/jwalker-knowledge-assistant-technical-overview.pdf"
   },
   {
     "id": "everyday-dental-surgery",
@@ -391,7 +381,7 @@ export const portfolioConfig = {
     "pdfLinks": [
       {
         "label": "Project Documentation",
-        "url": "https://github.com/user-attachments/files/26647795/EDS_Project_Documentation.pdf"
+        "url": "/docs/everyday-dental-surgery-technical-overview.pdf"
       }
     ],
     "videoId": "8QjGhAE7gpw",
@@ -509,11 +499,7 @@ export const portfolioConfig = {
     "pdfLinks": [
       {
         "label": "Analysis Engine",
-        "url": "https://github.com/user-attachments/files/26647772/HealthCode_Analysis_Engine.pdf"
-      },
-      {
-        "label": "Full Documentation",
-        "url": "https://github.com/user-attachments/files/26647771/HealthCode.Analysis.pdf"
+        "url": "/docs/healthcode-analysis-technical-overview.pdf"
       }
     ],
     "featured": false,
@@ -666,7 +652,8 @@ export const portfolioConfig = {
     "featured": false,
     "metrics": {
       "delivery": "Local research tool"
-    }
+    },
+    "pdfUrl": "/docs/emailfinder-technical-overview.pdf"
   },
   {
     "id": "yuktha-wellness",
@@ -692,7 +679,8 @@ export const portfolioConfig = {
     "isHealthcare": true,
     "metrics": {
       "delivery": "Production assistant · human judgment required"
-    }
+    },
+    "pdfUrl": "/docs/yuktha-wellness-technical-overview.pdf"
   },
   {
     "id": "regenai-shopify",
@@ -721,7 +709,8 @@ export const portfolioConfig = {
     "isHeadless": true,
     "metrics": {
       "delivery": "Live concept storefront · build in progress"
-    }
+    },
+    "pdfUrl": "/docs/regenai-build-snapshot.pdf"
   },
   {
     "id": "kindred-grove",
@@ -746,7 +735,8 @@ export const portfolioConfig = {
     "featured": false,
     "metrics": {
       "delivery": "Published Shopify storefront · password protected"
-    }
+    },
+    "pdfUrl": "/docs/kindred-grove-project-status.pdf"
   },
   {
     "id": "abcker-technologies",
@@ -817,7 +807,8 @@ export const portfolioConfig = {
     "featured": false,
     "metrics": {
       "delivery": "Operational PHP/Python workflow"
-    }
+    },
+    "pdfUrl": "/docs/ftm-seo-automation-technical-overview.pdf"
   },
   {
     "id": "ftm-sms-followup",
@@ -841,7 +832,8 @@ export const portfolioConfig = {
     "metrics": {
       "delivery": "Operational messaging workflow"
     },
-    "featured": true
+    "featured": true,
+    "pdfUrl": "/docs/ftm-sms-followup-technical-overview.pdf"
   },
   {
     "id": "ftm-social-media",
@@ -865,7 +857,8 @@ export const portfolioConfig = {
     "metrics": {
       "delivery": "Production workflow"
     },
-    "featured": true
+    "featured": true,
+    "pdfUrl": "/docs/ftm-social-media-technical-overview.pdf"
   },
   {
     "id": "wordpress-incident-response",
@@ -891,7 +884,8 @@ export const portfolioConfig = {
       "delivery": "Documented containment engagement"
     },
     "featured": false,
-    "isWordpress": true
+    "isWordpress": true,
+    "pdfUrl": "/docs/cybersecurity-incident-response-case-study.pdf"
   },
   {
     "id": "secure-hybrid-ai-hub",
@@ -916,7 +910,8 @@ export const portfolioConfig = {
     "featured": false,
     "metrics": {
       "delivery": "In development · synthetic verification"
-    }
+    },
+    "pdfUrl": "/docs/secure-hybrid-ai-hub-technical-overview.pdf"
   },
   {
     "id": "vitalprobe",
@@ -942,7 +937,8 @@ export const portfolioConfig = {
     "isHealthcare": true,
     "metrics": {
       "delivery": "Local product · pre-release distribution"
-    }
+    },
+    "pdfUrl": "/docs/vitalprobe-technical-overview.pdf"
   },
   {
     "id": "fleetwright",
@@ -970,6 +966,36 @@ export const portfolioConfig = {
     "featured": true,
     "metrics": {
       "delivery": "Live demo · in active development"
+    }
+  },
+  {
+    "id": "adrevora-ai",
+    "title": "AdRevora AI — Advertising-to-Revenue Intelligence",
+    "category": [
+      "ai-ml",
+      "automation",
+      "fullstack"
+    ],
+    "description": "Connect advertising, CRM journeys and financial evidence in one intelligence workspace.",
+    "fullDescription": "An advertising-to-revenue intelligence product with a published React website and a separately verified local Node.js revenue engine. The local core provides authenticated workspaces, a SQLite financial ledger, first/last-touch attribution, explicit unknown revenue, policy-grounded AI recommendations and persisted human approvals. Meta and GoHighLevel connectors have fixture-backed end-to-end checks; Stripe readiness was checked read-only in test mode. The October 12 overview records 89 JavaScript/TypeScript tests, four deployment tests and 13 browser checks. Company-account activation and production backend promotion remain pending; reference economics are illustrative.",
+    "thumbnail": "/studio/adrevora-ai.png",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "Node.js",
+      "SQLite",
+      "Meta / GoHighLevel",
+      "Stripe"
+    ],
+    "achievements": [
+      "Website published · local revenue engine verified",
+      "Comprehensive technical overview, October 12, 2026"
+    ],
+    "liveUrl": "https://adrevora.zahidul-islam.com/",
+    "pdfUrl": "/docs/adrevora-ai-technical-overview.pdf",
+    "featured": false,
+    "metrics": {
+      "delivery": "Published website · production engine pending"
     }
   }
 ],

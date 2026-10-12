@@ -103,6 +103,75 @@ src/
 
 ## Updating Content
 
+Project documents and portfolio PDFs can now be synchronized with one local command.
+On Windows, from this folder:
+
+```powershell
+.\project-sync.cmd status --online
+.\project-sync.cmd sync adrevora-ai
+.\project-sync.cmd sync adrevora-ai --apply --reviewed
+```
+
+The first command reports changed Google Docs, dossiers, public bundles and PDFs.
+The second previews; the third applies reviewed changes locally. Replace the ID
+with another registered project, or `all`. `--json` returns detailed receipts.
+The tool uses the existing Google Python authentication and PyMuPDF installation;
+no paid AI calls or new subscription are involved. On a separately configured
+Python environment, install `google-api-python-client`, `google-auth-httplib2`,
+`google-auth` and `PyMuPDF` first. Read-only offline status needs only Python.
+
+The private registry is `memory/project-sync/registry.json`. Each project maps its
+existing Google Doc ID to one stable filename under `public/docs/`. Verified
+dossier paths enable project-change detection; unmapped dossiers are explicitly
+reported. `google` sources export the existing Doc; `curated` sources retain a
+reviewed public case study because its dossier may be newer than its Google Doc.
+Do not switch a curated project to Google until its newer facts are reconciled.
+
+When a project's facts change, update its private dossier first, then prepare
+reviewed public content. Dossier text is never uploaded. An optional public JSON
+bundle (`portfolio`, `studio`, `evidence`) updates the selected project in all
+three existing config files without replacing other projects. For a new project,
+add its verified Doc ID, unique project ID, stable PDF basename, optional dossier
+and bundle paths to the same private registry. Use the registered AdRevora entry
+as the local example. Bundle/schema errors are caught by the portfolio test/type
+checks; run those and the build before publishing.
+The legacy portfolio contains additional hidden entries; the visible studio owns
+the selected-project count. A studio-only entry can set `portfolio` to `null`.
+Five hidden legacy entries have no verified native Doc mapping and are explicitly
+listed as `UNMAPPED LEGACY`; `all` synchronizes the 21 selected studio projects.
+Selected projects use their registered current technical PDF; older secondary
+attachment links are retained in private backups rather than the current bundle.
+
+For an explicitly requested native Google Doc edit, prepare a `batchUpdate` JSON
+file with `requests` and `writeControl.requiredRevisionId`, then add
+`--requests path/to/reviewed-batch.json` to the selected project's apply command.
+The tool edits that same Doc, attempts PDF export, and refreshes its registered
+canonical `my-project-view/` PDF and the portfolio PDF together. This requires a
+verified existing canonical PDF mapping. Ordinary PDF sync never writes into
+another project's `my-project-view/`. Preserve native document structure when
+preparing requests; do not generate a blanket dossier replacement.
+
+Exports are parsed and checked for readable text and obvious private material
+before installation. Backups and receipts stay in `memory/project-sync/`.
+Project entries may include reviewed `public_redactions` regular expressions
+(matched within each rendered text line) and
+a `public_redaction_label`; these remove credential-like example lines from the
+derived PDF before validation. Their policy is fingerprinted, and changing it
+forces a fresh native export. The original Google Doc remains untouched.
+Local installation failures restore prior files while preserving concurrent external
+edits for inspection. A remote Doc edit cannot be undone by that rollback, so an
+interrupted update leaves a failure receipt. After inspecting the same Doc, retry
+without `--requests`; recovery refreshes both registered PDFs before acknowledging
+the pending write. Never replay an uncertain native edit blindly.
+The command detects overlapping runs; after a crash, inspect the recorded process
+before removing a stale lock. Review public content for client confidentiality as
+well as secrets. Offline `CURRENT` means local artifacts match the last sync;
+`--online` also checks the Doc version. Code changes without dossier updates cannot
+be inferred. There is no background scheduler or automatic deployment: after a
+successful sync, test/build and use the existing portfolio release workflow.
+
+Reusable local safety tests: `python -m unittest discover -s tests -p project_sync_test.py`.
+
 Edit `src/config/portfolio.config.ts` — no component changes needed. The config drives:
 
 - **`personal`** — name, bio, roles, contact info, resume URL
