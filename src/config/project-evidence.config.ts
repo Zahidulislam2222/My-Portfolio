@@ -537,23 +537,23 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "fleetwright": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own system, tested against a fictitious load board built in the same repository. It is never pointed at a real third-party site."
+      "detail": "My own deployed system, verified against owned freight-booking and maintenance-request destinations. These results do not establish behavior on arbitrary third-party websites."
     },
     "challenges": [
       {
-        "problem": "The first passing concurrency test booked only 77 of 10,000 jobs, so \"zero duplicates\" was trivially true.",
-        "fix": "Switched to production-like timings and required at least 95% of jobs booked and at least one crash during the action reconciled.",
-        "result": "0 duplicates with 200 concurrent competitors; 9,897 claims confirmed equal 9,897 bookings on the board's own log."
+        "problem": "A worker can die after the destination accepts an action but before confirmation reaches the control plane.",
+        "fix": "Keep the durable action UNKNOWN and reconcile a matching receipt without submitting another action; inconclusive receipts stay uncertain for operator review.",
+        "result": "Real Chromium tests exercised process death after acceptance, interrupted acknowledgement and stale fences; both owned workflows passed public MCP checks."
       },
       {
-        "problem": "The public demo login let in only one visitor per 30 seconds, because one-time codes are single use per account.",
-        "fix": "The shared demo account skips the per-account replay check while every personal account keeps it.",
-        "result": "A test signs in three visitors with the same code; the live check passed with three demo visitors at once."
+        "problem": "An approval must not authorize changed inputs, another account or later revoked access.",
+        "fix": "Bind approval to the exact tenant, account, inputs and complete contract fingerprint; check current principal, scope and revocation on every invocation and lookup.",
+        "result": "Changed approvals, tenant denial, revocation and cancellation passed real tests; public verification confirmed immediate grant revocation."
       },
       {
-        "problem": "The first capacity number was wrong by a factor of two: summed memory counted shared Chromium memory many times and CPU always read zero.",
-        "fix": "Measured unique memory per process with persistent process objects, and fixed the same CPU bug in the worker heartbeat.",
-        "result": "About 70 to 103 MB per browser context and about 1.8 cores at 32 contexts."
+        "problem": "A backup archive alone does not prove workflow state can be recovered or backup creation survives a process failure.",
+        "fix": "Restore a fresh production archive into two new database targets, compare workflow counts and inject a backup-process kill.",
+        "result": "Workflow-job, approval, event and grant counts matched; the backup supervisor recovered in 70.29 seconds and produced a fresh archive. Off-host disaster recovery remains pending."
       }
     ],
     "document": {

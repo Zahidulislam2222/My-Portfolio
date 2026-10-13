@@ -950,30 +950,34 @@ export const portfolioConfig = {
   },
   {
     "id": "fleetwright",
-    "title": "Fleetwright — Control Plane for Fleets of Real Browsers",
+    "title": "Fleetwright MCP — Reliable Browser Operations",
     "category": [
       "automation",
       "fullstack",
       "security"
     ],
-    "description": "Zero duplicate bookings in a 10,000-job mock-board concurrency test.",
-    "fullDescription": "An independent control plane for logged-in Playwright browser sessions. PostgreSQL claim fencing, tenant isolation, an outbox and a reconciler coordinate actions and handle uncertain outcomes. A recorded test with 200 concurrent competitors over 10,000 jobs on its own fictitious load board produced zero duplicate bookings: 9,897 confirmed claims matched 9,897 board bookings. Crash recovery was exercised in the same controlled environment. The public console is a capped live demonstration in active development. Metrics and alerting, the crawler, the AI agent and larger scale proof runs are still planned; this result does not establish real third-party booking or universal exactly-once behavior.",
+    "description": "Two approved browser workflows with receipt-based recovery and evidence export.",
+    "fullDescription": "A deployed browser-operations control plane with six MCP tools for freight booking and maintenance requests on owned destinations. Human approval binds the exact account, inputs and workflow contract; PostgreSQL fencing, tenant isolation and revocable grants govern execution. When a worker dies after destination acceptance, reconciliation checks receipts without repeating the action. Both workflows passed real Codex, public MCP and browser checks. All 137 deployed artifact hashes matched local. Atomic audit, bounded evidence export, authenticated metrics and scheduled backups with fresh database restores are verified. The final 148-case test run had one contention failure; the unchanged benchmark passed separately. Claude client verification, off-host disaster recovery, metrics collection/notifications, the crawler, standalone agent and larger scale proof remain pending. No arbitrary-site exactly-once or measured monthly uptime claim.",
     "thumbnail": "",
     "technologies": [
       "Python",
       "Playwright",
-      "Postgres"
+      "Postgres",
+      "MCP",
+      "FastAPI"
     ],
     "achievements": [
-      "Live demo · in active development",
-      "Technical overview, evidence checked October 6, 2026"
+      "Live release · MCP workflows verified",
+      "Technical overview, evidence checked October 13, 2026"
     ],
     "liveUrl": "https://fleetwright.zahidul-islam.com/",
     "githubUrl": "https://github.com/Zahidulislam2222/fleetwright",
     "pdfUrl": "/docs/fleetwright-technical-overview.pdf",
     "featured": true,
     "metrics": {
-      "delivery": "Live demo · in active development"
+      "delivery": "Live release · MCP workflows verified",
+      "workflows": "2 owned workflows",
+      "verification": "137 deployed artifacts matched local"
     }
   },
   {

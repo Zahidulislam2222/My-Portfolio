@@ -45,9 +45,10 @@ describe("project evidence", () => {
     }
   });
 
-  it("keeps Fleetwright scoped to its own mock board", () => {
+  it("keeps Fleetwright scoped to owned workflow destinations", () => {
     expect(projectEvidence.fleetwright.engagement.type).toBe("Independent build");
-    expect(projectEvidence.fleetwright.engagement.detail).toMatch(/never pointed at a real third-party site/);
+    expect(projectEvidence.fleetwright.engagement.detail).toMatch(/owned freight-booking and maintenance-request destinations/);
+    expect(projectEvidence.fleetwright.engagement.detail).toMatch(/do not establish behavior on arbitrary third-party websites/);
   });
 
   it("offers a Client work filter listing exactly the paid client projects", () => {

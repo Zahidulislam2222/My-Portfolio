@@ -111,8 +111,11 @@ describe("engineering studio content contract", () => {
     expect(voicebridge?.detail).toContain("remain integration gates");
     expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
     const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
-    expect(fleetwright?.status).toContain("active development");
-    expect(fleetwright?.detail).toMatch(/still planned/);
+    expect(fleetwright?.status).toContain("MCP workflows verified");
+    expect(fleetwright?.detail).toMatch(/owned destinations/);
+    expect(fleetwright?.detail).toMatch(/148-case test run had one contention failure/);
+    expect(fleetwright?.detail).toMatch(/off-host disaster recovery.*larger scale proof remain pending/);
+    expect(fleetwright?.detail).toMatch(/No arbitrary-site exactly-once or measured monthly uptime claim/);
   });
 
   it("keeps paid provider configuration and credential material out of the browser component", () => {
