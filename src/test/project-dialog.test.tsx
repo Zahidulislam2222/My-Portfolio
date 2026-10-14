@@ -34,7 +34,7 @@ describe("project dialog", () => {
   it("shows AdRevora's private GitHub link and the actual live subdomain", () => {
     render(<EngineeringStudio />);
     fireEvent.click(screen.getByRole("button", { name: `${studioConfig.labels.allProjects} (${studioProjects.length})` }));
-    fireEvent.click(screen.getByRole("button", { name: /AdRevora AI.*Published website/ }));
+    fireEvent.click(screen.getByRole("button", { name: /AdRevora AI.*Deployed revenue workspace/ }));
     const dialog = screen.getByRole("dialog", { hidden: true });
     expect(within(dialog).getByRole("link", { name: /GitHub.*Private repository/, hidden: true }))
       .toHaveAttribute("href", "https://github.com/Zahidulislam2222/AdRevora-AI");

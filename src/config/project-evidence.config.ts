@@ -33,56 +33,61 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "voicebridge": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own voice-agent business platform. Frontend and backend are deployed; real audio and external provider acceptance remain separate gates."
+      "detail": "My single-business voice-agent platform. Business-tool receipts are recorded; actual speak-and-listen acceptance remains open."
     },
     "challenges": [
       {
         "problem": "A booking retry or concurrent edit can create conflicting appointments.",
         "fix": "Added explicit confirmation, timezone validation, idempotency, conflict checks and revision control.",
-        "result": "Persistent booking and recovery behavior was exercised with controlled test data; real calendar receipts remain pending."
+        "result": "A bounded Calendar/CRM booking and approved Gmail confirmation received direct readbacks; cancellation survived a worker restart."
       },
       {
-        "problem": "A follow-up timeout leaves the system uncertain whether an external service already acted.",
-        "fix": "Used a leased worker with durable retries, receipts, dead letters and explicit unknown-delivery states.",
-        "result": "The October 8 overview records 150 backend/tooling tests and 78 frontend tests; external CRM/email acceptance remains pending."
+        "problem": "A call-registration success can be mistaken for a working voice conversation.",
+        "fix": "Track call operation state separately from provider registration, media join and terminal provider outcome.",
+        "result": "The Retell attempt ended without media joining; the owner slot cleared, while real speak-and-listen and Vapi acceptance remain open."
+      },
+      {
+        "problem": "A follow-up timeout can conceal whether an external service acted.",
+        "fix": "Used durable leases, captured follow-ups, receipts and explicit uncertain-delivery states.",
+        "result": "The recorded release passed 200 backend PostgreSQL tests and 97 frontend tests; unrestricted external follow-up delivery remains disabled."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "voicebridge-technical-overview.pdf"
     }
   },
   "mediconnect-v3": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own telehealth platform. The website is deployed; the full clinical platform is still in development."
+      "detail": "My connected-care project. The public website and CMS have scoped release evidence; complete clinical service acceptance and platform phases remain open."
     },
     "challenges": [
       {
-        "problem": "The infrastructure static-analysis scan flagged a large backlog of unencrypted and unlogged cloud resources.",
-        "fix": "Worked through 96 static-analysis fixes at the recorded Phase 4 checkpoint.",
-        "result": "263 checks passing at that checkpoint, with 44 findings still open and recorded rather than hidden."
+        "problem": "An editorial migration can preserve article titles while losing body paragraphs and images.",
+        "fix": "Verified complete ordered article text and decoded locally served cover images through the compiled CMS flow.",
+        "result": "The recorded release preserved five articles and all 51 paragraphs; three covers decoded and two unavailable legacy covers remain explicit."
       },
       {
-        "problem": "A clean application-to-infrastructure check could be mistaken for proof that the live cloud matched the source.",
-        "fix": "Kept the check (129 pass, 0 fail, 0 warn) but recorded that it does not prove every live image matches local code, and held backend replacement until immutable, source-linked image digests exist.",
-        "result": "Live code is protected from an unproven overwrite; the digest linkage is recorded as remaining work."
+        "problem": "Passing local knowledge-runtime checks can be mistaken for a working deployed retrieval service.",
+        "fix": "Separated processor tests, image transfer, runtime activation and grounded retrieval into independent acceptance gates.",
+        "result": "The processor recorded 98 local tests; the failed server activation does not establish live generation, ingestion or retrieval."
       },
       {
-        "problem": "A website release can silently differ from the build that was tested, with no clean way back.",
-        "fix": "Released with local, deployed and archive hash comparison, and kept the previous release for rollback.",
-        "result": "37 of 37 release files matched, and 9 public browser checks passed on desktop and narrow mobile with zero browser errors."
+        "problem": "A tested website build can drift during publication.",
+        "fix": "Used reviewed frozen artifacts and compared every deployed public release file.",
+        "result": "The recorded website release matched 43 of 43 files, with 676 unit tests and 77 browser cases; full clinical service acceptance remains open."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "mediconnect-technical-overview.pdf"
     }
   },
   "equipcert": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own equipment-inspection product, deployed as a working application."
+      "detail": "My web/mobile equipment-inspection product. Operational probes and tests have dated evidence; regulatory certification is not claimed."
     },
     "challenges": [
       {
@@ -93,7 +98,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "The live database went offline: the free hosting tier paused it after a week without activity, even though a keep-alive job reported success twice a week.",
         "fix": "Found that the keep-alive called a health endpoint that never touched the database. It now runs a real query every day and reports success only when a row comes back.",
-        "result": "Live site rebuilt and redeployed, and every CI job passing for the first time since September 11."
+        "result": "October 14 verification passed seven production probes, three dependency checks and 104 web unit tests. Authenticated inspection and a complete restore drill remain separate gates."
       },
       {
         "problem": "On the serverless host, the subscription webhook would have rejected every genuine payment event: the platform parsed the body first, but the provider signs the exact original bytes.",
@@ -102,7 +107,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "equipcert-technical-overview.pdf"
     }
   },
@@ -137,54 +142,44 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "chronos": {
     "engagement": {
       "type": "Portfolio demonstration",
-      "detail": "A connected WordPress and WooCommerce demonstration store. Products are illustrative and checkout runs in Stripe test mode only."
+      "detail": "An independent connected-commerce demonstration. Stripe test checkout is verified; live payments and physical fulfilment remain outside its scope."
     },
     "challenges": [
       {
-        "problem": "The payment bridge trusted too much: pricing, privileged order fields and payment completion needed server authority.",
-        "fix": "Recovered the bridge so the server resolves prices and availability, protects privileged order fields, acknowledges payment completion and handles duplicate attempts.",
-        "result": "A hosted Stripe test payment reconciled with a paid WooCommerce order without reducing stock."
+        "problem": "A successful checkout redirect can disagree with the persisted order or authoritative price.",
+        "fix": "Used server-resolved WooCommerce prices, order ownership, idempotency and signed payment reconciliation.",
+        "result": "The recorded release completed hosted Stripe test payment and checked unchanged stock; live payments remain disabled."
       },
       {
-        "problem": "Revisiting an old receipt could clear a shopper's newer bag.",
-        "fix": "Stored a stable request identifier and item fingerprint so a paid receipt clears only its own matching selection.",
-        "result": "Covered by a repeated-receipt regression check."
-      },
-      {
-        "problem": "Local and deployed code can drift apart without anyone noticing.",
-        "fix": "Released with hash comparison of every deployed file against local.",
-        "result": "78 of 78 frontend and 86 of 86 backend runtime files matched, and archive restoration passed."
+        "problem": "A storefront release and a security repair can advance on different branches.",
+        "fix": "Kept publication status separate from deployment evidence and merged the reviewed dependency repair independently.",
+        "result": "Both full dependency audits reached zero known findings; the publication draft still needs reconciliation and release gates before promotion."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "chronos-technical-overview.pdf"
     }
   },
   "vitalprobe": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own safety and evidence-testing product with a published website and public source. Audit execution remains local or operator-controlled. Synthetic patients only."
+      "detail": "My synthetic-only healthcare AI testing product, with a public website and local audit engine. Clinical/legal calibration requires qualified human review."
     },
     "challenges": [
       {
-        "problem": "A safety tool that scores answers with a model alone produces verdicts nobody can audit.",
-        "fix": "Made deterministic checks the base layer, with semantic judges optional on top and a documented boundary between them.",
-        "result": "Every verdict traces to an explicit rule or a clearly labelled semantic score."
+        "problem": "A chatbot safety score can hide the response and rule that produced it.",
+        "fix": "Exported observed responses, deterministic check outcomes and inspectable HTML/JSON evidence.",
+        "result": "The recorded film audit shows 25 fictional cases against a deliberately weak target; its three passes and 22 failures are target findings, not clinical accuracy."
       },
       {
-        "problem": "An unreachable target or a malformed judge response could be misread as the assistant failing a safety check.",
-        "fix": "Separated product findings from network and configuration errors, with explicit handling for each failure mode.",
-        "result": "Infrastructure problems report as infrastructure problems, not safety regressions."
-      },
-      {
-        "problem": "Testing healthcare AI creates pressure to use real conversations and patient records.",
-        "fix": "Built the product boundary around synthetic fictional patients only, as an architectural rule rather than a usage policy.",
-        "result": "No real patient data is part of the product's design or test suites."
+        "problem": "Optional semantic judging and product presentation can obscure the actual execution boundary.",
+        "fix": "Kept deterministic and semantic evidence separate and placed new audit execution in the local operator-controlled engine.",
+        "result": "Recorded gates passed 190 Python and 39 frontend tests; the public site does not accept patient data or run hosted audits."
       }
     ],
     "document": {
-      "label": "Technical overview · October 12 (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "vitalprobe-technical-overview.pdf"
     }
   },
@@ -219,27 +214,22 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "agentic-environment": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own AI-assisted engineering environment. The work is the integration, not the underlying models or tools."
+      "detail": "My integrated Claude Code/Codex engineering environment, including a custom knowledge MCP and project-scoped recovery. Runtime checks retain their recorded dates."
     },
     "challenges": [
       {
-        "problem": "Google document access kept failing: separate auth stores and a short testing-mode token lifetime.",
-        "fix": "Moved shared-document access to a service account and kept document creation on a user-owned route.",
-        "result": "Credential lifetime, permission scope and file ownership are diagnosed separately."
+        "problem": "A concise search excerpt can be mistaken for proof of a complete project claim.",
+        "fix": "Implemented lossless indexing, complete-coverage audits and exact source-section retrieval through custom MCP tools.",
+        "result": "Current career claims are checked against source sections; indexed coverage and historical source dates remain explicit."
       },
       {
-        "problem": "Handoff checkpoints were written where the coding sandbox could not write.",
-        "fix": "Moved the checkpoint marker beside the project's ignored checkpoint folder, matching the worker's permissions.",
-        "result": "Recovery state now follows the real execution boundary, including Windows-to-WSL paths."
-      },
-      {
-        "problem": "Instruction files for different agents drifted apart over time.",
-        "fix": "Merged a provider-aware shared section and verified copies by hash.",
-        "result": "Synchronization is a repeatable operation, not a one-time copy."
+        "problem": "A provider handoff can carry the wrong project or incomplete work into a new session.",
+        "fix": "Kept provider configuration isolated and recovery checkpoints inside the owning project with decisions, changes and remaining gates.",
+        "result": "The October 14 local snapshot passed 37 switcher tests; native cross-provider transcript resume remains unverified."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "agentic-development-environment.pdf"
     }
   },
@@ -296,7 +286,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "healthcode-analysis": {
     "engagement": {
       "type": "Portfolio demonstration",
-      "detail": "A medical-technology editorial demonstration on native WordPress. Not a clinical provider or validated medical product."
+      "detail": "An independent native WordPress editorial demonstration with local reader tools. Educational content does not establish clinical validity or regulatory approval."
     },
     "challenges": [
       {
@@ -312,11 +302,11 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "One old integration script failed blind discovery because it assumed its original Docker runtime.",
         "fix": "Preserved the file and recorded the exception instead of counting it as a pass.",
-        "result": "No inflated test totals or unearned CI badges in the release record."
+        "result": "The later documentation records 316 passing offline checks, one failing AskMe test and two unrun runtime-dependent suites; no fresh October application run is claimed."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "healthcode-analysis-technical-overview.pdf"
     }
   },
@@ -379,27 +369,22 @@ export const projectEvidence = z.record(evidenceSchema).parse({
     "engagement": {
       "type": "Client project",
       "client": "Fine Touch Marketing",
-      "detail": "Med-spa marketing agency. Lead follow-up messaging across many client websites from one workflow system."
+      "detail": "Paid agency engineering for multi-site lead follow-up. October repair records distinguish provider acceptance, actual delivery and consent."
     },
     "challenges": [
       {
-        "problem": "Routing trusted a hint submitted with the form, so a submission could choose which client's messaging path it entered.",
-        "fix": "Made the registered form route the only authority, and unknown routes fail safely instead of guessing.",
-        "result": "Cross-client message leakage is structurally prevented."
+        "problem": "A rejected or ambiguous provider response can incorrectly mark a contact as sent.",
+        "fix": "Required valid matched provider acceptance, preserved stage markers and refused ambiguous item linkage.",
+        "result": "October 11 retained behavioral evidence verifies accepted updates and loop continuation without a paid send; acceptance does not establish delivery."
       },
       {
-        "problem": "One site with missing data blocked the scheduled follow-up run for every other site.",
-        "fix": "Isolated per-site processing so a malformed data area is contained and reported.",
-        "result": "Verified with a live fault-injection check; the other sites processed normally."
-      },
-      {
-        "problem": "Sent state was written when sending began, so failed sends were recorded as delivered and never retried.",
-        "fix": "Moved the state write to after the provider reports success.",
-        "result": "Sent-state records are written only after provider-confirmed send success; this is distinct from final recipient delivery."
+        "problem": "An opted-out contact can remain eligible for later campaign stages.",
+        "fix": "Revoked marketing consent on explicit opt-out while preserving prior sent history and site isolation.",
+        "result": "The current source and retained regressions distinguish accepted, opted-out, failed and unpaired outcomes."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "ftm-sms-followup-technical-overview.pdf"
     }
   },
@@ -434,34 +419,29 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "secure-hybrid-ai-hub": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own governed AI development control plane. In development, synthetic verification only."
+      "detail": "My experimental open-source policy broker. Real-client and end-to-end acceptance remain separate from its synthetic test evidence."
     },
     "challenges": [
       {
-        "problem": "An assistant that can grant itself scope, network access or credentials makes every safety rule advisory.",
-        "fix": "Moved every privileged decision out of the model into deterministic code with typed records.",
-        "result": "The model can propose scope, egress and completion, but never decide them."
+        "problem": "An unrestricted model could confuse a proposed action with permission to execute it.",
+        "fix": "Implemented a local broker with typed policy/task records and separately controlled privileged transitions.",
+        "result": "Synthetic source verification is recorded; complete authority enforcement and end-to-end acceptance remain open."
       },
       {
-        "problem": "Work for multiple clients in one environment risks bleeding repositories, caches and task state across boundaries.",
-        "fix": "Bounded per-task workspaces with leases, explicit registration and hard client separation.",
-        "result": "Client separation is structural, not a convention."
-      },
-      {
-        "problem": "A closure task was pushed toward 'done' before review and integration were finished.",
-        "fix": "Cancelled the task instead of declaring it complete, and recorded that as the current state.",
-        "result": "The documented status says Phase 1 incomplete, which is what the evidence supports."
+        "problem": "Passing synthetic tests can be mistaken for real-client production readiness.",
+        "fix": "Separated published baseline tests from Phase 1 closure and real-client acceptance gates.",
+        "result": "The September public snapshot recorded 257 passes and one expected private-dossier skip; the October review did not rerun those gates."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "secure-hybrid-ai-hub-technical-overview.pdf"
     }
   },
   "email-finder": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own local research tool. Results are leads, not proof of mailbox ownership or consent."
+      "detail": "My local public-signal email research tool. Candidate scores do not establish mailbox ownership, delivery or consent."
     },
     "challenges": [
       {
@@ -472,11 +452,11 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "Some signals only cover part of the population, so confidence varies widely.",
         "fix": "Flagged anything without an external signal as 'verify manually' instead of showing it as confirmed.",
-        "result": "Confidence bands instead of false certainty; all four deterministic test scripts passed."
+        "result": "October 14 local verification passed 23 collected tests with the declared dependency installed; external lookup behavior was not rerun."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "emailfinder-technical-overview.pdf"
     }
   },
@@ -510,76 +490,76 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "regenai-shopify": {
     "engagement": {
       "type": "Portfolio demonstration",
-      "detail": "A headless commerce build for a fictional recovery brand. Concept products only; ordering, sign-in and checkout are closed."
+      "detail": "An independent Shopify concept storefront and support assistant. Ordering, customer sign-in, external refunds and outbound email remain closed."
     },
     "challenges": [
       {
-        "problem": "An AI support recommendation must not silently become an unreviewed refund or email.",
-        "fix": "Bound support decisions to current ticket, order and rulebook versions with human review; kept financial and email execution disabled.",
-        "result": "Account reads, token renewal and restart persistence passed. Bounded AI cases verified preference recall and image-based advice; real refunds and sent replies are not claimed."
+        "problem": "An AI support recommendation must not become an unreviewed refund or email.",
+        "fix": "Bound decisions to current ticket, order and rulebook versions with human review; kept external financial and email execution disabled.",
+        "result": "The October 8 release recorded 86 Python and 184 JavaScript tests with one existing skip. Genuine external action receipts remain open."
       },
       {
-        "problem": "The approved 3D design ran as a static demo with fixture-only products, not a real commerce backend.",
-        "fix": "Moved the live storefront onto Shopify Hydrogen, keeping the approved 3D design while reading six concept products from the development store.",
-        "result": "137 storefront unit tests passed (one existing skip), and the same tested image released with 144 of 144 (staging) and 145 of 145 (main) file parity."
-      },
-      {
-        "problem": "Source files and old compiled artifacts are not proof that the Shopify Functions still work.",
-        "fix": "Re-ran the four Rust Functions' native tests and rebuilt them to WebAssembly on September 24.",
-        "result": "47 of 47 tests passed, each build 159–181 KiB, under Shopify's 256 kB limit; store activation is still pending."
+        "problem": "A fixture-only storefront does not prove that commerce data is connected.",
+        "fix": "Moved the approved 3D interface to Shopify Hydrogen with six concept products from the development store.",
+        "result": "The storefront is deployed; October 14 probes found responding storefront, studio and cart pages. Ordering and customer sign-in remain closed."
       }
     ],
     "document": {
-      "label": "Build snapshot (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "regenai-build-snapshot.pdf"
     }
   },
   "fleetwright": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My own deployed system, verified against owned freight-booking and maintenance-request destinations. These results do not establish behavior on arbitrary third-party websites."
+      "detail": "An independent platform for owner-approved freight and maintenance workflows on owned destinations, plus catalogue crawling and a local agent. Arbitrary-site execution and commercial-scale availability remain unproven."
     },
     "challenges": [
       {
-        "problem": "A worker can die after the destination accepts an action but before confirmation reaches the control plane.",
-        "fix": "Keep the durable action UNKNOWN and reconcile a matching receipt without submitting another action; inconclusive receipts stay uncertain for operator review.",
-        "result": "Real Chromium tests exercised process death after acceptance, interrupted acknowledgement and stale fences; both owned workflows passed public MCP checks."
+        "problem": "A worker can die after the destination accepts an action but before confirmation reaches the coordinator.",
+        "fix": "Combined current fencing, exact human approval and UNKNOWN states resolved from matching destination receipts.",
+        "result": "The owned-board contention evidence records 10,000 jobs and 200 coordination competitors with zero duplicate action attempts; competitors are not 200 browsers."
       },
       {
-        "problem": "An approval must not authorize changed inputs, another account or later revoked access.",
-        "fix": "Bind approval to the exact tenant, account, inputs and complete contract fingerprint; check current principal, scope and revocation on every invocation and lookup.",
-        "result": "Changed approvals, tenant denial, revocation and cancellation passed real tests; public verification confirmed immediate grant revocation."
+        "problem": "A partial crawler cycle can lose progress or misclassify unseen records as deleted.",
+        "fix": "Added a fenced durable frontier, bounded same-origin extraction, physical process deadlines and partial-cycle quality guards.",
+        "result": "The recorded owner-console crawl/export and natural-lease restart preserved committed progress on maintained destinations."
       },
       {
-        "problem": "A backup archive alone does not prove workflow state can be recovered or backup creation survives a process failure.",
-        "fix": "Restore a fresh production archive into two new database targets, compare workflow counts and inject a backup-process kill.",
-        "result": "Workflow-job, approval, event and grant counts matched; the backup supervisor recovered in 70.29 seconds and produced a fresh archive. Off-host disaster recovery remains pending."
+        "problem": "A server-local backup and source hash alone do not establish recoverable deployment.",
+        "fix": "Signed release artifacts, verified native image roles and restored a fresh encrypted off-host archive into two independent databases.",
+        "result": "Recorded verification matched 146 deployed manifest entries and all 24+8 restored public tables; commercial-scale availability remains a separate target."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "fleetwright-technical-overview.pdf"
     }
   },
   "adrevora-ai": {
     "engagement": {
       "type": "Independent build",
-      "detail": "An owner-controlled advertising intelligence product. The website is published; the revenue engine is verified locally. Live company-account integrations and production backend rollout remain pending."
+      "detail": "My independent revenue-intelligence product, deployed on the existing server. Company-account activation and commercial pilot acceptance remain open."
     },
     "challenges": [
       {
-        "problem": "Advertising and CRM activity can be mistaken for collected revenue without a financial source of truth.",
-        "fix": "Built a financial ledger with payment/refund reconciliation, eligible-touch attribution and explicit unknown revenue.",
-        "result": "Local HTTP and fixture-backed connector flows exercise financial attribution; company-account acceptance remains pending."
+        "problem": "A revenue report can hide missing attribution or count advertising activity as collected money.",
+        "fix": "Built a financial ledger, payment/refund reconciliation, eligible-touch attribution and explicit unknown revenue.",
+        "result": "The deployed workspace exposes traceable reference finance and exports; real company-source reconciliation remains an activation gate."
       },
       {
-        "problem": "AI recommendations need bounded evidence and an approval record before business actions.",
-        "fix": "Combined deterministic financial policy, aggregate-only AI context and persisted human approvals.",
-        "result": "The current overview records local model execution, persisted decisions and 89 passing JavaScript/TypeScript tests; production acceptance remains separate."
+        "problem": "AI and creative approvals can become stale when evidence or a draft changes.",
+        "fix": "Bound decisions to evidence versions and creative revisions, rejecting stale mutations and protecting access with MFA.",
+        "result": "Recorded public browser checks exercised private CPU inference, persisted approvals, revision invalidation and authorized exports."
+      },
+      {
+        "problem": "An upgrade can preserve money while silently changing permissions or consent.",
+        "fix": "Took an encrypted backup, rehearsed isolated recovery and compared every production table during promotion.",
+        "result": "All 20 table values were preserved and 63 release files matched the reviewed artifacts; the recorded interruption was 3.077 seconds."
       }
     ],
     "document": {
-      "label": "Technical overview · October 12 (PDF)",
+      "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "adrevora-ai-technical-overview.pdf"
     }
   }
