@@ -543,19 +543,19 @@ export const projectEvidence = z.record(evidenceSchema).parse({
     },
     "challenges": [
       {
-        "problem": "A revenue report can hide missing attribution or count advertising activity as collected money.",
-        "fix": "Built a financial ledger, payment/refund reconciliation, eligible-touch attribution and explicit unknown revenue.",
-        "result": "The deployed workspace exposes traceable reference finance and exports; real company-source reconciliation remains an activation gate."
+        "problem": "A CSV report can omit unknown-attribution money, while a fresh import can make unrelated evidence look current.",
+        "fix": "Reconciled campaign, unknown and total money rows; retained exact record provenance and conservative freshness. Kept overlapping contact counts separate from money totals.",
+        "result": "The maintained reference ledger reconciles with zero difference; HTTPS workflow checks exercised CSV and role metrics. Company-source reconciliation remains an activation gate."
       },
       {
-        "problem": "AI and creative approvals can become stale when evidence or a draft changes.",
-        "fix": "Bound decisions to evidence versions and creative revisions, rejecting stale mutations and protecting access with MFA.",
-        "result": "Recorded public browser checks exercised private CPU inference, persisted approvals, revision invalidation and authorized exports."
+        "problem": "Creative approvals can outlive the revision they approved, and repeated daily captures can rewrite reporting history.",
+        "fix": "Exposed immutable revision decisions, rejected stale approvals, and retained daily UTC snapshots that replay without duplicates; bounded history work with configured ceilings.",
+        "result": "The recorded release passed 120 application and 56 deployment tests, 17 HTTPS workflow checks and 23 scoped accessibility scans. Full manual accessibility acceptance remains open."
       },
       {
-        "problem": "An upgrade can preserve money while silently changing permissions or consent.",
-        "fix": "Took an encrypted backup, rehearsed isolated recovery and compared every production table during promotion.",
-        "result": "All 20 table values were preserved and 63 release files matched the reviewed artifacts; the recorded interruption was 3.077 seconds."
+        "problem": "A deployment can preserve headline revenue while changing access, consent or recovery state.",
+        "fix": "Compared every production table through the final upgrade and rehearsed encrypted isolated recovery with restored sessions removed.",
+        "result": "All 20 table hashes were preserved and 68 release artifacts matched; eight key tables matched in the isolated restore. The measured core interruption was 5.288 seconds, not a monthly availability guarantee."
       }
     ],
     "document": {

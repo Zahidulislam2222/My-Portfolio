@@ -988,8 +988,8 @@ export const portfolioConfig = {
       "automation",
       "fullstack"
     ],
-    "description": "Traceable revenue, human-reviewed decisions and private CPU AI in a deployed workspace.",
-    "fullDescription": "A deployed advertising-to-revenue workspace with mandatory MFA, tenant membership, a persistent financial ledger, first/last-touch attribution, versioned creative approvals, reports and exports. Private CPU inference runs on the existing server; recommendations retain their exact evidence and human decision record. The October 13 release records 107 application tests, 54 deployment tests, 16 browser checks, 63 matching release files and encrypted recovery with all 20 database tables preserved. Company-account activation, campaign writes, commercial pilot reconciliation and distributed capacity remain open. Reference revenue is illustrative.",
+    "description": "Reconciled revenue, role metrics, daily reports and human-reviewed private CPU AI in a deployed workspace.",
+    "fullDescription": "A deployed advertising-to-revenue workspace with mandatory MFA, tenant membership, a persistent financial ledger, first/last-touch attribution and private CPU inference. The October 14 release adds reconciled campaign/unknown/total CSV rows, CEO/marketing/operations metrics, immutable creative revision history, conservative source freshness, bounded history and stored daily UTC reports. Recorded verification passed 120 application tests, 56 deployment tests, 17 HTTPS workflow checks and 23 scoped accessibility scans; all 68 release artifacts matched and all 20 database table hashes were preserved across the final upgrade. Encrypted isolated recovery matched eight key tables. Company-account activation, campaign writes, commercial pilot reconciliation and distributed capacity remain open. Reference revenue is illustrative. Full manual accessibility acceptance remains open.",
     "thumbnail": "/studio/adrevora-ai.png",
     "technologies": [
       "React",
@@ -1008,7 +1008,7 @@ export const portfolioConfig = {
     "featured": false,
     "metrics": {
       "delivery": "Deployed revenue workspace · company activation pending",
-      "verification": "107 application + 54 deployment tests"
+      "verification": "120 application + 56 deployment tests"
     },
     "githubLinks": [
       {
