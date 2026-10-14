@@ -100,22 +100,22 @@ describe("engineering studio content contract", () => {
       studioProjects.find((project) => project.id === "mediconnect-v3")?.status,
     ).toContain("development");
     const regenai = studioProjects.find((project) => project.id === "regenai-shopify");
-    expect(regenai?.status).toContain("in progress");
-    expect(regenai?.detail).toMatch(/test checkout.*remain due/);
-    expect(regenai?.detail).toContain("Financial execution and sent email replies remain disabled");
+    expect(regenai?.status).toContain("ordering closed");
+    expect(regenai?.detail).toContain("Ordering, customer sign-in, external refunds and outbound email remain closed");
+    expect(regenai?.detail).toContain("Real action receipts and client handoff remain open");
     expect(
       studioProjects.find((project) => project.id === "kindred-grove")?.status,
     ).toContain("password protected");
     const voicebridge = studioProjects.find((project) => project.id === "voicebridge");
     expect(voicebridge?.status).toContain("voice acceptance pending");
-    expect(voicebridge?.detail).toContain("remain integration gates");
+    expect(voicebridge?.detail).toContain("backup replay remain open");
     expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
     const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
-    expect(fleetwright?.status).toContain("MCP workflows verified");
+    expect(fleetwright?.status).toContain("crawler, agent and recovery verified");
     expect(fleetwright?.detail).toMatch(/owned destinations/);
-    expect(fleetwright?.detail).toMatch(/148-case test run had one contention failure/);
-    expect(fleetwright?.detail).toMatch(/off-host disaster recovery.*larger scale proof remain pending/);
-    expect(fleetwright?.detail).toMatch(/No arbitrary-site exactly-once or measured monthly uptime claim/);
+    expect(fleetwright?.detail).toContain("274 passes and six expected skips");
+    expect(fleetwright?.detail).toContain("encrypted off-host restore evidence");
+    expect(fleetwright?.detail).toMatch(/Arbitrary-site execution.*measured monthly availability remain unproven/);
   });
 
   it("keeps paid provider configuration and credential material out of the browser component", () => {

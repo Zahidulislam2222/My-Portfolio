@@ -17,9 +17,9 @@ describe("project synchronization contract", () => {
 
   it("publishes AdRevora's actual operating boundaries and stable resources", () => {
     const project = studioProjects.find(item => item.id === "adrevora-ai");
-    expect(project?.status).toMatch(/local engine verified/);
-    expect(project?.detail).toMatch(/Company-account activation and production backend promotion remain pending/);
-    expect(project?.detail).toMatch(/reference economics are illustrative/);
+    expect(project?.status).toMatch(/Deployed revenue workspace/);
+    expect(project?.detail).toMatch(/Company-account activation.*remain open/);
+    expect(project?.detail).toMatch(/Reference revenue is illustrative/);
     expect(projectResources("adrevora-ai").liveUrl).toBe("https://adrevora.zahidul-islam.com/");
     expect(projectResources("adrevora-ai").links).toEqual([{
       label: "Private repository", url: "https://github.com/Zahidulislam2222/AdRevora-AI",
