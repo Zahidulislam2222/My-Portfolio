@@ -111,10 +111,10 @@ describe("engineering studio content contract", () => {
     expect(voicebridge?.detail).toContain("backup replay remain open");
     expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
     const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
-    expect(fleetwright?.status).toContain("crawler, agent and recovery verified");
+    expect(fleetwright?.status).toContain("browser supervision and recovery verified");
     expect(fleetwright?.detail).toMatch(/owned destinations/);
-    expect(fleetwright?.detail).toContain("274 passes and six expected skips");
-    expect(fleetwright?.detail).toContain("encrypted off-host restore evidence");
+    expect(fleetwright?.detail).toContain("289 tests with six accounted skips");
+    expect(fleetwright?.detail).toContain("Encrypted off-host restore and installed-model evidence retain their October 13 dates");
     expect(fleetwright?.detail).toMatch(/Arbitrary-site execution.*measured monthly availability remain unproven/);
   });
 

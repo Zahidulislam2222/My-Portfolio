@@ -24,9 +24,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "VoiceBridge",
     "category": "AI & Agents",
     "domain": "VOICE & BUSINESS AUTOMATION",
-    "summary": "Authenticated booking and business tools with bounded provider receipts and explicit voice gates.",
-    "status": "Deployed business tools · voice acceptance pending",
-    "detail": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. A bounded booking received direct Calendar and CRM readbacks plus one approved Gmail confirmation; cancellation completed after worker restart. The October 13 gates recorded 200 backend PostgreSQL tests, 97 frontend tests and 21 browser routes. A Retell web-call grant was created, but no media joined and the provider later reported an ended error call; Vapi call creation remains unattempted. Real conversation, voice-originated tools, provider-data deletion and backup replay remain open. External follow-ups stay disabled.",
+    "summary": "Authenticated booking, owner recovery and bounded records/transcript downloads with durable audits.",
+    "status": "Deployed owner tools and exports · voice acceptance pending",
+    "detail": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. The October 15 release adds exact-call terminal recovery, sanitized MCP denial audits and authenticated, tenant-scoped records and ended-call transcript downloads with CSRF checks, size limits and redaction tombstones. Recorded gates passed 252 backend checks, 108 frontend tests and 21 public browser routes. Two live owner exports produced durable audits without changing business records; nonempty, redacted and foreign-tenant cases were verified locally. Earlier bounded Calendar/CRM/Gmail receipts remain dated evidence. Real Retell/Vapi speak-and-listen, provider-data deletion and backup replay remain open. Operator API wiring remains incomplete; voice creation and general external email stay disabled. Scale and availability objectives remain unmeasured.",
     "stack": [
       "Python",
       "PostgreSQL",
@@ -35,16 +35,16 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 15, 2026; dated verification and open gates stated above"
   },
   {
     "id": "fleetwright",
     "name": "Fleetwright MCP",
     "category": "Cloud & Systems",
     "domain": "RELIABLE BROWSER OPERATIONS",
-    "summary": "Approved browser workflows, durable crawling and a local AI agent with inspectable receipts.",
-    "status": "Deployed release · crawler, agent and recovery verified",
-    "detail": "A deployed browser-operations platform with six scoped MCP tools, owner-approved freight and maintenance workflows on owned destinations, PostgreSQL fencing and receipt-based recovery. The October 13 release adds a durable catalogue crawler, a standalone SQLite/Ollama agent, observe-only monitoring and encrypted off-host restore evidence. Its final regression recorded 274 passes and six expected skips; all 146 deployed manifest entries matched local and eight service roles matched signed native image identities. Real browser/model flows and owned-destination receipts were checked separately. Arbitrary-site execution, million-user capacity and measured monthly availability remain unproven.",
+    "summary": "Approved browser workflows, durable crawling and supervised recovery with inspectable receipts.",
+    "status": "Deployed release · browser supervision and recovery verified",
+    "detail": "A deployed browser-operations platform with six scoped MCP tools, owner-approved freight and maintenance workflows on owned destinations, PostgreSQL fencing, a durable catalogue crawler and a local SQLite/Ollama agent. The October 14 correction adds browser supervision and readiness checks; the October 15 release publishes the operating, privacy, security and scale guides. Recorded regression passed 289 tests with six accounted skips; all 146 deployed artifact hashes and eight signed image identities matched. Actual owner booking, both approved MCP workflows, crawler export and all 15 CSP routes passed. A fresh archive restored into two new databases with matching workflow history, and scheduler/monitor recovery was exercised. Encrypted off-host restore and installed-model evidence retain their October 13 dates. Arbitrary-site execution, million-user capacity and measured monthly availability remain unproven.",
     "stack": [
       "Python",
       "Playwright",
@@ -55,7 +55,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "image": "/studio/fleetwright.webp",
     "visual": "capture",
     "featured": true,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 15, 2026; dated verification and open gates stated above"
   },
   {
     "id": "agentic-environment",

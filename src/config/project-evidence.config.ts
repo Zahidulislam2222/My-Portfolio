@@ -33,7 +33,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "voicebridge": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My single-business voice-agent platform. Business-tool receipts are recorded; actual speak-and-listen acceptance remains open."
+      "detail": "My single-business voice-agent platform. Bounded business-tool, owner recovery and export receipts are recorded; actual speak-and-listen acceptance remains open."
     },
     "challenges": [
       {
@@ -42,18 +42,18 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         "result": "A bounded Calendar/CRM booking and approved Gmail confirmation received direct readbacks; cancellation survived a worker restart."
       },
       {
-        "problem": "A call-registration success can be mistaken for a working voice conversation.",
-        "fix": "Track call operation state separately from provider registration, media join and terminal provider outcome.",
-        "result": "The Retell attempt ended without media joining; the owner slot cleared, while real speak-and-listen and Vapi acceptance remain open."
+        "problem": "An abandoned provider call can retain a local operation after the provider has ended it.",
+        "fix": "Added owner-authorized GET-only reconciliation of the exact provider call, plus bounded and sanitized MCP denial audits.",
+        "result": "The recorded owner recovery retired the terminal operation without creating a call; real speak-and-listen and Vapi acceptance remain open."
       },
       {
-        "problem": "A follow-up timeout can conceal whether an external service acted.",
-        "fix": "Used durable leases, captured follow-ups, receipts and explicit uncertain-delivery states.",
-        "result": "The recorded release passed 200 backend PostgreSQL tests and 97 frontend tests; unrestricted external follow-up delivery remains disabled."
+        "problem": "Owner downloads can expose another tenant's records or resurrect redacted transcript text.",
+        "fix": "Enforced owner sessions, CSRF, tenant isolation, projected schemas, count/byte limits and durable redaction tombstones.",
+        "result": "Two live owner exports produced two durable audits without changing business records. Nine packaged download/cancel journeys passed; nonempty, redacted and foreign-tenant cases were verified locally. Gates recorded 252 backend checks and 108 frontend tests."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 14 (PDF)",
+      "label": "Technical overview · reviewed October 15 (PDF)",
       "file": "voicebridge-technical-overview.pdf"
     }
   },
@@ -521,18 +521,18 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         "result": "The owned-board contention evidence records 10,000 jobs and 200 coordination competitors with zero duplicate action attempts; competitors are not 200 browsers."
       },
       {
-        "problem": "A partial crawler cycle can lose progress or misclassify unseen records as deleted.",
-        "fix": "Added a fenced durable frontier, bounded same-origin extraction, physical process deadlines and partial-cycle quality guards.",
-        "result": "The recorded owner-console crawl/export and natural-lease restart preserved committed progress on maintained destinations."
+        "problem": "A healthy-looking worker can lack a usable browser driver and fail real bookings.",
+        "fix": "Added browser supervision and readiness checks, then exercised driver/browser loss, strict drain and reviewed recovery.",
+        "result": "The corrected release passed fresh owner booking, both approved MCP workflows and a four-record crawler export. The October 15 regression passed 289 tests with six accounted skips."
       },
       {
         "problem": "A server-local backup and source hash alone do not establish recoverable deployment.",
-        "fix": "Signed release artifacts, verified native image roles and restored a fresh encrypted off-host archive into two independent databases.",
-        "result": "Recorded verification matched 146 deployed manifest entries and all 24+8 restored public tables; commercial-scale availability remains a separate target."
+        "fix": "Verified signed image identities and exact deployed artifacts, then restored a fresh archive into two new databases and exercised supervised recovery.",
+        "result": "All 146 deployed artifact hashes and eight signed image identities matched. Both restored databases retained workflow history; encrypted off-host restore evidence remains dated October 13."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 14 (PDF)",
+      "label": "Technical overview · reviewed October 15 (PDF)",
       "file": "fleetwright-technical-overview.pdf"
     }
   },
