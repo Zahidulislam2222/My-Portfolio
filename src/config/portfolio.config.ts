@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 21, suffix: "" },
+    { label: "Selected Projects", value: 23, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 150, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Concept Products", value: 6, suffix: "" }
@@ -1016,6 +1016,66 @@ export const portfolioConfig = {
         "url": "https://github.com/Zahidulislam2222/AdRevora-AI"
       }
     ]
+  },
+  {
+    "id": "vericommerce-ai",
+    "title": "VeriCommerce AI",
+    "category": [
+      "ai-ml",
+      "fullstack",
+      "automation"
+    ],
+    "description": "Versioned catalog evidence, cited quotations and durable drafts with approval and provenance-preserving export.",
+    "fullDescription": "An independently built commerce evidence platform with JSON catalog ingestion, immutable source revisions, keyword/local CPU hybrid retrieval, cited quotations, durable draft jobs and explicit approval before JSON export. React/TypeScript and FastAPI/PostgreSQL run together in the deployed release. October 15 records 49 PostgreSQL/CPU/infrastructure checks, 11 frontend checks and 44 browser journeys with no skips; 84 deployment artifact hashes matched. Populated database restoration and actual rollback/forward recovery preserved the approved draft. Access uses temporary cookie-bound workspaces and generated catalog records. Answers are retrieved quotations and drafts use evidence-only templates, rather than unrestricted language-model generation. Accounts, Shopify publishing, document/image ingestion, model training and actual three-cloud deployments remain roadmap work. Million-user capacity and rolling availability are future targets, not measured results.",
+    "thumbnail": "",
+    "technologies": [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "ONNX"
+    ],
+    "achievements": [
+      "Deployed evidence core · Shopify publishing remains roadmap work",
+      "Source review October 16, 2026 · dated release evidence"
+    ],
+    "liveUrl": "https://vericommerce.zahidul-islam.com/",
+    "githubUrl": "https://github.com/Zahidulislam2222/VeriCommerce-AI",
+    "featured": true,
+    "metrics": {
+      "delivery": "Deployed evidence core · Shopify publishing remains roadmap work"
+    },
+    "pdfUrl": "/docs/vericommerce-ai-technical-overview.pdf"
+  },
+  {
+    "id": "praxisforge-ai",
+    "title": "PraxisForge AI",
+    "category": [
+      "ai-ml",
+      "fullstack",
+      "automation"
+    ],
+    "description": "Three bounded Hermes roles turn permitted knowledge into reviewed drafts, commitments and internal receipts.",
+    "fullDescription": "A self-hosted agent operations platform using Nous Research's Hermes Agent, PostgreSQL workflow ownership and bounded coordinator, researcher and operator roles. Authenticated Operations provides versioned text knowledge, durable tasks, retries/cancellation, source-linked structured outputs, exact human approval, internal receipts and persisted workflow memory. The October 15 live workflow recovered after a worker interruption, completed all three roles and recorded two source-backed commitments with an internal receipt. Altered approval and replay were rejected; encrypted off-host database restoration matched schema and business records. This is one successful workflow, not a statistical reliability benchmark. Approval commits internal records; email delivery and third-party CRM updates are not enabled. Open registration, subscription checkout, broader customer admission, scheduled recovery guarantees and million-user capacity remain separate gates.",
+    "thumbnail": "",
+    "technologies": [
+      "Hermes Agent",
+      "Python",
+      "PostgreSQL",
+      "Next.js",
+      "Local inference"
+    ],
+    "achievements": [
+      "Deployed owner operations · external delivery remains gated",
+      "Source review October 16, 2026 · dated release evidence"
+    ],
+    "liveUrl": "https://praxisforge.zahidul-islam.com/",
+    "githubUrl": "https://github.com/Zahidulislam2222/PraxisForge-AI",
+    "featured": true,
+    "metrics": {
+      "delivery": "Deployed owner operations · external delivery remains gated"
+    },
+    "pdfUrl": "/docs/praxisforge-ai-technical-overview.pdf"
   }
 ],
 

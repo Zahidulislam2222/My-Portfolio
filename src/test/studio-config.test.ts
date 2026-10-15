@@ -126,4 +126,35 @@ describe("engineering studio content contract", () => {
       /sk-[a-zA-Z0-9_-]{16,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/,
     );
   });
+
+  it("keeps the new evidence and agent platforms scoped to their verified operations", () => {
+    const commerce = studioProjects.find(project => project.id === "vericommerce-ai");
+    const praxis = studioProjects.find(project => project.id === "praxisforge-ai");
+    expect(commerce?.featured).toBe(true);
+    expect(commerce?.detail).toMatch(/temporary cookie-bound workspaces/);
+    expect(commerce?.detail).toMatch(/Accounts, Shopify publishing.*remain roadmap work/);
+    expect(commerce?.detail).toMatch(/future targets, not measured results/);
+    expect(praxis?.featured).toBe(true);
+    expect(praxis?.detail).toMatch(/one successful workflow, not a statistical reliability benchmark/);
+    expect(praxis?.detail).toMatch(/email delivery and third-party CRM updates are not enabled/);
+    for (const [id, host, repo] of [
+      ["vericommerce-ai", "vericommerce", "VeriCommerce-AI"],
+      ["praxisforge-ai", "praxisforge", "PraxisForge-AI"],
+    ]) {
+      expect(projectResources(id).liveUrl).toBe(`https://${host}.zahidul-islam.com/`);
+      expect(projectResources(id).links).toContainEqual({label: "Source code", url: `https://github.com/Zahidulislam2222/${repo}`});
+      expect(projectEvidence[id].document.file).toBe(`${id}-technical-overview.pdf`);
+      expect(projectEvidence[id].engagement.type).toBe("Independent build");
+    }
+  });
+
+  it("keeps featured-card highlights consistent with the current release counts", () => {
+    for (const [id, counts] of [["voicebridge", ["252", "108"]], ["fleetwright", ["289"]]] as const) {
+      const detail = studioProjects.find(project => project.id === id)?.detail;
+      for (const count of counts) {
+        expect(detail).toContain(count);
+        expect(studioConfig.projectHighlights[id]).toContain(count);
+      }
+    }
+  });
 });

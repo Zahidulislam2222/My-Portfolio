@@ -562,5 +562,54 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       "label": "Technical overview · reviewed October 14 (PDF)",
       "file": "adrevora-ai-technical-overview.pdf"
     }
+  },
+  "vericommerce-ai": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "My commerce evidence platform. The deployed core handles catalog evidence and approved JSON exports; Shopify publishing and model training remain roadmap work."
+    },
+    "challenges": [
+      {
+        "problem": "Catalog changes can leave an answer or approved draft pointing to obsolete evidence.",
+        "fix": "Preserved immutable source revisions and checked draft approval against current source identities.",
+        "result": "The deployed evidence workflow retains cited quotations and provenance; recorded browser journeys cover changed-source rejection."
+      },
+      {
+        "problem": "A successful deployment does not prove stored evidence survives restoration or a release rollback.",
+        "fix": "Rehearsed populated database restoration and actual runtime rollback followed by forward recovery.",
+        "result": "Recorded restoration matched table payload counts/hashes; the approved draft retained its exact content hash and final deployment matched 84 artifacts."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · reviewed October 16 (PDF)",
+      "file": "vericommerce-ai-technical-overview.pdf"
+    }
+  },
+  "praxisforge-ai": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "My self-hosted Hermes-powered operations platform. A configured owner reviews exact artifacts; internal receipts do not imply external email or CRM delivery."
+    },
+    "challenges": [
+      {
+        "problem": "An interrupted agent worker can lose task ownership or allow stale work to settle.",
+        "fix": "Stored durable task ownership in PostgreSQL with fenced leases and bounded recovery attempts.",
+        "result": "The same live task recovered after a deliberate worker interruption, completed three roles and reached approval without another submission."
+      },
+      {
+        "problem": "Approval can be replayed or applied after the artifact, actor or source changes.",
+        "fix": "Bound approval to the exact actor, workspace, task, operation, content, source hashes and expiry; committed business records atomically.",
+        "result": "Altered approval and replay were rejected in the actual UI flow; approved commitments and an internal receipt were recorded together."
+      },
+      {
+        "problem": "An encrypted backup file alone does not prove recovery is possible.",
+        "fix": "Authenticated an off-host encrypted export and restored it into a fresh isolated database.",
+        "result": "Schema and 11 business tables with 26 rows matched the tested snapshot. Full host replacement and scheduled RPO/RTO remain unproven."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · reviewed October 16 (PDF)",
+      "file": "praxisforge-ai-technical-overview.pdf"
+    }
   }
 });

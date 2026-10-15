@@ -388,6 +388,44 @@ export const studioProjects = z.array(projectSchema).parse([
     "visual": "network",
     "featured": false,
     "evidence": "Anonymized technical case study, August 26, 2026"
+  },
+  {
+    "id": "vericommerce-ai",
+    "name": "VeriCommerce AI",
+    "category": "AI & Agents",
+    "domain": "EVIDENCE-GROUNDED COMMERCE",
+    "summary": "Versioned catalog evidence, cited quotations and durable drafts with approval and provenance-preserving export.",
+    "status": "Deployed evidence core · Shopify publishing remains roadmap work",
+    "detail": "An independently built commerce evidence platform with JSON catalog ingestion, immutable source revisions, keyword/local CPU hybrid retrieval, cited quotations, durable draft jobs and explicit approval before JSON export. React/TypeScript and FastAPI/PostgreSQL run together in the deployed release. October 15 records 49 PostgreSQL/CPU/infrastructure checks, 11 frontend checks and 44 browser journeys with no skips; 84 deployment artifact hashes matched. Populated database restoration and actual rollback/forward recovery preserved the approved draft. Access uses temporary cookie-bound workspaces and generated catalog records. Answers are retrieved quotations and drafts use evidence-only templates, rather than unrestricted language-model generation. Accounts, Shopify publishing, document/image ingestion, model training and actual three-cloud deployments remain roadmap work. Million-user capacity and rolling availability are future targets, not measured results.",
+    "stack": [
+      "React",
+      "TypeScript",
+      "FastAPI",
+      "PostgreSQL",
+      "ONNX"
+    ],
+    "visual": "pipeline",
+    "featured": true,
+    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above"
+  },
+  {
+    "id": "praxisforge-ai",
+    "name": "PraxisForge AI",
+    "category": "AI & Agents",
+    "domain": "DURABLE AGENT OPERATIONS",
+    "summary": "Three bounded Hermes roles turn permitted knowledge into reviewed drafts, commitments and internal receipts.",
+    "status": "Deployed owner operations · external delivery remains gated",
+    "detail": "A self-hosted agent operations platform using Nous Research's Hermes Agent, PostgreSQL workflow ownership and bounded coordinator, researcher and operator roles. Authenticated Operations provides versioned text knowledge, durable tasks, retries/cancellation, source-linked structured outputs, exact human approval, internal receipts and persisted workflow memory. The October 15 live workflow recovered after a worker interruption, completed all three roles and recorded two source-backed commitments with an internal receipt. Altered approval and replay were rejected; encrypted off-host database restoration matched schema and business records. This is one successful workflow, not a statistical reliability benchmark. Approval commits internal records; email delivery and third-party CRM updates are not enabled. Open registration, subscription checkout, broader customer admission, scheduled recovery guarantees and million-user capacity remain separate gates.",
+    "stack": [
+      "Hermes Agent",
+      "Python",
+      "PostgreSQL",
+      "Next.js",
+      "Local inference"
+    ],
+    "visual": "network",
+    "featured": true,
+    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above"
   }
 ]);
 
@@ -470,19 +508,21 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "vericommerce-ai": "Catalog evidence with source revisions, cited quotations, durable draft approval and verified restore/rollback recovery.",
+    "praxisforge-ai": "Three-role agent work with durable recovery, exact human approval, source-backed commitments and internal receipts.",
     "agentic-environment": "Custom Claude Code/Codex workflows, a lossless knowledge MCP and project-local handoffs with test/review/release gates.",
     "jwalker-knowledge-assistant": "Public source-linked answers from approved videos, with paid material excluded and scheduled knowledge refresh.",
     "ftm-sms-followup": "Form routing, welcome messages and scheduled follow-ups connected through n8n, Sheets and Twilio.",
     "ftm-seo-automation": "Validated AIOSEO updates through asynchronous jobs, with separate worker health and recovery checks.",
     "regenai-shopify": "A support studio with grounded context, persistent memory and versioned human approval; financial and email execution disabled.",
     voicebridge:
-      "Bounded Calendar/CRM booking and Gmail confirmation; 200 backend and 97 frontend tests recorded. Real audio acceptance remains open.",
+      "Bounded booking, owner recovery and scoped downloads; 252 backend and 108 frontend checks recorded. Real audio acceptance remains open.",
     "mediconnect-v3":
       "Deployed public website and CMS with preserved original articles; remaining platform phases and clinical acceptance stay open.",
     equipcert:
       "Tenant-aware inspections with photo evidence, signatures, corrective actions and audit records.",
     fleetwright:
-      "Approved MCP workflows, durable crawling and a local AI agent; 274 passes/six expected skips and encrypted off-host restore evidence.",
+      "Approved MCP workflows, durable crawling and a local AI agent; 289 passes/six accounted skips. Off-host restore evidence is dated October 13.",
     "yuktha-wellness":
       "Hybrid retrieval, reranking and grounding checks with an emergency gate before generation.",
     chronos:
