@@ -149,24 +149,24 @@ function ProjectVisual({ project }: { project: StudioProject }) {
       <div className="studio-capture-fallback">
         <Layers3 size={34} />
         <strong>{project.name}</strong>
-        <span>{config.labels.screenshotUnavailable}</span>
+        <span>{config.labels.imageUnavailable}</span>
       </div>
     );
   }
   if (project.image && !imageFailed)
     return (
-      <div className={`studio-project-capture capture-${project.id}`}>
-        <div className="studio-browser-bar" aria-hidden="true">
+      <div className={project.imageKind === "screenshot" ? `studio-project-capture capture-${project.id}` : "studio-project-artwork"}>
+        {project.imageKind === "screenshot" && <div className="studio-browser-bar" aria-hidden="true">
           <span />
           <span />
           <span />
           <i>{project.name}</i>
-        </div>
+        </div>}
         <img
           src={project.image}
           onError={() => setImageFailed(true)}
           loading="lazy"
-          alt={`${project.name} public website screenshot`}
+          alt={project.imageAlt ?? `${project.name} public website screenshot`}
           width="1440"
           height="960"
         />
@@ -290,6 +290,16 @@ function ProjectDialog({
           <span className="studio-eyebrow">{project.domain}</span>
           <h2 id="project-dialog-title">{project.name}</h2>
           <p className="studio-dialog-summary">{project.summary}</p>
+          {project.image && (
+            <div className="studio-dialog-media">
+              <ProjectVisual key={project.id} project={project} />
+              {project.imageKind !== "screenshot" && (
+                <span className="studio-image-kind-label">
+                  {config.labels.imageLabels[project.imageKind]}
+                </span>
+              )}
+            </div>
+          )}
           <div className="studio-dialog-status">
             <span>{config.labels.projectStatus}</span>
             <p>{project.status}</p>
@@ -456,6 +466,11 @@ function WorkSection({
                 {!project.image && (
                   <span className="studio-illustration-label">
                     {config.labels.illustration}
+                  </span>
+                )}
+                {project.image && project.imageKind !== "screenshot" && (
+                  <span className="studio-image-kind-label">
+                    {config.labels.imageLabels[project.imageKind]}
                   </span>
                 )}
               </div>

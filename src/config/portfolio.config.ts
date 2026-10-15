@@ -87,7 +87,7 @@ export const portfolioConfig = {
     ],
     "description": "Authenticated booking, owner recovery and bounded records/transcript downloads with durable audits.",
     "fullDescription": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. The October 15 release adds exact-call terminal recovery, sanitized MCP denial audits and authenticated, tenant-scoped records and ended-call transcript downloads with CSRF checks, size limits and redaction tombstones. Recorded gates passed 252 backend checks, 108 frontend tests and 21 public browser routes. Two live owner exports produced durable audits without changing business records; nonempty, redacted and foreign-tenant cases were verified locally. Earlier bounded Calendar/CRM/Gmail receipts remain dated evidence. Real Retell/Vapi speak-and-listen, provider-data deletion and backup replay remain open. Operator API wiring remains incomplete; voice creation and general external email stay disabled. Scale and availability objectives remain unmeasured.",
-    "thumbnail": "/studio/voicebridge.png",
+    "thumbnail": "/studio/voicebridge-cover.webp",
     "technologies": [
       "Python",
       "PostgreSQL",
@@ -190,7 +190,7 @@ export const portfolioConfig = {
     ],
     "description": "Retrieval infrastructure with explicit operational boundaries.",
     "fullDescription": "Containerized retrieval infrastructure with nine core services and fourteen profile-activated services, authentication, network isolation, metrics/logs/traces and encrypted-backup workflows. Published as MIT-licensed open source, with hosted Gitleaks, Semgrep and Bandit checks passing. The documentation establishes configuration and source intent; it does not claim a currently healthy deployment or compliance certification.",
-    "thumbnail": "",
+    "thumbnail": "/studio/rag-production-stack-cover.webp",
     "technologies": [
       "Docker",
       "LightRAG",
@@ -331,7 +331,7 @@ export const portfolioConfig = {
     ],
     "description": "Turn a creator’s public videos into source-linked answers.",
     "fullDescription": "A public WordPress knowledge assistant grounded in approved YouTube material. FastAPI combines SQLite FTS5, local embeddings and rank fusion without a hosted vector database. Relevance checks and source citations constrain answers; paid membership and course material are excluded from the public release. Manifest checks, atomic knowledge updates, daily refresh and scheduled backups support operations. The September 29 go-live record includes a real grounded answer with five sources, a public homepage check and execution of the actual scheduled backup command. The earlier members-only brief is historical.",
-    "thumbnail": "",
+    "thumbnail": "/studio/jwalker-knowledge-assistant-cover.webp",
     "technologies": [
       "FastAPI",
       "SQLite FTS5",
@@ -365,7 +365,7 @@ export const portfolioConfig = {
       "https://github.com/user-attachments/assets/f3f117cc-fd7d-4079-a13f-1aa7cf7f2200",
       "https://github.com/user-attachments/assets/7a961f32-9563-48d2-ad60-35d8aa4455e3"
     ],
-    "thumbnail": "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
+    "thumbnail": "/studio/everyday-dental-surgery-cover.webp",
     "technologies": [
       "Responsive UI",
       "Bilingual",
@@ -637,7 +637,7 @@ export const portfolioConfig = {
     ],
     "description": "Explainable business-email research using HTTP and DNS signals.",
     "fullDescription": "A Python research CLI with find, verify, scrape and batch commands. Public website evidence, DNS configuration and address patterns produce explainable candidates without SMTP probing. October 14 local verification passed all 23 collected tests with the declared dnspython dependency and checked CLI help. No live DNS, website, avatar or code-hosting lookup was repeated in that review. A candidate score does not prove mailbox ownership, deliverability or consent.",
-    "thumbnail": "",
+    "thumbnail": "/studio/email-finder-cover.webp",
     "technologies": [
       "Python",
       "HTTP",
@@ -669,7 +669,7 @@ export const portfolioConfig = {
     ],
     "description": "A better answer starts with better retrieval.",
     "fullDescription": "Paid client engineering for a multilingual health assistant: hybrid dense and keyword retrieval, cross-encoder reranking, emergency/crisis handling, structured grounding checks, SSE streaming and Redis caching. Web chat and controlled WhatsApp routing connect to the platform. Later work separates user-authored memory from generated replies and improves multilingual retrieval and image-only handling. The August release record includes 28 passing backend test files and a nine-check namespace migration. The recorded full latency target remains unmet; clinical content and final tone require human review. Historical deployment drift remains documented, so these records do not establish current source-to-live parity.",
-    "thumbnail": "",
+    "thumbnail": "/studio/yuktha-wellness-cover.webp",
     "technologies": [
       "Node.js",
       "Hybrid RAG",
@@ -689,7 +689,7 @@ export const portfolioConfig = {
   },
   {
     "id": "regenai-shopify",
-    "thumbnail": "",
+    "thumbnail": "/studio/regenai-shopify-cover.webp",
     "title": "RegenAI — Shopify Hydrogen & AI Support Studio",
     "category": [
       "shopify",
@@ -719,7 +719,7 @@ export const portfolioConfig = {
   },
   {
     "id": "kindred-grove",
-    "thumbnail": "",
+    "thumbnail": "/studio/kindred-grove-cover.webp",
     "title": "Kindred Grove — Published Custom Shopify Storefront",
     "category": [
       "shopify",
@@ -799,7 +799,7 @@ export const portfolioConfig = {
     ],
     "description": "AI metadata jobs with validation, per-item results and recovery.",
     "fullDescription": "A protected operator interface queues WordPress metadata work through a PHP/Python runtime. Title normalization, industry and location constraints, deterministic repair and per-item results govern AIOSEO updates. September recovery work added supervised restart and boot recovery, separate frontend/API health checks and fault-injection verification. Twelve scoped recovery criteria passed in the retained record. Later headline, quality and article features were deployed, but their paid end-to-end generation test still needs a usable WordPress test target. The historical n8n implementation is separate from the current runtime.",
-    "thumbnail": "",
+    "thumbnail": "/studio/ftm-seo-automation-cover.webp",
     "technologies": [
       "Flask",
       "WordPress",
@@ -824,7 +824,7 @@ export const portfolioConfig = {
     ],
     "description": "Multi-site lead routing with provider-acceptance checks and consent-aware follow-ups.",
     "fullDescription": "Client automation connecting JotForm, n8n, Google Sheets and Twilio for site-specific lead intake, welcome messages and scheduled follow-ups. October 11 repairs require matched provider acceptance before updating sent-state and preserve prior stage markers; explicit opt-outs revoke marketing consent, and all-failed batches continue to the next site. A credential-free six-request behavioral flow verified exactly three updates, and all three workflows matched local structure. Provider acceptance is distinct from delivery; no new paid message was sent during those repairs. The older Google Doc predates these local release records.",
-    "thumbnail": "",
+    "thumbnail": "/studio/ftm-sms-followup-cover.webp",
     "technologies": [
       "n8n",
       "Twilio",
@@ -849,7 +849,7 @@ export const portfolioConfig = {
     ],
     "description": "Creative automation with a human approval loop.",
     "fullDescription": "A media-first campaign workflow with approved asset intake, background copy generation, client media/date selection, revisions, internal approval and controlled asset delivery. The August release included real client dashboard/calendar approval checks and deployment parity. Approved deliverables are downloaded for manual publishing; direct social-network publishing is not the verified path.",
-    "thumbnail": "",
+    "thumbnail": "/studio/ftm-social-media-cover.webp",
     "technologies": [
       "n8n",
       "Python",
@@ -875,7 +875,7 @@ export const portfolioConfig = {
     ],
     "description": "Trace persistence. Contain carefully. Verify recovery.",
     "fullDescription": "A backup-first response to a multi-layer WordPress compromise. Process inspection and writer tracing expanded the investigation beyond known filenames. Repeated scans found zero known indicators after containment, and 21 checked sites returned successful public responses. Successful containment is distinct from rebuilding a historically compromised environment from a trusted image.",
-    "thumbnail": "",
+    "thumbnail": "/studio/wordpress-incident-response-cover.webp",
     "technologies": [
       "Linux",
       "WordPress",
@@ -902,7 +902,7 @@ export const portfolioConfig = {
     ],
     "description": "A local policy broker for scoped AI work, typed artifacts and verification evidence.",
     "fullDescription": "An experimental Python broker and CLI for governed Codex, Claude Code, VS Code and local Ollama workflows. Deterministic controls mediate scope, policy, artifacts and privileged transitions while models propose work. The September public snapshot recorded 257 passing tests with one expected private-dossier skip and Python 3.11–3.13 CI/security checks. The October review did not rerun those gates. Phase 1 closure, authority enforcement and synthetic end-to-end acceptance remain incomplete; real-client operation, browser/API delivery and distributed capacity retain separate gates.",
-    "thumbnail": "",
+    "thumbnail": "/studio/secure-hybrid-ai-hub-cover.webp",
     "technologies": [
       "Python",
       "Typed artifacts",
@@ -929,7 +929,7 @@ export const portfolioConfig = {
     ],
     "description": "Fictional healthcare AI scenarios, inspectable evidence and regression comparison.",
     "fullDescription": "A Python healthcare-AI testing engine and published React product website. Fictional scenarios exercise REST/MCP targets with deterministic checks, optional semantic judging, multi-turn simulation, HTML/JSON dossiers and baseline comparison. Recorded engineering gates include 190 Python tests, 39 frontend tests and a 226-check local verifier. The completed 1:51 evidence film demonstrates a deliberately weak target across 25 fictional cases: three PASS, 22 FAIL and zero ERROR. New audits execute locally; the public website has no hosted audit, upload or payment service. Human clinical/legal calibration remains open, and the film’s social publication is not claimed.",
-    "thumbnail": "",
+    "thumbnail": "/studio/vitalprobe-cover.webp",
     "technologies": [
       "Python",
       "FastAPI",
@@ -1027,7 +1027,7 @@ export const portfolioConfig = {
     ],
     "description": "Versioned catalog evidence, cited quotations and durable drafts with approval and provenance-preserving export.",
     "fullDescription": "An independently built commerce evidence platform with JSON catalog ingestion, immutable source revisions, keyword/local CPU hybrid retrieval, cited quotations, durable draft jobs and explicit approval before JSON export. React/TypeScript and FastAPI/PostgreSQL run together in the deployed release. October 15 records 49 PostgreSQL/CPU/infrastructure checks, 11 frontend checks and 44 browser journeys with no skips; 84 deployment artifact hashes matched. Populated database restoration and actual rollback/forward recovery preserved the approved draft. Access uses temporary cookie-bound workspaces and generated catalog records. Answers are retrieved quotations and drafts use evidence-only templates, rather than unrestricted language-model generation. Accounts, Shopify publishing, document/image ingestion, model training and actual three-cloud deployments remain roadmap work. Million-user capacity and rolling availability are future targets, not measured results.",
-    "thumbnail": "",
+    "thumbnail": "/studio/vericommerce-ai-cover.webp",
     "technologies": [
       "React",
       "TypeScript",
@@ -1057,7 +1057,7 @@ export const portfolioConfig = {
     ],
     "description": "Three bounded Hermes roles turn permitted knowledge into reviewed drafts, commitments and internal receipts.",
     "fullDescription": "A self-hosted agent operations platform using Nous Research's Hermes Agent, PostgreSQL workflow ownership and bounded coordinator, researcher and operator roles. Authenticated Operations provides versioned text knowledge, durable tasks, retries/cancellation, source-linked structured outputs, exact human approval, internal receipts and persisted workflow memory. The October 15 live workflow recovered after a worker interruption, completed all three roles and recorded two source-backed commitments with an internal receipt. Altered approval and replay were rejected; encrypted off-host database restoration matched schema and business records. This is one successful workflow, not a statistical reliability benchmark. Approval commits internal records; email delivery and third-party CRM updates are not enabled. Open registration, subscription checkout, broader customer admission, scheduled recovery guarantees and million-user capacity remain separate gates.",
-    "thumbnail": "",
+    "thumbnail": "/studio/praxisforge-ai-cover.webp",
     "technologies": [
       "Hermes Agent",
       "Python",

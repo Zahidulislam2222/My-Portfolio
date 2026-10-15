@@ -11,11 +11,17 @@ const projectSchema = z.object({
   detail: z.string(),
   stack: z.array(z.string()),
   image: z.string().optional(),
+  imageKind: z.enum(["screenshot", "illustration", "reference"]).default("screenshot"),
+  imageAlt: z.string().min(1).optional(),
   visual: z
     .enum(["capture", "network", "terminal", "pipeline"])
     .default("network"),
   featured: z.boolean().default(false),
   evidence: z.string(),
+}).superRefine((project, context) => {
+  if (project.image && project.imageKind !== "screenshot" && !project.imageAlt) {
+    context.addIssue({code: "custom", path: ["imageAlt"], message: "Illustrations and references require descriptive alternative text."});
+  }
 });
 
 export const studioProjects = z.array(projectSchema).parse([
@@ -35,7 +41,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 15, 2026; dated verification and open gates stated above"
+    "evidence": "Source review October 15, 2026; dated verification and open gates stated above",
+    "image": "/studio/voicebridge-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "VoiceBridge public voice-agent website"
   },
   {
     "id": "fleetwright",
@@ -74,7 +83,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "image": "/studio/agentic-environment-cover.webp",
+    "imageKind": "reference",
+    "imageAlt": "Claude Code & Codex Workflows actual command-line help"
   },
   {
     "id": "regenai-shopify",
@@ -92,7 +104,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "image": "/studio/regenai-shopify-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "RegenAI public wellness storefront"
   },
   {
     "id": "yuktha-wellness",
@@ -109,7 +124,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "August release records · October 10 public case study"
+    "evidence": "August release records · October 10 public case study",
+    "image": "/studio/yuktha-wellness-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "AI-generated concept illustration for Yuktha Wellness"
   },
   {
     "id": "ftm-social-media",
@@ -126,7 +144,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "pipeline",
     "featured": true,
-    "evidence": "Current platform snapshot, August 11, 2026"
+    "evidence": "Current platform snapshot, August 11, 2026",
+    "image": "/studio/ftm-social-media-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "AI-generated concept illustration for Campaign operations"
   },
   {
     "id": "jwalker-knowledge-assistant",
@@ -143,7 +164,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "September 29 release records · October 10 public case study"
+    "evidence": "September 29 release records · October 10 public case study",
+    "image": "/studio/jwalker-knowledge-assistant-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "AI-generated concept illustration for Creator Knowledge Assistant"
   },
   {
     "id": "ftm-sms-followup",
@@ -160,7 +184,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "image": "/studio/ftm-sms-followup-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "AI-generated concept illustration for Multi-Site Follow-up"
   },
   {
     "id": "ftm-seo-automation",
@@ -177,7 +204,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "September 4 recovery records · October 10 public case study"
+    "evidence": "September 4 recovery records · October 10 public case study",
+    "image": "/studio/ftm-seo-automation-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "AI-generated concept illustration for SEO Operations"
   },
   {
     "id": "adrevora-ai",
@@ -213,7 +243,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "terminal",
     "featured": false,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "image": "/studio/vitalprobe-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "VitalProbe public synthetic evaluation website"
   },
   {
     "id": "rag-production-stack",
@@ -230,7 +263,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Open-source public edition, September 24, 2026"
+    "evidence": "Open-source public edition, September 24, 2026",
+    "image": "/studio/rag-production-stack-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "RAG Production Stack public repository documentation"
   },
   {
     "id": "secure-hybrid-ai-hub",
@@ -247,7 +283,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "image": "/studio/secure-hybrid-ai-hub-cover.webp",
+    "imageKind": "reference",
+    "imageAlt": "Secure Hybrid AI Hub actual command-line help"
   },
   {
     "id": "equipcert",
@@ -300,7 +339,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "image": "/studio/email-finder-cover.webp",
+    "imageKind": "reference",
+    "imageAlt": "EmailFinder actual command-line help"
   },
   {
     "id": "chronos",
@@ -335,7 +377,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Project status document, October 8, 2026"
+    "evidence": "Project status document, October 8, 2026",
+    "image": "/studio/kindred-grove-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "Kindred Grove development storefront screenshot; anonymous public access remains password-gated"
   },
   {
     "id": "healthcode-analysis",
@@ -370,7 +415,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Synthetic portfolio release and GitHub publication, September 24, 2026"
+    "evidence": "Synthetic portfolio release and GitHub publication, September 24, 2026",
+    "image": "/studio/everyday-dental-surgery-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "Everyday Dental fictional clinic website"
   },
   {
     "id": "wordpress-incident-response",
@@ -387,7 +435,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Anonymized technical case study, August 26, 2026"
+    "evidence": "Anonymized technical case study, August 26, 2026",
+    "image": "/studio/wordpress-incident-response-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "AI-generated concept illustration for Incident Response & Recovery"
   },
   {
     "id": "vericommerce-ai",
@@ -406,7 +457,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "pipeline",
     "featured": true,
-    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above"
+    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above",
+    "image": "/studio/vericommerce-ai-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "VeriCommerce AI public evidence-commerce website"
   },
   {
     "id": "praxisforge-ai",
@@ -425,7 +479,10 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above"
+    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above",
+    "image": "/studio/praxisforge-ai-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "PraxisForge AI public agent-operations website"
   }
 ]);
 
@@ -570,8 +627,8 @@ export const studioConfig = {
     backgroundLabel: "MY BACKGROUND",
     backgroundTitle: "Patient care.\nSystems care.",
     backgroundText: "Physiotherapy technologist → software & AI engineer",
-    screenshotUnavailable:
-      "Screenshot unavailable · project details are still available",
+    imageUnavailable:
+      "Image unavailable · project details are still available",
     skip: "Skip to content",
     menu: "Open navigation",
     closeMenu: "Close navigation",
@@ -642,6 +699,10 @@ export const studioConfig = {
     pause: "Pause motion",
     play: "Play motion",
     illustration: "WORKFLOW ILLUSTRATION",
+    imageLabels: {
+      illustration: "CONCEPT ILLUSTRATION",
+      reference: "TECHNICAL REFERENCE",
+    },
     technologies: "BUILT WITH",
     allCount: "projects in the index",
     projectStatus: "CURRENT SCOPE",

@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import componentSource from "../components/studio/EngineeringStudio.tsx?raw";
 import { portfolioConfig } from "../config/portfolio.config";
 import { projectEvidence } from "../config/project-evidence.config";
@@ -9,6 +11,21 @@ import {
 } from "../config/studio.config";
 
 describe("engineering studio content contract", () => {
+  it("gives every project a local image and distinguishes client illustrations", () => {
+    for (const project of studioProjects) {
+      expect(project.image, project.id).toMatch(/^\/studio\/[a-z0-9-]+\.(?:png|webp)$/);
+      const file = resolve(__dirname, "../../public", `.${project.image}`);
+      expect(existsSync(file), project.id).toBe(true);
+      const bytes = readFileSync(file);
+      expect(bytes.length, project.id).toBeGreaterThan(1000);
+      expect(bytes.subarray(0, 4).toString("hex"), project.id).toMatch(/^(?:52494646|89504e47)$/);
+      if (projectEvidence[project.id].engagement.type === "Client project") {
+        expect(project.imageKind, project.id).toBe("illustration");
+        expect(project.imageAlt, project.id).toMatch(/^AI-generated concept illustration for /);
+      }
+      if (project.imageKind !== "screenshot") expect(project.imageAlt, project.id).toBeTruthy();
+    }
+  });
   it("keeps all six contact methods configured with the correct protocols", () => {
     expect(studioConfig.contactChannels.map(channel => channel.id)).toEqual(["email", "linkedin", "upwork", "phone", "whatsapp", "github"]);
     const byId = Object.fromEntries(studioConfig.contactChannels.map(channel => [channel.id, channel]));
