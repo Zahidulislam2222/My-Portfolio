@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 23, suffix: "" },
+    { label: "Selected Projects", value: 24, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 150, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Concept Products", value: 6, suffix: "" }
@@ -1076,6 +1076,36 @@ export const portfolioConfig = {
       "delivery": "Deployed owner operations · external delivery remains gated"
     },
     "pdfUrl": "/docs/praxisforge-ai-technical-overview.pdf"
+  },
+  {
+    "id": "synqharbor-ai",
+    "title": "SynqHarbor AI",
+    "category": [
+      "ai-ml",
+      "fullstack",
+      "automation"
+    ],
+    "description": "A human-led collaboration interface with task revisions, separate approvals and portable public engineering documentation.",
+    "fullDescription": "An independent collaboration product with a deployed Next.js/React/TypeScript website, 25 public routes and nine workspace views. Browser-tab-local interactions cover task creation, search, status changes, conversations, version-aware client/developer approvals and report downloads. The October 16 release recorded 21 automated tests, 100 route/viewport checks, quality/security CI and 175 matching deployment hashes. Fonts and media are self-hosted, with reduced-motion support and portable static deployment. Workspace state resets on reload. Authentication, persistent collaboration, agent execution and external actions remain roadmap work. Availability and million-user capacity are future qualification targets, not achieved results.",
+    "thumbnail": "/studio/synqharbor-ai-cover.webp",
+    "technologies": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Motion",
+      "Static hosting"
+    ],
+    "achievements": [
+      "Deployed website and browser-local workspace · backend planned",
+      "Source review October 16, 2026 · dated release evidence"
+    ],
+    "liveUrl": "https://synqharbor.zahidul-islam.com/",
+    "githubUrl": "https://github.com/Zahidulislam2222/synqharbor-ai",
+    "featured": true,
+    "metrics": {
+      "delivery": "Deployed website and browser-local workspace · backend planned"
+    },
+    "pdfUrl": "/docs/synqharbor-ai-technical-overview.pdf"
   }
 ],
 

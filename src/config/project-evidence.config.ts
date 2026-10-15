@@ -611,5 +611,32 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       "label": "Technical overview · reviewed October 16 (PDF)",
       "file": "praxisforge-ai-technical-overview.pdf"
     }
+  },
+  "synqharbor-ai": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "My collaboration product. The deployed release is a multipage website and browser-local workspace; authentication, persistence and agent execution remain planned."
+    },
+    "challenges": [
+      {
+        "problem": "A revision can leave an older approval appearing valid.",
+        "fix": "Made the interface distinguish client content approval from developer release approval and clear stale authorization on revision.",
+        "result": "Recorded browser checks exercised revision and approval interactions; server-authoritative approval is future work."
+      },
+      {
+        "problem": "A visually polished static site can hide content before its animation engine runs.",
+        "fix": "Kept initial server-rendered content visible and made entrance motion optional.",
+        "result": "Recorded full-page inspection and reduced-motion checks passed after correction."
+      },
+      {
+        "problem": "Matching deployed bytes does not prove the browser can run them under production security headers.",
+        "fix": "Validated UTF-8 script hashes and exercised the deployed browser flow after correcting an encoding mismatch.",
+        "result": "The recorded final release returned all 25 routes without JavaScript or CSP errors in the tested flows."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · reviewed October 16 (PDF)",
+      "file": "synqharbor-ai-technical-overview.pdf"
+    }
   }
 });

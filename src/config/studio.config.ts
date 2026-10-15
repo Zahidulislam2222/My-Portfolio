@@ -483,6 +483,28 @@ export const studioProjects = z.array(projectSchema).parse([
     "image": "/studio/praxisforge-ai-cover.webp",
     "imageKind": "screenshot",
     "imageAlt": "PraxisForge AI public agent-operations website"
+  },
+  {
+    "id": "synqharbor-ai",
+    "name": "SynqHarbor AI",
+    "category": "AI & Agents",
+    "domain": "HUMAN-LED COLLABORATION",
+    "summary": "A human-led collaboration interface with task revisions, separate approvals and portable public engineering documentation.",
+    "status": "Deployed website and browser-local workspace · backend planned",
+    "detail": "An independent collaboration product with a deployed Next.js/React/TypeScript website, 25 public routes and nine workspace views. Browser-tab-local interactions cover task creation, search, status changes, conversations, version-aware client/developer approvals and report downloads. The October 16 release recorded 21 automated tests, 100 route/viewport checks, quality/security CI and 175 matching deployment hashes. Fonts and media are self-hosted, with reduced-motion support and portable static deployment. Workspace state resets on reload. Authentication, persistent collaboration, agent execution and external actions remain roadmap work. Availability and million-user capacity are future qualification targets, not achieved results.",
+    "stack": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Motion",
+      "Static hosting"
+    ],
+    "visual": "capture",
+    "featured": true,
+    "evidence": "Source review October 16, 2026; recorded release evidence and open backend gates stated above",
+    "image": "/studio/synqharbor-ai-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "SynqHarbor AI public collaboration website"
   }
 ]);
 
@@ -565,6 +587,7 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "synqharbor-ai": "Human-led collaboration screens with revision-aware approvals, responsive public documentation and a portable static release.",
     "vericommerce-ai": "Catalog evidence with source revisions, cited quotations, durable draft approval and verified restore/rollback recovery.",
     "praxisforge-ai": "Three-role agent work with durable recovery, exact human approval, source-backed commitments and internal receipts.",
     "agentic-environment": "Custom Claude Code/Codex workflows, a lossless knowledge MCP and project-local handoffs with test/review/release gates.",
