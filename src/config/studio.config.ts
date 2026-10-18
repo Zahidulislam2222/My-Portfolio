@@ -505,6 +505,28 @@ export const studioProjects = z.array(projectSchema).parse([
     "image": "/studio/synqharbor-ai-cover.webp",
     "imageKind": "screenshot",
     "imageAlt": "SynqHarbor AI public collaboration website"
+  },
+  {
+    "id": "playwright-cline-integration",
+    "name": "Playwright MCP + Cline",
+    "category": "AI & Agents",
+    "domain": "SUPERVISED BROWSER INTEGRATION",
+    "summary": "Human-approved browser actions through Cline on Windows, with restart, recovery and saved evidence.",
+    "status": "Local Windows rehearsal verified · client acceptance pending",
+    "detail": "Prepared a Windows integration extending an existing Cline installation with Microsoft’s official Playwright MCP server. Two recorded local Cline GUI workflows each passed five synthetic browser assertions. Actual editor restarts, server disable/re-enable and exact configuration restoration were exercised. An explicit process working directory fixed misplaced screenshot evidence; the final browser run saved the verified image in its intended workspace. Existing provider settings, unrelated MCP servers and browser profiles were preserved, with automatic approvals disabled. Client-machine installation, live walkthrough and contractual acceptance remain pending.",
+    "stack": [
+      "Playwright",
+      "MCP",
+      "Cline",
+      "Windows",
+      "Node.js"
+    ],
+    "visual": "capture",
+    "featured": true,
+    "evidence": "Current technical overview and owning local evidence reviewed October 18, 2026; client acceptance pending",
+    "image": "/studio/playwright-cline-integration.webp",
+    "imageKind": "reference",
+    "imageAlt": "Workflow diagram for the Playwright MCP + Cline Windows integration; synthetic browser evidence is in the case study"
   }
 ]);
 
@@ -587,6 +609,7 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "playwright-cline-integration": "Human-approved Cline browser actions, restart verification and exact configuration recovery.",
     "synqharbor-ai": "Human-led collaboration screens with revision-aware approvals, responsive public documentation and a portable static release.",
     "vericommerce-ai": "Catalog evidence with source revisions, cited quotations, durable draft approval and verified restore/rollback recovery.",
     "praxisforge-ai": "Three-role agent work with durable recovery, exact human approval, source-backed commitments and internal receipts.",

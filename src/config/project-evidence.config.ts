@@ -638,5 +638,28 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       "label": "Technical overview · reviewed October 16 (PDF)",
       "file": "synqharbor-ai-technical-overview.pdf"
     }
+  },
+  "playwright-cline-integration": {
+    "engagement": {
+      "type": "Client project",
+      "client": "Name withheld",
+      "detail": "Anonymous client-requested Windows integration. Verified preparation used the owner’s computer and synthetic tasks; client-machine installation, funded work and contractual acceptance remain pending."
+    },
+    "challenges": [
+      {
+        "problem": "A connection indicator does not establish that Cline can execute a complete browser workflow.",
+        "fix": "Ran the synthetic task through Cline’s Windows GUI with individual action approvals and repeated it after real editor restarts.",
+        "result": "The current project overview records two local GUI runs with five browser assertions passing in each; client-operated verification remains pending."
+      },
+      {
+        "problem": "A screenshot’s relative path inherited the editor application directory instead of the intended workspace.",
+        "fix": "Added an explicit MCP process working directory, restarted the editor and reran the full browser workflow.",
+        "result": "The final screenshot was verified as a real file in the intended workspace and visually inspected; exact restoration and disable/re-enable were also exercised."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · reviewed October 18 (PDF)",
+      "file": "playwright-cline-integration-technical-overview.pdf"
+    }
   }
 });

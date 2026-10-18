@@ -20,8 +20,8 @@ describe("engineering studio content contract", () => {
       expect(bytes.length, project.id).toBeGreaterThan(1000);
       expect(bytes.subarray(0, 4).toString("hex"), project.id).toMatch(/^(?:52494646|89504e47)$/);
       if (projectEvidence[project.id].engagement.type === "Client project") {
-        expect(project.imageKind, project.id).toBe("illustration");
-        expect(project.imageAlt, project.id).toMatch(/^AI-generated concept illustration for /);
+        expect(["illustration", "reference"], project.id).toContain(project.imageKind);
+        expect(project.imageAlt, project.id).toMatch(/^(?:AI-generated concept illustration for |Workflow diagram for )/);
       }
       if (project.imageKind !== "screenshot") expect(project.imageAlt, project.id).toBeTruthy();
     }

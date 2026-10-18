@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 24, suffix: "" },
+    { label: "Selected Projects", value: 25, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 150, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Concept Products", value: 6, suffix: "" }
@@ -1106,6 +1106,33 @@ export const portfolioConfig = {
       "delivery": "Deployed website and browser-local workspace · backend planned"
     },
     "pdfUrl": "/docs/synqharbor-ai-technical-overview.pdf"
+  },
+  {
+    "id": "playwright-cline-integration",
+    "title": "Playwright MCP + Cline — Windows Browser Integration",
+    "category": [
+      "automation",
+      "ai-ml"
+    ],
+    "description": "Human-approved browser actions through Cline on Windows, with restart, recovery and saved evidence.",
+    "fullDescription": "Prepared a Windows integration extending an existing Cline installation with Microsoft’s official Playwright MCP server. Two recorded local Cline GUI workflows each passed five synthetic browser assertions. Actual editor restarts, server disable/re-enable and exact configuration restoration were exercised. An explicit process working directory fixed misplaced screenshot evidence; the final browser run saved the verified image in its intended workspace. Existing provider settings, unrelated MCP servers and browser profiles were preserved, with automatic approvals disabled. Client-machine installation, live walkthrough and contractual acceptance remain pending.",
+    "thumbnail": "/studio/playwright-cline-integration.webp",
+    "technologies": [
+      "Playwright",
+      "MCP",
+      "Cline",
+      "Windows",
+      "Node.js"
+    ],
+    "achievements": [
+      "Local Windows rehearsal verified · client acceptance pending",
+      "Source review October 18, 2026 · recorded local evidence"
+    ],
+    "featured": true,
+    "metrics": {
+      "delivery": "Local Windows rehearsal verified · client acceptance pending"
+    },
+    "pdfUrl": "/docs/playwright-cline-integration-technical-overview.pdf"
   }
 ],
 

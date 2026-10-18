@@ -51,7 +51,7 @@ describe("project evidence", () => {
     expect(projectEvidence.fleetwright.engagement.detail).toMatch(/Arbitrary-site execution.*remain unproven/);
   });
 
-  it("offers a Client work filter listing exactly the paid client projects", () => {
+  it("offers a Client work filter listing exactly the client-requested projects", () => {
     expect(studioConfig.labels.filters).toContain(studioConfig.labels.clientFilter);
     const clients = studioProjects
       .filter((p) => projectEvidence[p.id].engagement.type === "Client project")
@@ -62,6 +62,7 @@ describe("project evidence", () => {
       "ftm-sms-followup",
       "ftm-social-media",
       "jwalker-knowledge-assistant",
+      "playwright-cline-integration",
       "wordpress-incident-response",
       "yuktha-wellness",
     ]);
