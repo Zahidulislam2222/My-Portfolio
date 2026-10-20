@@ -638,8 +638,8 @@ export const studioConfig = {
   identity: portfolioConfig.personal,
   socials: portfolioConfig.socials,
   navigation: [
-    { label: "Work", href: "#projects" },
     { label: "Reviews", href: "#testimonials" },
+    { label: "Work", href: "#projects" },
     { label: "Expertise", href: "#skills" },
     { label: "Approach", href: "#process" },
     { label: "About", href: "#about" },
@@ -660,7 +660,7 @@ export const studioConfig = {
   },
   labels: {
     heroProof: "CLIENT FEEDBACK / UPWORK",
-    reviewEyebrow: "02 / CLIENT REVIEWS",
+    reviewEyebrow: "01 / CLIENT REVIEWS",
     reviewTitle: "Good work.\nIn their words.",
     reviewIntro: "Feedback from AI, automation and WordPress engagements.",
     reviewProfile: "View my Upwork profile",
@@ -697,7 +697,7 @@ export const studioConfig = {
     aboutCoordinate: "ENGINEER / BUILDER / EXPLORER",
     linkedin: "LinkedIn",
     github: "GitHub",
-    workEyebrow: "01 / SELECTED WORK",
+    workEyebrow: "02 / SELECTED WORK",
     workTitle: "The work behind\nthe interface.",
     workIntro:
       "Recent voice, browser and agentic engineering builds alongside paid AI and automation client work. Explore what I built, the evidence and the current delivery scope.",
@@ -852,5 +852,12 @@ export const studioConfig = {
     rotateDegrees: 2,
     revealDuration: 0.6,
     revealDistance: 24,
+  },
+  marquee: {
+    label: "Engineering expertise",
+    eyebrow: "CONNECTED EXPERTISE / FROM IDEA TO DELIVERY",
+    pause: "Pause motion",
+    resume: "Resume motion",
+    durationSeconds: 42,
   },
 } as const;

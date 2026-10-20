@@ -35,6 +35,7 @@ import {
 } from "@/config/project-evidence.config";
 import "./studio.css";
 import HeroShowcase from "./HeroShowcase";
+import ExpertiseMarquee from "./ExpertiseMarquee";
 
 function Reveal({
   children,
@@ -924,8 +925,9 @@ export default function EngineeringStudio() {
       <StudioNavigation />
       <main id="main" tabIndex={-1}>
         <HeroShowcase onProject={setSelected} />
-        <WorkSection onProject={setSelected} />
+        <ExpertiseMarquee />
         <ClientReviews />
+        <WorkSection onProject={setSelected} />
         <ExpertiseSection />
         <ProcessSection />
         <AboutSection />
