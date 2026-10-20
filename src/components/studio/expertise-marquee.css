@@ -39,10 +39,10 @@
 .studio-marquee-track {
   display: flex;
   width: max-content;
-  animation: studio-marquee-travel var(--marquee-duration) linear infinite reverse;
+  animation: studio-marquee-travel var(--marquee-duration) linear infinite;
 }
 .studio-marquee-row + .studio-marquee-row .studio-marquee-track {
-  animation-direction: normal;
+  animation-direction: reverse;
 }
 .studio-marquee-group {
   display: flex;

@@ -854,8 +854,16 @@ export const studioConfig = {
     revealDistance: 24,
   },
   marquee: {
-    label: "Engineering expertise",
-    eyebrow: "CONNECTED EXPERTISE / FROM IDEA TO DELIVERY",
+    label: "Client companies and engineering expertise",
+    eyebrow: "CLIENTS I'VE WORKED WITH / WHAT I BUILD",
+    clients: [
+      "FTM",
+      "Yuktha Wellness",
+      "JWALKER Marketing",
+      "Webways",
+      "AbcKer Technology",
+      "RGP",
+    ],
     pause: "Pause motion",
     resume: "Resume motion",
     durationSeconds: 42,

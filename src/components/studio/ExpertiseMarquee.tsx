@@ -3,7 +3,7 @@ import { Pause, Play } from "lucide-react";
 import { studioConfig as config } from "@/config/studio.config";
 import "./expertise-marquee.css";
 
-const rows = [config.hero.tags, config.expertise.flatMap((item) => item.tags)];
+const rows = [config.marquee.clients, config.expertise.flatMap((item) => item.tags)];
 
 export default function ExpertiseMarquee() {
   const [paused, setPaused] = useState(false);
