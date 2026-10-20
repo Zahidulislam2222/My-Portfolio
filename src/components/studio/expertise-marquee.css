@@ -83,11 +83,6 @@
 .studio-marquee[data-paused="true"] .studio-marquee-track {
   animation-play-state: paused;
 }
-@media (hover: hover) and (pointer: fine) {
-  .studio-marquee:hover .studio-marquee-track {
-    animation-play-state: paused;
-  }
-}
 @keyframes studio-marquee-travel {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
