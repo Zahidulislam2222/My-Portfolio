@@ -41,8 +41,8 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 25, suffix: "" },
-    { label: "VoiceBridge Backend Tests", value: 150, suffix: "" },
+    { label: "Selected Projects", value: 27, suffix: "" },
+    { label: "VoiceBridge Backend Tests", value: 258, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Concept Products", value: 6, suffix: "" }
   ],
@@ -54,7 +54,13 @@ export const portfolioConfig = {
     github: "https://github.com/Zahidulislam2222", 
     linkedin: "https://www.linkedin.com/in/zahidul-islam-developer/", 
     twitter: "https://x.com/MdZahid67023693", 
-    youtube: "https://www.youtube.com/@FromZahidsKnowledgeofficial", 
+    youtube: "https://www.youtube.com/@FromZahidsKnowledgeofficial",
+    facebook: "https://www.facebook.com/zahidulislam2222/",
+    instagram: "https://www.instagram.com/zahidul_islam2222/",
+    tiktok: "https://www.tiktok.com/@zahidul_islam2222",
+    reddit: "https://www.reddit.com/user/zahidulislam2222/",
+    contra: "https://contra.com/zahidul_islam_ioxyv7jr",
+    n8n: "https://community.n8n.io/u/zahidul_islam",
     email: "mailto:muhammadzahidulislam2222@gmail.com",
   },
 
@@ -85,8 +91,8 @@ export const portfolioConfig = {
       "automation",
       "fullstack"
     ],
-    "description": "Authenticated booking, owner recovery and bounded records/transcript downloads with durable audits.",
-    "fullDescription": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. The October 15 release adds exact-call terminal recovery, sanitized MCP denial audits and authenticated, tenant-scoped records and ended-call transcript downloads with CSRF checks, size limits and redaction tombstones. Recorded gates passed 252 backend checks, 108 frontend tests and 21 public browser routes. Two live owner exports produced durable audits without changing business records; nonempty, redacted and foreign-tenant cases were verified locally. Earlier bounded Calendar/CRM/Gmail receipts remain dated evidence. Real Retell/Vapi speak-and-listen, provider-data deletion and backup replay remain open. Operator API wiring remains incomplete; voice creation and general external email stay disabled. Scale and availability objectives remain unmeasured.",
+    "description": "A live Retell web call booked an appointment and completed calendar and CRM jobs through guarded releases.",
+    "fullDescription": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. On October 25 an owner Retell web call joined audio, checked availability and booked a repair visit; the worker then completed the Google Calendar and HubSpot CRM jobs. The caller was a clearly labelled synthetic test voice; the agent, engine, worker, database, calendar and CRM were live. Four earlier calls exposed case-sensitive service matching, low caller audio, a missing year and an expired Google token, and each cause was fixed before the next call. Three guarded backend releases each took a database backup, kept a rollback target, matched 16/16 release files and 15/15 image modules and preserved 77 unrelated containers. The backend suite passed 258/258. The Vapi path, phone numbers, Google OAuth production publishing, a pre-call token check, provider-data deletion and backup replay remain open, and general follow-up email stays disabled. One booked call is a functional result, not a reliability or capacity measurement.",
     "thumbnail": "/studio/voicebridge-cover.webp",
     "technologies": [
       "Python",
@@ -95,14 +101,14 @@ export const portfolioConfig = {
       "MCP"
     ],
     "achievements": [
-      "Deployed owner tools and exports · voice acceptance pending",
-      "Verified release October 15, 2026 · dated evidence"
+      "Deployed · first booked voice call verified · Vapi path pending",
+      "Google Doc reviewed October 25, 2026; open gates stated above"
     ],
     "liveUrl": "https://voicebridge.zahidul-islam.com/",
     "githubUrl": "https://github.com/Zahidulislam2222/voicebridge",
     "featured": true,
     "metrics": {
-      "delivery": "Deployed owner tools and exports · voice acceptance pending"
+      "delivery": "Deployed · first booked voice call verified · Vapi path pending"
     },
     "pdfUrl": "/docs/voicebridge-technical-overview.pdf"
   },
@@ -225,8 +231,8 @@ export const portfolioConfig = {
       "wordpress",
       "fullstack"
     ],
-    "description": "Connected WordPress commerce, verified test checkout and maintainable storefront operations.",
-    "fullDescription": "A React/TypeScript storefront connected to WordPress and WooCommerce for five photographed products, editorial content, customer accounts, stock and orders. Hosted Stripe test checkout uses server-resolved prices, ownership checks, idempotency and reconciliation. The October 12 release recorded 222 browser checks, 107 navigation checks, 33 HTTP responses and 99 frontend plus two backend file matches. A separate dependency-security repair merged on main with zero known findings in both full npm audits; the publication PR remains a draft requiring reconciliation before promotion. Live payments and physical fulfilment are outside the demonstration.",
+    "description": "Headless WooCommerce storefront with a bounded AI guide, verified test checkout and tested rollback.",
+    "fullDescription": "A React/TypeScript storefront where WordPress and WooCommerce own content, accounts, prices and orders. The October 21 release, merged to GitHub main, adds a project-specific AI guide on an approved remote route: it passed 9/9 held-out tasks and 3 boundary checks, has no customer-record access or action tools and runs inside a USD 0.10 lifetime allowance with reservations, deadlines and quotas. Runtime images moved to patched Node 22.23.3 and Nginx 1.30.4 with zero reported vulnerabilities, and the Stripe SDK to 20.3.1 with native rollback tested. 222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; twelve synthetic privacy checks passed. Guide restart and frontend rollback/resume passed, and 140 frontend and 611 guide files match their artifacts. Live payments and shipping are outside the demonstration; million-session capacity and uptime objectives are roadmap gates, not measurements.",
     "images": [
       "https://github.com/user-attachments/assets/0e39a15d-5c5e-4ee4-ae00-2b3142826883",
       "https://github.com/user-attachments/assets/d9d62479-f198-4e0f-8df2-64fc045f5392",
@@ -247,7 +253,7 @@ export const portfolioConfig = {
     ],
     "achievements": [
       "Deployed commerce demo · test checkout only",
-      "Source review October 14, 2026 · dated verification"
+      "Google Doc release record reviewed October 25, 2026; October 21 release evidence and open gates stated above"
     ],
     "liveUrl": "https://chronos.zahidul-islam.com/",
     "githubLinks": [
@@ -822,8 +828,8 @@ export const portfolioConfig = {
       "automation",
       "wordpress"
     ],
-    "description": "Multi-site lead routing with provider-acceptance checks and consent-aware follow-ups.",
-    "fullDescription": "Client automation connecting JotForm, n8n, Google Sheets and Twilio for site-specific lead intake, welcome messages and scheduled follow-ups. October 11 repairs require matched provider acceptance before updating sent-state and preserve prior stage markers; explicit opt-outs revoke marketing consent, and all-failed batches continue to the next site. A credential-free six-request behavioral flow verified exactly three updates, and all three workflows matched local structure. Provider acceptance is distinct from delivery; no new paid message was sent during those repairs. The older Google Doc predates these local release records.",
+    "description": "Multi-site lead routing with complete booking confirmations, provider-acceptance checks and consent-aware follow-ups.",
+    "fullDescription": "Client automation connecting JotForm, n8n, Google Sheets and Twilio for site-specific lead intake, welcome messages and scheduled follow-ups across nine active routes. The October 20 release gives one client site a complete booking confirmation (service, contact details, appointment time, timezone and consent choices) in warmer wording, sent identically to the customer and the business. The other eight routes keep their behavior, and all three deployed workflows matched local source. An earlier controlled booking test reached provider status delivered for both messages; the revised wording was checked offline without paid sends. Twelve site-specific follow-ups are prepared but switched off pending cost confirmation. October 11 repairs require matched provider acceptance before marking a message sent and suppress marketing after an explicit opt-out. Blank or unknown marketing consent is not yet rejected, so this is not a general fail-closed consent guarantee.",
     "thumbnail": "/studio/ftm-sms-followup-cover.webp",
     "technologies": [
       "n8n",
@@ -831,11 +837,11 @@ export const portfolioConfig = {
       "Configuration"
     ],
     "achievements": [
-      "Client automation · October repair evidence",
-      "Source review October 14, 2026 · dated verification"
+      "Client automation · October 20 booking-confirmation release live",
+      "Google Doc release note reviewed October 25, 2026; verification dates and open gates stated above"
     ],
     "metrics": {
-      "delivery": "Client automation · October repair evidence"
+      "delivery": "Client automation · October 20 booking-confirmation release live"
     },
     "featured": true,
     "pdfUrl": "/docs/ftm-sms-followup-technical-overview.pdf"
@@ -1025,8 +1031,8 @@ export const portfolioConfig = {
       "fullstack",
       "automation"
     ],
-    "description": "Versioned catalog evidence, cited quotations and durable drafts with approval and provenance-preserving export.",
-    "fullDescription": "An independently built commerce evidence platform with JSON catalog ingestion, immutable source revisions, keyword/local CPU hybrid retrieval, cited quotations, durable draft jobs and explicit approval before JSON export. React/TypeScript and FastAPI/PostgreSQL run together in the deployed release. October 15 records 49 PostgreSQL/CPU/infrastructure checks, 11 frontend checks and 44 browser journeys with no skips; 84 deployment artifact hashes matched. Populated database restoration and actual rollback/forward recovery preserved the approved draft. Access uses temporary cookie-bound workspaces and generated catalog records. Answers are retrieved quotations and drafts use evidence-only templates, rather than unrestricted language-model generation. Accounts, Shopify publishing, document/image ingestion, model training and actual three-cloud deployments remain roadmap work. Million-user capacity and rolling availability are future targets, not measured results.",
+    "description": "Versioned catalog evidence, cited quotations and approved drafts across account roles and multi-format ingestion.",
+    "fullDescription": "An independently built commerce evidence platform. Live release 02 (October 18) adds persistent account workspaces with four roles, bounded JSON/CSV/PDF/image ingestion, current-source retrieval with context inspection, cited quotations, temporal review, durable jobs, explicit approval and provenance export. React/TypeScript and FastAPI/PostgreSQL run together; Shopify access is read-products-only. Hosted checks on the newer published source passed 155 PostgreSQL/CPU/infrastructure checks, 17 Node checks and 102 desktop/mobile browser cases with zero skips. The live release matched 228 local/archive/live artifacts, passed 46 public browser cases and reproduced 27 SQL table snapshots with restricted-role/RLS probes. A newer release 03 was stopped before promotion at the owner's request, so its source-only assistant changes are not live. Shopify publishing and model training remain roadmap work; million-user capacity and 99% availability are future targets, not measurements.",
     "thumbnail": "/studio/vericommerce-ai-cover.webp",
     "technologies": [
       "React",
@@ -1036,14 +1042,14 @@ export const portfolioConfig = {
       "ONNX"
     ],
     "achievements": [
-      "Deployed evidence core · Shopify publishing remains roadmap work",
-      "Source review October 16, 2026 · dated release evidence"
+      "Deployed release 02 · Shopify read-only, publishing remains roadmap work",
+      "Google Doc release record reviewed October 25, 2026; October 18 release evidence and open gates stated above"
     ],
     "liveUrl": "https://vericommerce.zahidul-islam.com/",
     "githubUrl": "https://github.com/Zahidulislam2222/VeriCommerce-AI",
     "featured": true,
     "metrics": {
-      "delivery": "Deployed evidence core · Shopify publishing remains roadmap work"
+      "delivery": "Deployed release 02 · Shopify read-only, publishing remains roadmap work"
     },
     "pdfUrl": "/docs/vericommerce-ai-technical-overview.pdf"
   },
@@ -1133,6 +1139,61 @@ export const portfolioConfig = {
       "delivery": "Local Windows rehearsal verified · client acceptance pending"
     },
     "pdfUrl": "/docs/playwright-cline-integration-technical-overview.pdf"
+  },
+  {
+    "id": "project-video-studio",
+    "title": "Project Video Studio — Local AI Video Production Engine",
+    "category": [
+      "ai-ml",
+      "automation"
+    ],
+    "description": "Turns a script, recording or brief into an editable layered video with captions, checked audio and portable source packages.",
+    "fullDescription": "A local Python engine that turns an approved script, recorded explanation or brief into an editable video project. It prepares narration or transcription, renders up to four visual layers with masks and depth-ordered callouts, composes separate portrait and landscape layouts and exports verified masters plus portable source packages. The October 21 v2 rebuild added recorded-speech timing, style checkpoints, local reference measurements, a Blender 3D adapter and safe shot reuse; the latest addition is local human matting, so text can sit behind a presenter. 95 automated tests pass; type checks, lint, Bandit, Semgrep and secret scanning pass, and GitHub CI passed all four jobs. Real 70.7-second portrait and 307.1-second landscape validation films fully decode at about -16 LUFS. It is local software with no hosted service; full style reconstruction, autonomous shot production and native editor round trips remain unfinished, and natural talking-head matting needs separate review.",
+    "thumbnail": "/studio/project-video-studio-cover.webp",
+    "technologies": [
+      "Python",
+      "FFmpeg",
+      "Blender",
+      "ONNX",
+      "SQLite"
+    ],
+    "achievements": [
+      "Open-source local engine · 95 tests pass · hosted service not built",
+      "Source review October 25, 2026 · recorded local evidence"
+    ],
+    "githubUrl": "https://github.com/Zahidulislam2222/project-video-studio",
+    "featured": true,
+    "metrics": {
+      "delivery": "Open-source local engine · 95 tests pass · hosted service not built"
+    },
+    "pdfUrl": "/docs/project-video-studio-technical-overview.pdf"
+  },
+  {
+    "id": "self-hosted-email-infrastructure",
+    "title": "Self-Hosted Email Infrastructure — Five Authenticated Mailboxes",
+    "category": [
+      "automation",
+      "security"
+    ],
+    "description": "Five authenticated domain mailboxes with webmail on an existing server, checked with external, denial and restore tests.",
+    "fullDescription": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
+    "thumbnail": "/studio/self-hosted-email-infrastructure-cover.webp",
+    "technologies": [
+      "Docker Mailserver",
+      "Roundcube",
+      "Caddy",
+      "Cloudflare DNS",
+      "Postfix / Dovecot"
+    ],
+    "achievements": [
+      "Operating on a shared server · single host, not high availability",
+      "Source review October 25, 2026 · dated operating evidence"
+    ],
+    "featured": true,
+    "metrics": {
+      "delivery": "Operating on a shared server · single host, not high availability"
+    },
+    "pdfUrl": "/docs/self-hosted-email-infrastructure-case-study.pdf"
   }
 ],
 

@@ -124,7 +124,9 @@ describe("engineering studio content contract", () => {
       studioProjects.find((project) => project.id === "kindred-grove")?.status,
     ).toContain("password protected");
     const voicebridge = studioProjects.find((project) => project.id === "voicebridge");
-    expect(voicebridge?.status).toContain("voice acceptance pending");
+    expect(voicebridge?.status).toContain("Vapi path pending");
+    expect(voicebridge?.detail).toContain("synthetic test voice");
+    expect(voicebridge?.detail).toContain("not a reliability or capacity measurement");
     expect(voicebridge?.detail).toContain("backup replay remain open");
     expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
     const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
@@ -148,9 +150,10 @@ describe("engineering studio content contract", () => {
     const commerce = studioProjects.find(project => project.id === "vericommerce-ai");
     const praxis = studioProjects.find(project => project.id === "praxisforge-ai");
     expect(commerce?.featured).toBe(true);
-    expect(commerce?.detail).toMatch(/temporary cookie-bound workspaces/);
-    expect(commerce?.detail).toMatch(/Accounts, Shopify publishing.*remain roadmap work/);
-    expect(commerce?.detail).toMatch(/future targets, not measured results/);
+    expect(commerce?.detail).toMatch(/Shopify access is read-products-only/);
+    expect(commerce?.detail).toMatch(/release 03 was stopped before promotion/);
+    expect(commerce?.detail).toMatch(/Shopify publishing and model training remain roadmap work/);
+    expect(commerce?.detail).toMatch(/future targets, not measurements/);
     expect(praxis?.featured).toBe(true);
     expect(praxis?.detail).toMatch(/one successful workflow, not a statistical reliability benchmark/);
     expect(praxis?.detail).toMatch(/email delivery and third-party CRM updates are not enabled/);
@@ -165,8 +168,33 @@ describe("engineering studio content contract", () => {
     }
   });
 
+  it("adds the video studio and mail infrastructure with their stated boundaries", () => {
+    const video = studioProjects.find(project => project.id === "project-video-studio");
+    const mail = studioProjects.find(project => project.id === "self-hosted-email-infrastructure");
+    expect(video?.status).toContain("hosted service not built");
+    expect(video?.detail).toMatch(/no hosted service/);
+    expect(projectResources("project-video-studio").links).toContainEqual({label: "Source code", url: "https://github.com/Zahidulislam2222/project-video-studio"});
+    expect(mail?.status).toContain("not high availability");
+    expect(mail?.detail).toMatch(/do not guarantee inbox placement/);
+    expect(projectResources("self-hosted-email-infrastructure").links).toHaveLength(0);
+    for (const id of ["project-video-studio", "self-hosted-email-infrastructure"]) {
+      expect(projectEvidence[id].engagement.type).toBe("Independent build");
+      expect(existsSync(resolve(__dirname, "../../public/docs", projectEvidence[id].document.file)), id).toBe(true);
+    }
+  });
+
+  it("links every social profile over HTTPS with a distinct platform", () => {
+    const profiles = studioConfig.socialProfiles;
+    expect(profiles.map(profile => profile.id)).toEqual(["youtube", "facebook", "instagram", "x", "tiktok", "reddit", "contra", "n8n"]);
+    expect(new Set(profiles.map(profile => profile.href)).size).toBe(profiles.length);
+    for (const profile of profiles) {
+      expect(new URL(profile.href).protocol, profile.id).toBe("https:");
+      expect(profile.handle.length, profile.id).toBeGreaterThan(2);
+    }
+  });
+
   it("keeps featured-card highlights consistent with the current release counts", () => {
-    for (const [id, counts] of [["voicebridge", ["252", "108"]], ["fleetwright", ["289"]]] as const) {
+    for (const [id, counts] of [["voicebridge", ["258"]], ["fleetwright", ["289"]]] as const) {
       const detail = studioProjects.find(project => project.id === id)?.detail;
       for (const count of counts) {
         expect(detail).toContain(count);

@@ -33,27 +33,27 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "voicebridge": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My single-business voice-agent platform. Bounded business-tool, owner recovery and export receipts are recorded; actual speak-and-listen acceptance remains open."
+      "detail": "My single-business voice-agent platform. A real Retell web call has booked an appointment end to end with a synthetic test caller; Vapi and phone-number acceptance remain open."
     },
     "challenges": [
       {
-        "problem": "A booking retry or concurrent edit can create conflicting appointments.",
-        "fix": "Added explicit confirmation, timezone validation, idempotency, conflict checks and revision control.",
-        "result": "A bounded Calendar/CRM booking and approved Gmail confirmation received direct readbacks; cancellation survived a worker restart."
+        "problem": "A caller asked for “appliance repair” and the booking tool rejected it because service matching was case-sensitive.",
+        "fix": "Matched service names regardless of case and spacing, stored the configured name, and shipped it as a guarded release with a backup and rollback target.",
+        "result": "Call 5 ran availability and booking end to end; the Google Calendar and HubSpot CRM jobs completed for the booked visit."
       },
       {
-        "problem": "An abandoned provider call can retain a local operation after the provider has ended it.",
-        "fix": "Added owner-authorized GET-only reconciliation of the exact provider call, plus bounded and sanitized MCP denial audits.",
-        "result": "The recorded owner recovery retired the terminal operation without creating a call; real speak-and-listen and Vapi acceptance remain open."
+        "problem": "Availability failed mid-call because the Google refresh token expired after seven days while the OAuth app was in Testing.",
+        "fix": "Re-consented and rotated the token under a new explicit approval, released on the same image with 16/16 files and 15/15 modules matched.",
+        "result": "Calendar availability worked on the next call. Publishing the OAuth app and a pre-call token readiness check remain open."
       },
       {
         "problem": "Owner downloads can expose another tenant's records or resurrect redacted transcript text.",
         "fix": "Enforced owner sessions, CSRF, tenant isolation, projected schemas, count/byte limits and durable redaction tombstones.",
-        "result": "Two live owner exports produced two durable audits without changing business records. Nine packaged download/cancel journeys passed; nonempty, redacted and foreign-tenant cases were verified locally. Gates recorded 252 backend checks and 108 frontend tests."
+        "result": "Two live owner exports produced two durable audits without changing business records; nonempty, redacted and foreign-tenant cases were verified locally."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 15 (PDF)",
+      "label": "Technical overview · updated October 25 (PDF)",
       "file": "voicebridge-technical-overview.pdf"
     }
   },
@@ -148,16 +148,21 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "A successful checkout redirect can disagree with the persisted order or authoritative price.",
         "fix": "Used server-resolved WooCommerce prices, order ownership, idempotency and signed payment reconciliation.",
-        "result": "The recorded release completed hosted Stripe test payment and checked unchanged stock; live payments remain disabled."
+        "result": "222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; live payments remain disabled."
       },
       {
-        "problem": "A storefront release and a security repair can advance on different branches.",
-        "fix": "Kept publication status separate from deployment evidence and merged the reviewed dependency repair independently.",
-        "result": "Both full dependency audits reached zero known findings; the publication draft still needs reconciliation and release gates before promotion."
+        "problem": "The earlier local AI help engine passed only 3 of 8 task evaluations.",
+        "fix": "Paused local inference and moved the guide to an approved remote route with topic validation, maintained answers, spending reservations, deadlines and quotas.",
+        "result": "9/9 held-out tasks and 3 boundary checks passed; the guide has no customer-record access or action tools."
+      },
+      {
+        "problem": "Upgrading the Stripe SDK on a shared PHP host risked breaking payments with no way back.",
+        "fix": "Installed SDK 20.3.1 as an immutable cohort with a native rollback path, without restarting shared PHP.",
+        "result": "Native rollback and test-payment reconciliation passed."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 14 (PDF)",
+      "label": "Technical overview · updated October 21 (PDF)",
       "file": "chronos-technical-overview.pdf"
     }
   },
@@ -373,9 +378,14 @@ export const projectEvidence = z.record(evidenceSchema).parse({
     },
     "challenges": [
       {
+        "problem": "Booking welcome texts showed only name, date and time, and consent choices appeared as raw TRUE/FALSE values.",
+        "fix": "Rendered the full booking summary for one site from configuration, with Yes/No labels over the original stored flags, limited by form routing.",
+        "result": "Customer and business copies match, eight other routes were preserved and live workflows matched local source. Live delivery of the revised wording is not yet verified."
+      },
+      {
         "problem": "A rejected or ambiguous provider response can incorrectly mark a contact as sent.",
         "fix": "Required valid matched provider acceptance, preserved stage markers and refused ambiguous item linkage.",
-        "result": "October 11 retained behavioral evidence verifies accepted updates and loop continuation without a paid send; acceptance does not establish delivery."
+        "result": "October 11 behavioral evidence verifies accepted updates and loop continuation without a paid send; acceptance does not establish delivery."
       },
       {
         "problem": "An opted-out contact can remain eligible for later campaign stages.",
@@ -581,7 +591,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 16 (PDF)",
+      "label": "Technical overview · updated October 18 (PDF)",
       "file": "vericommerce-ai-technical-overview.pdf"
     }
   },
@@ -660,6 +670,60 @@ export const projectEvidence = z.record(evidenceSchema).parse({
     "document": {
       "label": "Technical overview · reviewed October 18 (PDF)",
       "file": "playwright-cline-integration-technical-overview.pdf"
+    }
+  },
+  "project-video-studio": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "My local video production engine for project walkthroughs and social clips. Source is public under GPL-3.0; private media, models and machine configuration are excluded."
+    },
+    "challenges": [
+      {
+        "problem": "Putting text behind a presenter needed foreground masks prepared by hand in other tools.",
+        "fix": "Added local, hash-pinned human matting that writes synchronized foreground and mask clips and keeps the original footage in the package.",
+        "result": "A real composition placed text behind the person and a panel in front; cancellation, deadlines and restoration were verified. Natural talking-head quality still needs review."
+      },
+      {
+        "problem": "Reusing a rendered shot after its source or settings changed could pair new metadata with an old picture.",
+        "fix": "Bound every shot to a render recipe that hashes source bytes, inputs, engine code, packages, fonts, tools and models.",
+        "result": "Only matching completed shots are reused; any changed dependency forces a re-render, and failed runs never advance the last-success pointer."
+      },
+      {
+        "problem": "Default portrait caption scaling covered the lower view, and a source note was hidden behind footage.",
+        "fix": "Moved captions to an explicit pixel canvas with ratio-specific safe areas and gave source notes a bounded foreground region.",
+        "result": "Both fixes have focused real-frame regressions; the portrait and landscape validation films fully decode with measured loudness."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · updated October 21 (PDF)",
+      "file": "project-video-studio-technical-overview.pdf"
+    }
+  },
+  "self-hosted-email-infrastructure": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "Mail infrastructure for my own business domain. Integration and operations work on established open-source software; no new mail server was written."
+    },
+    "challenges": [
+      {
+        "problem": "The domain had no MX record and no mailboxes: buying the domain had been mistaken for getting email.",
+        "fix": "Checked the real DNS inventory, then added MX, SPF, DKIM, DMARC and matching reverse DNS for a dedicated mail host.",
+        "result": "Five separate inboxes send and receive; owner Gmail diagnostics passed SPF, DKIM and DMARC across three destinations, the latest over TLS 1.3."
+      },
+      {
+        "problem": "A new mail stack on a shared server could break the applications already running there.",
+        "fix": "Picked a dedicated unused subnet after Docker's default address pools ran out, kept webmail behind the existing proxy and compared files and containers before and after.",
+        "result": "20 deployed files matched; all 17 existing proxy files and 64 unrelated containers stayed unchanged."
+      },
+      {
+        "problem": "An open relay or cross-account sender would let anyone send mail as the domain.",
+        "fix": "Required TLS authentication, tied outgoing identity to the signed-in account and rejected relay and spoofed senders.",
+        "result": "A fresh external review passed 22 of 22 selected account, TLS, sender-identity, relay and size checks."
+      }
+    ],
+    "document": {
+      "label": "Case study · updated October 21 (PDF)",
+      "file": "self-hosted-email-infrastructure-case-study.pdf"
     }
   }
 });

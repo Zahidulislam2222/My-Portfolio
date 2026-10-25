@@ -30,9 +30,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "VoiceBridge",
     "category": "AI & Agents",
     "domain": "VOICE & BUSINESS AUTOMATION",
-    "summary": "Authenticated booking, owner recovery and bounded records/transcript downloads with durable audits.",
-    "status": "Deployed owner tools and exports · voice acceptance pending",
-    "detail": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. The October 15 release adds exact-call terminal recovery, sanitized MCP denial audits and authenticated, tenant-scoped records and ended-call transcript downloads with CSRF checks, size limits and redaction tombstones. Recorded gates passed 252 backend checks, 108 frontend tests and 21 public browser routes. Two live owner exports produced durable audits without changing business records; nonempty, redacted and foreign-tenant cases were verified locally. Earlier bounded Calendar/CRM/Gmail receipts remain dated evidence. Real Retell/Vapi speak-and-listen, provider-data deletion and backup replay remain open. Operator API wiring remains incomplete; voice creation and general external email stay disabled. Scale and availability objectives remain unmeasured.",
+    "summary": "A live Retell web call booked an appointment and completed calendar and CRM jobs through guarded releases.",
+    "status": "Deployed · first booked voice call verified · Vapi path pending",
+    "detail": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. On October 25 an owner Retell web call joined audio, checked availability and booked a repair visit; the worker then completed the Google Calendar and HubSpot CRM jobs. The caller was a clearly labelled synthetic test voice; the agent, engine, worker, database, calendar and CRM were live. Four earlier calls exposed case-sensitive service matching, low caller audio, a missing year and an expired Google token, and each cause was fixed before the next call. Three guarded backend releases each took a database backup, kept a rollback target, matched 16/16 release files and 15/15 image modules and preserved 77 unrelated containers. The backend suite passed 258/258. The Vapi path, phone numbers, Google OAuth production publishing, a pre-call token check, provider-data deletion and backup replay remain open, and general follow-up email stays disabled. One booked call is a functional result, not a reliability or capacity measurement.",
     "stack": [
       "Python",
       "PostgreSQL",
@@ -41,7 +41,7 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 15, 2026; dated verification and open gates stated above",
+    "evidence": "Google Doc reviewed October 25, 2026; open gates stated above",
     "image": "/studio/voicebridge-cover.webp",
     "imageKind": "screenshot",
     "imageAlt": "VoiceBridge public voice-agent website"
@@ -174,9 +174,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "Multi-Site Follow-up",
     "category": "AI & Agents",
     "domain": "MESSAGING OPERATIONS",
-    "summary": "Multi-site lead routing with provider-acceptance checks and consent-aware follow-ups.",
-    "status": "Client automation · October repair evidence",
-    "detail": "Client automation connecting JotForm, n8n, Google Sheets and Twilio for site-specific lead intake, welcome messages and scheduled follow-ups. October 11 repairs require matched provider acceptance before updating sent-state and preserve prior stage markers; explicit opt-outs revoke marketing consent, and all-failed batches continue to the next site. A credential-free six-request behavioral flow verified exactly three updates, and all three workflows matched local structure. Provider acceptance is distinct from delivery; no new paid message was sent during those repairs. The older Google Doc predates these local release records.",
+    "summary": "Multi-site lead routing with complete booking confirmations, provider-acceptance checks and consent-aware follow-ups.",
+    "status": "Client automation · October 20 booking-confirmation release live",
+    "detail": "Client automation connecting JotForm, n8n, Google Sheets and Twilio for site-specific lead intake, welcome messages and scheduled follow-ups across nine active routes. The October 20 release gives one client site a complete booking confirmation (service, contact details, appointment time, timezone and consent choices) in warmer wording, sent identically to the customer and the business. The other eight routes keep their behavior, and all three deployed workflows matched local source. An earlier controlled booking test reached provider status delivered for both messages; the revised wording was checked offline without paid sends. Twelve site-specific follow-ups are prepared but switched off pending cost confirmation. October 11 repairs require matched provider acceptance before marking a message sent and suppress marketing after an explicit opt-out. Blank or unknown marketing consent is not yet rejected, so this is not a general fail-closed consent guarantee.",
     "stack": [
       "n8n",
       "Twilio",
@@ -184,7 +184,7 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
+    "evidence": "Google Doc release note reviewed October 25, 2026; verification dates and open gates stated above",
     "image": "/studio/ftm-sms-followup-cover.webp",
     "imageKind": "illustration",
     "imageAlt": "AI-generated concept illustration for Multi-Site Follow-up"
@@ -349,9 +349,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "Chronos",
     "category": "Web & Commerce",
     "domain": "HEADLESS COMMERCE",
-    "summary": "Connected WordPress commerce, verified test checkout and maintainable storefront operations.",
+    "summary": "Headless WooCommerce storefront with a bounded AI guide, verified test checkout and tested rollback.",
     "status": "Deployed commerce demo · test checkout only",
-    "detail": "A React/TypeScript storefront connected to WordPress and WooCommerce for five photographed products, editorial content, customer accounts, stock and orders. Hosted Stripe test checkout uses server-resolved prices, ownership checks, idempotency and reconciliation. The October 12 release recorded 222 browser checks, 107 navigation checks, 33 HTTP responses and 99 frontend plus two backend file matches. A separate dependency-security repair merged on main with zero known findings in both full npm audits; the publication PR remains a draft requiring reconciliation before promotion. Live payments and physical fulfilment are outside the demonstration.",
+    "detail": "A React/TypeScript storefront where WordPress and WooCommerce own content, accounts, prices and orders. The October 21 release, merged to GitHub main, adds a project-specific AI guide on an approved remote route: it passed 9/9 held-out tasks and 3 boundary checks, has no customer-record access or action tools and runs inside a USD 0.10 lifetime allowance with reservations, deadlines and quotas. Runtime images moved to patched Node 22.23.3 and Nginx 1.30.4 with zero reported vulnerabilities, and the Stripe SDK to 20.3.1 with native rollback tested. 222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; twelve synthetic privacy checks passed. Guide restart and frontend rollback/resume passed, and 140 frontend and 611 guide files match their artifacts. Live payments and shipping are outside the demonstration; million-session capacity and uptime objectives are roadmap gates, not measurements.",
     "stack": [
       "React",
       "WordPress",
@@ -360,7 +360,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "image": "/studio/chronos.webp",
     "visual": "capture",
     "featured": false,
-    "evidence": "Source review October 14, 2026; verification dates and open gates stated above"
+    "evidence": "Google Doc release record reviewed October 25, 2026; October 21 release evidence and open gates stated above"
   },
   {
     "id": "kindred-grove",
@@ -445,9 +445,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "VeriCommerce AI",
     "category": "AI & Agents",
     "domain": "EVIDENCE-GROUNDED COMMERCE",
-    "summary": "Versioned catalog evidence, cited quotations and durable drafts with approval and provenance-preserving export.",
-    "status": "Deployed evidence core · Shopify publishing remains roadmap work",
-    "detail": "An independently built commerce evidence platform with JSON catalog ingestion, immutable source revisions, keyword/local CPU hybrid retrieval, cited quotations, durable draft jobs and explicit approval before JSON export. React/TypeScript and FastAPI/PostgreSQL run together in the deployed release. October 15 records 49 PostgreSQL/CPU/infrastructure checks, 11 frontend checks and 44 browser journeys with no skips; 84 deployment artifact hashes matched. Populated database restoration and actual rollback/forward recovery preserved the approved draft. Access uses temporary cookie-bound workspaces and generated catalog records. Answers are retrieved quotations and drafts use evidence-only templates, rather than unrestricted language-model generation. Accounts, Shopify publishing, document/image ingestion, model training and actual three-cloud deployments remain roadmap work. Million-user capacity and rolling availability are future targets, not measured results.",
+    "summary": "Versioned catalog evidence, cited quotations and approved drafts across account roles and multi-format ingestion.",
+    "status": "Deployed release 02 · Shopify read-only, publishing remains roadmap work",
+    "detail": "An independently built commerce evidence platform. Live release 02 (October 18) adds persistent account workspaces with four roles, bounded JSON/CSV/PDF/image ingestion, current-source retrieval with context inspection, cited quotations, temporal review, durable jobs, explicit approval and provenance export. React/TypeScript and FastAPI/PostgreSQL run together; Shopify access is read-products-only. Hosted checks on the newer published source passed 155 PostgreSQL/CPU/infrastructure checks, 17 Node checks and 102 desktop/mobile browser cases with zero skips. The live release matched 228 local/archive/live artifacts, passed 46 public browser cases and reproduced 27 SQL table snapshots with restricted-role/RLS probes. A newer release 03 was stopped before promotion at the owner's request, so its source-only assistant changes are not live. Shopify publishing and model training remain roadmap work; million-user capacity and 99% availability are future targets, not measurements.",
     "stack": [
       "React",
       "TypeScript",
@@ -457,7 +457,7 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "pipeline",
     "featured": true,
-    "evidence": "Source review October 16, 2026; October 15 release evidence and open gates stated above",
+    "evidence": "Google Doc release record reviewed October 25, 2026; October 18 release evidence and open gates stated above",
     "image": "/studio/vericommerce-ai-cover.webp",
     "imageKind": "screenshot",
     "imageAlt": "VeriCommerce AI public evidence-commerce website"
@@ -527,6 +527,50 @@ export const studioProjects = z.array(projectSchema).parse([
     "image": "/studio/playwright-cline-integration.webp",
     "imageKind": "reference",
     "imageAlt": "Workflow diagram for the Playwright MCP + Cline Windows integration; synthetic browser evidence is in the case study"
+  },
+  {
+    "id": "project-video-studio",
+    "name": "Project Video Studio",
+    "category": "AI & Agents",
+    "domain": "AI VIDEO PRODUCTION",
+    "summary": "Turns a script, recording or brief into an editable layered video with captions, checked audio and portable source packages.",
+    "status": "Open-source local engine · 95 tests pass · hosted service not built",
+    "detail": "A local Python engine that turns an approved script, recorded explanation or brief into an editable video project. It prepares narration or transcription, renders up to four visual layers with masks and depth-ordered callouts, composes separate portrait and landscape layouts and exports verified masters plus portable source packages. The October 21 v2 rebuild added recorded-speech timing, style checkpoints, local reference measurements, a Blender 3D adapter and safe shot reuse; the latest addition is local human matting, so text can sit behind a presenter. 95 automated tests pass; type checks, lint, Bandit, Semgrep and secret scanning pass, and GitHub CI passed all four jobs. Real 70.7-second portrait and 307.1-second landscape validation films fully decode at about -16 LUFS. It is local software with no hosted service; full style reconstruction, autonomous shot production and native editor round trips remain unfinished, and natural talking-head matting needs separate review.",
+    "stack": [
+      "Python",
+      "FFmpeg",
+      "Blender",
+      "ONNX",
+      "SQLite"
+    ],
+    "visual": "pipeline",
+    "featured": true,
+    "evidence": "Google Doc and public repository reviewed October 25, 2026; open gates stated above",
+    "image": "/studio/project-video-studio-cover.webp",
+    "imageKind": "reference",
+    "imageAlt": "A frame rendered by Project Video Studio: narration title over two original 3D workflow scenes"
+  },
+  {
+    "id": "self-hosted-email-infrastructure",
+    "name": "Self-Hosted Email Infrastructure",
+    "category": "Cloud & Systems",
+    "domain": "SELF-HOSTED MAIL OPERATIONS",
+    "summary": "Five authenticated domain mailboxes with webmail on an existing server, checked with external, denial and restore tests.",
+    "status": "Operating on a shared server · single host, not high availability",
+    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
+    "stack": [
+      "Docker Mailserver",
+      "Roundcube",
+      "Caddy",
+      "Cloudflare DNS",
+      "Postfix / Dovecot"
+    ],
+    "visual": "terminal",
+    "featured": true,
+    "evidence": "Google Doc case study reviewed October 25, 2026; October 21 operating review and open gates stated above",
+    "image": "/studio/self-hosted-email-infrastructure-cover.webp",
+    "imageKind": "reference",
+    "imageAlt": "Workflow diagram for the self-hosted email infrastructure: DNS and authentication, mail server, five inboxes and restore testing"
   }
 ]);
 
@@ -597,6 +641,16 @@ export const studioConfig = {
       external: true,
     },
   ],
+  socialProfiles: [
+    { id: "youtube", label: "YouTube", handle: "@FromZahidsKnowledgeofficial", href: portfolioConfig.socials.youtube },
+    { id: "facebook", label: "Facebook", handle: "/zahidulislam2222", href: portfolioConfig.socials.facebook },
+    { id: "instagram", label: "Instagram", handle: "@zahidul_islam2222", href: portfolioConfig.socials.instagram },
+    { id: "x", label: "X", handle: "@MdZahid67023693", href: portfolioConfig.socials.twitter },
+    { id: "tiktok", label: "TikTok", handle: "@zahidul_islam2222", href: portfolioConfig.socials.tiktok },
+    { id: "reddit", label: "Reddit", handle: "u/zahidulislam2222", href: portfolioConfig.socials.reddit },
+    { id: "contra", label: "Contra", handle: "Services & case studies", href: portfolioConfig.socials.contra },
+    { id: "n8n", label: "n8n Community", handle: "@zahidul_islam", href: portfolioConfig.socials.n8n },
+  ] as const,
   reviews: portfolioConfig.testimonials.map((review) => ({
     ...review,
     excerpt:
@@ -609,17 +663,19 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "project-video-studio": "Script-to-video engine with layered composition, local human matting, checked captions/audio and safe shot reuse.",
+    "self-hosted-email-infrastructure": "Five authenticated mailboxes on a shared server; 22/22 external protocol checks and an isolated restore.",
     "playwright-cline-integration": "Human-approved Cline browser actions, restart verification and exact configuration recovery.",
     "synqharbor-ai": "Human-led collaboration screens with revision-aware approvals, responsive public documentation and a portable static release.",
-    "vericommerce-ai": "Catalog evidence with source revisions, cited quotations, durable draft approval and verified restore/rollback recovery.",
+    "vericommerce-ai": "Catalog evidence with account roles, multi-format ingestion, cited quotations and approved drafts with provenance export.",
     "praxisforge-ai": "Three-role agent work with durable recovery, exact human approval, source-backed commitments and internal receipts.",
     "agentic-environment": "Custom Claude Code/Codex workflows, a lossless knowledge MCP and project-local handoffs with test/review/release gates.",
     "jwalker-knowledge-assistant": "Public source-linked answers from approved videos, with paid material excluded and scheduled knowledge refresh.",
-    "ftm-sms-followup": "Form routing, welcome messages and scheduled follow-ups connected through n8n, Sheets and Twilio.",
+    "ftm-sms-followup": "Form routing, complete booking confirmations and consent-aware follow-ups connected through n8n, Sheets and Twilio.",
     "ftm-seo-automation": "Validated AIOSEO updates through asynchronous jobs, with separate worker health and recovery checks.",
     "regenai-shopify": "A support studio with grounded context, persistent memory and versioned human approval; financial and email execution disabled.",
     voicebridge:
-      "Bounded booking, owner recovery and scoped downloads; 252 backend and 108 frontend checks recorded. Real audio acceptance remains open.",
+      "A live Retell web call booked a visit and completed calendar and CRM jobs; 258 backend checks pass. Vapi and phone acceptance remain open.",
     "mediconnect-v3":
       "Deployed public website and CMS with preserved original articles; remaining platform phases and clinical acceptance stay open.",
     equipcert:
@@ -629,7 +685,7 @@ export const studioConfig = {
     "yuktha-wellness":
       "Hybrid retrieval, reranking and grounding checks with an emergency gate before generation.",
     chronos:
-      "A custom storefront connected to WordPress and WooCommerce, with a tested checkout journey.",
+      "A WooCommerce storefront with a bounded AI guide (9/9 held-out tasks), Stripe test checkout and tested rollback.",
     vitalprobe:
       "Synthetic scenarios, regression comparisons and inspectable reports for REST and MCP assistants.",
     "ftm-social-media":
@@ -733,6 +789,9 @@ export const studioConfig = {
       "I build AI systems across the interface, backend and cloud. VoiceBridge, Fleetwright and RegenAI show my recent work; custom Claude Code/Codex workflows support the engineering process. Full-stack, cloud, WordPress and Shopify remain part of what I deliver, with clear acceptance checks and documentation.",
     contactEyebrow: "HAVE A PROBLEM WORTH SOLVING?",
     contactChannelsLabel: "Contact and professional profiles",
+    socialEyebrow: "FOLLOW THE WORK",
+    socialIntro: "Build videos, project walkthroughs and engineering notes.",
+    socialLabel: "Social media profiles",
     contactTitle: "Let’s build\nwhat’s next.",
     contactBody:
       "A new product, a complex integration, or an AI workflow that needs better engineering. Let’s talk.",
@@ -753,10 +812,12 @@ export const studioConfig = {
     allCount: "projects in the index",
     projectStatus: "CURRENT SCOPE",
     engagement: "WHO IT'S FOR",
-    problemsFixed: "PROBLEMS I SOLVED",
-    problem: "Problem",
-    fix: "Fix",
-    result: "Result",
+    problemsFixed: "BEFORE → AFTER",
+    problemsIntro: "Real problems from this build, what I changed and the verified result.",
+    caseLabel: "CASE",
+    problem: "Before",
+    fix: "How I fixed it",
+    result: "After",
   },
   expertise: [
     {

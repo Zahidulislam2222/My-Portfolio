@@ -9,6 +9,8 @@ import {
   BrainCircuit,
   Check,
   ChevronRight,
+  CircleAlert,
+  CircleCheck,
   Code2,
   Copy,
   FileText,
@@ -21,6 +23,7 @@ import {
   Menu,
   Network,
   Plus,
+  Wrench,
   X,
 } from "lucide-react";
 import {
@@ -36,6 +39,7 @@ import {
 import "./studio.css";
 import HeroShowcase from "./HeroShowcase";
 import ExpertiseMarquee from "./ExpertiseMarquee";
+import BrandIcon from "./BrandIcon";
 
 function Reveal({
   children,
@@ -326,22 +330,43 @@ function ProjectDialog({
           </div>
           {evidence && (
             <>
-              <h3>{config.labels.problemsFixed}</h3>
+              <div className="studio-ba-heading">
+                <h3>{config.labels.problemsFixed}</h3>
+                <p>{config.labels.problemsIntro}</p>
+              </div>
               <ol className="studio-dialog-challenges">
-                {evidence.challenges.map((item) => (
-                  <li key={item.problem}>
-                    <p>
-                      <span>{config.labels.problem}</span>{" "}
-                      {item.problem}
-                    </p>
-                    <p>
-                      <span>{config.labels.fix}</span>{" "}
-                      {item.fix}
-                    </p>
-                    <p>
-                      <span>{config.labels.result}</span>{" "}
-                      {item.result}
-                    </p>
+                {evidence.challenges.map((item, index) => (
+                  <li key={item.problem} className="studio-ba-case">
+                    <span className="studio-ba-index">
+                      {config.labels.caseLabel}{" "}
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="studio-ba-pair">
+                      <div className="studio-ba-panel before">
+                        <span className="studio-ba-label">
+                          <CircleAlert size={14} aria-hidden="true" />
+                          {config.labels.problem}
+                        </span>
+                        <p>{item.problem}</p>
+                      </div>
+                      <span className="studio-ba-arrow" aria-hidden="true">
+                        <ArrowRight size={18} />
+                      </span>
+                      <div className="studio-ba-panel after">
+                        <span className="studio-ba-label">
+                          <CircleCheck size={14} aria-hidden="true" />
+                          {config.labels.result}
+                        </span>
+                        <p>{item.result}</p>
+                      </div>
+                    </div>
+                    <div className="studio-ba-fix">
+                      <span className="studio-ba-label">
+                        <Wrench size={14} aria-hidden="true" />
+                        {config.labels.fix}
+                      </span>
+                      <p>{item.fix}</p>
+                    </div>
                   </li>
                 ))}
               </ol>
@@ -900,6 +925,38 @@ function ContactSection() {
                     : config.labels.copy}
               </span>
             </button>
+          </div>
+          <div className="studio-social">
+            <div className="studio-social-head">
+              <span className="studio-eyebrow">
+                {config.labels.socialEyebrow}
+              </span>
+              <p>{config.labels.socialIntro}</p>
+            </div>
+            <ul
+              className="studio-social-list"
+              aria-label={config.labels.socialLabel}
+            >
+              {config.socialProfiles.map((profile) => (
+                <li key={profile.id}>
+                  <a
+                    href={profile.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-brand={profile.id}
+                  >
+                    <span className="studio-social-icon">
+                      <BrandIcon id={profile.id} />
+                    </span>
+                    <span className="studio-social-copy">
+                      <strong>{profile.label}</strong>
+                      <span>{profile.handle}</span>
+                    </span>
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </Reveal>
         <div className="studio-footer-bottom">

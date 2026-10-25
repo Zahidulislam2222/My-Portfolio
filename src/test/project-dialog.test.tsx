@@ -79,8 +79,26 @@ describe("project dialog", () => {
     expect(within(dialog).getByText(/Fine Touch Marketing/)).toBeInTheDocument();
     expect(within(dialog).getByText(studioConfig.labels.problemsFixed)).toBeInTheDocument();
     expect(dialog.querySelectorAll(".studio-dialog-challenges li")).toHaveLength(evidence.challenges.length);
+    const first = dialog.querySelector(".studio-ba-case");
+    expect(first?.querySelector(".studio-ba-panel.before")?.textContent).toContain(evidence.challenges[0].problem);
+    expect(first?.querySelector(".studio-ba-panel.after")?.textContent).toContain(evidence.challenges[0].result);
+    expect(first?.querySelector(".studio-ba-fix")?.textContent).toContain(evidence.challenges[0].fix);
+    expect(first?.querySelector(".studio-ba-panel.before")?.textContent).toContain(studioConfig.labels.problem);
+    expect(first?.querySelector(".studio-ba-panel.after")?.textContent).toContain(studioConfig.labels.result);
     const pdf = within(dialog).getByRole("link", { name: new RegExp(evidence.document.label.replace(/[()]/g, "\\$&")), hidden: true });
     expect(pdf).toHaveAttribute("href", `${documentBasePath}${evidence.document.file}`);
+  });
+
+  it("renders every social profile as a new-tab link in the footer", () => {
+    render(<EngineeringStudio />);
+    const list = screen.getByRole("list", { name: studioConfig.labels.socialLabel });
+    const links = within(list).getAllByRole("link");
+    expect(links).toHaveLength(studioConfig.socialProfiles.length);
+    for (const [i, link] of links.entries()) {
+      expect(link).toHaveAttribute("href", studioConfig.socialProfiles[i].href);
+      expect(link).toHaveAttribute("target", "_blank");
+      expect(link.getAttribute("rel")).toContain("noopener");
+    }
   });
 
   it("Client work filter shows only client projects", () => {
