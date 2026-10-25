@@ -394,7 +394,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 14 (PDF)",
+      "label": "Technical overview · updated October 20 (PDF)",
       "file": "ftm-sms-followup-technical-overview.pdf"
     }
   },
