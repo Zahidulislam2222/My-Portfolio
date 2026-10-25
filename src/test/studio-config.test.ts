@@ -21,10 +21,15 @@ describe("engineering studio content contract", () => {
       expect(bytes.subarray(0, 4).toString("hex"), project.id).toMatch(/^(?:52494646|89504e47)$/);
       if (projectEvidence[project.id].engagement.type === "Client project") {
         expect(["illustration", "reference"], project.id).toContain(project.imageKind);
-        expect(project.imageAlt, project.id).toMatch(/^(?:AI-generated concept illustration for |Workflow diagram for )/);
+        expect(project.imageAlt, project.id).toMatch(/^Concept mockup of /);
       }
       if (project.imageKind !== "screenshot") expect(project.imageAlt, project.id).toBeTruthy();
     }
+  });
+  it("points every spotlight id at a real project", () => {
+    const ids = new Set(studioProjects.map((project) => project.id));
+    for (const id of [...studioConfig.spotlight.order, ...studioConfig.spotlight.glow]) expect(ids.has(id), id).toBe(true);
+    for (const id of studioConfig.spotlight.glow) expect(studioConfig.spotlight.order, id).toContain(id);
   });
   it("keeps all six contact methods configured with the correct protocols", () => {
     expect(studioConfig.contactChannels.map(channel => channel.id)).toEqual(["email", "linkedin", "upwork", "phone", "whatsapp", "github"]);

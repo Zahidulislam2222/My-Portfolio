@@ -31,10 +31,33 @@ const openProject = (name: string) => {
 };
 
 describe("project dialog", () => {
+  it("pins FTM follow-up first and keeps every glowing spotlight in the top ten", () => {
+    render(<EngineeringStudio />);
+    const cards = [...document.querySelectorAll("#projects .studio-project-grid .studio-project-card")];
+    const names = cards.map((card) => card.querySelector("h3")?.textContent);
+    expect(names[0]).toBe("Multi-Site Follow-up");
+    for (const id of studioConfig.spotlight.glow) {
+      const name = studioProjects.find((project) => project.id === id)!.name;
+      const index = names.indexOf(name);
+      expect(index, id).toBeGreaterThanOrEqual(0);
+      expect(index, id).toBeLessThan(10);
+      expect(cards[index].classList.contains("is-spotlight"), id).toBe(true);
+      expect(within(cards[index] as HTMLElement).getByText(studioConfig.labels.spotlightLabel)).toBeInTheDocument();
+    }
+    expect(document.querySelectorAll("#projects .studio-project-grid .is-spotlight")).toHaveLength(studioConfig.spotlight.glow.length);
+  });
+
+  it("keeps the glow on a spotlight project's dialog only", () => {
+    render(<EngineeringStudio />);
+    expect(openProject("Multi-Site Follow-up")).toHaveClass("is-spotlight");
+    fireEvent.click(screen.getByRole("button", { name: studioConfig.labels.closeProject, hidden: true }));
+    expect(openProject("VoiceBridge")).not.toHaveClass("is-spotlight");
+  });
+
   it("identifies client artwork honestly and preserves details when an image fails", () => {
     render(<EngineeringStudio />);
     const dialog = openProject("Campaign operations");
-    const image = within(dialog).getByRole("img", { name: "AI-generated concept illustration for Campaign operations", hidden: true });
+    const image = within(dialog).getByRole("img", { name: /^Concept mockup of Campaign operations/, hidden: true });
     expect(image.closest(".studio-project-artwork")).toBeTruthy();
     expect(dialog.querySelector(".studio-browser-bar")).toBeNull();
     expect(within(dialog).getByText(studioConfig.labels.imageLabels.illustration)).toBeInTheDocument();

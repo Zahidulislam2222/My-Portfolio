@@ -127,7 +127,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "August release records · October 10 public case study",
     "image": "/studio/yuktha-wellness-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "AI-generated concept illustration for Yuktha Wellness"
+    "imageAlt": "Concept mockup of Yuktha Wellness: a web-chat answer with a cleared emergency check beside the emergency-first retrieval pipeline"
   },
   {
     "id": "ftm-social-media",
@@ -147,7 +147,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Current platform snapshot, August 11, 2026",
     "image": "/studio/ftm-social-media-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "AI-generated concept illustration for Campaign operations"
+    "imageAlt": "Concept mockup of Campaign operations: a client content calendar with selection, revision and approval states"
   },
   {
     "id": "jwalker-knowledge-assistant",
@@ -167,7 +167,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "September 29 release records · October 10 public case study",
     "image": "/studio/jwalker-knowledge-assistant-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "AI-generated concept illustration for Creator Knowledge Assistant"
+    "imageAlt": "Concept mockup of Creator Knowledge Assistant: a WordPress question box with an answer linked to public video sources"
   },
   {
     "id": "ftm-sms-followup",
@@ -187,7 +187,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Google Doc release note reviewed October 25, 2026; verification dates and open gates stated above",
     "image": "/studio/ftm-sms-followup-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "AI-generated concept illustration for Multi-Site Follow-up"
+    "imageAlt": "Concept mockup of Multi-Site Follow-up: a booking form routed through n8n, Sheets and Twilio to a booking-summary text with tracked outcomes"
   },
   {
     "id": "ftm-seo-automation",
@@ -207,7 +207,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "September 4 recovery records · October 10 public case study",
     "image": "/studio/ftm-seo-automation-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "AI-generated concept illustration for SEO Operations"
+    "imageAlt": "Concept mockup of SEO Operations: a metadata job table with per-item validation results and worker health"
   },
   {
     "id": "adrevora-ai",
@@ -438,7 +438,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Anonymized technical case study, August 26, 2026",
     "image": "/studio/wordpress-incident-response-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "AI-generated concept illustration for Incident Response & Recovery"
+    "imageAlt": "Concept mockup of Incident Response & Recovery: an incident log, response timeline and 21 site checks"
   },
   {
     "id": "vericommerce-ai",
@@ -525,8 +525,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "featured": true,
     "evidence": "Current technical overview and owning local evidence reviewed October 18, 2026; client acceptance pending",
     "image": "/studio/playwright-cline-integration.webp",
-    "imageKind": "reference",
-    "imageAlt": "Workflow diagram for the Playwright MCP + Cline Windows integration; synthetic browser evidence is in the case study"
+    "imageKind": "illustration",
+    "imageAlt": "Concept mockup of Playwright MCP + Cline: a Cline browser action waiting for human approval beside a synthetic test page"
   },
   {
     "id": "project-video-studio",
@@ -691,6 +691,11 @@ export const studioConfig = {
     "ftm-social-media":
       "Client selection, revisions and internal approval connected to controlled campaign delivery.",
   } as Record<string, string>,
+  // Pinned to the front of the Work grid in this order; the rest keep their list order.
+  spotlight: {
+    order: ["ftm-sms-followup", "voicebridge", "fleetwright", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+    glow: ["ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+  },
   identity: portfolioConfig.personal,
   socials: portfolioConfig.socials,
   navigation: [
@@ -804,8 +809,9 @@ export const studioConfig = {
     pause: "Pause motion",
     play: "Play motion",
     illustration: "WORKFLOW ILLUSTRATION",
+    spotlightLabel: "SPOTLIGHT",
     imageLabels: {
-      illustration: "CONCEPT ILLUSTRATION",
+      illustration: "CONCEPT MOCKUP",
       reference: "TECHNICAL REFERENCE",
     },
     technologies: "BUILT WITH",

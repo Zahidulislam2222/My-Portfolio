@@ -147,6 +147,20 @@ function StudioNavigation() {
   );
 }
 
+const isSpotlight = (project: StudioProject) =>
+  config.spotlight.glow.includes(project.id);
+
+const bySpotlight = (projects: StudioProject[]) => {
+  const rank = (project: StudioProject) => {
+    const index = config.spotlight.order.indexOf(project.id);
+    return index === -1 ? config.spotlight.order.length : index;
+  };
+  return projects
+    .map((project, index) => ({ project, index }))
+    .sort((a, b) => rank(a.project) - rank(b.project) || a.index - b.index)
+    .map(({ project }) => project);
+};
+
 function ProjectVisual({ project }: { project: StudioProject }) {
   const [imageFailed, setImageFailed] = useState(false);
   if (project.image && imageFailed) {
@@ -275,7 +289,7 @@ function ProjectDialog({
   return (
     <dialog
       ref={dialog}
-      className="studio-dialog"
+      className={`studio-dialog${project && isSpotlight(project) ? " is-spotlight" : ""}`}
       aria-labelledby="project-dialog-title"
       onClose={onClose}
       onClick={(event) => {
@@ -432,16 +446,21 @@ function WorkSection({
   );
   const [indexOpen, setIndexOpen] = useState(false);
   const clientView = filter === config.labels.clientFilter;
-  const matches = studioProjects.filter((project) =>
-    filter === config.labels.filters[0]
-      ? true
-      : clientView
-        ? projectEvidence[project.id]?.engagement.type === "Client project"
-        : project.category === filter,
+  const matches = bySpotlight(
+    studioProjects.filter((project) =>
+      filter === config.labels.filters[0]
+        ? true
+        : clientView
+          ? projectEvidence[project.id]?.engagement.type === "Client project"
+          : project.category === filter,
+    ),
   );
   const featured = clientView
     ? matches
-    : matches.filter((project) => project.featured);
+    : matches.filter(
+        (project) =>
+          project.featured || config.spotlight.order.includes(project.id),
+      );
   return (
     <section id="projects" className="studio-section studio-shell">
       <Reveal className="studio-section-heading">
@@ -475,7 +494,10 @@ function WorkSection({
       </div>
       <div className="studio-project-grid">
         {featured.map((project, i) => (
-          <Reveal key={project.id} className="studio-project-card">
+          <Reveal
+            key={project.id}
+            className={`studio-project-card${isSpotlight(project) ? " is-spotlight" : ""}`}
+          >
             <button
               className="studio-project-open"
               onClick={() => onProject(project)}
@@ -486,6 +508,11 @@ function WorkSection({
                 <span className="studio-project-number">
                   {String(i + 1).padStart(2, "0")}
                 </span>
+                {isSpotlight(project) && (
+                  <span className="studio-spotlight-badge">
+                    {config.labels.spotlightLabel}
+                  </span>
+                )}
                 <span className="studio-project-arrow">
                   <ArrowUpRight size={24} />
                 </span>

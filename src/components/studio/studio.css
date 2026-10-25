@@ -2890,3 +2890,112 @@
   letter-spacing: 0.12em;
   color: var(--s-mint);
 }
+
+/* Spotlight projects: pinned cards and their dialog get a moving glow frame. */
+@property --s-glow-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.studio-project-card.is-spotlight .studio-project-media,
+.studio-dialog.is-spotlight .studio-dialog-media {
+  border-color: #8ed8aa80;
+  box-shadow:
+    0 0 0 1px #8ed8aa33,
+    0 0 26px #8ed8aa40,
+    0 0 72px #8ed8aa1f;
+  animation: studio-spotlight-pulse 3.2s ease-in-out infinite;
+}
+@supports ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
+.studio-project-card.is-spotlight .studio-project-media::after,
+.studio-dialog.is-spotlight .studio-dialog-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--s-glow-angle, 0deg),
+    transparent 0deg 220deg,
+    var(--s-accent) 290deg,
+    #ffffff 320deg,
+    var(--s-mint) 340deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: studio-spotlight-spin 4s linear infinite;
+}
+}
+.studio-project-card.is-spotlight h3 {
+  color: var(--s-mint);
+  text-shadow: 0 0 22px #8ed8aa59;
+}
+.studio-project-card.is-spotlight .studio-project-open:hover .studio-project-media,
+.studio-project-card.is-spotlight .studio-project-open:focus-visible .studio-project-media {
+  box-shadow:
+    0 0 0 1px #8ed8aa66,
+    0 0 36px #8ed8aa66,
+    0 0 110px #8ed8aa33;
+}
+.studio-spotlight-badge {
+  position: absolute;
+  top: 17px;
+  right: 18px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 4px 9px;
+  border: 1px solid #8ed8aa99;
+  border-radius: 2px;
+  background: #090c0be6;
+  color: var(--s-mint);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  box-shadow: 0 0 16px #8ed8aa4d;
+}
+.studio-spotlight-badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--s-mint);
+  box-shadow: 0 0 8px var(--s-mint);
+}
+.studio-dialog.is-spotlight {
+  border-color: #8ed8aa99;
+  box-shadow:
+    0 0 0 1px #8ed8aa40,
+    0 0 60px #8ed8aa33,
+    0 40px 150px #000a;
+}
+@keyframes studio-spotlight-spin {
+  to {
+    --s-glow-angle: 360deg;
+  }
+}
+@keyframes studio-spotlight-pulse {
+  50% {
+    box-shadow:
+      0 0 0 1px #8ed8aa59,
+      0 0 38px #8ed8aa59,
+      0 0 96px #8ed8aa2e;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-project-card.is-spotlight .studio-project-media,
+  .studio-dialog.is-spotlight .studio-dialog-media {
+    animation: none;
+  }
+  .studio-project-card.is-spotlight .studio-project-media::after,
+  .studio-dialog.is-spotlight .studio-dialog-media::after {
+    display: none;
+  }
+}
