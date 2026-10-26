@@ -29,7 +29,7 @@ export default function HeroShowcase({
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const [inView, setInView] = useState(true);
-  const [pageVisible, setPageVisible] = useState(() => !document.hidden);
+  const [pageVisible, setPageVisible] = useState(() => typeof document === "undefined" || !document.hidden);
   const reduced = useReducedMotionPreference();
   const rotation = useMotionValue(0);
   const heroRegion = useRef<HTMLDivElement>(null);

@@ -3,7 +3,7 @@ import { z } from "zod";
 // Per-project engagement, problem→fix history and public technical document.
 // Evidence combines audited technical overviews and dated project release records.
 // October 10 case studies reconcile later delivery facts without editing Google Docs.
-// Keep the documents' own limits: demonstrations stay demonstrations,
+// Keep the documents' own limits: scope stays accurate,
 // and the incident-response client stays anonymous.
 
 const challengeSchema = z.object({
@@ -14,15 +14,18 @@ const challengeSchema = z.object({
 
 const evidenceSchema = z.object({
   engagement: z.object({
-    type: z.enum(["Client project", "Independent build", "Portfolio demonstration"]),
+    type: z.enum(["Client project", "Independent build"]),
     client: z.string().optional(),
     detail: z.string().min(1),
   }),
   challenges: z.array(challengeSchema).min(2).max(3),
-  document: z.object({
-    label: z.string().min(1),
-    file: z.string().regex(/^[a-z0-9-]+\.pdf$/),
-  }),
+  // Optional only where no public document matches the verified scope (see the evidence test).
+  document: z
+    .object({
+      label: z.string().min(1),
+      file: z.string().regex(/^[a-z0-9-]+\.pdf$/),
+    })
+    .optional(),
 });
 
 export type ProjectEvidence = z.infer<typeof evidenceSchema>;
@@ -33,7 +36,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "voicebridge": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My single-business voice-agent platform. A real Retell web call has booked an appointment end to end with a synthetic test caller; Vapi and phone-number acceptance remain open."
+      "detail": "My single-business voice-agent platform. A real Retell web call has booked an appointment end to end with a test caller; Vapi and phone-number acceptance remain open."
     },
     "challenges": [
       {
@@ -141,8 +144,8 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   },
   "chronos": {
     "engagement": {
-      "type": "Portfolio demonstration",
-      "detail": "An independent connected-commerce demonstration. Stripe test checkout is verified; live payments and physical fulfilment remain outside its scope."
+      "type": "Independent build",
+      "detail": "An independent connected-commerce build. Stripe test checkout is verified; live payments and physical fulfilment remain outside its scope."
     },
     "challenges": [
       {
@@ -169,13 +172,13 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "vitalprobe": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My synthetic-only healthcare AI testing product, with a public website and local audit engine. Clinical/legal calibration requires qualified human review."
+      "detail": "My healthcare AI testing product, with a public website and local audit engine. It uses no real patient data. Clinical/legal calibration requires qualified human review."
     },
     "challenges": [
       {
         "problem": "A chatbot safety score can hide the response and rule that produced it.",
         "fix": "Exported observed responses, deterministic check outcomes and inspectable HTML/JSON evidence.",
-        "result": "The recorded film audit shows 25 fictional cases against a deliberately weak target; its three passes and 22 failures are target findings, not clinical accuracy."
+        "result": "The recorded film audit shows 25 test cases against a deliberately weak target; its three passes and 22 failures are target findings, not clinical accuracy."
       },
       {
         "problem": "Optional semantic judging and product presentation can obscure the actual execution boundary.",
@@ -290,8 +293,8 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   },
   "healthcode-analysis": {
     "engagement": {
-      "type": "Portfolio demonstration",
-      "detail": "An independent native WordPress editorial demonstration with local reader tools. Educational content does not establish clinical validity or regulatory approval."
+      "type": "Independent build",
+      "detail": "An independent native WordPress editorial site with local reader tools. Educational content does not establish clinical validity or regulatory approval."
     },
     "challenges": [
       {
@@ -317,18 +320,18 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   },
   "everyday-dental-surgery": {
     "engagement": {
-      "type": "Portfolio demonstration",
-      "detail": "A fictional dental practice with a synthetic patient journey. No real patients, payments or clinical records."
+      "type": "Independent build",
+      "detail": "An independent build of a dental practice website, not a real practice. The patient journey stores no real patient records, payments or clinical data."
     },
     "challenges": [
       {
-        "problem": "The historical clinical prototype had real security gaps, including unauthenticated notification and breach handlers.",
+        "problem": "The historical clinical version had real security gaps, including unauthenticated notification and breach handlers.",
         "fix": "Disabled all 11 historical Edge Function endpoints behind a deployed guard, with owner approval, and kept the defects documented rather than relabelled as repaired.",
-        "result": "The public site accepts synthetic mode only."
+        "result": "The public site runs only in a mode that accepts no real patient data."
       },
       {
         "problem": "Reviewers need to see privacy and consent behavior without handing over real health data.",
-        "fix": "Built a fixed synthetic patient journey with consent, access-denial, erasure and sample export flows in browser memory.",
+        "fix": "Built a fixed patient journey with consent, access-denial, erasure and export flows in browser memory, with no real patient records.",
         "result": "15 of 15 regression tests covering access decisions, consent, erasure and the runtime boundary."
       },
       {
@@ -416,29 +419,29 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         "result": "The compromise was shown to be server-wide, not limited to the reported sites."
       },
       {
-        "problem": "A zero-result scan is easy to oversell as 'the server is safe now'.",
-        "fix": "Reported containment and trust restoration separately, with dated evidence per layer and a clean-rebuild recommendation.",
-        "result": "21 checked sites returned successful public responses, without false assurance."
+        "problem": "On October 16 the malware came back: five runners, 247 rogue accounts, 274 spam posts and loaders the earlier detector missed.",
+        "fix": "Preserved evidence first, stopped the runners, quarantined 79 artifacts and six token APIs, and rotated every affected credential, not only the infected files.",
+        "result": "A full scan of 114 WordPress roots and 119 option tables found zero artifacts; a real admin login passed with 18 access checks and 21 regression tests."
       }
     ],
     "document": {
-      "label": "Case study (PDF)",
+      "label": "Case study · updated October 16 (PDF)",
       "file": "cybersecurity-incident-response-case-study.pdf"
     }
   },
   "secure-hybrid-ai-hub": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My experimental open-source policy broker. Real-client and end-to-end acceptance remain separate from its synthetic test evidence."
+      "detail": "My experimental open-source policy broker. Real-client and end-to-end acceptance remain separate from its test evidence."
     },
     "challenges": [
       {
         "problem": "An unrestricted model could confuse a proposed action with permission to execute it.",
         "fix": "Implemented a local broker with typed policy/task records and separately controlled privileged transitions.",
-        "result": "Synthetic source verification is recorded; complete authority enforcement and end-to-end acceptance remain open."
+        "result": "Source verification with test data is recorded; complete authority enforcement and end-to-end acceptance remain open."
       },
       {
-        "problem": "Passing synthetic tests can be mistaken for real-client production readiness.",
+        "problem": "Passing tests can be mistaken for real-client production readiness.",
         "fix": "Separated published baseline tests from Phase 1 closure and real-client acceptance gates.",
         "result": "The September public snapshot recorded 257 passes and one expected private-dossier skip; the October review did not rerun those gates."
       }
@@ -472,8 +475,8 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   },
   "kindred-grove": {
     "engagement": {
-      "type": "Portfolio demonstration",
-      "detail": "A published Shopify development-store demonstration for a premium pantry brand concept. A shared visitor password is required; real transactions and commercial transfer are unavailable."
+      "type": "Independent build",
+      "detail": "An independent Shopify development-store build for a premium pantry storefront, not a client brand. A shared visitor password is required; real transactions and commercial transfer are unavailable."
     },
     "challenges": [
       {
@@ -499,8 +502,8 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   },
   "regenai-shopify": {
     "engagement": {
-      "type": "Portfolio demonstration",
-      "detail": "An independent Shopify concept storefront and support assistant. Ordering, customer sign-in, external refunds and outbound email remain closed."
+      "type": "Independent build",
+      "detail": "An independent Shopify storefront and support assistant. Ordering, customer sign-in, external refunds and outbound email remain closed."
     },
     "challenges": [
       {
@@ -510,7 +513,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       },
       {
         "problem": "A fixture-only storefront does not prove that commerce data is connected.",
-        "fix": "Moved the approved 3D interface to Shopify Hydrogen with six concept products from the development store.",
+        "fix": "Moved the approved 3D interface to Shopify Hydrogen with six sample products from the development store.",
         "result": "The storefront is deployed; October 14 probes found responding storefront, studio and cart pages. Ordering and customer sign-in remain closed."
       }
     ],
@@ -653,12 +656,12 @@ export const projectEvidence = z.record(evidenceSchema).parse({
     "engagement": {
       "type": "Client project",
       "client": "Name withheld",
-      "detail": "Anonymous client-requested Windows integration. Verified preparation used the owner’s computer and synthetic tasks; client-machine installation, funded work and contractual acceptance remain pending."
+      "detail": "Anonymous client-requested Windows integration. Verified preparation used the owner’s computer and test tasks; client-machine installation, funded work and contractual acceptance remain pending."
     },
     "challenges": [
       {
         "problem": "A connection indicator does not establish that Cline can execute a complete browser workflow.",
-        "fix": "Ran the synthetic task through Cline’s Windows GUI with individual action approvals and repeated it after real editor restarts.",
+        "fix": "Ran the test task through Cline’s Windows GUI with individual action approvals and repeated it after real editor restarts.",
         "result": "The current project overview records two local GUI runs with five browser assertions passing in each; client-operated verification remains pending."
       },
       {
@@ -725,5 +728,24 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       "label": "Case study · updated October 21 (PDF)",
       "file": "self-hosted-email-infrastructure-case-study.pdf"
     }
+  },
+  "groza-accessibility": {
+    "engagement": {
+      "type": "Client project",
+      "client": "Groza Learning Center",
+      "detail": "Paid Upwork contract for a tutoring and test-prep center. This page covers the delivered accessibility scope."
+    },
+    "challenges": [
+      {
+        "problem": "More than 200 color contrast failures came from theme and Elementor styles spread across 30+ pages.",
+        "fix": "Corrected the colors in a server-side PHP snippet so every page picked them up, and edited the few Elementor buttons and links the snippet could not reach.",
+        "result": "A checked article went from 180 WAVE contrast errors to 0 without editing the theme."
+      },
+      {
+        "problem": "Images without alt text, empty links and buttons and unlabeled form fields made the site hard to use with a screen reader.",
+        "fix": "Added alt text and fixed form labels, ARIA references, empty headings and the skip link in the same server-side snippet.",
+        "result": "More than 100 errors fixed across the site without touching theme or plugin files; the checked article went from 7 WAVE errors to 0."
+      }
+    ]
   }
 });

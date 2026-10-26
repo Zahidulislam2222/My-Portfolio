@@ -21,7 +21,7 @@ describe("engineering studio content contract", () => {
       expect(bytes.subarray(0, 4).toString("hex"), project.id).toMatch(/^(?:52494646|89504e47)$/);
       if (projectEvidence[project.id].engagement.type === "Client project") {
         expect(["illustration", "reference"], project.id).toContain(project.imageKind);
-        expect(project.imageAlt, project.id).toMatch(/^Concept mockup of /);
+        if (project.imageKind === "illustration") expect(project.imageAlt, project.id).toMatch(/^Illustration of /);
       }
       if (project.imageKind !== "screenshot") expect(project.imageAlt, project.id).toBeTruthy();
     }
@@ -106,31 +106,34 @@ describe("engineering studio content contract", () => {
     }
   });
 
-  it("preserves material demonstration and implementation boundaries", () => {
-    expect(
-      studioProjects.find((project) => project.id === "everyday-dental-surgery")
-        ?.status,
-    ).toContain("Synthetic");
-    expect(
-      studioProjects.find((project) => project.id === "chronos")?.status,
-    ).toContain("test checkout");
-    expect(
-      studioProjects.find((project) => project.id === "secure-hybrid-ai-hub")
-        ?.status,
-    ).toContain("synthetic");
-    expect(
-      studioProjects.find((project) => project.id === "mediconnect-v3")?.status,
-    ).toContain("development");
+  // Owner rule (October 26): no "demo" or "fictional" labels. The facts behind them stay in
+  // each detail: no real patient data, test-only payments and the open delivery gates.
+  it("preserves material implementation boundaries without demo labels", () => {
+    const labels = /\b(demo\w*|fictional|mock-?ups?|synthetic|concepts?|illustrative|prototypes?)\b/i;
+    for (const project of studioProjects) {
+      for (const field of [project.name, project.summary, project.status, project.detail, project.domain])
+        expect(field, project.id).not.toMatch(labels);
+    }
+    for (const [id, evidence] of Object.entries(projectEvidence)) expect(JSON.stringify(evidence), id).not.toMatch(labels);
+    // The legacy project list still ships in the page bundle, so it follows the same rule.
+    for (const project of portfolioConfig.projects) expect(JSON.stringify(project), project.id).not.toMatch(labels);
+    const dental = studioProjects.find((project) => project.id === "everyday-dental-surgery");
+    expect(dental?.summary).toMatch(/^Independent build/);
+    expect(dental?.summary).toContain("No real patient records");
+    expect(dental?.detail).toContain("not a client project and not a real practice");
+    expect(dental?.detail).toContain("not an operating clinical portal");
+    expect(studioProjects.find((project) => project.id === "chronos")?.detail).toContain("Live payments and shipping are not enabled");
+    expect(studioProjects.find((project) => project.id === "secure-hybrid-ai-hub")?.detail).toContain("end-to-end acceptance remain incomplete");
+    expect(studioProjects.find((project) => project.id === "mediconnect-v3")?.detail).toContain("clinical acceptance remain open");
     const regenai = studioProjects.find((project) => project.id === "regenai-shopify");
-    expect(regenai?.status).toContain("ordering closed");
     expect(regenai?.detail).toContain("Ordering, customer sign-in, external refunds and outbound email remain closed");
     expect(regenai?.detail).toContain("Real action receipts and client handoff remain open");
     expect(
       studioProjects.find((project) => project.id === "kindred-grove")?.status,
     ).toContain("password protected");
     const voicebridge = studioProjects.find((project) => project.id === "voicebridge");
-    expect(voicebridge?.status).toContain("Vapi path pending");
-    expect(voicebridge?.detail).toContain("synthetic test voice");
+    expect(voicebridge?.detail).toContain("The Vapi path, phone numbers");
+    expect(voicebridge?.detail).toContain("clearly labelled test voice");
     expect(voicebridge?.detail).toContain("not a reliability or capacity measurement");
     expect(voicebridge?.detail).toContain("backup replay remain open");
     expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
@@ -176,10 +179,10 @@ describe("engineering studio content contract", () => {
   it("adds the video studio and mail infrastructure with their stated boundaries", () => {
     const video = studioProjects.find(project => project.id === "project-video-studio");
     const mail = studioProjects.find(project => project.id === "self-hosted-email-infrastructure");
-    expect(video?.status).toContain("hosted service not built");
+
     expect(video?.detail).toMatch(/no hosted service/);
     expect(projectResources("project-video-studio").links).toContainEqual({label: "Source code", url: "https://github.com/Zahidulislam2222/project-video-studio"});
-    expect(mail?.status).toContain("not high availability");
+    expect(mail?.detail).toContain("not highly available");
     expect(mail?.detail).toMatch(/do not guarantee inbox placement/);
     expect(projectResources("self-hosted-email-infrastructure").links).toHaveLength(0);
     for (const id of ["project-video-studio", "self-hosted-email-infrastructure"]) {

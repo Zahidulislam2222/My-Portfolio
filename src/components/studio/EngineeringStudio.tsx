@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import { motion, useScroll } from "framer-motion";
 import { useReducedMotionPreference } from "@/hooks/use-reduced-motion-preference";
 import {
@@ -36,6 +36,7 @@ import {
   documentBasePath,
   projectEvidence,
 } from "@/config/project-evidence.config";
+import { projectPath } from "@/config/seo.config";
 import "./studio.css";
 import HeroShowcase from "./HeroShowcase";
 import ExpertiseMarquee from "./ExpertiseMarquee";
@@ -62,7 +63,8 @@ function Reveal({
   );
 }
 
-function StudioNavigation() {
+// Off the home page, section links point back to "/" and the brand goes home.
+export function StudioNavigation({ base = "" }: { base?: string }) {
   const [open, setOpen] = useState(false);
   const toggle = useRef<HTMLButtonElement>(null);
   const { scrollYProgress } = useScroll();
@@ -85,7 +87,7 @@ function StudioNavigation() {
         <div className="studio-shell studio-nav">
           <a
             className="studio-brand"
-            href="#home"
+            href={base ? "/" : "#home"}
             aria-label={`${config.identity.name}, ${config.labels.home}`}
           >
             <span className="studio-monogram" aria-hidden="true">
@@ -101,7 +103,7 @@ function StudioNavigation() {
             aria-label={config.labels.mainNavigation}
           >
             {config.navigation.map((item) => (
-              <a href={item.href} key={item.href}>
+              <a href={`${base}${item.href}`} key={item.href}>
                 {item.label}
               </a>
             ))}
@@ -129,7 +131,7 @@ function StudioNavigation() {
           hidden={!open}
         >
           {config.navigation.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
+            <a key={item.href} href={`${base}${item.href}`} onClick={() => setOpen(false)}>
               {item.label}
               <ArrowUpRight size={18} />
             </a>
@@ -161,7 +163,20 @@ const bySpotlight = (projects: StudioProject[]) => {
     .map(({ project }) => project);
 };
 
-function ProjectVisual({ project }: { project: StudioProject }) {
+// 720px variants come from scripts/make_web_images.py; originals stay the large source.
+const cardVariant = (image: string) => image.replace(/\.(webp|png)$/, "-720.webp");
+const CARD_SIZES = "(max-width: 640px) calc(100vw - 40px), (max-width: 1150px) 50vw, 660px";
+
+export function ProjectVisual({
+  project,
+  sizes = CARD_SIZES,
+  decorative = false,
+}: {
+  project: StudioProject;
+  sizes?: string;
+  // Inside a link that already names the project, the image only repeats it.
+  decorative?: boolean;
+}) {
   const [imageFailed, setImageFailed] = useState(false);
   if (project.image && imageFailed) {
     return (
@@ -183,9 +198,11 @@ function ProjectVisual({ project }: { project: StudioProject }) {
         </div>}
         <img
           src={project.image}
+          srcSet={`${cardVariant(project.image)} 720w, ${project.image} 1440w`}
+          sizes={sizes}
           onError={() => setImageFailed(true)}
           loading="lazy"
-          alt={project.imageAlt ?? `${project.name} public website screenshot`}
+          alt={decorative ? "" : project.imageAlt ?? `${project.name} public website screenshot`}
           width="1440"
           height="960"
         />
@@ -263,6 +280,153 @@ function ProjectVisual({ project }: { project: StudioProject }) {
   );
 }
 
+// Plain clicks open the in-page dialog; modified clicks and crawlers follow the case-study URL.
+const openInPage =
+  (project: StudioProject, onProject: (project: StudioProject) => void) =>
+  (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    onProject(project);
+  };
+
+// Shared by the in-page dialog (h2 title, h3 sections) and the case-study page (h1 title, h2 sections).
+export function ProjectCaseBody({
+  project,
+  section: Section,
+}: {
+  project: StudioProject;
+  section: "h2" | "h3";
+}) {
+  const resources = projectResources(project.id);
+  const evidence = projectEvidence[project.id];
+  return (
+    <>
+      <p className="studio-dialog-summary">{project.summary}</p>
+      {project.image && (
+        <div className="studio-dialog-media">
+          <ProjectVisual key={project.id} project={project} />
+          {project.imageKind !== "screenshot" && (
+            <span className="studio-image-kind-label">
+              {config.labels.imageLabels[project.imageKind]}
+            </span>
+          )}
+        </div>
+      )}
+      <div className="studio-dialog-status">
+        <span>{config.labels.projectStatus}</span>
+        <p>{project.status}</p>
+      </div>
+      {evidence && (
+        <div className="studio-dialog-engagement">
+          <span>{config.labels.engagement}</span>
+          <p>
+            <strong>{evidence.engagement.type}</strong>
+            {evidence.engagement.client && (
+              <> · {evidence.engagement.client}</>
+            )}
+          </p>
+          <p>{evidence.engagement.detail}</p>
+        </div>
+      )}
+      <Section>{config.labels.projectScope}</Section>
+      <p className="studio-dialog-detail">{project.detail}</p>
+      <div className="studio-tags">
+        {project.stack.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+      {evidence && (
+        <>
+          <div className="studio-ba-heading">
+            <Section>{config.labels.problemsFixed}</Section>
+            <p>{config.labels.problemsIntro}</p>
+          </div>
+          <ol className="studio-dialog-challenges">
+            {evidence.challenges.map((item, index) => (
+              <li key={item.problem} className="studio-ba-case">
+                <span className="studio-ba-index">
+                  {config.labels.caseLabel}{" "}
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="studio-ba-pair">
+                  <div className="studio-ba-panel before">
+                    <span className="studio-ba-label">
+                      <CircleAlert size={14} aria-hidden="true" />
+                      {config.labels.problem}
+                    </span>
+                    <p>{item.problem}</p>
+                  </div>
+                  <span className="studio-ba-arrow" aria-hidden="true">
+                    <ArrowRight size={18} />
+                  </span>
+                  <div className="studio-ba-panel after">
+                    <span className="studio-ba-label">
+                      <CircleCheck size={14} aria-hidden="true" />
+                      {config.labels.result}
+                    </span>
+                    <p>{item.result}</p>
+                  </div>
+                </div>
+                <div className="studio-ba-fix">
+                  <span className="studio-ba-label">
+                    <Wrench size={14} aria-hidden="true" />
+                    {config.labels.fix}
+                  </span>
+                  <p>{item.fix}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+      <div className="studio-dialog-links">
+        {evidence?.document && (
+          <a
+            className="studio-button secondary"
+            href={`${documentBasePath}${evidence.document.file}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FileText size={16} />
+            {evidence.document.label}
+            <ArrowUpRight size={15} />
+          </a>
+        )}
+        {resources.links.map((link) => (
+          <a
+            className="studio-button secondary"
+            key={link.url}
+            href={link.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <Github size={16} />
+            <span>{config.labels.sourceLabel} · {link.label}</span>
+            <ArrowUpRight size={15} />
+          </a>
+        ))}
+        {resources.liveUrl && (
+          <a
+            className="studio-button primary"
+            href={resources.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span className="studio-link-label">
+              <span>{config.labels.liveLabel}</span>
+              <span className="studio-link-host">{new URL(resources.liveUrl).hostname}</span>
+            </span>
+            <ArrowUpRight size={17} />
+          </a>
+        )}
+      </div>
+      <p className="studio-dialog-evidence">
+        {config.labels.referenceLabel}: {project.evidence}
+      </p>
+    </>
+  );
+}
+
 function ProjectDialog({
   project,
   onClose,
@@ -282,10 +446,6 @@ function ProjectDialog({
       document.body.style.overflow = previous;
     };
   }, [project]);
-  const resources = project
-    ? projectResources(project.id)
-    : { links: [], liveUrl: undefined };
-  const evidence = project ? projectEvidence[project.id] : undefined;
   return (
     <dialog
       ref={dialog}
@@ -308,128 +468,11 @@ function ProjectDialog({
           </button>
           <span className="studio-eyebrow">{project.domain}</span>
           <h2 id="project-dialog-title">{project.name}</h2>
-          <p className="studio-dialog-summary">{project.summary}</p>
-          {project.image && (
-            <div className="studio-dialog-media">
-              <ProjectVisual key={project.id} project={project} />
-              {project.imageKind !== "screenshot" && (
-                <span className="studio-image-kind-label">
-                  {config.labels.imageLabels[project.imageKind]}
-                </span>
-              )}
-            </div>
-          )}
-          <div className="studio-dialog-status">
-            <span>{config.labels.projectStatus}</span>
-            <p>{project.status}</p>
-          </div>
-          {evidence && (
-            <div className="studio-dialog-engagement">
-              <span>{config.labels.engagement}</span>
-              <p>
-                <strong>{evidence.engagement.type}</strong>
-                {evidence.engagement.client && (
-                  <> · {evidence.engagement.client}</>
-                )}
-              </p>
-              <p>{evidence.engagement.detail}</p>
-            </div>
-          )}
-          <h3>{config.labels.projectScope}</h3>
-          <p className="studio-dialog-detail">{project.detail}</p>
-          <div className="studio-tags">
-            {project.stack.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-          {evidence && (
-            <>
-              <div className="studio-ba-heading">
-                <h3>{config.labels.problemsFixed}</h3>
-                <p>{config.labels.problemsIntro}</p>
-              </div>
-              <ol className="studio-dialog-challenges">
-                {evidence.challenges.map((item, index) => (
-                  <li key={item.problem} className="studio-ba-case">
-                    <span className="studio-ba-index">
-                      {config.labels.caseLabel}{" "}
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="studio-ba-pair">
-                      <div className="studio-ba-panel before">
-                        <span className="studio-ba-label">
-                          <CircleAlert size={14} aria-hidden="true" />
-                          {config.labels.problem}
-                        </span>
-                        <p>{item.problem}</p>
-                      </div>
-                      <span className="studio-ba-arrow" aria-hidden="true">
-                        <ArrowRight size={18} />
-                      </span>
-                      <div className="studio-ba-panel after">
-                        <span className="studio-ba-label">
-                          <CircleCheck size={14} aria-hidden="true" />
-                          {config.labels.result}
-                        </span>
-                        <p>{item.result}</p>
-                      </div>
-                    </div>
-                    <div className="studio-ba-fix">
-                      <span className="studio-ba-label">
-                        <Wrench size={14} aria-hidden="true" />
-                        {config.labels.fix}
-                      </span>
-                      <p>{item.fix}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </>
-          )}
-          <div className="studio-dialog-links">
-            {evidence && (
-              <a
-                className="studio-button secondary"
-                href={`${documentBasePath}${evidence.document.file}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FileText size={16} />
-                {evidence.document.label}
-                <ArrowUpRight size={15} />
-              </a>
-            )}
-            {resources.links.map((link) => (
-              <a
-                className="studio-button secondary"
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <Github size={16} />
-                <span>{config.labels.sourceLabel} · {link.label}</span>
-                <ArrowUpRight size={15} />
-              </a>
-            ))}
-            {resources.liveUrl && (
-              <a
-                className="studio-button primary"
-                href={resources.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="studio-link-label">
-                  <span>{config.labels.demoLabel}</span>
-                  <span className="studio-link-host">{new URL(resources.liveUrl).hostname}</span>
-                </span>
-                <ArrowUpRight size={17} />
-              </a>
-            )}
-          </div>
-          <p className="studio-dialog-evidence">
-            {config.labels.referenceLabel}: {project.evidence}
-          </p>
+          <a className="studio-text-link studio-case-link" href={projectPath(project)}>
+            {config.labels.fullCaseStudy}
+            <ArrowUpRight size={15} />
+          </a>
+          <ProjectCaseBody project={project} section="h3" />
         </div>
       )}
     </dialog>
@@ -498,9 +541,10 @@ function WorkSection({
             key={project.id}
             className={`studio-project-card${isSpotlight(project) ? " is-spotlight" : ""}`}
           >
-            <button
+            <a
               className="studio-project-open"
-              onClick={() => onProject(project)}
+              href={projectPath(project)}
+              onClick={openInPage(project, onProject)}
               aria-label={`${config.labels.readProject}: ${project.name}`}
             >
               <div className="studio-project-media">
@@ -557,7 +601,7 @@ function WorkSection({
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-            </button>
+            </a>
           </Reveal>
         ))}
       </div>
@@ -585,7 +629,7 @@ function WorkSection({
           </span>
         </div>
         {matches.map((project, i) => (
-          <button key={project.id} onClick={() => onProject(project)}>
+          <a key={project.id} href={projectPath(project)} onClick={openInPage(project, onProject)}>
             <span className="studio-index-number">
               {String(i + 1).padStart(2, "0")}
             </span>
@@ -595,7 +639,7 @@ function WorkSection({
             </span>
             <span className="studio-index-category">{project.category}</span>
             <ArrowUpRight size={21} />
-          </button>
+          </a>
         ))}
       </div>
     </section>
@@ -867,7 +911,7 @@ function AboutSection() {
   );
 }
 
-function ContactSection() {
+export function ContactSection({ base = "" }: { base?: string }) {
   const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">(
     "idle",
   );
@@ -987,12 +1031,13 @@ function ContactSection() {
           </div>
         </Reveal>
         <div className="studio-footer-bottom">
-          <a className="studio-footer-brand" href="#home">
+          <a className="studio-footer-brand" href={base ? "/" : "#home"}>
             {config.identity.name}
-            <span>© {new Date().getFullYear()}</span>
+            {/* The prerendered year can trail the visitor's clock across New Year. */}
+            <span suppressHydrationWarning>© {new Date().getFullYear()}</span>
           </a>
           <span>{config.labels.footerNote}</span>
-          <a href="#home">
+          <a href="#top">
             {config.labels.backTop}
             <ArrowUp size={15} />
           </a>
@@ -1005,7 +1050,7 @@ function ContactSection() {
 export default function EngineeringStudio() {
   const [selected, setSelected] = useState<StudioProject | null>(null);
   return (
-    <div className="engineering-studio">
+    <div className="engineering-studio" id="top">
       <StudioNavigation />
       <main id="main" tabIndex={-1}>
         <HeroShowcase onProject={setSelected} />

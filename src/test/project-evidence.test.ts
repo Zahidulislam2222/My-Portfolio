@@ -12,8 +12,12 @@ describe("project evidence", () => {
     expect(Object.keys(projectEvidence).sort()).toEqual(studioIds);
   });
 
-  it("links every project to a real PDF in public/", () => {
+  it("links every project to a real PDF in public/, except the one documented exception", () => {
+    // Groza's older case study also describes consent work outside the verified paid scope.
+    expect(Object.entries(projectEvidence).filter(([, evidence]) => !evidence.document).map(([id]) => id))
+      .toEqual(["groza-accessibility"]);
     for (const [id, evidence] of Object.entries(projectEvidence)) {
+      if (!evidence.document) continue;
       const file = resolve(publicDir, `.${documentBasePath}${evidence.document.file}`);
       expect(existsSync(file), `${id}: ${file}`).toBe(true);
       expect(readFileSync(file).subarray(0, 5).toString(), id).toBe("%PDF-");
@@ -38,9 +42,9 @@ describe("project evidence", () => {
     for (const id of incidentIds) expect(id).not.toMatch(/fine|touch|ftm/i);
   });
 
-  it("keeps fictional and demonstration projects labelled as such", () => {
+  it("keeps my own builds out of client work", () => {
     for (const id of ["everyday-dental-surgery", "chronos", "regenai-shopify", "healthcode-analysis", "kindred-grove"]) {
-      expect(projectEvidence[id].engagement.type, id).toBe("Portfolio demonstration");
+      expect(projectEvidence[id].engagement.type, id).toBe("Independent build");
       expect(projectEvidence[id].engagement.client, id).toBeUndefined();
     }
   });
@@ -61,6 +65,7 @@ describe("project evidence", () => {
       "ftm-seo-automation",
       "ftm-sms-followup",
       "ftm-social-media",
+      "groza-accessibility",
       "jwalker-knowledge-assistant",
       "playwright-cline-integration",
       "wordpress-incident-response",

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "zahidul-islam.vercel.app"
+        }
+      ],
+      "destination": "https://zahidul-islam.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.zahidul-islam.com"
+        }
+      ],
+      "destination": "https://zahidul-islam.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/groza-case-study.html",
+      "destination": "/work/groza-accessibility",
+      "permanent": true
+    },
+    {
+      "source": "/EDS_Project_Documentation.pdf",
+      "destination": "/docs/everyday-dental-surgery-technical-overview.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/MediConnect_Technical_Overview.pdf",
+      "destination": "/docs/mediconnect-technical-overview.pdf",
+      "permanent": true
+    },
+    {
+      "source": "/Mediconnect_Info.pdf",
+      "destination": "/docs/mediconnect-technical-overview.pdf",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000"
+        }
+      ]
+    }
+  ]
+}

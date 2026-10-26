@@ -64,7 +64,7 @@ export default function CardCarousel({ active, selectionVersion = 0, paused, red
               {mode.image ? failed[mode.id] ? (
                 <div className="showcase-image-fallback"><Layers3 /><p>{hero.fallback}</p></div>
               ) : (
-                <img src={mode.image} width="1440" height="1000" alt={mode.caption} onError={() => setFailed((current) => ({ ...current, [mode.id]: true }))} />
+                <img src={mode.image} srcSet={`${mode.image.replace(/\.webp$/, "-720.webp")} 720w, ${mode.image} 1440w`} sizes="(max-width: 640px) calc(100vw - 40px), 640px" width="1440" height="1000" alt={mode.caption} onError={() => setFailed((current) => ({ ...current, [mode.id]: true }))} />
               ) : <IntelligenceScene nodes={mode.nodes} caption={mode.caption} />}
             </div>
             <div className="showcase-flow">

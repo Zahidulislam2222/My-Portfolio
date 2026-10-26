@@ -21,8 +21,9 @@ export default function HeroCopyCarousel({ active, rotation }: { active: number;
 
   return (
     <div className="showcase-copy-stage" data-copy={current.id}>
-      <h1 className="sr-only">{current.headline.join(" ")}</h1>
-      <p className="sr-only">{current.description}</p>
+      <h1 className="sr-only">{hero.heading}</h1>
+      <p className="sr-only showcase-sr-headline">{current.headline.join(" ")}</p>
+      <p className="sr-only showcase-sr-description">{current.description}</p>
       <motion.div ref={rotor} className="showcase-copy-rotor" aria-hidden="true" style={{ rotateX: rotation, z: -depth }}>
         {hero.modes.map((mode, index) => (
           <div key={mode.id} className="showcase-copy-face" data-copy-face={mode.id}

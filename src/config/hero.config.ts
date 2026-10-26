@@ -2,6 +2,8 @@ import { z } from "zod";
 
 export const heroShowcase = {
   identity: "Zahidul Islam · AI Automation Engineer",
+  // The page's one stable H1; the rotating visual headlines stay decorative.
+  heading: "Zahidul Islam, AI automation engineer building AI assistants, voice agents and n8n workflow automation",
   workspace: "EXPLORE THE ENGINEERING",
   tabLabel: "Explore engineering disciplines",
   visualLabel: "PROJECT VIEW",

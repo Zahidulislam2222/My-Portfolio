@@ -26,7 +26,7 @@ beforeAll(() => {
 });
 
 const openProject = (name: string) => {
-  fireEvent.click(screen.getByRole("button", { name: `${studioConfig.labels.readProject}: ${name}` }));
+  fireEvent.click(screen.getByRole("link", { name: `${studioConfig.labels.readProject}: ${name}` }));
   return screen.getByRole("dialog", { hidden: true });
 };
 
@@ -57,7 +57,7 @@ describe("project dialog", () => {
   it("identifies client artwork honestly and preserves details when an image fails", () => {
     render(<EngineeringStudio />);
     const dialog = openProject("Campaign operations");
-    const image = within(dialog).getByRole("img", { name: /^Concept mockup of Campaign operations/, hidden: true });
+    const image = within(dialog).getByRole("img", { name: /^Illustration of Campaign operations/, hidden: true });
     expect(image.closest(".studio-project-artwork")).toBeTruthy();
     expect(dialog.querySelector(".studio-browser-bar")).toBeNull();
     expect(within(dialog).getByText(studioConfig.labels.imageLabels.illustration)).toBeInTheDocument();
@@ -78,7 +78,7 @@ describe("project dialog", () => {
   it("makes non-featured tooling images accessible from the complete index", () => {
     render(<EngineeringStudio />);
     fireEvent.click(screen.getByRole("button", { name: `${studioConfig.labels.allProjects} (${studioProjects.length})` }));
-    fireEvent.click(screen.getByRole("button", { name: /EmailFinder.*Local CLI/ }));
+    fireEvent.click(screen.getByRole("link", { name: /EmailFinder.*Local CLI/ }));
     const dialog = screen.getByRole("dialog", { hidden: true });
     expect(within(dialog).getByRole("img", { name: "EmailFinder actual command-line help", hidden: true })).toBeInTheDocument();
     expect(within(dialog).getByText(studioConfig.labels.imageLabels.reference)).toBeInTheDocument();
@@ -86,7 +86,7 @@ describe("project dialog", () => {
   it("shows AdRevora's private GitHub link and the actual live subdomain", () => {
     render(<EngineeringStudio />);
     fireEvent.click(screen.getByRole("button", { name: `${studioConfig.labels.allProjects} (${studioProjects.length})` }));
-    fireEvent.click(screen.getByRole("button", { name: /AdRevora AI.*Deployed revenue workspace/ }));
+    fireEvent.click(screen.getByRole("link", { name: /AdRevora AI.*Deployed revenue workspace/ }));
     const dialog = screen.getByRole("dialog", { hidden: true });
     expect(within(dialog).getByRole("link", { name: /GitHub.*Private repository/, hidden: true }))
       .toHaveAttribute("href", "https://github.com/Zahidulislam2222/AdRevora-AI");
@@ -127,10 +127,42 @@ describe("project dialog", () => {
   it("Client work filter shows only client projects", () => {
     render(<EngineeringStudio />);
     fireEvent.click(screen.getByRole("button", { name: studioConfig.labels.clientFilter }));
-    const cards = screen.getAllByRole("button", { name: new RegExp(`^${studioConfig.labels.readProject}: `) });
+    const cards = screen.getAllByRole("link", { name: new RegExp(`^${studioConfig.labels.readProject}: `) });
     const clientCount = Object.values(projectEvidence).filter((e) => e.engagement.type === "Client project").length;
     expect(cards).toHaveLength(clientCount);
-    expect(screen.getByRole("button", { name: `${studioConfig.labels.readProject}: Incident Response & Recovery` })).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: `${studioConfig.labels.readProject}: Chronos` })).toBeNull();
+    expect(screen.getByRole("link", { name: `${studioConfig.labels.readProject}: Incident Response & Recovery` })).toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: `${studioConfig.labels.readProject}: Chronos` })).toBeNull();
+  });
+
+  it("links every card and index row to its crawlable case-study page", () => {
+    render(<EngineeringStudio />);
+    for (const card of screen.getAllByRole("link", { name: new RegExp(`^${studioConfig.labels.readProject}: `) })) {
+      const project = studioProjects.find((item) => card.getAttribute("aria-label")?.endsWith(`: ${item.name}`))!;
+      expect(card).toHaveAttribute("href", `/work/${project.id}`);
+    }
+    const index = document.getElementById("studio-project-index")!;
+    expect([...index.querySelectorAll("a")].map((row) => row.getAttribute("href")).sort())
+      .toEqual(studioProjects.map((project) => `/work/${project.id}`).sort());
+  });
+
+  it("opens the dialog on a plain click but leaves modified clicks to the browser", () => {
+    render(<EngineeringStudio />);
+    const card = screen.getByRole("link", { name: `${studioConfig.labels.readProject}: VoiceBridge` });
+    const modified = new MouseEvent("click", { bubbles: true, cancelable: true, ctrlKey: true });
+    let leftToBrowser = false;
+    // Record the app's decision, then stop jsdom, which cannot open a new tab.
+    const record = (event: Event) => {
+      leftToBrowser = !event.defaultPrevented;
+      event.preventDefault();
+    };
+    window.addEventListener("click", record);
+    card.dispatchEvent(modified);
+    window.removeEventListener("click", record);
+    expect(leftToBrowser).toBe(true);
+    expect(screen.getByRole("dialog", { hidden: true })).not.toHaveAttribute("open");
+    const dialog = openProject("VoiceBridge");
+    expect(dialog).toHaveAttribute("open");
+    expect(within(dialog).getByRole("link", { name: studioConfig.labels.fullCaseStudy, hidden: true }))
+      .toHaveAttribute("href", "/work/voicebridge");
   });
 });

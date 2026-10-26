@@ -257,13 +257,18 @@ def entries(settings: Settings) -> list[dict[str, Any]]:
             if entry.get(key) and not settings.path(entry[key]).is_relative_to(settings.root / "memory"):
                 raise SyncError("Reviewed bundles and curated PDFs must stay in project memory/.")
     legacy_ids = {entry["id"] for entry in registry.get("legacy_projects", [])}
-    if legacy_ids & set(ids):
+    # Studio cards with no Google Doc (each needs a recorded reason) are covered but never synced.
+    undocumented = registry.get("undocumented_projects", [])
+    if any(not entry.get("reason") for entry in undocumented):
+        raise SyncError("Every undocumented project needs a recorded reason.")
+    undocumented_ids = {entry["id"] for entry in undocumented}
+    if (legacy_ids | undocumented_ids) & set(ids):
         raise SyncError("A project cannot be both registered and explicitly unmapped legacy data.")
     for name in ["portfolio", "studio"]:
         target = settings.targets[name]
         content = block(settings.path(target["file"]), target["marker"])[3]
         expected_ids = {item["id"] for item in content}
-        covered = set(ids) | (legacy_ids if name == "portfolio" else set())
+        covered = set(ids) | undocumented_ids | (legacy_ids if name == "portfolio" else set())
         if expected_ids - covered:
             raise SyncError("Project registry coverage is incomplete. Map every selected project and explicitly record unmapped legacy entries.")
     return result

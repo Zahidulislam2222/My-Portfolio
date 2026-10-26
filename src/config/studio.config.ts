@@ -31,8 +31,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "VOICE & BUSINESS AUTOMATION",
     "summary": "A live Retell web call booked an appointment and completed calendar and CRM jobs through guarded releases.",
-    "status": "Deployed · first booked voice call verified · Vapi path pending",
-    "detail": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. On October 25 an owner Retell web call joined audio, checked availability and booked a repair visit; the worker then completed the Google Calendar and HubSpot CRM jobs. The caller was a clearly labelled synthetic test voice; the agent, engine, worker, database, calendar and CRM were live. Four earlier calls exposed case-sensitive service matching, low caller audio, a missing year and an expired Google token, and each cause was fixed before the next call. Three guarded backend releases each took a database backup, kept a rollback target, matched 16/16 release files and 15/15 image modules and preserved 77 unrelated containers. The backend suite passed 258/258. The Vapi path, phone numbers, Google OAuth production publishing, a pre-call token check, provider-data deletion and backup replay remain open, and general follow-up email stays disabled. One booked call is a functional result, not a reliability or capacity measurement.",
+    "status": "Deployed · live Retell call booked a test appointment end to end",
+    "detail": "A deployed single-business voice-agent platform with owner sign-in, grounded knowledge, scoped Retell/Vapi and MCP tools, explicit booking confirmation and durable worker recovery. On October 25 an owner Retell web call joined audio, checked availability and booked a repair visit; the worker then completed the Google Calendar and HubSpot CRM jobs. The caller was a clearly labelled test voice; the agent, engine, worker, database, calendar and CRM were live. Four earlier calls exposed case-sensitive service matching, low caller audio, a missing year and an expired Google token, and each cause was fixed before the next call. Three guarded backend releases each took a database backup, kept a rollback target, matched 16/16 release files and 15/15 image modules and preserved 77 unrelated containers. The backend suite passed 258/258. The Vapi path, phone numbers, Google OAuth production publishing, a pre-call token check, provider-data deletion and backup replay remain open, and general follow-up email stays disabled. One booked call is a functional result, not a reliability or capacity measurement.",
     "stack": [
       "Python",
       "PostgreSQL",
@@ -72,7 +72,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "ENGINEERING WORKFLOWS",
     "summary": "Claude Code and Codex workflows with custom MCP, bounded evidence retrieval and recovery.",
-    "status": "Working CLI/MCP tooling · dated verification",
+    "status": "Working Claude Code/Codex tooling · 45 tests pass",
     "detail": "A project-aware development environment integrating Claude Code, Codex, provider-isolated launchers, project-scoped checkpoints and a custom SQLite FTS5 career-knowledge MCP. Typed tool contracts, bounded exact-source retrieval, browser-integration diagnosis and edit/repository security gates support evidence-based engineering. October 14 records eight knowledge-index tests and 37 switcher tests passing from a local snapshot; the installed-suite attempt had two filesystem-permission errors. The browser connection has dated 13-step functional evidence, without a reliability benchmark. Cross-provider transcript resume, productivity multipliers and unrestricted automation are not established.",
     "stack": [
       "Claude Code",
@@ -93,9 +93,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "RegenAI / Shopify Support Studio",
     "category": "Web & Commerce",
     "domain": "HEADLESS WELLNESS COMMERCE",
-    "summary": "Shopify-backed Hydrogen concepts and an assistant with versioned human-reviewed decisions.",
-    "status": "Deployed storefront and support · ordering closed",
-    "detail": "A Shopify-backed Hydrogen storefront with six concept products and a deployed Python Support Studio. Contextual chat, encrypted preferences, image understanding, bounded web retrieval and versioned human approvals support ticket recommendations. The October 8 release recorded 86 Python tests, 184 JavaScript tests with one existing skip, six workflow regressions and 17 public HTTP checks. October 14 read-only probes found storefront, studio and cart responding; they did not renew Shopify/Gmail grants or replay a full journey. Ordering, customer sign-in, external refunds and outbound email remain closed. Real action receipts and client handoff remain open.",
+    "summary": "A Shopify-backed Hydrogen storefront and an assistant with versioned human-reviewed decisions.",
+    "status": "Deployed storefront and support studio · ordering closed",
+    "detail": "A Shopify-backed Hydrogen storefront with six sample products and a deployed Python Support Studio. Contextual chat, encrypted preferences, image understanding, bounded web retrieval and versioned human approvals support ticket recommendations. The October 8 release recorded 86 Python tests, 184 JavaScript tests with one existing skip, six workflow regressions and 17 public HTTP checks. October 14 read-only probes found storefront, studio and cart responding; they did not renew Shopify/Gmail grants or replay a full journey. Ordering, customer sign-in, external refunds and outbound email remain closed. Real action receipts and client handoff remain open.",
     "stack": [
       "Hydrogen",
       "Python",
@@ -114,8 +114,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "Yuktha Wellness",
     "category": "AI & Agents",
     "domain": "GROUNDED HEALTH AI",
-    "summary": "A better answer starts with better retrieval.",
-    "status": "Production assistant · human judgment required",
+    "summary": "Paid multilingual health assistant: hybrid retrieval, reranking and an emergency check that runs before any answer.",
+    "status": "Paid client work · production assistant",
     "detail": "Paid client engineering for a multilingual health assistant: hybrid dense and keyword retrieval, cross-encoder reranking, emergency/crisis handling, structured grounding checks, SSE streaming and Redis caching. Web chat and controlled WhatsApp routing connect to the platform. Later work separates user-authored memory from generated replies and improves multilingual retrieval and image-only handling. The August release record includes 28 passing backend test files and a nine-check namespace migration. The recorded full latency target remains unmet; clinical content and final tone require human review. Historical deployment drift remains documented, so these records do not establish current source-to-live parity.",
     "stack": [
       "Node.js",
@@ -127,15 +127,15 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "August release records · October 10 public case study",
     "image": "/studio/yuktha-wellness-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of Yuktha Wellness: a web-chat answer with a cleared emergency check beside the emergency-first retrieval pipeline"
+    "imageAlt": "Illustration of Yuktha Wellness: a web-chat answer with a cleared emergency check beside the emergency-first retrieval pipeline"
   },
   {
     "id": "ftm-social-media",
     "name": "Campaign operations",
     "category": "AI & Agents",
     "domain": "CLIENT AUTOMATION",
-    "summary": "Creative automation with a human approval loop.",
-    "status": "Production workflow",
+    "summary": "Paid campaign workflow: approved media in, AI copy drafts, client selection and revisions, then approved assets delivered.",
+    "status": "Paid client work · production workflow",
     "detail": "A media-first campaign workflow with approved asset intake, background copy generation, client media/date selection, revisions, internal approval and controlled asset delivery. The August release included real client dashboard/calendar approval checks and deployment parity. Approved deliverables are downloaded for manual publishing; direct social-network publishing is not the verified path.",
     "stack": [
       "n8n",
@@ -147,16 +147,16 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Current platform snapshot, August 11, 2026",
     "image": "/studio/ftm-social-media-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of Campaign operations: a client content calendar with selection, revision and approval states"
+    "imageAlt": "Illustration of Campaign operations: a client content calendar with selection, revision and approval states"
   },
   {
     "id": "jwalker-knowledge-assistant",
     "name": "Creator Knowledge Assistant",
     "category": "AI & Agents",
     "domain": "PUBLIC KNOWLEDGE RAG",
-    "summary": "Turn a creator’s public videos into source-linked answers.",
-    "status": "Public WordPress assistant · deployed September 29",
-    "detail": "A public WordPress knowledge assistant grounded in approved YouTube material. FastAPI combines SQLite FTS5, local embeddings and rank fusion without a hosted vector database. Relevance checks and source citations constrain answers; paid membership and course material are excluded from the public release. Manifest checks, atomic knowledge updates, daily refresh and scheduled backups support operations. The September 29 go-live record includes a real grounded answer with five sources, a public homepage check and execution of the actual scheduled backup command. The earlier members-only brief is historical.",
+    "summary": "A public WordPress assistant that answers from a creator’s approved YouTube videos, with linked sources.",
+    "status": "Public WordPress assistant · restored and domain-ready October 21",
+    "detail": "A public WordPress knowledge assistant grounded in approved YouTube material. FastAPI combines SQLite FTS5, local embeddings and rank fusion without a hosted vector database. Relevance checks and source citations constrain answers; paid membership and course material are excluded from the public release. Manifest checks, atomic knowledge updates, daily refresh and scheduled backups support operations. The September 29 go-live record includes a real grounded answer with five sources, a public homepage check and execution of the actual scheduled backup command. On October 21 the missing homepage loader was restored, both question boxes were republished and browser-checked, and the engine (26,634 indexed passages, 28 running services) was prepared for the client’s final domain, which waits on one DNS record from the client. The earlier members-only brief is historical.",
     "stack": [
       "FastAPI",
       "SQLite FTS5",
@@ -167,7 +167,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "September 29 release records · October 10 public case study",
     "image": "/studio/jwalker-knowledge-assistant-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of Creator Knowledge Assistant: a WordPress question box with an answer linked to public video sources"
+    "imageAlt": "Illustration of Creator Knowledge Assistant: a WordPress question box with an answer linked to public video sources"
   },
   {
     "id": "ftm-sms-followup",
@@ -187,7 +187,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Google Doc release note reviewed October 25, 2026; verification dates and open gates stated above",
     "image": "/studio/ftm-sms-followup-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of Multi-Site Follow-up: a booking form routed through n8n, Sheets and Twilio to a booking-summary text with tracked outcomes"
+    "imageAlt": "Illustration of Multi-Site Follow-up: a booking form routed through n8n, Sheets and Twilio to a booking-summary text with tracked outcomes"
   },
   {
     "id": "ftm-seo-automation",
@@ -207,7 +207,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "September 4 recovery records · October 10 public case study",
     "image": "/studio/ftm-seo-automation-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of SEO Operations: a metadata job table with per-item validation results and worker health"
+    "imageAlt": "Illustration of SEO Operations: a metadata job table with per-item validation results and worker health"
   },
   {
     "id": "adrevora-ai",
@@ -215,8 +215,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "ADVERTISING & REVENUE INTELLIGENCE",
     "summary": "Reconciled revenue, role metrics, daily reports and human-reviewed private CPU AI in a deployed workspace.",
-    "status": "Deployed revenue workspace · company activation pending",
-    "detail": "A deployed advertising-to-revenue workspace with mandatory MFA, tenant membership, a persistent financial ledger, first/last-touch attribution and private CPU inference. The October 14 release adds reconciled campaign/unknown/total CSV rows, CEO/marketing/operations metrics, immutable creative revision history, conservative source freshness, bounded history and stored daily UTC reports. Recorded verification passed 120 application tests, 56 deployment tests, 17 HTTPS workflow checks and 23 scoped accessibility scans; all 68 release artifacts matched and all 20 database table hashes were preserved across the final upgrade. Encrypted isolated recovery matched eight key tables. Company-account activation, campaign writes, commercial pilot reconciliation and distributed capacity remain open. Reference revenue is illustrative. Full manual accessibility acceptance remains open.",
+    "status": "Deployed revenue workspace · 120 app tests pass",
+    "detail": "A deployed advertising-to-revenue workspace with mandatory MFA, tenant membership, a persistent financial ledger, first/last-touch attribution and private CPU inference. The October 14 release adds reconciled campaign/unknown/total CSV rows, CEO/marketing/operations metrics, immutable creative revision history, conservative source freshness, bounded history and stored daily UTC reports. Recorded verification passed 120 application tests, 56 deployment tests, 17 HTTPS workflow checks and 23 scoped accessibility scans; all 68 release artifacts matched and all 20 database table hashes were preserved across the final upgrade. Encrypted isolated recovery matched eight key tables. Company-account activation, campaign writes, commercial pilot reconciliation and distributed capacity remain open. The revenue figures shown are reference data, not client results. Full manual accessibility acceptance remains open.",
     "stack": [
       "React",
       "Node.js",
@@ -233,9 +233,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "VitalProbe",
     "category": "AI & Agents",
     "domain": "AI SAFETY & EVALUATION",
-    "summary": "Fictional healthcare AI scenarios, inspectable evidence and regression comparison.",
+    "summary": "Healthcare AI test scenarios, inspectable evidence and regression comparison.",
     "status": "Published product website · local audit engine",
-    "detail": "A Python healthcare-AI testing engine and published React product website. Fictional scenarios exercise REST/MCP targets with deterministic checks, optional semantic judging, multi-turn simulation, HTML/JSON dossiers and baseline comparison. Recorded engineering gates include 190 Python tests, 39 frontend tests and a 226-check local verifier. The completed 1:51 evidence film demonstrates a deliberately weak target across 25 fictional cases: three PASS, 22 FAIL and zero ERROR. New audits execute locally; the public website has no hosted audit, upload or payment service. Human clinical/legal calibration remains open, and the film’s social publication is not claimed.",
+    "detail": "A Python healthcare-AI testing engine and published React product website. Test scenarios exercise REST/MCP targets with deterministic checks, optional semantic judging, multi-turn simulation, HTML/JSON dossiers and baseline comparison. Recorded engineering gates include 190 Python tests, 39 frontend tests and a 226-check local verifier. The completed 1:51 evidence film runs a deliberately weak target through 25 test cases: three PASS, 22 FAIL and zero ERROR. New audits execute locally; the public website has no hosted audit, upload or payment service. Human clinical/legal calibration remains open, and the film’s social publication is not claimed.",
     "stack": [
       "Python",
       "FastAPI",
@@ -246,14 +246,14 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Source review October 14, 2026; verification dates and open gates stated above",
     "image": "/studio/vitalprobe-cover.webp",
     "imageKind": "screenshot",
-    "imageAlt": "VitalProbe public synthetic evaluation website"
+    "imageAlt": "VitalProbe public evaluation website"
   },
   {
     "id": "rag-production-stack",
     "name": "RAG Production Stack",
     "category": "Cloud & Systems",
     "domain": "AI INFRASTRUCTURE",
-    "summary": "Retrieval infrastructure with explicit operational boundaries.",
+    "summary": "Open-source retrieval stack: nine core services, authentication, network isolation, metrics, logs, traces and encrypted backups.",
     "status": "Source-reconciled infrastructure",
     "detail": "Containerized retrieval infrastructure with nine core services and fourteen profile-activated services, authentication, network isolation, metrics/logs/traces and encrypted-backup workflows. Published as MIT-licensed open source, with hosted Gitleaks, Semgrep and Bandit checks passing. The documentation establishes configuration and source intent; it does not claim a currently healthy deployment or compliance certification.",
     "stack": [
@@ -274,8 +274,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "AGENT GOVERNANCE",
     "summary": "A local policy broker for scoped AI work, typed artifacts and verification evidence.",
-    "status": "Experimental open source · synthetic acceptance open",
-    "detail": "An experimental Python broker and CLI for governed Codex, Claude Code, VS Code and local Ollama workflows. Deterministic controls mediate scope, policy, artifacts and privileged transitions while models propose work. The September public snapshot recorded 257 passing tests with one expected private-dossier skip and Python 3.11–3.13 CI/security checks. The October review did not rerun those gates. Phase 1 closure, authority enforcement and synthetic end-to-end acceptance remain incomplete; real-client operation, browser/API delivery and distributed capacity retain separate gates.",
+    "status": "Open-source policy broker · 257 tests passed in September",
+    "detail": "An experimental Python broker and CLI for governed Codex, Claude Code, VS Code and local Ollama workflows. Deterministic controls mediate scope, policy, artifacts and privileged transitions while models propose work. The September public snapshot recorded 257 passing tests with one expected private-dossier skip and Python 3.11–3.13 CI/security checks. The October review did not rerun those gates. Phase 1 closure, authority enforcement and end-to-end acceptance remain incomplete; real-client operation, browser/API delivery and distributed capacity retain separate gates.",
     "stack": [
       "Python",
       "Typed artifacts",
@@ -312,7 +312,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "Cloud & Systems",
     "domain": "CONNECTED HEALTHCARE",
     "summary": "Connected-care website, regional services and preserved CMS content with separate clinical gates.",
-    "status": "Website and CMS deployed · platform in development",
+    "status": "Website and CMS deployed · 676 unit and 77 browser tests",
     "detail": "A connected-care project spanning a React website, Strapi CMS, regional backend services, document processing and a separate knowledge stack. The recorded public website release passed 676 unit tests and 77 browser cases with 43 matching local/live files. CMS verification preserved five original articles, all 51 ordered paragraphs and three cover images; two legacy covers remain unavailable. The processor recorded 98 local tests, while live knowledge-stack activation failed before model generation or grounded retrieval was verified. Today’s local checkpoint resumes engineering with changes not yet deployed; phases 3–8, privacy verification and clinical acceptance remain open.",
     "stack": [
       "React",
@@ -350,8 +350,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "Web & Commerce",
     "domain": "HEADLESS COMMERCE",
     "summary": "Headless WooCommerce storefront with a bounded AI guide, verified test checkout and tested rollback.",
-    "status": "Deployed commerce demo · test checkout only",
-    "detail": "A React/TypeScript storefront where WordPress and WooCommerce own content, accounts, prices and orders. The October 21 release, merged to GitHub main, adds a project-specific AI guide on an approved remote route: it passed 9/9 held-out tasks and 3 boundary checks, has no customer-record access or action tools and runs inside a USD 0.10 lifetime allowance with reservations, deadlines and quotas. Runtime images moved to patched Node 22.23.3 and Nginx 1.30.4 with zero reported vulnerabilities, and the Stripe SDK to 20.3.1 with native rollback tested. 222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; twelve synthetic privacy checks passed. Guide restart and frontend rollback/resume passed, and 140 frontend and 611 guide files match their artifacts. Live payments and shipping are outside the demonstration; million-session capacity and uptime objectives are roadmap gates, not measurements.",
+    "status": "Deployed WooCommerce storefront · 9/9 AI guide tasks pass",
+    "detail": "A React/TypeScript storefront where WordPress and WooCommerce own content, accounts, prices and orders. The October 21 release, merged to GitHub main, adds a project-specific AI guide on an approved remote route: it passed 9/9 held-out tasks and 3 boundary checks, has no customer-record access or action tools and runs inside a USD 0.10 lifetime allowance with reservations, deadlines and quotas. Runtime images moved to patched Node 22.23.3 and Nginx 1.30.4 with zero reported vulnerabilities, and the Stripe SDK to 20.3.1 with native rollback tested. 222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; twelve privacy checks with test data passed. Guide restart and frontend rollback/resume passed, and 140 frontend and 611 guide files match their artifacts. Live payments and shipping are not enabled; million-session capacity and uptime objectives are roadmap gates, not measurements.",
     "stack": [
       "React",
       "WordPress",
@@ -367,9 +367,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "Kindred Grove",
     "category": "Web & Commerce",
     "domain": "SHOPIFY STOREFRONT",
-    "summary": "A cinematic storefront with careful cart and consent engineering.",
+    "summary": "An independent Shopify storefront build with careful cart and consent engineering.",
     "status": "Published Shopify storefront · password protected",
-    "detail": "A premium pantry storefront concept built with Shopify Liquid, CSS and vanilla JavaScript Web Components. The published cinematic design includes a cart drawer, pantry quiz, consent controls and seven native content pages. The October 8 overview records 55 browser passes, three catalog-dependent skips and matching hashes for all 154 shipping files. Shopify development-store policy requires a shared visitor password and prevents real transactions or commercial transfer. Source is published on a review branch; approving review for main remains outstanding.",
+    "detail": "An independent build, not client work: a premium pantry storefront made with Shopify Liquid, CSS and vanilla JavaScript Web Components. The published cinematic design includes a cart drawer, pantry quiz, consent controls and seven native content pages. The October 8 overview records 55 browser passes, three catalog-dependent skips and matching hashes for all 154 shipping files. Shopify development-store policy requires a shared visitor password and prevents real transactions or commercial transfer. Source is published on a review branch; approving review for main remains outstanding.",
     "stack": [
       "Shopify",
       "Liquid",
@@ -388,8 +388,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "Web & Commerce",
     "domain": "NATIVE CMS & EDITORIAL",
     "summary": "Native Elementor publishing, browser-only reader tools and documented operating boundaries.",
-    "status": "Native WordPress demo · quality backlog documented",
-    "detail": "A deployed WordPress/Elementor editorial demonstration with 66 native layouts, a device-local library/search and six educational tools. The September release recorded browser/security checks, administrator editing, an independent restore and 141-file parity. The later documentation review recorded 316 passing offline checks, one failing retained AskMe test and two unrun runtime-dependent suites. October 14 confirmed an HTTP 200 response and the known duplicate HSTS header. Visual, screen-reader, physical-device and recurring restore acceptance remain open; clinical validity, full compliance and million-reader capacity are not claimed.",
+    "status": "Native WordPress site · 66 native layouts",
+    "detail": "A deployed WordPress/Elementor editorial site with 66 native layouts, a device-local library/search and six educational tools. The September release recorded browser/security checks, administrator editing, an independent restore and 141-file parity. The later documentation review recorded 316 passing offline checks, one failing retained AskMe test and two unrun runtime-dependent suites. October 14 confirmed an HTTP 200 response and the known duplicate HSTS header. Visual, screen-reader, physical-device and recurring restore acceptance remain open; clinical validity, full compliance and million-reader capacity are not claimed.",
     "stack": [
       "WordPress",
       "Elementor",
@@ -404,10 +404,10 @@ export const studioProjects = z.array(projectSchema).parse([
     "id": "everyday-dental-surgery",
     "name": "Everyday Dental",
     "category": "Web & Commerce",
-    "domain": "INTERACTIVE HEALTHCARE DEMO",
-    "summary": "Explore a fictional patient journey without real health data.",
-    "status": "Synthetic portfolio demonstration",
-    "detail": "A fictional dental-practice presentation with an interactive synthetic patient journey, consent examples, access-denial states and a sample FHIR-shaped export. State lives in browser memory. Real intake, clinical authentication, payments, messaging and the historical clinical endpoints are disabled. It demonstrates interface behavior and engineering boundaries, not an operating clinical portal. Source and documentation were published on GitHub with all 255 file hashes matching.",
+    "domain": "INTERACTIVE PATIENT JOURNEY",
+    "summary": "Independent build of a dental practice website with an interactive patient journey, consent and access-denial states. No real patient records.",
+    "status": "Independent build · source published on GitHub",
+    "detail": "An independent build of a dental practice website, not a client project and not a real practice, with an interactive patient journey, consent examples, access-denial states and a FHIR-shaped export. State lives in browser memory and no real patient records are stored. Real intake, clinical authentication, payments, messaging and the historical clinical endpoints are disabled. It shows interface behavior and engineering boundaries; it is not an operating clinical portal. Source and documentation were published on GitHub with all 255 file hashes matching.",
     "stack": [
       "Responsive UI",
       "Bilingual",
@@ -415,19 +415,19 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "network",
     "featured": false,
-    "evidence": "Synthetic portfolio release and GitHub publication, September 24, 2026",
+    "evidence": "Portfolio release and GitHub publication, September 24, 2026",
     "image": "/studio/everyday-dental-surgery-cover.webp",
     "imageKind": "screenshot",
-    "imageAlt": "Everyday Dental fictional clinic website"
+    "imageAlt": "Everyday Dental independent website build, home page"
   },
   {
     "id": "wordpress-incident-response",
     "name": "Incident Response & Recovery",
     "category": "Cloud & Systems",
     "domain": "SECURITY ENGINEERING",
-    "summary": "Trace persistence. Contain carefully. Verify recovery.",
-    "status": "Documented containment engagement",
-    "detail": "A backup-first response to a multi-layer WordPress compromise. Process inspection and writer tracing expanded the investigation beyond known filenames. Repeated scans found zero known indicators after containment, and 21 checked sites returned successful public responses. Successful containment is distinct from rebuilding a historically compromised environment from a trusted image.",
+    "summary": "Found and contained a self-repairing WordPress infection, then proved recovery with a full rescan of 114 WordPress installs.",
+    "status": "Client engagement · reinfection contained October 16",
+    "detail": "A backup-first response to a multi-layer WordPress compromise. Process inspection and writer tracing expanded the investigation beyond known filenames. Repeated scans found zero known indicators after containment, and 21 checked sites returned successful public responses. On October 16 a new infection on the same hosting account was found and contained: five malware runners stopped, 79 artifact files and six hidden token APIs quarantined, rogue users and 53 persistence rows removed, and seven database credentials, nine administrator passwords and seven key sets rotated. A full scan of 114 WordPress roots and 119 option tables then found zero artifacts, and a real administrator login passed with 21 regression tests. Successful containment is distinct from rebuilding a historically compromised environment from a trusted image.",
     "stack": [
       "Linux",
       "WordPress",
@@ -438,7 +438,28 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Anonymized technical case study, August 26, 2026",
     "image": "/studio/wordpress-incident-response-cover.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of Incident Response & Recovery: an incident log, response timeline and 21 site checks"
+    "imageAlt": "Illustration of Incident Response & Recovery: an incident log, response timeline and 21 site checks"
+  },
+  {
+    "id": "groza-accessibility",
+    "name": "Groza Learning Center Accessibility",
+    "category": "Web & Commerce",
+    "domain": "WORDPRESS ACCESSIBILITY",
+    "summary": "Paid WCAG 2.1 AA fixes for a learning center’s WordPress site: a checked article went from 7 WAVE errors and 180 contrast errors to zero.",
+    "status": "Paid client work · delivered April 2026",
+    "detail": "My first Upwork contract: an accessibility audit and fixes for a learning center’s WordPress and Elementor site. I audited more than 30 pages with WAVE and Lighthouse, then fixed more than 100 errors (missing alt text, broken ARIA references, empty buttons and links, missing form labels, a broken skip link and empty headings) and more than 200 color contrast failures. Most fixes run from a server-side PHP snippet, with a few buttons and links edited directly in Elementor, so no theme or plugin file was changed. Keyboard navigation was tested on video. On the checked “SAT vs ACT” article, WAVE went from 7 errors, 180 contrast errors and an AIM score of 1/10 to 0 errors, 0 contrast errors and 9.1/10. WAVE is an automated check, not a legal accessibility certification.",
+    "stack": [
+      "WordPress",
+      "Elementor",
+      "PHP",
+      "WCAG 2.1 AA"
+    ],
+    "visual": "capture",
+    "featured": false,
+    "evidence": "Client delivery records, April 2026, and WAVE screenshots of the live site",
+    "image": "/studio/groza-accessibility-cover.webp",
+    "imageKind": "reference",
+    "imageAlt": "WAVE results for the same Groza Learning Center article before and after the fixes: 7 errors and 180 contrast errors before, 0 and 0 after"
   },
   {
     "id": "vericommerce-ai",
@@ -446,7 +467,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "EVIDENCE-GROUNDED COMMERCE",
     "summary": "Versioned catalog evidence, cited quotations and approved drafts across account roles and multi-format ingestion.",
-    "status": "Deployed release 02 · Shopify read-only, publishing remains roadmap work",
+    "status": "Deployed release 02 · 102 browser cases pass",
     "detail": "An independently built commerce evidence platform. Live release 02 (October 18) adds persistent account workspaces with four roles, bounded JSON/CSV/PDF/image ingestion, current-source retrieval with context inspection, cited quotations, temporal review, durable jobs, explicit approval and provenance export. React/TypeScript and FastAPI/PostgreSQL run together; Shopify access is read-products-only. Hosted checks on the newer published source passed 155 PostgreSQL/CPU/infrastructure checks, 17 Node checks and 102 desktop/mobile browser cases with zero skips. The live release matched 228 local/archive/live artifacts, passed 46 public browser cases and reproduced 27 SQL table snapshots with restricted-role/RLS probes. A newer release 03 was stopped before promotion at the owner's request, so its source-only assistant changes are not live. Shopify publishing and model training remain roadmap work; million-user capacity and 99% availability are future targets, not measurements.",
     "stack": [
       "React",
@@ -468,7 +489,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "DURABLE AGENT OPERATIONS",
     "summary": "Three bounded Hermes roles turn permitted knowledge into reviewed drafts, commitments and internal receipts.",
-    "status": "Deployed owner operations · external delivery remains gated",
+    "status": "Deployed owner operations with exact human approval",
     "detail": "A self-hosted agent operations platform using Nous Research's Hermes Agent, PostgreSQL workflow ownership and bounded coordinator, researcher and operator roles. Authenticated Operations provides versioned text knowledge, durable tasks, retries/cancellation, source-linked structured outputs, exact human approval, internal receipts and persisted workflow memory. The October 15 live workflow recovered after a worker interruption, completed all three roles and recorded two source-backed commitments with an internal receipt. Altered approval and replay were rejected; encrypted off-host database restoration matched schema and business records. This is one successful workflow, not a statistical reliability benchmark. Approval commits internal records; email delivery and third-party CRM updates are not enabled. Open registration, subscription checkout, broader customer admission, scheduled recovery guarantees and million-user capacity remain separate gates.",
     "stack": [
       "Hermes Agent",
@@ -490,7 +511,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "HUMAN-LED COLLABORATION",
     "summary": "A human-led collaboration interface with task revisions, separate approvals and portable public engineering documentation.",
-    "status": "Deployed website and browser-local workspace · backend planned",
+    "status": "Deployed website and browser workspace · 21 tests, 100 route checks",
     "detail": "An independent collaboration product with a deployed Next.js/React/TypeScript website, 25 public routes and nine workspace views. Browser-tab-local interactions cover task creation, search, status changes, conversations, version-aware client/developer approvals and report downloads. The October 16 release recorded 21 automated tests, 100 route/viewport checks, quality/security CI and 175 matching deployment hashes. Fonts and media are self-hosted, with reduced-motion support and portable static deployment. Workspace state resets on reload. Authentication, persistent collaboration, agent execution and external actions remain roadmap work. Availability and million-user capacity are future qualification targets, not achieved results.",
     "stack": [
       "Next.js",
@@ -513,7 +534,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "domain": "SUPERVISED BROWSER INTEGRATION",
     "summary": "Human-approved browser actions through Cline on Windows, with restart, recovery and saved evidence.",
     "status": "Local Windows rehearsal verified · client acceptance pending",
-    "detail": "Prepared a Windows integration extending an existing Cline installation with Microsoft’s official Playwright MCP server. Two recorded local Cline GUI workflows each passed five synthetic browser assertions. Actual editor restarts, server disable/re-enable and exact configuration restoration were exercised. An explicit process working directory fixed misplaced screenshot evidence; the final browser run saved the verified image in its intended workspace. Existing provider settings, unrelated MCP servers and browser profiles were preserved, with automatic approvals disabled. Client-machine installation, live walkthrough and contractual acceptance remain pending.",
+    "detail": "Prepared a Windows integration extending an existing Cline installation with Microsoft’s official Playwright MCP server. Two recorded local Cline GUI workflows each passed five browser test assertions. Actual editor restarts, server disable/re-enable and exact configuration restoration were exercised. An explicit process working directory fixed misplaced screenshot evidence; the final browser run saved the verified image in its intended workspace. Existing provider settings, unrelated MCP servers and browser profiles were preserved, with automatic approvals disabled. Client-machine installation, live walkthrough and contractual acceptance remain pending.",
     "stack": [
       "Playwright",
       "MCP",
@@ -526,7 +547,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "evidence": "Current technical overview and owning local evidence reviewed October 18, 2026; client acceptance pending",
     "image": "/studio/playwright-cline-integration.webp",
     "imageKind": "illustration",
-    "imageAlt": "Concept mockup of Playwright MCP + Cline: a Cline browser action waiting for human approval beside a synthetic test page"
+    "imageAlt": "Illustration of Playwright MCP + Cline: a Cline browser action waiting for human approval beside a test page"
   },
   {
     "id": "project-video-studio",
@@ -534,7 +555,7 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "AI VIDEO PRODUCTION",
     "summary": "Turns a script, recording or brief into an editable layered video with captions, checked audio and portable source packages.",
-    "status": "Open-source local engine · 95 tests pass · hosted service not built",
+    "status": "Open-source local engine · 95 tests pass",
     "detail": "A local Python engine that turns an approved script, recorded explanation or brief into an editable video project. It prepares narration or transcription, renders up to four visual layers with masks and depth-ordered callouts, composes separate portrait and landscape layouts and exports verified masters plus portable source packages. The October 21 v2 rebuild added recorded-speech timing, style checkpoints, local reference measurements, a Blender 3D adapter and safe shot reuse; the latest addition is local human matting, so text can sit behind a presenter. 95 automated tests pass; type checks, lint, Bandit, Semgrep and secret scanning pass, and GitHub CI passed all four jobs. Real 70.7-second portrait and 307.1-second landscape validation films fully decode at about -16 LUFS. It is local software with no hosted service; full style reconstruction, autonomous shot production and native editor round trips remain unfinished, and natural talking-head matting needs separate review.",
     "stack": [
       "Python",
@@ -556,8 +577,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "Cloud & Systems",
     "domain": "SELF-HOSTED MAIL OPERATIONS",
     "summary": "Five authenticated domain mailboxes with webmail on an existing server, checked with external, denial and restore tests.",
-    "status": "Operating on a shared server · single host, not high availability",
-    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
+    "status": "Operating · 22/22 external protocol checks pass",
+    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). It runs on a single host, so it is not highly available. External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
     "stack": [
       "Docker Mailserver",
       "Roundcube",
@@ -582,6 +603,7 @@ const currentProjectUrls: Record<string, string> = {
   "healthcode-analysis": "https://healthcodeanalysis.zahidul-islam.com/",
   "everyday-dental-surgery": "https://dental.zahidul-islam.com/",
   "regenai-shopify": "https://regenai.zahidul-islam.com/",
+  "groza-accessibility": "https://grozalearningcenter.com/",
 };
 export const projectResources = (id: string) => {
   const project = portfolioConfig.projects.find((p) => p.id === id) as
@@ -663,6 +685,7 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "groza-accessibility": "Paid WCAG 2.1 AA remediation: 100+ errors and 200+ contrast failures fixed with a PHP snippet and no theme edits.",
     "project-video-studio": "Script-to-video engine with layered composition, local human matting, checked captions/audio and safe shot reuse.",
     "self-hosted-email-infrastructure": "Five authenticated mailboxes on a shared server; 22/22 external protocol checks and an isolated restore.",
     "playwright-cline-integration": "Human-approved Cline browser actions, restart verification and exact configuration recovery.",
@@ -673,21 +696,21 @@ export const studioConfig = {
     "jwalker-knowledge-assistant": "Public source-linked answers from approved videos, with paid material excluded and scheduled knowledge refresh.",
     "ftm-sms-followup": "Form routing, complete booking confirmations and consent-aware follow-ups connected through n8n, Sheets and Twilio.",
     "ftm-seo-automation": "Validated AIOSEO updates through asynchronous jobs, with separate worker health and recovery checks.",
-    "regenai-shopify": "A support studio with grounded context, persistent memory and versioned human approval; financial and email execution disabled.",
+    "regenai-shopify": "A support studio with grounded context, persistent memory, image understanding and versioned human approval.",
     voicebridge:
-      "A live Retell web call booked a visit and completed calendar and CRM jobs; 258 backend checks pass. Vapi and phone acceptance remain open.",
+      "A live Retell web call booked a visit and completed calendar and CRM jobs; 258 backend checks pass.",
     "mediconnect-v3":
-      "Deployed public website and CMS with preserved original articles; remaining platform phases and clinical acceptance stay open.",
+      "Deployed public website and CMS with every original article preserved; 676 unit and 77 browser tests passed.",
     equipcert:
       "Tenant-aware inspections with photo evidence, signatures, corrective actions and audit records.",
     fleetwright:
-      "Approved MCP workflows, durable crawling and a local AI agent; 289 passes/six accounted skips. Off-host restore evidence is dated October 13.",
+      "Approved MCP workflows, durable crawling and a local AI agent; 289 tests pass and all 146 deployed artifacts match.",
     "yuktha-wellness":
       "Hybrid retrieval, reranking and grounding checks with an emergency gate before generation.",
     chronos:
       "A WooCommerce storefront with a bounded AI guide (9/9 held-out tasks), Stripe test checkout and tested rollback.",
     vitalprobe:
-      "Synthetic scenarios, regression comparisons and inspectable reports for REST and MCP assistants.",
+      "Healthcare test scenarios, regression comparisons and inspectable reports for REST and MCP assistants.",
     "ftm-social-media":
       "Client selection, revisions and internal approval connected to controlled campaign delivery.",
   } as Record<string, string>,
@@ -752,7 +775,7 @@ export const studioConfig = {
     filterProjects: "Filter projects",
     projectsCount: "PROJECTS",
     processAria: "Engineering process",
-    workflowAria: "Illustrative engineering workflow",
+    workflowAria: "Engineering workflow",
     workflowFile: "engineering.workflow",
     shortIllustration: "ILLUSTRATION",
     aboutCoordinate: "ENGINEER / BUILDER / EXPLORER",
@@ -775,9 +798,23 @@ export const studioConfig = {
     lessProjects: "Close project index",
     readProject: "Explore project",
     closeProject: "Close project",
+    fullCaseStudy: "Open the full case study page",
+    breadcrumbLabel: "Breadcrumb",
+    breadcrumbHome: "Home",
+    breadcrumbWork: "Work",
+    workPageEyebrow: "SELECTED WORK / CASE STUDIES",
+    workPageTitle: "Every project,\nwith its evidence.",
+    workPageIntro:
+      "Paid client work and my own builds. Each page covers the problem, what I built, the fixes that mattered, the verified result and the current scope.",
+    previousProject: "Previous case study",
+    nextProject: "Next case study",
+    allWork: "All case studies",
+    notFoundTitle: "This page doesn't exist.",
+    notFoundBody: "The link may be old, or the project may have moved. Everything current is in the work index.",
+    notFoundHome: "Go to the home page",
     projectScope: "THE ENGINEERING",
     sourceLabel: "GitHub",
-    demoLabel: "Live website",
+    liveLabel: "Live website",
     referenceLabel: "Evidence reviewed",
     index: "PROJECT INDEX",
     expertiseEyebrow: "03 / HOW I CAN HELP",
@@ -811,7 +848,7 @@ export const studioConfig = {
     illustration: "WORKFLOW ILLUSTRATION",
     spotlightLabel: "SPOTLIGHT",
     imageLabels: {
-      illustration: "CONCEPT MOCKUP",
+      illustration: "ILLUSTRATION",
       reference: "TECHNICAL REFERENCE",
     },
     technologies: "BUILT WITH",
@@ -901,12 +938,12 @@ export const studioConfig = {
     terminal: {
       title: "vitalprobe / evidence",
       lines: [
-        "load synthetic scenarios",
+        "load test scenarios",
         "exercise target behavior",
         "evaluate observed responses",
         "compare with baseline",
       ],
-      footer: "SYNTHETIC DATA. INSPECTABLE RESULTS.",
+      footer: "TEST DATA. INSPECTABLE RESULTS.",
     },
     pipeline: {
       title: "From brief to approval",

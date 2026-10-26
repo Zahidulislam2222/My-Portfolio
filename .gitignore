@@ -11,6 +11,7 @@ node_modules
 dist
 .env
 dist-ssr
+dist-server
 *.local
 
 # Editor directories and files
@@ -47,6 +48,8 @@ CLAUDE.local.md
 
 # Local scratch (browser profiles, generated PDFs)
 tmp/
+.playwright-mcp/
 
 # Personal reusable verification scripts
 /tests/
+__pycache__/

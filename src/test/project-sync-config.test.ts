@@ -19,7 +19,7 @@ describe("project synchronization contract", () => {
     const project = studioProjects.find(item => item.id === "adrevora-ai");
     expect(project?.status).toMatch(/Deployed revenue workspace/);
     expect(project?.detail).toMatch(/Company-account activation.*remain open/);
-    expect(project?.detail).toMatch(/Reference revenue is illustrative/);
+    expect(project?.detail).toMatch(/revenue figures shown are reference data, not client results/);
     expect(projectResources("adrevora-ai").liveUrl).toBe("https://adrevora.zahidul-islam.com/");
     expect(projectResources("adrevora-ai").links).toEqual([{
       label: "Private repository", url: "https://github.com/Zahidulislam2222/AdRevora-AI",

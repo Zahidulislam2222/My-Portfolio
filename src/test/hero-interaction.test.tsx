@@ -47,9 +47,11 @@ describe("interactive hero", () => {
       advance();
       expect(screen.getByRole("tab", { name })).toHaveAttribute("aria-selected", "true");
       const mode = heroShowcase.modes.find((item) => item.label === name)!;
-      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(mode.headline.join(" "));
+      // The H1 stays stable for search engines; the rotating headline is announced beside it.
+      expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(heroShowcase.heading);
+      expect(document.querySelector(".showcase-sr-headline")).toHaveTextContent(mode.headline.join(" "));
       expect(document.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", mode.id);
-      expect(document.querySelector(".showcase-copy-stage > p")).toHaveTextContent(mode.description);
+      expect(document.querySelector(".showcase-sr-description")).toHaveTextContent(mode.description);
       expect(document.querySelector(`.showcase-card-face[data-card="${name === "Applications" ? "applications" : name.toLowerCase()}"]`)).toHaveAttribute("aria-hidden", "false");
       expect(document.activeElement).toBe(focus);
     }
@@ -123,7 +125,7 @@ describe("interactive hero", () => {
     advance(2);
     expect(cloud).toHaveAttribute("aria-selected", "true");
     expect(document.querySelector(".showcase-copy-stage")).toHaveAttribute("data-copy", "cloud");
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(heroShowcase.modes[2].headline.join(" "));
+    expect(document.querySelector(".showcase-sr-headline")).toHaveTextContent(heroShowcase.modes[2].headline.join(" "));
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "paused");
     fireEvent.blur(cloud, { relatedTarget: document.body });
     expect(container.querySelector(".showcase-scene")).toHaveAttribute("data-motion", "running");

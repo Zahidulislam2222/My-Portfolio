@@ -1,22 +1,31 @@
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ArrowUpRight } from "lucide-react";
+import { studioConfig as config } from "@/config/studio.config";
+import { notFoundMeta, seo } from "@/config/seo.config";
+import { StudioNavigation } from "@/components/studio/EngineeringStudio";
+import "@/components/studio/studio.css";
 
 const NotFound = () => {
-  const location = useLocation();
-
   useEffect(() => {
-    console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-  }, [location.pathname]);
-
+    document.title = notFoundMeta().title;
+  }, []);
   return (
-    <div className="flex min-h-screen items-center justify-center bg-muted">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">404</h1>
-        <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>
-        <a href="/" className="text-primary underline hover:text-primary/90">
-          Return to Home
-        </a>
-      </div>
+    <div className="engineering-studio" id="top">
+      <StudioNavigation base="/" />
+      <main id="main" tabIndex={-1} className="studio-shell studio-case-main studio-not-found">
+        <span className="studio-eyebrow">404</span>
+        <h1>{config.labels.notFoundTitle}</h1>
+        <p>{config.labels.notFoundBody}</p>
+        <div className="studio-hero-actions">
+          <a className="studio-button primary" href={seo.work.path}>
+            {config.labels.allWork}
+            <ArrowUpRight size={18} />
+          </a>
+          <a className="studio-text-link" href="/">
+            {config.labels.notFoundHome}
+          </a>
+        </div>
+      </main>
     </div>
   );
 };
