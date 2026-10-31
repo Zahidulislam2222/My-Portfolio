@@ -90,9 +90,7 @@ export function StudioNavigation({ base = "" }: { base?: string }) {
             href={base ? "/" : "#home"}
             aria-label={`${config.identity.name}, ${config.labels.home}`}
           >
-            <span className="studio-monogram" aria-hidden="true">
-              z<span>.</span>
-            </span>
+            <img className="studio-avatar" src={config.portrait.small} alt="" width={38} height={38} />
             <span>
               {config.identity.name}
               <small>{config.labels.identityRole}</small>

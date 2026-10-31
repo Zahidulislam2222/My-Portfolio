@@ -122,25 +122,14 @@
   color: var(--s-muted);
   margin-top: 4px;
 }
-.studio-monogram {
-  height: 37px;
-  width: 37px;
-  display: grid;
-  place-content: center;
-  position: relative;
-  font-size: 32px;
-  line-height: 1;
-  border: 1px solid #57665c;
-  transform: rotate(-8deg);
-  font-weight: 500;
-  letter-spacing: -0.14em;
-  padding-right: 4px;
-}
-.studio-monogram span {
-  position: absolute;
-  right: 4px;
-  bottom: 3px;
-  color: var(--s-mint);
+.studio-avatar {
+  height: 38px;
+  width: 38px;
+  flex: none;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--s-mint);
+  box-shadow: 0 0 0 3px var(--s-bg), 0 0 14px #a3efba33;
 }
 .studio-desktop-nav {
   display: flex;
@@ -1823,10 +1812,9 @@
   .studio-brand small {
     font-size: 6px;
   }
-  .studio-monogram {
+  .studio-avatar {
     width: 32px;
     height: 32px;
-    font-size: 28px;
   }
   .studio-hero {
     padding-top: 26px;

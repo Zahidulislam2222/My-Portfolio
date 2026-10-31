@@ -52,7 +52,19 @@ export default function HeroShowcase({
   return (
     <section id="home" className="showcase-hero studio-shell">
       <div className="showcase-introline">
-        <span>{hero.identity}</span>
+        <span className="showcase-identity">
+          <span className="showcase-portrait">
+            <img src={config.portrait.small} srcSet={`${config.portrait.small} 1x, ${config.portrait.large} 2x`}
+              alt={config.identity.name} width={72} height={72} />
+          </span>
+          <span className="showcase-identity-text">
+            <span>{hero.identity}</span>
+            <a href={config.agency.href}>
+              {config.agency.label}
+              <ArrowUpRight size={13} />
+            </a>
+          </span>
+        </span>
         <span className="studio-availability">
           <i />
           {config.hero.availability}

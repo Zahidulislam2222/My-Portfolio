@@ -11,6 +11,76 @@
   color: #c5d0c8;
   font-size: 12px;
 }
+.showcase-identity {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 14px;
+  color: var(--s-ink);
+}
+/* Portrait with a slow mint ring and an "open to projects" dot. */
+.showcase-portrait {
+  position: relative;
+  flex: none;
+  width: 72px;
+  height: 72px;
+  padding: 2px;
+  border-radius: 50%;
+  isolation: isolate;
+}
+.showcase-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: conic-gradient(var(--s-mint), #c0f5ce00 35%, #8ed8aa66 60%, #c0f5ce00 80%, var(--s-mint));
+  animation: showcase-portrait-ring 10s linear infinite;
+}
+.showcase-portrait::after {
+  content: "";
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--s-mint);
+  box-shadow: 0 0 0 3px var(--s-bg), 0 0 12px #a3efba88;
+}
+.showcase-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--s-bg);
+}
+.showcase-identity-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.showcase-identity-text a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+  white-space: nowrap;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--s-mint);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--s-fast) var(--s-ease);
+}
+.showcase-identity-text a:hover,
+.showcase-identity-text a:focus-visible {
+  border-bottom-color: var(--s-mint);
+}
+@keyframes showcase-portrait-ring {
+  to { transform: rotate(1turn); }
+}
 .showcase-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -285,12 +355,20 @@
     display: block;
   }
   .showcase-introline {
-    align-items: flex-start;
+    align-items: center;
     font-size: 11px;
   }
-  .showcase-introline > span:first-child {
+  .showcase-identity > span:last-child {
     max-width: 230px;
-    line-height: 1.7;
+    line-height: 1.45;
+  }
+  .showcase-identity {
+    gap: 14px;
+    font-size: 12px;
+  }
+  .showcase-portrait {
+    width: 60px;
+    height: 60px;
   }
 }
 @media (max-width: 480px) {
@@ -328,8 +406,24 @@
     padding-left: 5px;
     line-height: 1.8;
   }
-  .showcase-introline > span:first-child {
-    max-width: 175px;
+  .showcase-identity > span:last-child {
+    max-width: 150px;
+  }
+  .showcase-identity-text a {
+    font-size: 9px;
+  }
+  .showcase-identity {
+    gap: 12px;
+  }
+  .showcase-portrait {
+    width: 52px;
+    height: 52px;
+  }
+  .showcase-portrait::after {
+    width: 10px;
+    height: 10px;
+    right: 2px;
+    bottom: 2px;
   }
   .showcase-introline .studio-availability {
     font-size: 8px;
@@ -338,6 +432,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .showcase-copy-rotor { will-change: auto; }
+  .showcase-portrait::before { animation: none; }
   .showcase-scene {
     transition: none;
   }
