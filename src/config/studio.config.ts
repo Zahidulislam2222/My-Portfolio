@@ -722,7 +722,7 @@ export const studioConfig = {
   identity: portfolioConfig.personal,
   // Square crops of CV/profile/contra/assets/portrait.jpg (same photo as the favicon).
   portrait: { small: "/zahidul-portrait-192.webp", large: "/zahidul-portrait-384.webp" },
-  agency: { label: "Founder of MehZ Solution", href: "https://mehzsolution.zahidul-islam.com" },
+  agency: { label: "Founder & Lead Engineer of MehZ Solution", href: "https://mehzsolution.zahidul-islam.com" },
   socials: portfolioConfig.socials,
   navigation: [
     { label: "Reviews", href: "#testimonials" },
