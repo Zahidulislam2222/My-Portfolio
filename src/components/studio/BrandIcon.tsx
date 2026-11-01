@@ -1,4 +1,7 @@
-import { BriefcaseBusiness } from "lucide-react";
+import { BriefcaseBusiness, Globe, Linkedin } from "lucide-react";
+
+// Simple Icons dropped LinkedIn, and a website has no brand mark, so these use Lucide.
+const lucideMarks = { linkedin: Linkedin, website: Globe } as const;
 
 // Brand marks from Simple Icons (CC0, simple-icons@13.21.0), 24×24 viewBox.
 const brandPaths: Record<string, string> = {
@@ -19,6 +22,8 @@ const brandPaths: Record<string, string> = {
 };
 
 export default function BrandIcon({ id, size = 20 }: { id: string; size?: number }) {
+  const Mark = lucideMarks[id as keyof typeof lucideMarks];
+  if (Mark) return <Mark size={size} aria-hidden="true" />;
   const path = brandPaths[id];
   if (!path) return <BriefcaseBusiness size={size} aria-hidden="true" />;
   return (

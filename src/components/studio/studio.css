@@ -2817,6 +2817,8 @@
 .studio-social-list a[data-brand="reddit"] { --brand: #ff6a2b; }
 .studio-social-list a[data-brand="contra"] { --brand: #c0f5ce; }
 .studio-social-list a[data-brand="n8n"] { --brand: #ff6d8f; }
+.studio-social-list a[data-brand="linkedin"] { --brand: #4ea3ff; }
+.studio-social-list a[data-brand="upwork"] { --brand: #6fdc5c; }
 .studio-social-list a:hover,
 .studio-social-list a:focus-visible {
   border-color: var(--brand);

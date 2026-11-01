@@ -722,7 +722,20 @@ export const studioConfig = {
   identity: portfolioConfig.personal,
   // Square crops of CV/profile/contra/assets/portrait.jpg (same photo as the favicon).
   portrait: { small: "/zahidul-portrait-192.webp", large: "/zahidul-portrait-384.webp" },
-  agency: { label: "Founder & Lead Engineer of MehZ Solution", href: "https://mehzsolution.zahidul-islam.com" },
+  agency: {
+    label: "Founder & Lead Engineer of MehZ Solution",
+    href: portfolioConfig.agency.website,
+    profiles: [
+      { id: "website", label: "Website", handle: "mehzsolution.zahidul-islam.com", href: portfolioConfig.agency.website },
+      { id: "linkedin", label: "LinkedIn", handle: "MehZ Solution Page", href: portfolioConfig.agency.linkedin },
+      { id: "youtube", label: "YouTube", handle: "@MehZSolution", href: portfolioConfig.agency.youtube },
+      { id: "facebook", label: "Facebook", handle: "/mehzsolution", href: portfolioConfig.agency.facebook },
+      { id: "instagram", label: "Instagram", handle: "@mehzsolution", href: portfolioConfig.agency.instagram },
+      { id: "x", label: "X", handle: "@MehZSolution", href: portfolioConfig.agency.twitter },
+      { id: "tiktok", label: "TikTok", handle: "@mehzsolution", href: portfolioConfig.agency.tiktok },
+      { id: "upwork", label: "Upwork", handle: "Agency profile", href: portfolioConfig.agency.upwork },
+    ],
+  } as const,
   socials: portfolioConfig.socials,
   navigation: [
     { label: "Reviews", href: "#testimonials" },
@@ -837,6 +850,9 @@ export const studioConfig = {
     socialEyebrow: "FOLLOW THE WORK",
     socialIntro: "Build videos, project walkthroughs and engineering notes.",
     socialLabel: "Social media profiles",
+    agencyEyebrow: "MY AGENCY: MEHZ SOLUTION",
+    agencyIntro: "We build and run the digital side of small businesses: websites, AI automation, chatbots and hosting.",
+    agencyLabel: "MehZ Solution website and profiles",
     contactTitle: "Let’s build\nwhat’s next.",
     contactBody:
       "A new product, a complex integration, or an AI workflow that needs better engineering. Let’s talk.",

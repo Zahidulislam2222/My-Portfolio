@@ -1027,6 +1027,38 @@ export function ContactSection({ base = "" }: { base?: string }) {
               ))}
             </ul>
           </div>
+          <div className="studio-social">
+            <div className="studio-social-head">
+              <span className="studio-eyebrow">
+                {config.labels.agencyEyebrow}
+              </span>
+              <p>{config.labels.agencyIntro}</p>
+            </div>
+            <ul
+              className="studio-social-list"
+              aria-label={config.labels.agencyLabel}
+            >
+              {config.agency.profiles.map((profile) => (
+                <li key={profile.id}>
+                  <a
+                    href={profile.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-brand={profile.id}
+                  >
+                    <span className="studio-social-icon">
+                      <BrandIcon id={profile.id} />
+                    </span>
+                    <span className="studio-social-copy">
+                      <strong>{profile.label}</strong>
+                      <span>{profile.handle}</span>
+                    </span>
+                    <ArrowUpRight size={15} aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </Reveal>
         <div className="studio-footer-bottom">
           <a className="studio-footer-brand" href={base ? "/" : "#home"}>

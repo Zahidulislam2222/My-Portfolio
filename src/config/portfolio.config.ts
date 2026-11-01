@@ -64,6 +64,19 @@ export const portfolioConfig = {
     email: "mailto:muhammadzahidulislam2222@gmail.com",
   },
 
+  // MehZ Solution, the agency I founded (April 2024): hero link, contact section and JSON-LD worksFor.
+  agency: {
+    name: "MehZ Solution",
+    website: "https://mehzsolution.zahidul-islam.com/",
+    linkedin: "https://www.linkedin.com/company/mehzsolution/",
+    youtube: "https://www.youtube.com/@MehZSolution",
+    facebook: "https://www.facebook.com/mehzsolution",
+    instagram: "https://www.instagram.com/mehzsolution/",
+    twitter: "https://x.com/MehZSolution",
+    tiktok: "https://www.tiktok.com/@mehzsolution",
+    upwork: "https://www.upwork.com/agencies/2116552981506079476",
+  },
+
   /* ========================================
      🧭 NAVIGATION LINKS
      ======================================== */

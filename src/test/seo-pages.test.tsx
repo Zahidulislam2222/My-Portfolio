@@ -71,6 +71,10 @@ describe("crawlable pages", () => {
     expect(profile.mainEntity.sameAs).toEqual(
       expect.arrayContaining([expect.stringContaining("linkedin.com"), expect.stringContaining("github.com"), expect.stringContaining("upwork.com")]),
     );
+    const worksFor = (profile.mainEntity as unknown as { worksFor: { name: string; url: string; sameAs: string[] } }).worksFor;
+    expect(worksFor.name).toBe("MehZ Solution");
+    expect(worksFor.url).toBe("https://mehzsolution.zahidul-islam.com/");
+    expect(worksFor.sameAs.length).toBeGreaterThanOrEqual(7);
   });
 
   it("renders the real text into the server HTML for each route", () => {

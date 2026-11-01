@@ -53,6 +53,8 @@ export const seo = {
     portfolioConfig.socials.twitter,
     portfolioConfig.socials.facebook,
     portfolioConfig.socials.instagram,
+    portfolioConfig.socials.tiktok,
+    portfolioConfig.socials.reddit,
     portfolioConfig.socials.n8n,
   ].filter(Boolean) as string[],
 } as const;
@@ -109,6 +111,20 @@ const person = () => ({
   },
   knowsAbout: seo.knowsAbout,
   sameAs: seo.sameAs,
+  worksFor: {
+    "@type": "Organization",
+    name: portfolioConfig.agency.name,
+    url: portfolioConfig.agency.website,
+    sameAs: [
+      portfolioConfig.agency.linkedin,
+      portfolioConfig.agency.youtube,
+      portfolioConfig.agency.facebook,
+      portfolioConfig.agency.instagram,
+      portfolioConfig.agency.twitter,
+      portfolioConfig.agency.tiktok,
+      portfolioConfig.agency.upwork,
+    ],
+  },
 });
 
 const breadcrumbs = (items: { name: string; path: string }[]) => ({

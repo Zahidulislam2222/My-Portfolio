@@ -200,6 +200,13 @@ describe("engineering studio content contract", () => {
       expect(profile.handle.length, profile.id).toBeGreaterThan(2);
     }
   });
+  it("links the agency website and every MehZ Solution profile", () => {
+    const profiles = studioConfig.agency.profiles;
+    expect(profiles.map(profile => profile.id)).toEqual(["website", "linkedin", "youtube", "facebook", "instagram", "x", "tiktok", "upwork"]);
+    expect(studioConfig.agency.href).toBe(profiles[0].href);
+    expect(new Set(profiles.map(profile => profile.href)).size).toBe(profiles.length);
+    for (const profile of profiles) expect(new URL(profile.href).protocol, profile.id).toBe("https:");
+  });
 
   it("keeps featured-card highlights consistent with the current release counts", () => {
     for (const [id, counts] of [["voicebridge", ["258"]], ["fleetwright", ["289"]]] as const) {
