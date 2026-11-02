@@ -12,10 +12,11 @@ describe("project evidence", () => {
     expect(Object.keys(projectEvidence).sort()).toEqual(studioIds);
   });
 
-  it("links every project to a real PDF in public/, except the one documented exception", () => {
+  it("links every project to a real PDF in public/, except the documented exceptions", () => {
     // Groza's older case study also describes consent work outside the verified paid scope.
-    expect(Object.entries(projectEvidence).filter(([, evidence]) => !evidence.document).map(([id]) => id))
-      .toEqual(["groza-accessibility"]);
+    // MehZ Solution is my own agency site; no public technical document exists for it yet.
+    expect(Object.entries(projectEvidence).filter(([, evidence]) => !evidence.document).map(([id]) => id).sort())
+      .toEqual(["groza-accessibility", "mehz-solution"]);
     for (const [id, evidence] of Object.entries(projectEvidence)) {
       if (!evidence.document) continue;
       const file = resolve(publicDir, `.${documentBasePath}${evidence.document.file}`);

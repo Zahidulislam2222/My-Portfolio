@@ -35,7 +35,7 @@ describe("project dialog", () => {
     render(<EngineeringStudio />);
     const cards = [...document.querySelectorAll("#projects .studio-project-grid .studio-project-card")];
     const names = cards.map((card) => card.querySelector("h3")?.textContent);
-    expect(names[0]).toBe("Multi-Site Follow-up");
+    expect(names[0]).toBe("MehZ Solution");
     for (const id of studioConfig.spotlight.glow) {
       const name = studioProjects.find((project) => project.id === id)!.name;
       const index = names.indexOf(name);

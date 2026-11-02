@@ -26,6 +26,28 @@ const projectSchema = z.object({
 
 export const studioProjects = z.array(projectSchema).parse([
   {
+    "id": "mehz-solution",
+    "name": "MehZ Solution",
+    "category": "Web & Commerce",
+    "domain": "AGENCY WEBSITE & CLIENT PORTAL",
+    "summary": "My agency's live website: services, pricing and case studies, with service requests, a client dashboard, an owner admin and an AI assistant.",
+    "status": "Live · own Rust API, client dashboard and AI assistant",
+    "detail": "The live website of MehZ Solution, the agency I founded. An Astro static site with a Rust (Axum) API and SQLite: visitors request a service instead of buying blind, get an account by email link and follow their request in a client dashboard; I set status, quotes, payment links and replies from an owner admin. Partner applications, legal pages, every portfolio project as a case study and an AI assistant that answers service, pricing and process questions under a one-dollar daily spend cap. The scroll-scrubbed hero film was made from generated keyframes with no people in it. It runs as one hardened container (non-root, read-only, loopback port) behind the shared server's Caddy and Cloudflare, with daily SQLite backups and a tested restore. 19 Rust tests, a 38-check API walk-through and fresh-context reviews before release; the live container matched its release manifest file for file (166/166). Backups are not yet copied off the server automatically.",
+    "stack": [
+      "Rust / Axum",
+      "SQLite",
+      "Astro",
+      "TypeScript",
+      "Docker"
+    ],
+    "visual": "capture",
+    "featured": true,
+    "evidence": "Project dossier and release records, October 31 – November 2, 2026",
+    "image": "/studio/mehz-solution-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "MehZ Solution website home page"
+  },
+  {
     "id": "voicebridge",
     "name": "VoiceBridge",
     "category": "AI & Agents",
@@ -155,8 +177,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "AI & Agents",
     "domain": "PUBLIC KNOWLEDGE RAG",
     "summary": "A public WordPress assistant that answers from a creator’s approved YouTube videos, with linked sources.",
-    "status": "Public WordPress assistant · restored and domain-ready October 21",
-    "detail": "A public WordPress knowledge assistant grounded in approved YouTube material. FastAPI combines SQLite FTS5, local embeddings and rank fusion without a hosted vector database. Relevance checks and source citations constrain answers; paid membership and course material are excluded from the public release. Manifest checks, atomic knowledge updates, daily refresh and scheduled backups support operations. The September 29 go-live record includes a real grounded answer with five sources, a public homepage check and execution of the actual scheduled backup command. On October 21 the missing homepage loader was restored, both question boxes were republished and browser-checked, and the engine (26,634 indexed passages, 28 running services) was prepared for the client’s final domain, which waits on one DNS record from the client. The earlier members-only brief is historical.",
+    "status": "Public WordPress assistant · slide-in answer panel live October 28",
+    "detail": "A public WordPress knowledge assistant grounded in approved YouTube material. FastAPI combines SQLite FTS5, local embeddings and rank fusion without a hosted vector database. Relevance checks and source citations constrain answers; paid membership and course material are excluded from the public release. Manifest checks, atomic knowledge updates, daily refresh and scheduled backups support operations. The September 29 go-live record includes a real grounded answer with five sources, a public homepage check and execution of the actual scheduled backup command. On October 21 the missing homepage loader was restored, both question boxes were republished and browser-checked, and the engine (26,634 indexed passages, 28 running services) was prepared for the client’s final domain. On October 28 answers moved into a right-hand slide-in panel (a bottom sheet on phones) shared by both question boxes and the follow-up box, checked live with zero page errors; the engine now holds 27,016 passages. The domain’s DNS records resolve, and attaching the domain and its certificate on the client’s hosting is the remaining client-side step. The earlier members-only brief is historical.",
     "stack": [
       "FastAPI",
       "SQLite FTS5",
@@ -576,9 +598,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "Self-Hosted Email Infrastructure",
     "category": "Cloud & Systems",
     "domain": "SELF-HOSTED MAIL OPERATIONS",
-    "summary": "Five authenticated domain mailboxes with webmail on an existing server, checked with external, denial and restore tests.",
-    "status": "Operating · 22/22 external protocol checks pass",
-    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). It runs on a single host, so it is not highly available. External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
+    "summary": "Six authenticated domain mailboxes and a private mail hub with one login, scheduled sending, folders and attachments.",
+    "status": "Operating · private mail hub live November 2",
+    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). On November 2 a sixth mailbox and a private web hub went live: one login with an authenticator code for all six, a Gmail-style folder list with search, replies from the receiving mailbox, sending at the recipient's local time with per-mailbox caps, a do-not-contact list, duplicate checks and one follow-up, up to 25 recipients and file attachments. The two hub releases passed 56 and then 98 tests with fresh reviews, matched their source file for file on the server, and an isolated restore of the hub database passed 14 of 14 checks. It runs on a single host, so it is not highly available. External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
     "stack": [
       "Docker Mailserver",
       "Roundcube",
@@ -588,15 +610,16 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "terminal",
     "featured": true,
-    "evidence": "Google Doc case study reviewed October 25, 2026; October 21 operating review and open gates stated above",
+    "evidence": "Google Doc case study updated November 2, 2026; open gates stated above",
     "image": "/studio/self-hosted-email-infrastructure-cover.webp",
     "imageKind": "reference",
-    "imageAlt": "Workflow diagram for the self-hosted email infrastructure: DNS and authentication, mail server, five inboxes and restore testing"
+    "imageAlt": "Workflow diagram for the self-hosted email infrastructure: DNS and authentication, mail server, inboxes and restore testing"
   }
 ]);
 
 export type StudioProject = z.infer<typeof projectSchema>;
 const currentProjectUrls: Record<string, string> = {
+  "mehz-solution": "https://mehzsolution.zahidul-islam.com/",
   voicebridge: "https://voicebridge.zahidul-islam.com/",
   "mediconnect-v3": "https://mediconnect.zahidul-islam.com/",
   chronos: "https://chronos.zahidul-islam.com/",
@@ -687,7 +710,8 @@ export const studioConfig = {
   projectHighlights: {
     "groza-accessibility": "Paid WCAG 2.1 AA remediation: 100+ errors and 200+ contrast failures fixed with a PHP snippet and no theme edits.",
     "project-video-studio": "Script-to-video engine with layered composition, local human matting, checked captions/audio and safe shot reuse.",
-    "self-hosted-email-infrastructure": "Five authenticated mailboxes on a shared server; 22/22 external protocol checks and an isolated restore.",
+    "mehz-solution": "My agency's live site: service requests, client dashboard, owner admin and an AI assistant on a Rust API.",
+    "self-hosted-email-infrastructure": "Six authenticated mailboxes and a private hub with scheduling, folders and attachments; restore tested.",
     "playwright-cline-integration": "Human-approved Cline browser actions, restart verification and exact configuration recovery.",
     "synqharbor-ai": "Human-led collaboration screens with revision-aware approvals, responsive public documentation and a portable static release.",
     "vericommerce-ai": "Catalog evidence with account roles, multi-format ingestion, cited quotations and approved drafts with provenance export.",
@@ -716,8 +740,8 @@ export const studioConfig = {
   } as Record<string, string>,
   // Pinned to the front of the Work grid in this order; the rest keep their list order.
   spotlight: {
-    order: ["ftm-sms-followup", "voicebridge", "fleetwright", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
-    glow: ["ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+    order: ["mehz-solution", "ftm-sms-followup", "voicebridge", "fleetwright", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+    glow: ["mehz-solution", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
   },
   identity: portfolioConfig.personal,
   // Square crops of CV/profile/contra/assets/portrait.jpg (same photo as the favicon).

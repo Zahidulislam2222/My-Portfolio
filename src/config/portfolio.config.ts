@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 28, suffix: "" },
+    { label: "Selected Projects", value: 29, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 258, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Sample Products", value: 6, suffix: "" }
@@ -1183,13 +1183,13 @@ export const portfolioConfig = {
   },
   {
     "id": "self-hosted-email-infrastructure",
-    "title": "Self-Hosted Email Infrastructure — Five Authenticated Mailboxes",
+    "title": "Self-Hosted Email Infrastructure — Six Mailboxes and a Private Mail Hub",
     "category": [
       "automation",
       "security"
     ],
-    "description": "Five authenticated domain mailboxes with webmail on an existing server, checked with external, denial and restore tests.",
-    "fullDescription": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
+    "description": "Six authenticated domain mailboxes and a private mail hub with one login, scheduled sending, folders and attachments.",
+    "fullDescription": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). On November 2 a sixth mailbox and a private web hub went live: one login with an authenticator code for all six, folders with search, replies from the receiving mailbox, scheduled sending at the recipient's local time with per-mailbox caps, a do-not-contact list, duplicate checks, one follow-up and attachments. The two hub releases passed 56 and then 98 tests, and an isolated restore of the hub database passed 14 of 14 checks. External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
     "thumbnail": "/studio/self-hosted-email-infrastructure-cover.webp",
     "technologies": [
       "Docker Mailserver",

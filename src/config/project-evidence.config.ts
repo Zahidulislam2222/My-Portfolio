@@ -33,6 +33,29 @@ export type ProjectEvidence = z.infer<typeof evidenceSchema>;
 export const documentBasePath = "/docs/";
 
 export const projectEvidence = z.record(evidenceSchema).parse({
+  "mehz-solution": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "The website of my own agency, MehZ Solution: designed, built and run by me on the shared server."
+    },
+    "challenges": [
+      {
+        "problem": "Sign-in answered faster for emails without an account, so timing revealed who was a client.",
+        "fix": "Every sign-in now runs exactly one Argon2 check on the blocking pool, whether or not the account exists.",
+        "result": "Unit, integration and API walk-through tests assert the same error for both cases, and the code always runs one password-hash check."
+      },
+      {
+        "problem": "Through the CDN the hero film could not be seeked: a byte-range request returned the whole file instead of a part.",
+        "fix": "Stopped compressing video, added a regression test that sends a CDN-style request, and versioned the video URL.",
+        "result": "Range requests return 206 through Cloudflare on cache miss and hit; the film scrubs to its full 18 seconds."
+      },
+      {
+        "problem": "After rebuilds, browsers kept showing old pages because one cache rule covered HTML and assets alike.",
+        "fix": "Cache by file type: HTML revalidates, hashed assets are immutable, API responses are never stored.",
+        "result": "Rebuilt pages appear on reload, and an integration test checks the API is never cached."
+      }
+    ]
+  },
   "voicebridge": {
     "engagement": {
       "type": "Independent build",
@@ -711,7 +734,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "The domain had no MX record and no mailboxes: buying the domain had been mistaken for getting email.",
         "fix": "Checked the real DNS inventory, then added MX, SPF, DKIM, DMARC and matching reverse DNS for a dedicated mail host.",
-        "result": "Five separate inboxes send and receive; owner Gmail diagnostics passed SPF, DKIM and DMARC across three destinations, the latest over TLS 1.3."
+        "result": "Six separate inboxes send and receive; the original five passed SPF, DKIM and DMARC at three Gmail destinations, and the sixth reached the Inbox on November 2."
       },
       {
         "problem": "A new mail stack on a shared server could break the applications already running there.",
@@ -725,7 +748,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Case study · updated October 21 (PDF)",
+      "label": "Case study · updated November 2 (PDF)",
       "file": "self-hosted-email-infrastructure-case-study.pdf"
     }
   },
