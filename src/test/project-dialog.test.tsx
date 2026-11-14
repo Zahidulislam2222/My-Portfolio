@@ -31,11 +31,12 @@ const openProject = (name: string) => {
 };
 
 describe("project dialog", () => {
-  it("pins FTM follow-up first and keeps every glowing spotlight in the top ten", () => {
+  it("pins MehZ Solution first, the law firm project second and every glowing spotlight in the top ten", () => {
     render(<EngineeringStudio />);
     const cards = [...document.querySelectorAll("#projects .studio-project-grid .studio-project-card")];
     const names = cards.map((card) => card.querySelector("h3")?.textContent);
     expect(names[0]).toBe("MehZ Solution");
+    expect(names[1]).toBe("Law Firm Speed & Booking");
     for (const id of studioConfig.spotlight.glow) {
       const name = studioProjects.find((project) => project.id === id)!.name;
       const index = names.indexOf(name);

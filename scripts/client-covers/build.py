@@ -378,6 +378,60 @@ COVERS["playwright-cline-integration"] = page(
 )
 
 
+# 8. FTM law firm speed + paid booking ----------------------------------------
+# Numbers from the 14 November technical overview: Fees page 66 -> 97 mobile,
+# home 4.26 MB -> 0.67 MB, 90+ mobile pages 4 -> 10 of 12. The firm stays unnamed.
+COVERS["ftm-law-firm-booking-cover"] = page(
+    "#8fc8ff", "#1d4d7a40", "LEGAL INTAKE & SPEED", "Law Firm<br>Speed &amp; Booking",
+    "A faster WordPress site, and a booking that only exists once the payment clears.",
+    ["Mobile 90+ pages: 4 → 10 of 12", "Home page 4.26 MB → 0.67 MB", "Won card opens the Clio matter"],
+    f"""
+<div class="win" style="left:0;top:20px;width:400px;height:470px">
+  <div class="bar"><b></b><b></b><b></b><span>Law firm website · consultation</span></div>
+  <div class="pad">
+    <div style="font-size:21px;font-weight:600">Book a consultation</div>
+    <div class="label" style="margin-top:20px">Practice area</div><div class="field">Immigration <span style="float:right;color:#7f8c84">▾</span></div>
+    <div class="label" style="margin-top:14px">Lawyer</div><div class="field">No preference · earliest free <span style="float:right;color:#7f8c84">▾</span></div>
+    <div class="label" style="margin-top:14px">Time</div>
+    <div class="slots"><span>10:00 AM</span><span class="on">2:30 PM</span><span>4:00 PM</span></div>
+    <div class="cta">Pay and book</div>
+  </div>
+</div>
+<div class="win" style="left:440px;top:20px;width:320px;height:300px">
+  <div class="bar"><span style="margin:0">PageSpeed · mobile</span></div>
+  <div class="pad scores">
+    <div><span>Fees page</span><b><s>66</s> → <em>97</em></b></div>
+    <div><span>Contact</span><b><s>81</s> → <em>97</em></b></div>
+    <div><span>Blog post</span><b><s>80</s> → <em>98</em></b></div>
+    <div><span>Home weight</span><b><s>4.26</s> → <em>0.67 MB</em></b></div>
+  </div>
+</div>
+<div class="win" style="left:440px;top:350px;width:320px;height:140px">
+  <div class="bar"><span style="margin:0">Payment</span><span style="margin-left:auto" class="pill ok">● Confirmed</span></div>
+  <div class="pad" style="font-size:14.5px;color:#a9b5ad">Only a confirmed payment creates the appointment.</div>
+</div>
+{node(0, 530, "1", "Appointment + Meet link", True)}
+{node(0, 600, "2", "CRM card · lawyer as owner")}
+{node(0, 670, "3", "Won → matter in Clio", True)}
+{node(400, 600, "4", "Retainer signed online → filed")}
+<div class="connector" style="left:24px;top:490px;height:40px"></div>
+<div class="glowline" style="left:250px;top:625px;width:150px"></div>
+""",
+    """
+.field{margin-top:7px;height:40px;border:1px solid #ffffff1f;border-radius:9px;background:#0b100e;padding:10px 12px;font-size:15px;color:#dfe8e2}
+.slots{display:flex;gap:10px;margin-top:8px}
+.slots span{flex:1;text-align:center;padding:10px 0;border-radius:9px;border:1px solid #ffffff1f;font-size:14.5px;color:#c3ccc6}
+.slots .on{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.cta{margin-top:20px;height:44px;border-radius:10px;background:var(--accent);color:#08100c;font-weight:600;display:grid;place-items:center;font-size:15px}
+.scores{display:grid;gap:18px;font-size:15px}
+.scores div{display:flex;justify-content:space-between;align-items:center;color:#a9b5ad}
+.scores b{font-weight:600;color:#eef3ef}
+.scores s{color:#f6a08a;text-decoration:none}
+.scores em{font-style:normal;color:#9ff0bb}
+""",
+)
+
+
 def main(only=None):
     with sync_playwright() as p:
         browser = p.chromium.launch()

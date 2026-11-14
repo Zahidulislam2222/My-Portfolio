@@ -73,7 +73,7 @@ describe("crawlable pages", () => {
     );
     const worksFor = (profile.mainEntity as unknown as { worksFor: { name: string; url: string; sameAs: string[] } }).worksFor;
     expect(worksFor.name).toBe("MehZ Solution");
-    expect(worksFor.url).toBe("https://mehzsolution.zahidul-islam.com/");
+    expect(worksFor.url).toBe("https://mehzsolution.com/");
     expect(worksFor.sameAs.length).toBeGreaterThanOrEqual(7);
   });
 

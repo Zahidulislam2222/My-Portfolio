@@ -31,8 +31,8 @@ export const studioProjects = z.array(projectSchema).parse([
     "category": "Web & Commerce",
     "domain": "AGENCY WEBSITE & CLIENT PORTAL",
     "summary": "My agency's live website: services, pricing and case studies, with service requests, a client dashboard, an owner admin and an AI assistant.",
-    "status": "Live · own Rust API, client dashboard and AI assistant",
-    "detail": "The live website of MehZ Solution, the agency I founded. An Astro static site with a Rust (Axum) API and SQLite: visitors request a service instead of buying blind, get an account by email link and follow their request in a client dashboard; I set status, quotes, payment links and replies from an owner admin. Partner applications, legal pages, every portfolio project as a case study and an AI assistant that answers service, pricing and process questions under a one-dollar daily spend cap. The scroll-scrubbed hero film was made from generated keyframes with no people in it. It runs as one hardened container (non-root, read-only, loopback port) behind the shared server's Caddy and Cloudflare, with daily SQLite backups and a tested restore. 19 Rust tests, a 38-check API walk-through and fresh-context reviews before release; the live container matched its release manifest file for file (166/166). Backups are not yet copied off the server automatically.",
+    "status": "Live on mehzsolution.com · own Rust API, client dashboard and AI assistant",
+    "detail": "The live website of MehZ Solution, the agency I founded. An Astro static site with a Rust (Axum) API and SQLite: visitors request a service instead of buying blind, get an account by email link and follow their request in a client dashboard; I set status, quotes, payment links and replies from an owner admin. Partner applications, legal pages, every portfolio project as a case study and an AI assistant that answers service, pricing and process questions under a one-dollar daily spend cap. The scroll-scrubbed hero film was made from generated keyframes with no people in it. It runs as one hardened container (non-root, read-only, loopback port) behind the shared server's Caddy and Cloudflare, with daily SQLite backups and a tested restore. 19 Rust tests, a 38-check API walk-through and fresh-context reviews before release; the live container matched its release manifest file for file (166/166). On November 12 the site moved to its own domain, mehzsolution.com, with strict HTTPS; old and www links redirect permanently with their paths kept, the 40 public pages are in a new sitemap, and six new domain mailboxes joined my existing mail hub. That release matched 198 of 198 files on the server, and its API walk-through passed 38 of 38. Backups of the site database are not yet copied off the server automatically.",
     "stack": [
       "Rust / Axum",
       "SQLite",
@@ -42,10 +42,32 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "capture",
     "featured": true,
-    "evidence": "Project dossier and release records, October 31 – November 2, 2026",
+    "evidence": "Project dossier and release records, October 31 – November 12, 2026",
     "image": "/studio/mehz-solution-cover.webp",
     "imageKind": "screenshot",
     "imageAlt": "MehZ Solution website home page"
+  },
+  {
+    "id": "ftm-law-firm-booking",
+    "name": "Law Firm Speed & Booking",
+    "category": "Web & Commerce",
+    "domain": "LEGAL INTAKE & WEB PERFORMANCE",
+    "summary": "A law firm's WordPress site made faster, plus a pay-first booking that creates the appointment, Meet link and CRM card; a Won card opens the Clio matter.",
+    "status": "Client project · live November 2026",
+    "detail": "Paid work for an immigration law firm, delivered 2–14 November 2026. Fifteen speed changes to the existing WordPress and Elementor site, each measured on its own and none changing how it looks, took mobile pages scoring 90+ from 4 to 10 of 12 page types and desktop from 5 to 12 of 12. The home page dropped from 4.26 MB to 0.67 MB and the Fees page went from 66 to 97 on mobile; seventeen Google Ads landing pages now paint in their final layout (86 to 97 on the measured page). For intake, a client pays through Clio Payments and only a confirmed payment creates the appointment on the right lawyer's calendar, with a Google Meet link by email and text. Seven lawyers can be booked, and \"No preference\" kept the firm's order in 620 of 620 checks. Each booking becomes a HighLevel card with the lawyer as owner; marking it Won creates the matter in Clio Manage, and retainers go out from the card, are signed online and land as a PDF in the client's Clio matter. Website messages open their own CRM card, Google Ads click IDs reach both forms, and 12,168 existing clients were tagged from Clio records. The booking app passed 460 tests and the documents app 377, released files matched reviewed source by checksum, and real paid test bookings ran end to end on the live system. Work still being built is left out.",
+    "stack": [
+      "WordPress",
+      "HighLevel CRM",
+      "Clio Manage",
+      "DocuSeal",
+      "Cloudflare"
+    ],
+    "visual": "network",
+    "featured": true,
+    "evidence": "Google Doc technical overview, November 14, 2026; delivered work only",
+    "image": "/studio/ftm-law-firm-booking-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "Illustration of Law Firm Speed & Booking: a consultation booking form with a pay-and-book button, PageSpeed scores before and after, and the steps from payment to appointment, CRM card and Clio matter"
   },
   {
     "id": "voicebridge",
@@ -598,9 +620,9 @@ export const studioProjects = z.array(projectSchema).parse([
     "name": "Self-Hosted Email Infrastructure",
     "category": "Cloud & Systems",
     "domain": "SELF-HOSTED MAIL OPERATIONS",
-    "summary": "Six authenticated domain mailboxes and a private mail hub with one login, scheduled sending, folders and attachments.",
-    "status": "Operating · private mail hub live November 2",
-    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). On November 2 a sixth mailbox and a private web hub went live: one login with an authenticator code for all six, a Gmail-style folder list with search, replies from the receiving mailbox, sending at the recipient's local time with per-mailbox caps, a do-not-contact list, duplicate checks and one follow-up, up to 25 recipients and file attachments. The two hub releases passed 56 and then 98 tests with fresh reviews, matched their source file for file on the server, and an isolated restore of the hub database passed 14 of 14 checks. It runs on a single host, so it is not highly available. External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
+    "summary": "Twelve authenticated mailboxes on two domains and a private mail hub with one login, scheduled sending, folders and attachments.",
+    "status": "Operating · second domain added November 12",
+    "detail": "A domain had been registered without any mailbox service. I set up five separate authenticated mailboxes with sending, receiving and HTTPS webmail on an existing virtual server, using Docker Mailserver (Postfix, Dovecot, Rspamd), Roundcube and Caddy, with Cloudflare DNS. The work added MX, SPF, DKIM, DMARC and matching reverse DNS, TLS-only submission and IMAP, relay and cross-account sender blocking, an encrypted off-server backup and an isolated five-account restore. Deployment matched 20 owned files while all 17 existing proxy files and 64 unrelated containers stayed unchanged. The October 21 review passed 22 of 22 external protocol, authentication and denial checks; 16 owner diagnostics passed SPF, DKIM and DMARC across three Gmail destinations, and all 25 later sends were reconciled against live Sent folders (23 accepted, 2 failed). On November 2 a sixth mailbox and a private web hub went live: one login with an authenticator code for all six, a Gmail-style folder list with search, replies from the receiving mailbox, sending at the recipient's local time with per-mailbox caps, a do-not-contact list, duplicate checks and one follow-up, up to 25 recipients and file attachments. The two hub releases passed 56 and then 98 tests with fresh reviews, matched their source file for file on the server, and an isolated restore of the hub database passed 14 of 14 checks. On November 12 a second domain was added with six more mailboxes, keeping the existing accounts, keys and hub jobs: all six passed IMAP and SMTP logins, one scheduled test from each reached an owner Gmail Inbox with SPF, DKIM and DMARC passing for the new domain, and an encrypted off-server copy of all twelve accounts was restored in isolation with every login and inbox count intact. It runs on a single host, so it is not highly available. External alerts, automatic off-server backups, image vulnerability scanning and full disaster recovery remain open; authentication results do not guarantee inbox placement.",
     "stack": [
       "Docker Mailserver",
       "Roundcube",
@@ -610,7 +632,7 @@ export const studioProjects = z.array(projectSchema).parse([
     ],
     "visual": "terminal",
     "featured": true,
-    "evidence": "Google Doc case study updated November 2, 2026; open gates stated above",
+    "evidence": "Google Doc case study updated November 15, 2026; open gates stated above",
     "image": "/studio/self-hosted-email-infrastructure-cover.webp",
     "imageKind": "reference",
     "imageAlt": "Workflow diagram for the self-hosted email infrastructure: DNS and authentication, mail server, inboxes and restore testing"
@@ -619,7 +641,7 @@ export const studioProjects = z.array(projectSchema).parse([
 
 export type StudioProject = z.infer<typeof projectSchema>;
 const currentProjectUrls: Record<string, string> = {
-  "mehz-solution": "https://mehzsolution.zahidul-islam.com/",
+  "mehz-solution": "https://mehzsolution.com/",
   voicebridge: "https://voicebridge.zahidul-islam.com/",
   "mediconnect-v3": "https://mediconnect.zahidul-islam.com/",
   chronos: "https://chronos.zahidul-islam.com/",
@@ -710,8 +732,9 @@ export const studioConfig = {
   projectHighlights: {
     "groza-accessibility": "Paid WCAG 2.1 AA remediation: 100+ errors and 200+ contrast failures fixed with a PHP snippet and no theme edits.",
     "project-video-studio": "Script-to-video engine with layered composition, local human matting, checked captions/audio and safe shot reuse.",
-    "mehz-solution": "My agency's live site: service requests, client dashboard, owner admin and an AI assistant on a Rust API.",
-    "self-hosted-email-infrastructure": "Six authenticated mailboxes and a private hub with scheduling, folders and attachments; restore tested.",
+    "mehz-solution": "My agency's live site on mehzsolution.com: service requests, client dashboard, owner admin and an AI assistant.",
+    "ftm-law-firm-booking": "Law firm site sped up (mobile 90+ pages 4 → 10 of 12) and a pay-first booking that feeds the CRM and Clio.",
+    "self-hosted-email-infrastructure": "Twelve authenticated mailboxes on two domains and a private hub with scheduling, folders and attachments; restore tested.",
     "playwright-cline-integration": "Human-approved Cline browser actions, restart verification and exact configuration recovery.",
     "synqharbor-ai": "Human-led collaboration screens with revision-aware approvals, responsive public documentation and a portable static release.",
     "vericommerce-ai": "Catalog evidence with account roles, multi-format ingestion, cited quotations and approved drafts with provenance export.",
@@ -740,8 +763,8 @@ export const studioConfig = {
   } as Record<string, string>,
   // Pinned to the front of the Work grid in this order; the rest keep their list order.
   spotlight: {
-    order: ["mehz-solution", "ftm-sms-followup", "voicebridge", "fleetwright", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
-    glow: ["mehz-solution", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+    order: ["mehz-solution", "ftm-law-firm-booking", "ftm-sms-followup", "voicebridge", "fleetwright", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+    glow: ["mehz-solution", "ftm-law-firm-booking", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
   },
   identity: portfolioConfig.personal,
   // Square crops of CV/profile/contra/assets/portrait.jpg (same photo as the favicon).
@@ -750,7 +773,7 @@ export const studioConfig = {
     label: "Founder & Lead Engineer of MehZ Solution",
     href: portfolioConfig.agency.website,
     profiles: [
-      { id: "website", label: "Website", handle: "mehzsolution.zahidul-islam.com", href: portfolioConfig.agency.website },
+      { id: "website", label: "Website", handle: "mehzsolution.com", href: portfolioConfig.agency.website },
       { id: "linkedin", label: "LinkedIn", handle: "MehZ Solution Page", href: portfolioConfig.agency.linkedin },
       { id: "youtube", label: "YouTube", handle: "@MehZSolution", href: portfolioConfig.agency.youtube },
       { id: "facebook", label: "Facebook", handle: "/mehzsolution", href: portfolioConfig.agency.facebook },

@@ -63,6 +63,7 @@ describe("project evidence", () => {
       .map((p) => p.id)
       .sort();
     expect(clients).toEqual([
+      "ftm-law-firm-booking",
       "ftm-seo-automation",
       "ftm-sms-followup",
       "ftm-social-media",

@@ -56,6 +56,34 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ]
   },
+  "ftm-law-firm-booking": {
+    "engagement": {
+      "type": "Client project",
+      "client": "Fine Touch Marketing",
+      "detail": "Paid agency engineering for an immigration law firm's website and client intake, delivered 2–14 November 2026. The firm is not named."
+    },
+    "challenges": [
+      {
+        "problem": "No online flow took a consultation payment and then created the appointment, and the bookings that were saved went to a retired pipeline nobody watched.",
+        "fix": "Built a pay-first booking on Clio Payments: only a confirmed payment creates the appointment, the Meet link and the cards in the firm's own intake pipeline, and every step checks for an existing result before creating one.",
+        "result": "Real paid test bookings ran end to end on the live system (first on November 7, latest on November 13); seven lawyers are bookable and \"No preference\" kept the firm's order in 620 of 620 checks."
+      },
+      {
+        "problem": "Most page types scored below 90 on mobile: the Fees page scored 66 and the home page weighed 4.26 MB.",
+        "fix": "Fifteen small changes, each one removable file or recorded setting, measured one at a time with the median of PageSpeed runs and checked against forms, chat, tracking and SEO tags.",
+        "result": "Mobile 90+ pages went from 4 to 10 of 12 and desktop from 5 to 12 of 12; Fees page 66 → 97 and home page 4.26 MB → 0.67 MB, with no visual change."
+      },
+      {
+        "problem": "Matters and retainers lived outside the CRM, and a joint retainer never finished because each signer received a different copy.",
+        "fix": "Marking the CRM card Won creates the Clio matter; retainers go out from the card with a second signer on one copy, and sending again withdraws the older unsigned copy.",
+        "result": "Matter status reaches the CRM in about 15 seconds, the signed PDF is filed in the client's Clio matter within about 5 minutes, and 12 of 12 retainer templates were rebuilt for online signing."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · November 14 (PDF)",
+      "file": "ftm-law-firm-booking-technical-overview.pdf"
+    }
+  },
   "voicebridge": {
     "engagement": {
       "type": "Independent build",
@@ -734,7 +762,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "The domain had no MX record and no mailboxes: buying the domain had been mistaken for getting email.",
         "fix": "Checked the real DNS inventory, then added MX, SPF, DKIM, DMARC and matching reverse DNS for a dedicated mail host.",
-        "result": "Six separate inboxes send and receive; the original five passed SPF, DKIM and DMARC at three Gmail destinations, and the sixth reached the Inbox on November 2."
+        "result": "Twelve inboxes on two domains send and receive; the original five passed SPF, DKIM and DMARC at three Gmail destinations, the sixth reached the Inbox on November 2, and the six on the second domain did so on November 12."
       },
       {
         "problem": "A new mail stack on a shared server could break the applications already running there.",
@@ -748,7 +776,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Case study · updated November 2 (PDF)",
+      "label": "Case study · updated November 15 (PDF)",
       "file": "self-hosted-email-infrastructure-case-study.pdf"
     }
   },

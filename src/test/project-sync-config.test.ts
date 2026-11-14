@@ -37,6 +37,25 @@ describe("project synchronization contract", () => {
     expect(projectResources("kindred-grove").liveUrl).toBeUndefined();
   });
 
+  it("publishes the law firm project as an unnamed, glowing client case study", () => {
+    const project = studioProjects.find(item => item.id === "ftm-law-firm-booking");
+    expect(project?.featured).toBe(true);
+    expect(project?.imageKind).toBe("illustration");
+    expect(projectEvidence["ftm-law-firm-booking"].engagement.type).toBe("Client project");
+    expect(projectEvidence["ftm-law-firm-booking"].document?.file).toBe("ftm-law-firm-booking-technical-overview.pdf");
+    expect(read("public/docs/ftm-law-firm-booking-technical-overview.pdf").startsWith("%PDF-")).toBe(true);
+    expect(projectResources("ftm-law-firm-booking").liveUrl).toBeUndefined();
+    const publicText = JSON.stringify([project, projectEvidence["ftm-law-firm-booking"]]);
+    expect(publicText).not.toMatch(/uilawyers|ui lawyers/i);
+  });
+
+  it("points every MehZ Solution link at its own domain", () => {
+    expect(portfolioConfig.agency.website).toBe("https://mehzsolution.com/");
+    expect(projectResources("mehz-solution").liveUrl).toBe("https://mehzsolution.com/");
+    for (const name of ["src/config/studio.config.ts", "src/config/portfolio.config.ts", "src/config/seo.config.ts", "src/config/project-evidence.config.ts"])
+      expect(read(name), name).not.toContain("mehzsolution.zahidul-islam.com");
+  });
+
   it("keeps private configuration outside public runtime modules", () => {
     const sources = ["scripts/project_sync.py", "scripts/project_sync_settings.py", "scripts/project_sync_google.py"].map(read);
     const implementation = sources.join("\n");

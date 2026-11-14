@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 29, suffix: "" },
+    { label: "Selected Projects", value: 30, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 258, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Sample Products", value: 6, suffix: "" }
@@ -67,7 +67,7 @@ export const portfolioConfig = {
   // MehZ Solution, the agency I founded (April 2024): hero link, contact section and JSON-LD worksFor.
   agency: {
     name: "MehZ Solution",
-    website: "https://mehzsolution.zahidul-islam.com/",
+    website: "https://mehzsolution.com/",
     linkedin: "https://www.linkedin.com/company/mehzsolution/",
     youtube: "https://www.youtube.com/@MehZSolution",
     facebook: "https://www.facebook.com/mehzsolution",
