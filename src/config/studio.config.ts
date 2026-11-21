@@ -787,7 +787,7 @@ export const studioConfig = {
   } as Record<string, string>,
   // Pinned to the front of the Work grid in this order; the rest keep their list order.
   spotlight: {
-    order: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "voicebridge", "yuktha-wellness", "fleetwright", "jwalker-knowledge-assistant", "mediconnect-v3", "ftm-social-media", "agentic-environment", "ftm-seo-automation", "project-video-studio", "wordpress-incident-response", "regenai-shopify", "groza-accessibility"] as readonly string[],
+    order: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "voicebridge", "yuktha-wellness", "fleetwright", "jwalker-knowledge-assistant", "mediconnect-v3", "ftm-social-media", "agentic-environment", "ftm-seo-automation", "project-video-studio", "wordpress-incident-response", "regenai-shopify", "groza-accessibility", "vericommerce-ai", "playwright-cline-integration"] as readonly string[],
     glow: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
   },
   identity: portfolioConfig.personal,

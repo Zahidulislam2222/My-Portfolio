@@ -50,6 +50,18 @@ describe("project dialog", () => {
     expect(document.querySelectorAll("#projects .studio-project-grid .is-spotlight")).toHaveLength(studioConfig.spotlight.glow.length);
   });
 
+  it("alternates one independent build and one client project after the first four until client work runs out", () => {
+    render(<EngineeringStudio />);
+    const cards = [...document.querySelectorAll("#projects .studio-project-grid .studio-project-card")];
+    const names = cards.map((card) => card.querySelector("h3")?.textContent);
+    const type = (name: string | null | undefined) =>
+      projectEvidence[studioProjects.find((project) => project.name === name)!.id].engagement.type;
+    const rest = names.slice(4).map(type);
+    const clientsLeft = rest.filter((t) => t === "Client project").length;
+    const paired = rest.slice(0, clientsLeft * 2);
+    paired.forEach((t, i) => expect(t, `${i + 5}: ${names[i + 4]}`).toBe(i % 2 === 0 ? "Independent build" : "Client project"));
+  });
+
   it("keeps the glow on a spotlight project's dialog only", () => {
     render(<EngineeringStudio />);
     expect(openProject("Multi-Site Follow-up")).toHaveClass("is-spotlight");
