@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 30, suffix: "" },
+    { label: "Selected Projects", value: 31, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 258, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Sample Products", value: 6, suffix: "" }

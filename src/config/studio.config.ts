@@ -48,23 +48,45 @@ export const studioProjects = z.array(projectSchema).parse([
     "imageAlt": "MehZ Solution website home page"
   },
   {
-    "id": "ftm-law-firm-booking",
-    "name": "Law Firm Speed & Booking",
+    "id": "zahidul-portfolio",
+    "name": "Engineering Portfolio",
     "category": "Web & Commerce",
-    "domain": "LEGAL INTAKE & WEB PERFORMANCE",
-    "summary": "A law firm's WordPress site made faster, plus a pay-first booking that creates the appointment, Meet link and CRM card; a Won card opens the Clio matter.",
-    "status": "Client project · live November 2026",
-    "detail": "Paid work for an immigration law firm, delivered 2–14 November 2026. Fifteen speed changes to the existing WordPress and Elementor site, each measured on its own and none changing how it looks, took mobile pages scoring 90+ from 4 to 10 of 12 page types and desktop from 5 to 12 of 12. The home page dropped from 4.26 MB to 0.67 MB and the Fees page went from 66 to 97 on mobile; seventeen Google Ads landing pages now paint in their final layout (86 to 97 on the measured page). For intake, a client pays through Clio Payments and only a confirmed payment creates the appointment on the right lawyer's calendar, with a Google Meet link by email and text. Seven lawyers can be booked, and \"No preference\" kept the firm's order in 620 of 620 checks. Each booking becomes a HighLevel card with the lawyer as owner; marking it Won creates the matter in Clio Manage, and retainers go out from the card, are signed online and land as a PDF in the client's Clio matter. Website messages open their own CRM card, Google Ads click IDs reach both forms, and 12,168 existing clients were tagged from Clio records. The booking app passed 460 tests and the documents app 377, released files matched reviewed source by checksum, and real paid test bookings ran end to end on the live system. Work still being built is left out.",
+    "domain": "PRERENDERED PORTFOLIO & CASE STUDIES",
+    "summary": "This site: every project as its own prerendered case study, with the facts synced from the source documents and checked before release.",
+    "status": "Live on zahidul-islam.com · prerendered React on Vercel",
+    "detail": "My own portfolio, the site you are reading. A React and Vite app that is prerendered at build time, so the home page, the work index and one case-study page per project are real HTML in the first response for search engines and AI crawlers, and React takes over in the browser. One configuration owns every page's title, description, social image and structured data (Person, CollectionPage, CreativeWork, breadcrumbs), and the build writes the sitemap and fails if a page renders without a heading. Project facts are not typed by hand: a sync step pulls them from each project's Google Doc, re-exports the public PDFs and flags wording I have ruled out. Fonts are self-hosted, every project gets its own social preview image and a phone-sized cover, and a static preview server behaves like Vercel so hydration problems show up before release. Releases run the tests, type check, lint and secret scan, then compare the live files with the local build by hash. On the October 26 release the live mobile Lighthouse score for the home page was 95 for performance and 100 for accessibility, best practices and SEO, with the largest paint down from 3.7 s to 2.6 s.",
     "stack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Vercel",
+      "Vitest"
+    ],
+    "visual": "capture",
+    "featured": true,
+    "evidence": "Repository, release records and live checks, October 26 – November 21, 2026",
+    "image": "/studio/zahidul-portfolio-cover.webp",
+    "imageKind": "screenshot",
+    "imageAlt": "Portfolio website work section with spotlight project cards"
+  },
+  {
+    "id": "ftm-law-firm-booking",
+    "name": "Law Firm Speed, CRM & Booking",
+    "category": "Web & Commerce",
+    "domain": "LEGAL INTAKE, CRM & WEB PERFORMANCE",
+    "summary": "An immigration law firm's site made faster, a pay-first booking, GoHighLevel pipelines, Clio Manage hand-offs, the move off Clio Grow and Google Ads tracking through Zapier.",
+    "status": "Client project · live November 2026",
+    "detail": "Paid work for an immigration law firm through a marketing agency, delivered 2–21 November 2026. Speed: fifteen measured changes to the WordPress and Elementor site took mobile pages scoring 90+ from 4 to 10 of 12 page types and desktop from 5 to 12 of 12, the home page from 4.26 MB to 0.67 MB and the Fees page from 66 to 97; a later sweep of all 194 pages left 177 at 90+ on mobile and fixed the slowest (CRS calculator 72 → 95). Booking: a client pays through Clio Payments and only a confirmed payment creates the appointment on the right lawyer's calendar, with a Google Meet link, one email and one text; clients reschedule themselves, and seven lawyers can be booked. CRM: GoHighLevel pipelines, cards and workflows (40 cleaned down to 17, all published), a Firm Desk dashboard, 15-minute buffers on every lawyer's calendar, and a same-day restore after a third-party integration deleted all 12,527 contacts with the cards, pipelines and fields. Clio: a Won card opens the Clio Manage matter, a completed consult adds the consultation fee, signed retainers are filed in the matter, and on Clio Grow's last day all 1,718 matters moved into the CRM with 0 errors and 82 open ones became pipeline cards. Ads: the Google click ID is kept for 90 days and passed into the forms, Zapier sends offline conversions without double counting a reschedule, and a real paid test sent both conversions end to end. No real client data is shown, and the firm is not named.",
+    "stack": [
+      "GoHighLevel",
+      "Clio",
+      "Zapier",
       "WordPress",
-      "HighLevel CRM",
-      "Clio Manage",
-      "DocuSeal",
-      "Cloudflare"
+      "Google Ads"
     ],
     "visual": "network",
     "featured": true,
-    "evidence": "Google Doc technical overview, November 14, 2026; delivered work only",
+    "evidence": "Google Doc technical overview, November 21, 2026; delivered work only",
     "image": "/studio/ftm-law-firm-booking-cover.webp",
     "imageKind": "illustration",
     "imageAlt": "Illustration of Law Firm Speed & Booking: a consultation booking form with a pay-and-book button, PageSpeed scores before and after, and the steps from payment to appointment, CRM card and Clio matter"
@@ -642,6 +664,7 @@ export const studioProjects = z.array(projectSchema).parse([
 export type StudioProject = z.infer<typeof projectSchema>;
 const currentProjectUrls: Record<string, string> = {
   "mehz-solution": "https://mehzsolution.com/",
+  "zahidul-portfolio": "https://zahidul-islam.com/",
   voicebridge: "https://voicebridge.zahidul-islam.com/",
   "mediconnect-v3": "https://mediconnect.zahidul-islam.com/",
   chronos: "https://chronos.zahidul-islam.com/",
@@ -733,7 +756,8 @@ export const studioConfig = {
     "groza-accessibility": "Paid WCAG 2.1 AA remediation: 100+ errors and 200+ contrast failures fixed with a PHP snippet and no theme edits.",
     "project-video-studio": "Script-to-video engine with layered composition, local human matting, checked captions/audio and safe shot reuse.",
     "mehz-solution": "My agency's live site on mehzsolution.com: service requests, client dashboard, owner admin and an AI assistant.",
-    "ftm-law-firm-booking": "Law firm site sped up (mobile 90+ pages 4 → 10 of 12) and a pay-first booking that feeds the CRM and Clio.",
+    "zahidul-portfolio": "This site: prerendered case studies synced from source documents, with hash-checked releases.",
+    "ftm-law-firm-booking": "Law firm: faster site, pay-first booking, GoHighLevel pipelines, Clio hand-offs, Clio Grow migration and Ads tracking.",
     "self-hosted-email-infrastructure": "Twelve authenticated mailboxes on two domains and a private hub with scheduling, folders and attachments; restore tested.",
     "playwright-cline-integration": "Human-approved Cline browser actions, restart verification and exact configuration recovery.",
     "synqharbor-ai": "Human-led collaboration screens with revision-aware approvals, responsive public documentation and a portable static release.",
@@ -763,8 +787,8 @@ export const studioConfig = {
   } as Record<string, string>,
   // Pinned to the front of the Work grid in this order; the rest keep their list order.
   spotlight: {
-    order: ["mehz-solution", "ftm-law-firm-booking", "ftm-sms-followup", "voicebridge", "fleetwright", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
-    glow: ["mehz-solution", "ftm-law-firm-booking", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
+    order: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "voicebridge", "yuktha-wellness", "fleetwright", "jwalker-knowledge-assistant", "mediconnect-v3", "ftm-social-media", "agentic-environment", "ftm-seo-automation", "project-video-studio", "wordpress-incident-response", "regenai-shopify", "groza-accessibility"] as readonly string[],
+    glow: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
   },
   identity: portfolioConfig.personal,
   // Square crops of CV/profile/contra/assets/portrait.jpg (same photo as the favicon).

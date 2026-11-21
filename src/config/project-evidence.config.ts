@@ -56,31 +56,54 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ]
   },
+  "zahidul-portfolio": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "My own portfolio website, built, synced and released by me on Vercel."
+    },
+    "challenges": [
+      {
+        "problem": "The site rendered only in the browser, so search engines and AI crawlers received an almost empty page.",
+        "fix": "Prerendered the home page, the work index and one case-study page per project at build time, with one configuration owning each page's title, description, image and structured data; the build fails if a page has no heading.",
+        "result": "Every page is real HTML in the first response and is listed in the generated sitemap; the live home page scored 95 / 100 / 100 / 100 on mobile Lighthouse and its largest paint fell from 3.7 s to 2.6 s."
+      },
+      {
+        "problem": "Project facts were typed into the site by hand and drifted from the project documents.",
+        "fix": "A sync step pulls each project's facts from its Google Doc, re-exports the public PDF and flags wording I have ruled out before anything is published.",
+        "result": "Cards, case pages and PDFs come from the same source; a test fails if a project has no evidence entry or its PDF is missing."
+      },
+      {
+        "problem": "The standard preview server answered every path with the home page, which hid hydration problems until they were live.",
+        "fix": "Added a static preview server that serves the built folders and a real 404 the way Vercel does, and compare live files with the local build by hash after each release.",
+        "result": "Hydration problems show up locally before release, and releases are checked file by file against the live site."
+      }
+    ]
+  },
   "ftm-law-firm-booking": {
     "engagement": {
       "type": "Client project",
       "client": "Fine Touch Marketing",
-      "detail": "Paid agency engineering for an immigration law firm's website and client intake, delivered 2–14 November 2026. The firm is not named."
+      "detail": "Paid agency engineering for an immigration law firm's website, GoHighLevel CRM, Clio and Google Ads tracking, delivered 2–21 November 2026. The firm is not named."
     },
     "challenges": [
       {
+        "problem": "A third-party integration with API access deleted every contact (12,527), 57 cards, 3 pipelines, 164 fields and 65 tags from the firm's GoHighLevel CRM in 28 minutes.",
+        "fix": "Restored everything the same day from the CRM's own audit log, rebuilt each contact's exact tags from its history, recreated all 14 deleted availability schedules, then checked behaviour to find the workflow filters, notifications and missed-call link the log did not cover.",
+        "result": "12,527 of 12,527 contacts, 57 of 57 cards, 164 of 164 fields and 65 of 65 tags read back, and live booking times were confirmed for all seven lawyers."
+      },
+      {
+        "problem": "Clio Grow held 1,718 lead matters and their retainers in a separate pipeline that was not kept up to date, and Grow was being switched off.",
+        "fix": "Copied every matter, note and file onto the matching CRM contact, re-uploaded shared contacts with every person's files, and created cards from Grow's own document status, never in the stage that fires the Google Ads Zap.",
+        "result": "1,718 matters copied with 0 errors on Grow's last day; 38 retainers to resend and 44 open matters became pipeline cards."
+      },
+      {
         "problem": "No online flow took a consultation payment and then created the appointment, and the bookings that were saved went to a retired pipeline nobody watched.",
         "fix": "Built a pay-first booking on Clio Payments: only a confirmed payment creates the appointment, the Meet link and the cards in the firm's own intake pipeline, and every step checks for an existing result before creating one.",
-        "result": "Real paid test bookings ran end to end on the live system (first on November 7, latest on November 13); seven lawyers are bookable and \"No preference\" kept the firm's order in 620 of 620 checks."
-      },
-      {
-        "problem": "Most page types scored below 90 on mobile: the Fees page scored 66 and the home page weighed 4.26 MB.",
-        "fix": "Fifteen small changes, each one removable file or recorded setting, measured one at a time with the median of PageSpeed runs and checked against forms, chat, tracking and SEO tags.",
-        "result": "Mobile 90+ pages went from 4 to 10 of 12 and desktop from 5 to 12 of 12; Fees page 66 → 97 and home page 4.26 MB → 0.67 MB, with no visual change."
-      },
-      {
-        "problem": "Matters and retainers lived outside the CRM, and a joint retainer never finished because each signer received a different copy.",
-        "fix": "Marking the CRM card Won creates the Clio matter; retainers go out from the card with a second signer on one copy, and sending again withdraws the older unsigned copy.",
-        "result": "Matter status reaches the CRM in about 15 seconds, the signed PDF is filed in the client's Clio matter within about 5 minutes, and 12 of 12 retainer templates were rebuilt for online signing."
+        "result": "Real paid test bookings ran end to end on the live system (first on November 7; the full test on November 15 also sent both Google Ads conversions); seven lawyers are bookable and \"No preference\" kept the firm's order in 620 of 620 checks."
       }
     ],
     "document": {
-      "label": "Technical overview · November 14 (PDF)",
+      "label": "Technical overview · November 21 (PDF)",
       "file": "ftm-law-firm-booking-technical-overview.pdf"
     }
   },

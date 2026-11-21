@@ -14,9 +14,9 @@ describe("project evidence", () => {
 
   it("links every project to a real PDF in public/, except the documented exceptions", () => {
     // Groza's older case study also describes consent work outside the verified paid scope.
-    // MehZ Solution is my own agency site; no public technical document exists for it yet.
+    // MehZ Solution and this portfolio are my own sites; no public technical document exists for them yet.
     expect(Object.entries(projectEvidence).filter(([, evidence]) => !evidence.document).map(([id]) => id).sort())
-      .toEqual(["groza-accessibility", "mehz-solution"]);
+      .toEqual(["groza-accessibility", "mehz-solution", "zahidul-portfolio"]);
     for (const [id, evidence] of Object.entries(projectEvidence)) {
       if (!evidence.document) continue;
       const file = resolve(publicDir, `.${documentBasePath}${evidence.document.file}`);
