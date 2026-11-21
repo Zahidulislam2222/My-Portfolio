@@ -64,7 +64,7 @@ export const portfolioConfig = {
     email: "mailto:muhammadzahidulislam2222@gmail.com",
   },
 
-  // MehZ Solution, the agency I founded (April 2024): hero link, contact section and JSON-LD worksFor.
+  // MehZ Solution, the agency I founded (April 2026): hero link, contact section and JSON-LD worksFor.
   agency: {
     name: "MehZ Solution",
     website: "https://mehzsolution.com/",

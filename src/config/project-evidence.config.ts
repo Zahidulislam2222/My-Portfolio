@@ -83,7 +83,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
     "engagement": {
       "type": "Client project",
       "client": "Fine Touch Marketing",
-      "detail": "Paid agency engineering for an immigration law firm's website, GoHighLevel CRM, Clio and Google Ads tracking, delivered 2–21 November 2026. The firm is not named."
+      "detail": "Paid agency engineering for an immigration law firm's website, GoHighLevel CRM, Clio and Google Ads tracking, since November 2026. The firm is not named."
     },
     "challenges": [
       {
