@@ -103,7 +103,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       }
     ],
     "document": {
-      "label": "Technical overview · November 21 (PDF)",
+      "label": "Technical overview · updated November 25 (PDF)",
       "file": "ftm-law-firm-booking-technical-overview.pdf"
     }
   },
@@ -164,27 +164,27 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "equipcert": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My web/mobile equipment-inspection product. Operational probes and tests have dated evidence; regulatory certification is not claimed."
+      "detail": "My web/mobile equipment-inspection product, deployed with dated release checks. Regulatory certification is not claimed."
     },
     "challenges": [
       {
-        "problem": "The audit table existed but nothing wrote to it, application users could insert rows, and its append-only guard would have crashed GDPR erasure the moment it filled up.",
-        "fix": "Moved audit writing into database triggers on the core tables, blocked application writes, and defined the one permitted erasure mutation.",
-        "result": "Database suite went from 8 failing to 28 of 28 passing, erasure included."
+        "problem": "Unit tests passed while real field work was broken: a completed inspection did not move the next due date, a failed item led nowhere, and inspections saved offline were not sent when the app was reopened.",
+        "fix": "Added a browser suite that drives the real application under the production security policy (photo, location, checklist, consent, signature, offline save and team administration) and gave each of the fifteen defects found its own automated test.",
+        "result": "18 of 18 browser tests, 144 web unit tests and 447 native-client tests pass; 15 of 15 signed-in checks passed on the live site on November 25."
+      },
+      {
+        "problem": "Signing consent was requested in both apps but never stored, so a signed inspection carried no proof that the signer agreed.",
+        "fix": "The server records each signer's consent with the wording version, and the database refuses a signed inspection unless the signer is the person submitting it and has consented, including for inspections saved offline.",
+        "result": "Enforced on creation and on later signing; 28 of 28 tenant-isolation and audit tests pass on the hosted database."
       },
       {
         "problem": "The live database went offline: the free hosting tier paused it after a week without activity, even though a keep-alive job reported success twice a week.",
         "fix": "Found that the keep-alive called a health endpoint that never touched the database. It now runs a real query every day and reports success only when a row comes back.",
-        "result": "October 14 verification passed seven production probes, three dependency checks and 104 web unit tests. Authenticated inspection and a complete restore drill remain separate gates."
-      },
-      {
-        "problem": "On the serverless host, the subscription webhook would have rejected every genuine payment event: the platform parsed the body first, but the provider signs the exact original bytes.",
-        "fix": "Made the handler read the exact bytes on both deployment targets, and stopped logging event contents that can include customer details.",
-        "result": "With provider-signed test payloads, the old handler fails the platform-replay and raw-stream cases and the new one passes all of them; serverless behavior was checked against the platform runtime's source."
+        "result": "The automated production checks pass again, and the November 25 release deployed with all 147 files matching the build."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 14 (PDF)",
+      "label": "Technical overview · reviewed November 25 (PDF)",
       "file": "equipcert-technical-overview.pdf"
     }
   },
@@ -225,21 +225,21 @@ export const projectEvidence = z.record(evidenceSchema).parse({
       {
         "problem": "A successful checkout redirect can disagree with the persisted order or authoritative price.",
         "fix": "Used server-resolved WooCommerce prices, order ownership, idempotency and signed payment reconciliation.",
-        "result": "222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; live payments remain disabled."
+        "result": "222 commerce checks and 33 browser checks across three engines passed on October 21, including a hosted Stripe TEST payment; live payments remain disabled."
       },
       {
-        "problem": "The earlier local AI help engine passed only 3 of 8 task evaluations.",
-        "fix": "Paused local inference and moved the guide to an approved remote route with topic validation, maintained answers, spending reservations, deadlines and quotas.",
-        "result": "9/9 held-out tasks and 3 boundary checks passed; the guide has no customer-record access or action tools."
+        "problem": "The AI guide stopped answering when its only approved zero-data-retention endpoint stopped qualifying, and each failed call still held about USD 0.024 of a USD 0.10 lifetime allowance.",
+        "fix": "Moved the guide to a model served by two approved zero-retention endpoints. Each question now reserves only its own bounded cost (about USD 0.0014), and a refusal releases that reservation and pauses the paid route.",
+        "result": "Live check: 12 of 13 questions as expected, including refused prompt-injection and off-topic requests; median 0.95 s and USD 0.0003 in total."
       },
       {
-        "problem": "Upgrading the Stripe SDK on a shared PHP host risked breaking payments with no way back.",
-        "fix": "Installed SDK 20.3.1 as an immutable cohort with a native rollback path, without restarting shared PHP.",
-        "result": "Native rollback and test-payment reconciliation passed."
+        "problem": "Sign-in and reset messages revealed whether an account exists, there was no scheduled backup, and nobody knew how long a rebuild would take.",
+        "fix": "Gave real and unknown accounts the same answer, switched off GraphQL debug output and introspection, added nightly encrypted off-server backups with a restore drill, and fixed the setup script on a clean server.",
+        "result": "37 of 37 live account-privacy checks pass, and a clean Ubuntu 22.04 container rehearsal reached a verified backend in 8 min 40 s."
       }
     ],
     "document": {
-      "label": "Technical overview · updated October 21 (PDF)",
+      "label": "Technical overview · updated November 25 (PDF)",
       "file": "chronos-technical-overview.pdf"
     }
   },
@@ -395,27 +395,27 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "everyday-dental-surgery": {
     "engagement": {
       "type": "Independent build",
-      "detail": "An independent build of a dental practice website, not a real practice. The patient journey stores no real patient records, payments or clinical data."
+      "detail": "An independent build of a dental clinic platform, not a real practice. No real patient records, payments or clinical data are stored, and message sending is switched off."
     },
     "challenges": [
       {
         "problem": "The historical clinical version had real security gaps, including unauthenticated notification and breach handlers.",
         "fix": "Disabled all 11 historical Edge Function endpoints behind a deployed guard, with owner approval, and kept the defects documented rather than relabelled as repaired.",
-        "result": "The public site runs only in a mode that accepts no real patient data."
+        "result": "All 11 deployed endpoints return the expected 503, and the public site accepts no real patient data."
       },
       {
-        "problem": "Reviewers need to see privacy and consent behavior without handing over real health data.",
-        "fix": "Built a fixed patient journey with consent, access-denial, erasure and export flows in browser memory, with no real patient records.",
-        "result": "15 of 15 regression tests covering access decisions, consent, erasure and the runtime boundary."
+        "problem": "Follow-up messaging is easy to get wrong: a patient who opted out keeps getting texts, two events race for the same patient, or a forged event enrols someone.",
+        "fix": "Each event is signed and checked before parsing and stored in a durable inbox, and a single conditional update claims a campaign so only one concurrent claim can win. Opt-outs, deaths and record merges always end active campaigns and are never dropped under load.",
+        "result": "157 tests pass, with database, permission and concurrency tests on real PostgreSQL; live checks covered signature and replay rejection, campaign sync, opt-out sync, and pause and resume."
       },
       {
-        "problem": "Applying historical migrations to an unknown live database could destroy existing records.",
-        "fix": "Preserved every record: no migrations or database mutations were run, and upgrades require inventory, comparison and a tested rollback plan first.",
-        "result": "The corrected release passed all 138 file hashes."
+        "problem": "Enrolments sent into an unpublished CRM workflow went nowhere without an error, and the CRM merged two patients who shared a phone number.",
+        "fix": "Enrolments now wait, with an alert, until the workflow is published, and contacts are created and updated by ID so patients sharing a phone or email stay separate.",
+        "result": "Both fixes shipped in the November 25 release; identity separation was verified live for a shared phone."
       }
     ],
     "document": {
-      "label": "Technical overview (PDF)",
+      "label": "Technical overview · November 2026 (PDF)",
       "file": "everyday-dental-surgery-technical-overview.pdf"
     }
   },
@@ -599,7 +599,7 @@ export const projectEvidence = z.record(evidenceSchema).parse({
   "fleetwright": {
     "engagement": {
       "type": "Independent build",
-      "detail": "An independent platform for owner-approved freight and maintenance workflows on owned destinations, plus catalogue crawling and a local agent. Arbitrary-site execution and commercial-scale availability remain unproven."
+      "detail": "An independent platform for owner-approved freight and maintenance workflows on owned destinations, plus catalogue crawling, a local agent and a console AI help assistant. Arbitrary-site execution and commercial-scale availability remain unproven."
     },
     "challenges": [
       {
@@ -608,45 +608,45 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         "result": "The owned-board contention evidence records 10,000 jobs and 200 coordination competitors with zero duplicate action attempts; competitors are not 200 browsers."
       },
       {
-        "problem": "A healthy-looking worker can lack a usable browser driver and fail real bookings.",
-        "fix": "Added browser supervision and readiness checks, then exercised driver/browser loss, strict drain and reviewed recovery.",
-        "result": "The corrected release passed fresh owner booking, both approved MCP workflows and a four-record crawler export. The October 15 regression passed 289 tests with six accounted skips."
+        "problem": "A help assistant inside an operations console can leak data, follow injected instructions or run up a model bill.",
+        "fix": "The assistant answers only from approved public documents and read-only console data, on a separate egress network joined only by the API, with an atomic daily budget, hourly per-user and per-address limits and one deadline per answer. Any limit or failure falls back to a documentation-search answer.",
+        "result": "16 of 16 held-out cases passed, including prompt injection; p95 4.98 s and at most USD 0.0010 per question."
       },
       {
         "problem": "A server-local backup and source hash alone do not establish recoverable deployment.",
-        "fix": "Verified signed image identities and exact deployed artifacts, then restored a fresh archive into two new databases and exercised supervised recovery.",
-        "result": "All 146 deployed artifact hashes and eight signed image identities matched. Both restored databases retained workflow history; encrypted off-host restore evidence remains dated October 13."
+        "fix": "Verified signed image identities and exact deployed artifacts, then restored an encrypted off-server copy into fresh databases and exercised supervised recovery.",
+        "result": "The November 25 release is signed, and 147 of 147 deployed files and 8 of 8 service images match. An encrypted off-server copy restored on October 13 matched every table's row count."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 15 (PDF)",
+      "label": "Technical overview · updated November 25 (PDF)",
       "file": "fleetwright-technical-overview.pdf"
     }
   },
   "adrevora-ai": {
     "engagement": {
       "type": "Independent build",
-      "detail": "My independent revenue-intelligence product, deployed on the existing server. Company-account activation and commercial pilot acceptance remain open."
+      "detail": "My independent revenue-intelligence product, deployed on my own server. Verified with provider test environments and generated records; no customer data is processed."
     },
     "challenges": [
       {
-        "problem": "A CSV report can omit unknown-attribution money, while a fresh import can make unrelated evidence look current.",
-        "fix": "Reconciled campaign, unknown and total money rows; retained exact record provenance and conservative freshness. Kept overlapping contact counts separate from money totals.",
-        "result": "The maintained reference ledger reconciles with zero difference; HTTPS workflow checks exercised CSV and role metrics. Company-source reconciliation remains an activation gate."
+        "problem": "A CRM stage or an ad platform's conversion claim can be reported as revenue, and money that cannot be attributed gets spread across campaigns.",
+        "fix": "Moved every lead, stage, invoice, payment, refund, fee and dispute into typed tables the database constrains. Only recorded payments count as cash, and unattributed revenue is reported as unknown with a reason.",
+        "result": "A 25,540-record dataset loads through the real import path in about 2.5 seconds and reconciles with zero difference under all three attribution views."
       },
       {
-        "problem": "Creative approvals can outlive the revision they approved, and repeated daily captures can rewrite reporting history.",
-        "fix": "Exposed immutable revision decisions, rejected stale approvals, and retained daily UTC snapshots that replay without duplicates; bounded history work with configured ceilings.",
-        "result": "The recorded release passed 120 application and 56 deployment tests, 17 HTTPS workflow checks and 23 scoped accessibility scans. Full manual accessibility acceptance remains open."
+        "problem": "Payment events can arrive twice, late, forged or from the wrong account, and each one moves the money figures.",
+        "fix": "Signed webhooks with replay, staleness, mode and account checks in the payment provider's test mode. Schema changes are versioned migrations, and a server whose structure has drifted refuses to start.",
+        "result": "A payment, a partial refund, a dispute and the fee reached the ledger; replaying the same seven events changed nothing, and wrong signatures, stale events, the wrong mode and the wrong account were refused."
       },
       {
-        "problem": "A deployment can preserve headline revenue while changing access, consent or recovery state.",
-        "fix": "Compared every production table through the final upgrade and rehearsed encrypted isolated recovery with restored sessions removed.",
-        "result": "All 20 table hashes were preserved and 68 release artifacts matched; eight key tables matched in the isolated restore. The measured core interruption was 5.288 seconds, not a monthly availability guarantee."
+        "problem": "An AI that drafts ad copy or answers questions can invent numbers or act on its own.",
+        "fix": "Drafts come from a versioned evidence snapshot built by code and must pass a content check; the assistant answers only from the guides and the user's own report, with sources. Only an administrator approves, and approval never publishes, sends or spends.",
+        "result": "All 24 final drafts passed the content check (11 written by the model, 13 replaced by the code-filled template); the assistant answered 37 of 37 covered questions and declined 10 out-of-scope and 2 injected ones."
       }
     ],
     "document": {
-      "label": "Technical overview · reviewed October 14 (PDF)",
+      "label": "Technical overview · updated November 25 (PDF)",
       "file": "adrevora-ai-technical-overview.pdf"
     }
   },

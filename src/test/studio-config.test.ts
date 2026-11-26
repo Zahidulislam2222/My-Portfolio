@@ -121,8 +121,9 @@ describe("engineering studio content contract", () => {
     expect(dental?.summary).toMatch(/^Independent build/);
     expect(dental?.summary).toContain("No real patient records");
     expect(dental?.detail).toContain("not a client project and not a real practice");
-    expect(dental?.detail).toContain("not an operating clinical portal");
-    expect(studioProjects.find((project) => project.id === "chronos")?.detail).toContain("Live payments and shipping are not enabled");
+    expect(dental?.detail).toContain("Message sending is switched off");
+    expect(dental?.detail).toContain("No real patient data is collected");
+    expect(studioProjects.find((project) => project.id === "chronos")?.detail).toContain("Payments stay in Stripe test mode and nothing is shipped");
     expect(studioProjects.find((project) => project.id === "secure-hybrid-ai-hub")?.detail).toContain("end-to-end acceptance remain incomplete");
     expect(studioProjects.find((project) => project.id === "mediconnect-v3")?.detail).toContain("clinical acceptance remain open");
     const regenai = studioProjects.find((project) => project.id === "regenai-shopify");
@@ -138,11 +139,11 @@ describe("engineering studio content contract", () => {
     expect(voicebridge?.detail).toContain("backup replay remain open");
     expect(projectResources("voicebridge").liveUrl).toBe("https://voicebridge.zahidul-islam.com/");
     const fleetwright = studioProjects.find((project) => project.id === "fleetwright");
-    expect(fleetwright?.status).toContain("browser supervision and recovery verified");
-    expect(fleetwright?.detail).toMatch(/owned destinations/);
+    expect(fleetwright?.status).toContain("signed and verified file by file");
+    expect(fleetwright?.detail).toMatch(/destinations I own/);
     expect(fleetwright?.detail).toContain("289 tests with six accounted skips");
-    expect(fleetwright?.detail).toContain("Encrypted off-host restore and installed-model evidence retain their October 13 dates");
-    expect(fleetwright?.detail).toMatch(/Arbitrary-site execution.*measured monthly availability remain unproven/);
+    expect(fleetwright?.detail).toContain("there is no single clean full-suite run yet");
+    expect(fleetwright?.detail).toMatch(/arbitrary-site execution.*design targets, not measurements/);
   });
 
   it("keeps paid provider configuration and credential material out of the browser component", () => {
@@ -209,7 +210,7 @@ describe("engineering studio content contract", () => {
   });
 
   it("keeps featured-card highlights consistent with the current release counts", () => {
-    for (const [id, counts] of [["voicebridge", ["258"]], ["fleetwright", ["289"]]] as const) {
+    for (const [id, counts] of [["voicebridge", ["258"]], ["fleetwright", ["147 of 147"]]] as const) {
       const detail = studioProjects.find(project => project.id === id)?.detail;
       for (const count of counts) {
         expect(detail).toContain(count);

@@ -244,8 +244,8 @@ export const portfolioConfig = {
       "wordpress",
       "fullstack"
     ],
-    "description": "Headless WooCommerce storefront with a bounded AI guide, verified test checkout and tested rollback.",
-    "fullDescription": "A React/TypeScript storefront where WordPress and WooCommerce own content, accounts, prices and orders. The October 21 release, merged to GitHub main, adds a project-specific AI guide on an approved remote route: it passed 9/9 held-out tasks and 3 boundary checks, has no customer-record access or action tools and runs inside a USD 0.10 lifetime allowance with reservations, deadlines and quotas. Runtime images moved to patched Node 22.23.3 and Nginx 1.30.4 with zero reported vulnerabilities, and the Stripe SDK to 20.3.1 with native rollback tested. 222 commerce checks and 33 browser checks across three engines passed, including a hosted Stripe TEST payment; twelve automated privacy checks passed. Guide restart and frontend rollback/resume passed, and 140 frontend and 611 guide files match their artifacts. Live payments and shipping are outside this build; million-session capacity and uptime objectives are roadmap gates, not measurements.",
+    "description": "Headless WooCommerce watch store with a React storefront, a spend-capped AI shopping guide, Stripe test checkout, nightly backups and a tested rebuild.",
+    "fullDescription": "A React 19 and TypeScript storefront where WordPress and WooCommerce own content, products, prices, stock, accounts and orders; every public page is pre-rendered, and editors publish in WordPress without a rebuild. Release 07 went live on November 25, 2026. The AI guide answers from approved help content on two zero-data-retention endpoints: in the live check 12 of 13 questions were answered as expected, including refusals of prompt-injection and off-topic requests, at a median of 0.95 seconds, and it stays inside a USD 0.10 lifetime spending cap with no access to customer records and no action tools. Sign-in and password reset now give the same answer for real and unknown accounts (37 of 37 live checks), and GraphQL debug output and introspection are off. Encrypted backups leave the server every night with a completed restore drill, availability is checked every 30 minutes, contact messages are deleted after 30 days, and a clean Ubuntu container rehearsal reached a verified backend in 8 minutes 40 seconds. The patched Nginx and Node images report zero high or critical findings, all 76 deployed frontend files match the reviewed build, and four pull requests passed ten required checks with 71 PHP tests and 42 guide tests. Checkout was verified on October 21 with a hosted Stripe test payment, 222 commerce checks and 33 browser checks across three engines. Payments stay in Stripe test mode and nothing is shipped; million-session capacity and uptime objectives are roadmap targets, not measurements.",
     "images": [
       "https://github.com/user-attachments/assets/0e39a15d-5c5e-4ee4-ae00-2b3142826883",
       "https://github.com/user-attachments/assets/d9d62479-f198-4e0f-8df2-64fc045f5392",
@@ -265,8 +265,8 @@ export const portfolioConfig = {
       "WooCommerce"
     ],
     "achievements": [
-      "Deployed storefront · test checkout only",
-      "Google Doc release record reviewed October 25, 2026; October 21 release evidence and open gates stated above"
+      "Deployed release 07 · test checkout only",
+      "Google Doc technical overview updated November 25, 2026"
     ],
     "liveUrl": "https://chronos.zahidul-islam.com/",
     "githubLinks": [
@@ -285,7 +285,7 @@ export const portfolioConfig = {
     "isHeadless": true,
     "isWordpress": true,
     "metrics": {
-      "delivery": "Deployed storefront · test checkout only"
+      "delivery": "Deployed release 07 · test checkout only"
     }
   },
   {
@@ -296,8 +296,8 @@ export const portfolioConfig = {
       "ai-ml",
       "fullstack"
     ],
-    "description": "Web and mobile inspection evidence with offline capture and explicit certification boundaries.",
-    "fullDescription": "An equipment-inspection application with Next.js, Flutter, Supabase records, offline evidence capture, signatures, optional AI assistance and PDF reporting. October 14 verification recorded 104 web unit tests, seven production probes, three dependency checks and zero configuration-boundary violations across 157 files. The database keepalive now requires an actual database query. The 429 native-client tests and mobile build results remain dated October 1 evidence. Authenticated inspection walkthroughs, persisted signature-consent evidence, commercial payments, an off-machine signing-key backup and a completed restore drill remain open; inspection evidence is not regulatory certification.",
+    "description": "Web and mobile inspection app: photo, location, checklist and signature evidence captured offline, team invitations, an in-app AI help assistant and PDF reports.",
+    "fullDescription": "An equipment-inspection application built with Next.js, Flutter and Supabase: technicians capture photos, location, checklists and signatures, also offline, and managers get corrective actions, audit records and PDF reports. The November 25 release adds team membership through expiring single-use invitations with the plan's seat limit enforced by the database, signing consent stored by the server with the wording version (the database refuses a signed inspection without it), and an in-app AI help assistant on web and mobile that answers from the product's help articles, says it is AI and answered 12 of 12 evaluation questions. A new browser suite drives the real application under the production security policy; together with an independent review and continuous integration it found fifteen defects that unit tests had missed, all fixed and retested, such as offline inspections not being sent when the app was reopened and a completed inspection not moving the next due date. On November 25 all 147 deployed files matched the build, 15 of 15 signed-in checks passed on the live site, five CI jobs passed across web, Android and iOS, and 144 web unit tests, 447 native-client tests, 18 browser tests and 28 of 28 tenant-isolation and audit tests pass with all eleven database migrations applied. Commercial payments, an off-machine signing-key backup and a completed restore drill remain open; capacity figures are design targets, and inspection evidence is not regulatory certification.",
     "images": [
       "https://github.com/user-attachments/assets/8d305d49-f097-49fd-bd19-f6dbd12b131c",
       "https://github.com/user-attachments/assets/840c5056-8fcc-43ab-a04d-ad6dc14e87f8",
@@ -317,8 +317,8 @@ export const portfolioConfig = {
       "Supabase"
     ],
     "achievements": [
-      "Deployed inspection app · operational probes verified",
-      "Source review October 14, 2026 · dated verification"
+      "Deployed release, November 25 · browser-flow and signed-in checks pass",
+      "Google Doc technical overview reviewed November 25, 2026"
     ],
     "liveUrl": "https://equipcert.zahidul-islam.com/",
     "githubLinks": [
@@ -337,7 +337,7 @@ export const portfolioConfig = {
     "isHeadless": true,
     "isContentful": true,
     "metrics": {
-      "delivery": "Deployed inspection app · operational probes verified"
+      "delivery": "Deployed release, November 25 · browser-flow and signed-in checks pass"
     }
   },
   {
@@ -369,14 +369,14 @@ export const portfolioConfig = {
   },
   {
     "id": "everyday-dental-surgery",
-    "title": "Everyday Dental — Independent Clinic Website Build (Sample Data)",
+    "title": "Everyday Dental — Independent Clinic Platform Build (Sample Data)",
     "category": [
       "healthcare",
       "fullstack",
       "compliance"
     ],
-    "description": "Explore a sample patient journey without real health data.",
-    "fullDescription": "An independent dental-practice website build with an interactive sample patient journey, consent examples, access-denial states and a sample FHIR-shaped export. State lives in browser memory. Real intake, clinical authentication, payments, messaging and the historical clinical endpoints are disabled. It shows interface behavior and engineering boundaries, not an operating clinical portal. Source and documentation were published on GitHub with all 255 file hashes matching.",
+    "description": "Independent build of a bilingual dental clinic platform: a live website with a patient journey, and a messaging service that syncs follow-up campaigns to HighLevel in a sandbox location. No real patient records.",
+    "fullDescription": "An independent build of a dental clinic platform, not a client project and not a real practice, in three separate parts. The public website is live in English and Bangla with more than 20 pages and an interactive patient journey that walks through appointment, consent, legal-hold, erasure and record-export steps on a sample record held in browser memory. The patient messaging service, released on November 25, 2026, is a Python (FastAPI, PostgreSQL) service that turns signed patient-record events into three follow-up campaigns (new patient intake, recall and treatment follow-through; 28 versioned messages) and syncs them to HighLevel CRM workflows in a sandbox location. Consent is tracked per channel and opt-outs always win. A patient is in one campaign at a time, enrolments wait while a workflow is unpublished, patients who share a phone or email stay separate, and an audited kill switch pauses everything. Message sending is switched off. The clinical backend (Supabase Edge Functions and PostgreSQL migrations) stays disabled: all 11 endpoints sit behind a release guard and returned the expected 503. Verification: 157 messaging tests pass, including database, permission and concurrency tests on real PostgreSQL; 20 of 20 website tests and 24 of 24 browser tests pass, accessibility checks included; and 138 of 138 release files match the reviewed build. No real patient data is collected; clinical database behavior, delivery through real providers and full WCAG 2.2 AA conformance are not yet verified, and the platform is not certified against HIPAA or GDPR.",
     "images": [
       "https://github.com/user-attachments/assets/62a8b78c-4d66-4f62-8998-cc71edd2cb32",
       "https://github.com/user-attachments/assets/1fe6bd5b-8f25-4601-80bc-a52d93fcfca8",
@@ -386,13 +386,15 @@ export const portfolioConfig = {
     ],
     "thumbnail": "/studio/everyday-dental-surgery-cover.webp",
     "technologies": [
-      "Responsive UI",
-      "Bilingual",
-      "Privacy flows"
+      "React",
+      "Python / FastAPI",
+      "PostgreSQL",
+      "HighLevel",
+      "Bilingual"
     ],
     "achievements": [
-      "Independent build · sample data only",
-      "Independent release and GitHub publication, September 24, 2026"
+      "Independent build · website live, messaging service on sample data",
+      "Google Doc technical overview, November 2026 edition"
     ],
     "liveUrl": "https://dental.zahidul-islam.com/",
     "githubLinks": [
@@ -411,7 +413,7 @@ export const portfolioConfig = {
     "featured": false,
     "isHealthcare": true,
     "metrics": {
-      "delivery": "Independent build · sample data only"
+      "delivery": "Independent build · website live, messaging service on sample data"
     }
   },
   {
@@ -975,8 +977,8 @@ export const portfolioConfig = {
       "fullstack",
       "security"
     ],
-    "description": "Approved browser workflows, durable crawling and supervised recovery with inspectable receipts.",
-    "fullDescription": "A deployed browser-operations platform with six scoped MCP tools, owner-approved freight and maintenance workflows on owned destinations, PostgreSQL fencing, a durable catalogue crawler and a local SQLite/Ollama agent. The October 14 correction adds browser supervision and readiness checks; the October 15 release publishes the operating, privacy, security and scale guides. Recorded regression passed 289 tests with six accounted skips; all 146 deployed artifact hashes and eight signed image identities matched. Actual owner booking, both approved MCP workflows, crawler export and all 15 CSP routes passed. A fresh archive restored into two new databases with matching workflow history, and scheduler/monitor recovery was exercised. Encrypted off-host restore and installed-model evidence retain their October 13 dates. Arbitrary-site execution, million-user capacity and measured monthly availability remain unproven.",
+    "description": "Coordinated browser fleet with owner-approved MCP workflows, a durable crawler, a local agent and a console AI help assistant, with signed, file-verified releases.",
+    "fullDescription": "A deployed browser-operations platform that runs many logged-in browser sessions against authorized sites. Each job is acted on at most once, an interrupted action is settled from evidence instead of a blind retry, and every outcome can be investigated. It combines a warm Playwright fleet with PostgreSQL fencing, owner-approved freight and maintenance workflows supervised through six scoped MCP tools, a durable catalogue crawler, a local SQLite/Ollama agent and an operator console. The November 25 release adds an AI help assistant in the console that answers from approved public documents and read-only console data, with a documentation-search answer whenever a limit, timeout or provider failure stops the model. It passed 16 of 16 held-out cases including prompt injection, with a p95 of 4.98 seconds and at most USD 0.0010 per question under a USD 0.16 daily cap. Every container image was patched and pinned with zero high or critical findings at the recorded scan. The release is signed: 147 of 147 deployed files and 8 of 8 service images match, and 25 of 25 origin checks passed. The October 15 regression run passed 289 tests with six accounted skips; the 27 tests added since each have a passing run, but there is no single clean full-suite run yet. One workflow job has been UNKNOWN since October 27: its reconciliation currently fails, and the action itself is never repeated. It works only against destinations I own; arbitrary-site execution, million-session capacity and the 99% and 99.9% availability objectives are design targets, not measurements.",
     "thumbnail": "",
     "technologies": [
       "Python",
@@ -986,17 +988,17 @@ export const portfolioConfig = {
       "FastAPI"
     ],
     "achievements": [
-      "Deployed release · browser supervision and recovery verified",
-      "Verified release October 15, 2026 · dated evidence"
+      "Deployed release, November 25 · signed and verified file by file",
+      "Google Doc technical overview updated November 25, 2026"
     ],
     "liveUrl": "https://fleetwright.zahidul-islam.com/",
     "githubUrl": "https://github.com/Zahidulislam2222/fleetwright",
     "pdfUrl": "/docs/fleetwright-technical-overview.pdf",
     "featured": true,
     "metrics": {
-      "delivery": "Deployed release · browser supervision and recovery verified",
+      "delivery": "Deployed release, November 25 · signed and verified file by file",
       "workflows": "2 owned workflows",
-      "verification": "146 deployed manifest entries matched local"
+      "verification": "147 deployed files and 8 service images matched"
     }
   },
   {
@@ -1007,8 +1009,8 @@ export const portfolioConfig = {
       "automation",
       "fullstack"
     ],
-    "description": "Reconciled revenue, role metrics, daily reports and human-reviewed private CPU AI in a deployed workspace.",
-    "fullDescription": "A deployed advertising-to-revenue workspace with mandatory MFA, tenant membership, a persistent financial ledger, first/last-touch attribution and private CPU inference. The October 14 release adds reconciled campaign/unknown/total CSV rows, CEO/marketing/operations metrics, immutable creative revision history, conservative source freshness, bounded history and stored daily UTC reports. Recorded verification passed 120 application tests, 56 deployment tests, 17 HTTPS workflow checks and 23 scoped accessibility scans; all 68 release artifacts matched and all 20 database table hashes were preserved across the final upgrade. Encrypted isolated recovery matched eight key tables. Company-account activation, campaign writes, commercial pilot reconciliation and distributed capacity remain open. Reference revenue is sample data, not client results. Full manual accessibility acceptance remains open.",
+    "description": "Shows which ad campaigns brought in collected cash: a typed revenue ledger, payment and CRM connections, an AI assistant that cites its sources and AI drafts checked against the evidence. People make every decision.",
+    "fullDescription": "A deployed advertising-to-revenue workspace that follows a lead from the ad to the payment and answers which campaigns bring in real cash. The November 22 release completes six build phases. Leads, journey stages, invoices, payments, refunds, fees and disputes live in typed, tenant-scoped tables that the database constrains, and revenue that cannot be attributed is shown as unknown instead of being spread across campaigns. A 25,540-record dataset loads through the real import path in about 2.5 seconds and reconciles with zero difference under all three attribution views. In payment test mode a payment, a partial refund, a dispute and the processing fee reached the ledger through signed webhooks, and replaying the same seven events changed nothing. A help assistant answers from the guides and the signed-in user's own report with sources: it answered 37 of 37 covered questions and declined all 10 out-of-scope and 2 injected ones. Campaign briefs and ad copy are drafted from a code-built evidence snapshot by a privately run model. All 24 final drafts passed the content check (11 written by the model, 13 replaced by a code-filled template), and approval never publishes, sends or spends. The public site loads no advertising script until a visitor accepts. The release was promoted with a 3.2-second interruption, all 90 release files matched the reviewed build, 270 application and 77 deployment tests pass, and an encrypted backup restored with all 23 tables matching. Verification used provider test environments, test-mode payments and generated records; no customer data is processed, and phases 7 to 10 of the build plan are still planned.",
     "thumbnail": "/studio/adrevora-ai.png",
     "technologies": [
       "React",
@@ -1019,15 +1021,15 @@ export const portfolioConfig = {
       "Stripe"
     ],
     "achievements": [
-      "Deployed revenue workspace · company activation pending",
-      "Source review October 14, 2026 · dated verification"
+      "Deployed release, November 22 · 270 app tests pass",
+      "Google Doc technical overview updated November 25, 2026"
     ],
     "liveUrl": "https://adrevora.zahidul-islam.com/",
     "pdfUrl": "/docs/adrevora-ai-technical-overview.pdf",
     "featured": false,
     "metrics": {
-      "delivery": "Deployed revenue workspace · company activation pending",
-      "verification": "120 application + 56 deployment tests"
+      "delivery": "Deployed release, November 22 · 270 app tests pass",
+      "verification": "270 application + 77 deployment tests"
     },
     "githubLinks": [
       {
