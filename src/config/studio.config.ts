@@ -660,6 +660,28 @@ export const studioProjects = z.array(projectSchema).parse([
     "image": "/studio/self-hosted-email-infrastructure-cover.webp",
     "imageKind": "reference",
     "imageAlt": "Workflow diagram for the self-hosted email infrastructure: DNS and authentication, mail server, inboxes and restore testing"
+  },
+  {
+    "id": "personal-ai-agent",
+    "name": "Personal AI Agent",
+    "category": "AI & Agents",
+    "domain": "SELF-HOSTED AI AGENT OPERATIONS",
+    "summary": "An always-on agent on a ChatGPT plan that switches to DeepSeek by itself; in a live mid-task cut-off the backup answered about 8 seconds after the first failed call.",
+    "status": "Live since November 27 · live failover test passed, public repository with green CI",
+    "detail": "A private, always-on AI agent for daily business work and finding clients. It runs Nod, the personal agent application from n8n Labs, installed from its official server bundle on an existing shared Linux server. Everyday chat signs in with ChatGPT, so it is billed to the existing plan instead of an API key ($0 API cost per chat, measured), and a DeepSeek model through OpenRouter is the automatic backup. In a live test a script cut only the agent's ChatGPT connection in the middle of a six-step task: the backup answered about 8 seconds after the first failed call, the task finished 6 of 6, and after the automatic restore the next message went back to ChatGPT. The whole test cost under one cent. The owner reaches it from a browser or a Telegram bot linked to the owner's account (text, photos, audio questions and reminders sent on time), and it reads Slack on request but posts only after an approval card. The deployment layer around the application is custom-built: a checksum-verifying installer, fixed container networks because the server's Docker address pools were exhausted, CPU limits that protect the other apps, an agent listening only on the server's internal interface behind Caddy and Cloudflare, nightly backups (14 kept) and a 5-minute external uptime check. The live web-server site is byte-identical (SHA-256) to the one rendered from the public repository's template, and the repository's CI (lint, 29 renderer tests, secret and address checks, static analysis) passed on the first push. Not tested yet: a restore drill, and reminders beyond a one-time schedule.",
+    "stack": [
+      "Nod (n8n Labs)",
+      "Docker Compose",
+      "Caddy / Cloudflare",
+      "OpenRouter / DeepSeek",
+      "Telegram / Slack"
+    ],
+    "visual": "network",
+    "featured": true,
+    "evidence": "Google Doc technical overview updated November 28, 2026; open gates stated above",
+    "image": "/studio/personal-ai-agent-cover.webp",
+    "imageKind": "illustration",
+    "imageAlt": "Illustration of the Personal AI Agent: the live failover test timeline from the ChatGPT cut to the DeepSeek answer, with browser, Telegram and approval-gated Slack channels"
   }
 ]);
 
@@ -755,6 +777,7 @@ export const studioConfig = {
   reviewUrl: portfolioConfig.upworkProfileUrl,
   commitments: portfolioConfig.ethicalCommitment.items,
   projectHighlights: {
+    "personal-ai-agent": "Always-on agent on a ChatGPT plan with automatic DeepSeek backup: after a live mid-task cut it answered about 8 s after the first failed call; Telegram and approval-gated Slack.",
     "groza-accessibility": "Paid WCAG 2.1 AA remediation: 100+ errors and 200+ contrast failures fixed with a PHP snippet and no theme edits.",
     "project-video-studio": "Script-to-video engine with layered composition, local human matting, checked captions/audio and safe shot reuse.",
     "mehz-solution": "My agency's live site on mehzsolution.com: service requests, client dashboard, owner admin and an AI assistant.",
@@ -793,7 +816,7 @@ export const studioConfig = {
   } as Record<string, string>,
   // Pinned to the front of the Work grid in this order; the rest keep their list order.
   spotlight: {
-    order: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "voicebridge", "yuktha-wellness", "fleetwright", "jwalker-knowledge-assistant", "mediconnect-v3", "ftm-social-media", "agentic-environment", "ftm-seo-automation", "project-video-studio", "wordpress-incident-response", "regenai-shopify", "groza-accessibility", "vericommerce-ai", "playwright-cline-integration"] as readonly string[],
+    order: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "personal-ai-agent", "yuktha-wellness", "voicebridge", "jwalker-knowledge-assistant", "mediconnect-v3", "ftm-social-media", "fleetwright", "ftm-seo-automation", "agentic-environment", "wordpress-incident-response", "project-video-studio", "groza-accessibility", "regenai-shopify", "playwright-cline-integration", "vericommerce-ai"] as readonly string[],
     glow: ["mehz-solution", "zahidul-portfolio", "ftm-law-firm-booking", "ftm-sms-followup", "mediconnect-v3", "yuktha-wellness"] as readonly string[],
   },
   identity: portfolioConfig.personal,

@@ -41,7 +41,7 @@ export const portfolioConfig = {
      📊 STATISTICS (Animated Counters)
      ======================================== */
   stats: [
-    { label: "Selected Projects", value: 31, suffix: "" },
+    { label: "Selected Projects", value: 32, suffix: "" },
     { label: "VoiceBridge Backend Tests", value: 258, suffix: "" },
     { label: "Kindred Browser Passes", value: 55, suffix: "" },
     { label: "RegenAI Sample Products", value: 6, suffix: "" }
@@ -1209,6 +1209,34 @@ export const portfolioConfig = {
       "delivery": "Operating on a shared server · single host, not high availability"
     },
     "pdfUrl": "/docs/self-hosted-email-infrastructure-case-study.pdf"
+  },
+  {
+    "id": "personal-ai-agent",
+    "title": "Personal AI Agent: ChatGPT with Automatic DeepSeek Backup",
+    "category": [
+      "ai-ml",
+      "automation"
+    ],
+    "description": "An always-on AI agent on a ChatGPT plan that switches to DeepSeek by itself, reachable from a browser or Telegram, with Slack posts only after approval.",
+    "fullDescription": "A private, always-on AI agent for daily business work and finding clients, built on Nod, the personal agent application from n8n Labs, with my own deployment layer, live failover test and public documentation. Everyday chat is billed to the ChatGPT plan; a DeepSeek model through OpenRouter takes over by itself when ChatGPT fails.",
+    "thumbnail": "/studio/personal-ai-agent-cover.webp",
+    "technologies": [
+      "Nod (n8n Labs)",
+      "Docker Compose",
+      "Caddy / Cloudflare",
+      "OpenRouter / DeepSeek",
+      "Telegram / Slack"
+    ],
+    "achievements": [
+      "Live since November 27, 2026 · live mid-task failover test passed",
+      "Public repository with green CI · technical overview November 28, 2026"
+    ],
+    "featured": true,
+    "metrics": {
+      "delivery": "Live on a shared server · single host, restore drill still open"
+    },
+    "githubUrl": "https://github.com/Zahidulislam2222/personal-ai-agent-ops",
+    "pdfUrl": "/docs/personal-ai-agent-technical-overview.pdf"
   }
 ],
 

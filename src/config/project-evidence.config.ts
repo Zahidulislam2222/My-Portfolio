@@ -821,5 +821,32 @@ export const projectEvidence = z.record(evidenceSchema).parse({
         "result": "More than 100 errors fixed across the site without touching theme or plugin files; the checked article went from 7 WAVE errors to 0."
       }
     ]
+  },
+  "personal-ai-agent": {
+    "engagement": {
+      "type": "Independent build",
+      "detail": "My own always-on AI agent for MehZ Solution's daily work and client finding. Nod is n8n Labs' application; the deployment layer, failover test and public documentation are mine. A restore drill is still open."
+    },
+    "challenges": [
+      {
+        "problem": "The agent had to keep working when ChatGPT is busy or down, and a failover setting proves nothing until ChatGPT actually fails in the middle of real work.",
+        "fix": "Wrote an auto-restoring test that cuts only the agent's ChatGPT connection while it is working and restores it after 5 minutes from a system timer, leaving every other app untouched.",
+        "result": "During a six-step task the DeepSeek backup answered about 8 seconds after the first failure, the task finished 6 of 6, and the next message went back to ChatGPT; the test cost under one cent."
+      },
+      {
+        "problem": "The first install stopped with \"all predefined address pools have been fully subnetted\": the apps already on the shared server had used every default Docker network range.",
+        "fix": "Gave the agent's five networks small fixed ranges and added CPU limits in a separate override file, keeping the official bundle unmodified and checksum-verified.",
+        "result": "Every service started and reported healthy, and the running code is provably the published upstream revision."
+      },
+      {
+        "problem": "Approved Slack posts appear under the owner's own name, so a wrong post from the agent would look like the owner's own.",
+        "fix": "Connected Slack with reads allowed on request and tested the agent's built-in approval before any send: the Telegram card shows the channel, account and exact text, with Post and Cancel buttons.",
+        "result": "Nothing reached Slack before approval; after Post exactly one send action ran and the message appeared once."
+      }
+    ],
+    "document": {
+      "label": "Technical overview · updated November 28 (PDF)",
+      "file": "personal-ai-agent-technical-overview.pdf"
+    }
   }
 });
